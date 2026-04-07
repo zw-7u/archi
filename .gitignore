@@ -1,0 +1,48 @@
+# ===========================
+# 系统与编辑器
+# ===========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+._*
+
+# ===========================
+# 依赖
+# ===========================
+server/node_modules/
+
+# ===========================
+# 构建产物 / 缓存
+# ===========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.parcel-cache/
+
+# ===========================
+# 环境与敏感文件
+# ===========================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# ===========================
+# IDE / AI 工具
+# ===========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.cursor/
+cursor-info.json
