@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --paper: #e6d6b6;
   --paper-light: #f3ead5;
   --paper-deep: #d2bc91;
@@ -1244,4 +1244,1271 @@ button {
 
 .module-layout[hidden] {
   display: none !important;
+}
+
+/* ===============================
+   模块二：堪舆哲思
+   =============================== */
+
+.wood-nav__plates {
+  gap: 24px;
+}
+
+.module-layout--thought,
+.module-layout--component {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.thought-shell,
+.component-shell {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thought-topbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+}
+
+.thought-topbar__title {
+  margin: 4px 0 0;
+}
+
+.thought-primary-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.thought-primary-tab,
+.thought-secondary-tab {
+  position: relative;
+  border: 1px solid rgba(166, 118, 37, 0.28);
+  background: linear-gradient(180deg, rgba(255, 248, 232, 0.92), rgba(226, 205, 164, 0.88));
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.thought-primary-tab {
+  min-width: 108px;
+  height: 108px;
+  padding: 14px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 214, 0.6), 0 10px 20px rgba(72, 45, 21, 0.08);
+}
+
+.thought-primary-tab::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(184, 138, 53, 0.28);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.thought-primary-tab:hover,
+.thought-secondary-tab:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(72, 45, 21, 0.12);
+}
+
+.thought-primary-tab.active,
+.thought-secondary-tab.active {
+  border-color: rgba(184, 138, 53, 0.56);
+  box-shadow: 0 12px 26px rgba(125, 83, 26, 0.18), inset 0 0 0 1px rgba(255, 245, 220, 0.65);
+}
+
+.thought-primary-tab__zh {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.thought-primary-tab__en {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: rgba(79, 56, 33, 0.72);
+}
+
+.thought-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 232, 0.85);
+  border: 1px solid rgba(184, 138, 53, 0.22);
+  color: var(--ink-soft);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.thought-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(260px, 24%) minmax(420px, 1fr) minmax(300px, 31%);
+  gap: 12px;
+}
+
+.thought-side-column,
+.thought-main-column,
+.thought-detail-column {
+  min-height: 0;
+}
+
+.thought-side-card,
+.thought-stage-card,
+.thought-control-card,
+.thought-media-card,
+.thought-text-card {
+  height: 100%;
+  min-height: 0;
+}
+
+.thought-side-card,
+.thought-control-card,
+.thought-media-card,
+.thought-text-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.thought-detail-column {
+  display: grid;
+  gap: 12px;
+  grid-template-rows: auto minmax(180px, 0.9fr) minmax(260px, 1.1fr);
+}
+
+.thought-block-head {
+  padding: 16px 18px 10px;
+}
+
+.thought-block-head--tight {
+  padding-bottom: 8px;
+}
+
+.thought-card-title {
+  margin: 4px 0 0;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.thought-card-desc {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.thought-side-visual {
+  flex: 1;
+  min-height: 0;
+  padding: 0 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thought-side-focus {
+  padding: 0 18px 18px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.thought-axis-list,
+.thought-chip-grid,
+.thought-card-grid,
+.thought-zone-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.thought-axis-list {
+  grid-template-columns: 1fr;
+}
+
+.thought-zone-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.thought-chip-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.thought-card-grid {
+  grid-template-columns: 1fr;
+}
+
+.thought-side-btn,
+.thought-mini-card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(184, 138, 53, 0.18);
+  background: rgba(255, 249, 236, 0.76);
+  border-radius: 18px;
+  padding: 12px 14px;
+  color: var(--ink);
+}
+
+.thought-side-btn {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thought-side-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(184, 138, 53, 0.36);
+  box-shadow: 0 10px 18px rgba(71, 45, 22, 0.08);
+}
+
+.thought-side-btn.is-selected {
+  border-color: rgba(184, 138, 53, 0.52);
+  box-shadow: inset 0 0 0 1px rgba(255, 242, 214, 0.65), 0 10px 18px rgba(71, 45, 22, 0.1);
+}
+
+.thought-side-btn__title {
+  display: block;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 15px;
+}
+
+.thought-side-btn__meta,
+.thought-mini-card__meta {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.thought-stage {
+  isolation: isolate;
+}
+
+.thought-svg-host > svg {
+  filter: saturate(0.94) drop-shadow(0 18px 30px rgba(48, 29, 12, 0.14));
+}
+
+.thought-stage-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.thought-stage-decor > * {
+  position: absolute;
+}
+
+.thought-axis-line {
+  top: 7%;
+  bottom: 8%;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 235, 186, 0), rgba(236, 193, 95, 0.95) 20%, rgba(236, 193, 95, 0.95) 80%, rgba(255, 235, 186, 0));
+  box-shadow: 0 0 12px rgba(236, 193, 95, 0.3);
+}
+
+.thought-axis-node {
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 999px;
+  background: rgba(255, 236, 194, 0.95);
+  box-shadow: 0 0 0 4px rgba(232, 183, 81, 0.18), 0 0 14px rgba(232, 183, 81, 0.32);
+}
+
+.thought-axis-label {
+  transform: translate(-50%, -50%);
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(60, 39, 22, 0.78);
+  color: #fff7df;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.thought-yinyang-field,
+.thought-fengshui-field {
+  inset: 0;
+}
+
+.thought-yinyang-field::before,
+.thought-yinyang-field::after,
+.thought-fengshui-field::before,
+.thought-fengshui-field::after {
+  content: "";
+  position: absolute;
+}
+
+.thought-yinyang-field::before {
+  inset: 0;
+  background: linear-gradient(180deg, rgba(228, 186, 96, 0.18), rgba(255,255,255,0) 48%, rgba(62, 78, 99, 0.16));
+}
+
+.thought-yinyang-field::after {
+  left: 12%;
+  right: 12%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(174, 148, 101, 0.75), rgba(255,255,255,0));
+}
+
+.thought-direction-chip,
+.thought-guard-chip {
+  transform: translate(-50%, -50%);
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(54, 35, 20, 0.8);
+  color: #fff7df;
+  font-size: 12px;
+  box-shadow: 0 10px 22px rgba(34, 20, 9, 0.14);
+}
+
+.thought-fengshui-field::before {
+  inset: 12% 14%;
+  border: 1px dashed rgba(184, 138, 53, 0.35);
+  border-radius: 28px;
+}
+
+.thought-fengshui-field::after {
+  inset: 21% 22%;
+  border: 1px dashed rgba(184, 138, 53, 0.2);
+  border-radius: 24px;
+}
+
+.thought-secondary-tabs {
+  padding: 0 18px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.thought-secondary-tab {
+  padding: 9px 14px;
+  border-radius: 999px;
+}
+
+.thought-status-list {
+  padding: 0 18px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.thought-status-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255, 249, 236, 0.78);
+  border: 1px solid rgba(184, 138, 53, 0.16);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.thought-status-item__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--dot-color, var(--gold));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot-color, var(--gold)) 16%, transparent);
+}
+
+.thought-media-body {
+  padding: 0 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.thought-poster {
+  position: relative;
+  border-radius: 20px;
+  min-height: 138px;
+  padding: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(235, 221, 188, 0.96), rgba(190, 156, 107, 0.55));
+  border: 1px solid rgba(184, 138, 53, 0.22);
+}
+
+.thought-poster::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 248, 228, 0.38);
+}
+
+.thought-poster__title {
+  position: relative;
+  z-index: 1;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.thought-poster__body {
+  position: relative;
+  z-index: 1;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.thought-poster__bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.thought-poster__bars span {
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(91, 64, 39, 0.16);
+}
+
+.thought-text-body {
+  overflow: auto;
+  padding: 0 18px 18px;
+}
+
+.thought-text-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thought-text-body::-webkit-scrollbar-thumb {
+  background: rgba(138, 102, 56, 0.28);
+  border-radius: 999px;
+}
+
+.thought-text-section + .thought-text-section {
+  margin-top: 16px;
+}
+
+.thought-text-section__title {
+  margin: 0 0 8px;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.thought-text-section__body,
+.thought-building-note__body {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  font-size: 13px;
+  white-space: pre-line;
+}
+
+.thought-building-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 250, 239, 0.78);
+  border: 1px solid rgba(184, 138, 53, 0.18);
+}
+
+.thought-building-note__title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.overview-region-overlay.thought-highlight {
+  opacity: 1;
+  visibility: visible;
+  filter: drop-shadow(0 0 12px rgba(227, 174, 63, 0.24));
+}
+
+.overview-region-overlay.thought-highlight path,
+.overview-region-overlay.thought-highlight polygon,
+.overview-region-overlay.thought-highlight rect,
+.overview-region-overlay.thought-highlight circle,
+.overview-region-overlay.thought-highlight ellipse,
+.overview-region-overlay.thought-highlight line,
+.overview-region-overlay.thought-highlight polyline {
+  fill: color-mix(in srgb, var(--thought-highlight-color, var(--gold)) 16%, transparent) !important;
+  stroke: color-mix(in srgb, var(--thought-highlight-color, var(--gold)) 86%, #fff2d4) !important;
+  stroke-width: 3px !important;
+}
+
+
+/* =====================================================
+   模块三：巧物精工
+   ===================================================== */
+/* ===== 模块一右侧建筑卡片稳定化修复 ===== */
+#archive-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#card-content-archive,
+#card-content-event {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.building-record {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+
+.building-record__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+.building-record__hero--compact {
+  gap: 4px;
+}
+
+.building-record__eyebrow {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(184, 138, 53, 0.12);
+  color: rgba(92, 61, 35, 0.84);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.building-record__summary {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 250, 241, 0.9), rgba(244, 234, 211, 0.84));
+  border: 1px solid rgba(92, 61, 35, 0.1);
+}
+
+.building-record__summary-label,
+.info-list__title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(108, 79, 52, 0.7);
+}
+
+.building-record__summary-text {
+  margin: 8px 0 0;
+  color: var(--ink);
+  line-height: 1.85;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.building-record__grid {
+  grid-template-columns: 1fr;
+}
+
+.info-title {
+  line-height: 1.22;
+  word-break: break-word;
+}
+
+.info-subtitle {
+  line-height: 1.65;
+  word-break: break-word;
+}
+
+.info-block__value,
+.info-list__item {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.info-list--event {
+  gap: 12px;
+}
+
+.info-list__title {
+  padding: 0 2px;
+}
+
+.info-building-photo {
+  margin: 0;
+}
+
+.info-building-photo.is-missing {
+  min-height: 86px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 249, 239, 0.74);
+}
+
+.info-building-photo.is-missing::before {
+  content: '图片暂未加载';
+  color: rgba(79, 56, 33, 0.68);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.info-building-photo__img {
+  height: auto;
+  min-height: 148px;
+  max-height: 188px;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 1440px) {
+  .info-title {
+    font-size: 26px;
+  }
+}
+
+/* =====================================================
+   模块三：巧物精工 样式
+   风格：典雅清新古韵 — 汝窑青瓷 / 宣德炉 / 水墨绢本
+   ===================================================== */
+
+/* --- 布局容器 --- */
+.module-layout--component {
+  padding: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(212, 168, 83, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(180, 148, 90, 0.05) 0%, transparent 50%),
+    linear-gradient(160deg, #faf7f0 0%, #f0e8d8 60%, #e8dcc6 100%);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 顶部建筑切换栏 --- */
+.component-topbar {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  background:
+    linear-gradient(180deg, rgba(240, 232, 216, 0.88), rgba(224, 210, 184, 0.5)),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 248, 232, 0.4), transparent 70%);
+  border-bottom: 1px solid rgba(180, 148, 90, 0.16);
+  backdrop-filter: blur(6px);
+  flex-shrink: 0;
+}
+
+.component-building-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  border: 1px solid rgba(180, 148, 90, 0.28);
+  border-radius: 8px;
+  background: rgba(250, 247, 240, 0.6);
+  color: #5a4028;
+  font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(4px);
+  position: relative;
+  overflow: hidden;
+}
+
+.component-building-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.0), rgba(180, 148, 90, 0.0));
+  transition: background 0.25s ease;
+}
+
+.component-building-btn:hover {
+  background: rgba(212, 168, 83, 0.1);
+  border-color: rgba(180, 148, 90, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(180, 148, 90, 0.14);
+}
+
+.component-building-btn:hover::before {
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(180, 148, 90, 0.04));
+}
+
+.component-building-btn.is-active {
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.82), rgba(190, 155, 75, 0.72));
+  border-color: rgba(170, 138, 65, 0.55);
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(212, 168, 83, 0.35),
+    0 4px 14px rgba(180, 148, 90, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  letter-spacing: 2px;
+}
+
+.component-building-btn.is-active:hover {
+  transform: none;
+  box-shadow:
+    0 0 0 1px rgba(212, 168, 83, 0.4),
+    0 5px 16px rgba(180, 148, 90, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* --- 主工作区两列布局 --- */
+.component-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+/* --- 全景交互区容器 --- */
+.component-stage-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 14px 18px;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* --- 全景区工具栏 --- */
+.component-stage-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.component-explode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: 1px solid rgba(180, 148, 90, 0.38);
+  border-radius: 20px;
+  background: rgba(250, 247, 240, 0.72);
+  color: #5a4028;
+  font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.component-explode-btn:hover {
+  background: rgba(212, 168, 83, 0.14);
+  border-color: rgba(180, 148, 90, 0.58);
+  box-shadow: 0 2px 10px rgba(180, 148, 90, 0.16);
+  transform: translateY(-1px);
+}
+
+.component-explode-btn.is-exploded {
+  background: rgba(212, 168, 83, 0.18);
+  border-color: rgba(180, 148, 90, 0.52);
+  color: #7a5a38;
+}
+
+.component-explode-btn__icon {
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.component-explode-btn__label {
+  letter-spacing: 1px;
+}
+
+/* --- 全景主舞台 --- */
+.component-stage {
+  position: relative;
+  flex: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(255, 248, 234, 0.35) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 85%, rgba(212, 168, 83, 0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #f5ede0 0%, #ede4d2 50%, #e4d9c2 100%);
+  border: 1px solid rgba(180, 148, 90, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component-png {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition:
+    width 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-radius 0.4s ease,
+    z-index 0.4s ease;
+  z-index: 1;
+}
+
+/* 拆分状态：PNG 缩到左上角 */
+.component-stage.is-exploded .component-png {
+  width: 36%;
+  height: auto;
+  top: 14px;
+  left: 14px;
+  border-radius: 8px;
+  box-shadow:
+    0 2px 16px rgba(40, 28, 12, 0.2),
+    0 0 0 1px rgba(180, 148, 90, 0.2);
+  cursor: zoom-in;
+}
+
+/* 拆分状态：SVG 散开 */
+.component-svg-host {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.component-stage.is-exploded .component-svg-host {
+  z-index: 3;
+}
+
+.component-svg-host svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* SVG 热区样式 */
+.component-svg-host g {
+  pointer-events: all;
+  cursor: pointer;
+  transition: filter 0.22s ease;
+}
+
+.component-svg-host g:hover {
+  filter: drop-shadow(0 0 5px rgba(180, 148, 90, 0.72));
+}
+
+.component-svg-host g.is-selected {
+  filter: drop-shadow(0 0 7px rgba(212, 168, 83, 0.95));
+}
+
+/* --- 构件标签层 --- */
+.component-labels {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.component-label {
+  position: absolute;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: rgba(50, 68, 72, 0.86);
+  color: #e8dcc6;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(3px) translateX(-50%);
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s ease,
+    border-color 0.2s ease;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(212, 168, 83, 0.28);
+}
+
+.component-label.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(-50%);
+}
+
+.component-label.is-visible {
+  background: rgba(70, 90, 95, 0.9);
+  border-color: rgba(212, 168, 83, 0.5);
+}
+
+/* SVG 加载提示 */
+.m3-svg-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(90, 64, 40, 0.45);
+  font-family: "Noto Serif SC", serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* --- 底部动作按钮 --- */
+.component-stage-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.component-action-btn {
+  padding: 8px 22px;
+  border: 1px solid rgba(180, 148, 90, 0.28);
+  border-radius: 8px;
+  background: rgba(250, 247, 240, 0.6);
+  color: #5a4028;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.22s ease;
+}
+
+.component-action-btn:hover {
+  background: rgba(212, 168, 83, 0.1);
+  border-color: rgba(180, 148, 90, 0.5);
+  box-shadow: 0 2px 8px rgba(180, 148, 90, 0.14);
+  transform: translateY(-1px);
+}
+
+/* --- 右侧解读栏 --- */
+.component-sidebar {
+  width: 258px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 14px 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 90px);
+}
+
+.component-sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.component-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.component-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(180, 148, 90, 0.28);
+  border-radius: 2px;
+}
+
+.component-sidebar__head {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(250, 247, 240, 0.75), rgba(228, 215, 192, 0.45)),
+    radial-gradient(ellipse at 0% 50%, rgba(255, 248, 234, 0.25), transparent 65%);
+  border: 1px solid rgba(180, 148, 90, 0.18);
+  flex-shrink: 0;
+}
+
+.component-sidebar__head .panel-head__eyebrow {
+  font-size: 10.5px;
+  color: rgba(90, 64, 40, 0.55);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.component-sidebar__head .panel-head__title {
+  font-size: 15px;
+  color: #3a2818;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+
+/* --- 构件按钮列表 --- */
+.component-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.component-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgba(180, 148, 90, 0.18);
+  border-radius: 7px;
+  background: rgba(250, 247, 240, 0.48);
+  color: #5a4028;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.5px;
+}
+
+.component-btn:hover {
+  background: rgba(212, 168, 83, 0.1);
+  border-color: rgba(180, 148, 90, 0.42);
+  transform: translateX(2px);
+}
+
+.component-btn.is-active {
+  background: rgba(212, 168, 83, 0.18);
+  border-color: rgba(180, 148, 90, 0.55);
+  color: #7a5a38;
+  font-weight: 600;
+  box-shadow:
+    0 0 0 1px rgba(180, 148, 90, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateX(3px);
+}
+
+.component-btn__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(180, 148, 90, 0.5);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.component-btn.is-active .component-btn__dot {
+  background: #b8943c;
+  transform: scale(1.3);
+  box-shadow: 0 0 5px rgba(180, 148, 90, 0.55);
+}
+
+/* --- 图片轮播区 --- */
+.component-gallery {
+  position: relative;
+  height: 155px;
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255, 248, 234, 0.28), transparent 55%),
+    linear-gradient(180deg, rgba(224, 212, 190, 0.35), rgba(240, 230, 212, 0.5));
+  border: 1px solid rgba(180, 148, 90, 0.2);
+  flex-shrink: 0;
+}
+
+.component-gallery__track {
+  position: absolute;
+  inset: 0;
+}
+
+.component-gallery__track img {
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  display: block;
+  cursor: zoom-in;
+}
+
+.component-gallery__dots {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 90%;
+  z-index: 2;
+}
+
+.component-gallery__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(90, 64, 40, 0.22);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.component-gallery__dot.is-active {
+  background: #b8943c;
+  transform: scale(1.25);
+}
+
+/* --- 三标签知识卡 --- */
+.component-card {
+  border-radius: 10px;
+  padding: 12px;
+  background:
+    linear-gradient(135deg, rgba(250, 247, 240, 0.78), rgba(228, 215, 192, 0.48)),
+    radial-gradient(ellipse at 0% 0%, rgba(255, 248, 234, 0.22), transparent 60%);
+  border: 1px solid rgba(180, 148, 90, 0.18);
+  flex-shrink: 0;
+}
+
+.component-card__head {
+  margin-bottom: 8px;
+}
+
+.component-card__component-name {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
+  color: #3a2818;
+  margin-top: 2px;
+  letter-spacing: 1.5px;
+}
+
+.component-card__tabs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(90, 64, 40, 0.1);
+  padding-bottom: 8px;
+}
+
+.component-card-tab {
+  padding: 3px 9px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: rgba(90, 64, 40, 0.55);
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.component-card-tab:hover {
+  color: #5a4028;
+  background: rgba(212, 168, 83, 0.08);
+}
+
+.component-card-tab.is-active {
+  background: rgba(212, 168, 83, 0.16);
+  border-color: rgba(180, 148, 90, 0.32);
+  color: #7a5a38;
+  font-weight: 600;
+}
+
+.component-card__body {
+  font-size: 11.5px;
+  line-height: 1.9;
+  color: rgba(60, 42, 28, 0.8);
+  max-height: 175px;
+  overflow-y: auto;
+  white-space: pre-line;
+}
+
+.component-card__body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.component-card__body::-webkit-scrollbar-thumb {
+  background: rgba(180, 148, 90, 0.28);
+  border-radius: 2px;
+}
+
+.component-card__body .m3-card-h {
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5a4028;
+  margin: 6px 0 2px;
+  letter-spacing: 0.5px;
+}
+
+.component-card__body .m3-card-sub {
+  font-size: 11px;
+  color: rgba(60, 42, 28, 0.62);
+  margin: 1px 0;
+}
+
+.component-card__body p {
+  margin: 2px 0;
+}
+
+/* --- 轮播导航按钮 --- */
+.component-gallery .gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 26px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(40, 28, 12, 0.5);
+  color: #e8dcc6;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.component-gallery:hover .gallery-nav {
+  opacity: 1;
+}
+
+.component-gallery .gallery-nav:hover {
+  background: rgba(40, 28, 12, 0.78);
+}
+
+.component-gallery .gallery-nav--prev {
+  left: 5px;
+}
+
+.component-gallery .gallery-nav--next {
+  right: 5px;
+}
+
+/* --- 响应式 --- */
+@media (max-width: 1100px) {
+  .thought-grid {
+    grid-template-columns: 1fr;
+  }
+  .module-layout[data-layout="archive"] {
+    grid-template-columns: 1fr;
+  }
+  .charts-column {
+    display: none;
+  }
 }

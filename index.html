@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宫阙载史 | 故宫建筑总览</title>
+  <title>故宫建筑总览</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assistant-widget.css">
+  <link rel="stylesheet" href="css/workshop-game.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
   <div id="app-shell" class="app-shell">
@@ -15,6 +25,10 @@
         <button class="wood-plate active" data-module="archive" type="button">
           <span class="wood-plate__zh">宫阙载史</span>
           <span class="wood-plate__en">Palace Archive</span>
+        </button>
+        <button class="wood-plate" data-module="thought" type="button">
+          <span class="wood-plate__zh">堪舆哲思</span>
+          <span class="wood-plate__en">Spatial Thought</span>
         </button>
         <button class="wood-plate" data-module="component" type="button">
           <span class="wood-plate__zh">巧物精工</span>
@@ -136,13 +150,130 @@
           </aside>
         </div>
 
-        <!-- ===== 模块三：巧物精工 ===== -->
-        <div class="module-layout" data-layout="component" hidden>
-          <!-- 模块三结构暂由 map.js 接管，此处占位 -->
-          <div style="display:contents;" id="component-placeholder"></div>
+        <!-- ===== 模块二：堪舆哲思 ===== -->
+        <div class="module-layout module-layout--thought" data-layout="thought" hidden>
+          <section class="thought-shell">
+            <header class="panel-card thought-topbar">
+              <div class="thought-topbar__meta">
+                <span class="panel-head__eyebrow" id="thought-module-kicker">堪舆哲思</span>
+                <h2 class="panel-head__title thought-topbar__title" id="thought-module-title">空间秩序与宇宙观</h2>
+              </div>
+              <div id="thought-primary-tabs" class="thought-primary-tabs" role="tablist" aria-label="堪舆哲思一级主题"></div>
+              <div class="thought-topbar__status">
+                <span id="thought-module-status" class="thought-status-pill">左辅 · 中主 · 右控</span>
+              </div>
+            </header>
+
+            <div class="thought-grid">
+              <aside class="thought-side-column">
+                <section class="panel-card thought-side-card">
+                  <div class="thought-block-head">
+                    <span class="panel-head__eyebrow" id="thought-side-eyebrow">概念辅助</span>
+                    <h3 class="thought-card-title" id="thought-side-title">礼序刻度轴</h3>
+                    <p class="thought-card-desc" id="thought-side-desc"></p>
+                  </div>
+                  <div id="thought-side-visual" class="thought-side-visual"></div>
+                  <div id="thought-side-focus" class="thought-side-focus"></div>
+                </section>
+              </aside>
+
+              <section class="thought-main-column">
+                <article class="panel-card thought-stage-card">
+                  <div class="panel-head panel-head--overview">
+                    <div>
+                      <span class="panel-head__eyebrow" id="thought-stage-eyebrow">Overview</span>
+                      <h2 class="panel-head__title" id="thought-stage-title">故宫空间关系图</h2>
+                    </div>
+                    <p id="thought-stage-hint" class="overview-hint">切换右侧主题按钮，查看图层与空间逻辑变化。</p>
+                  </div>
+
+                  <div id="thought-stage" class="overview-stage thought-stage">
+                    <div id="thought-svg-host" class="overview-svg-host thought-svg-host" aria-label="堪舆哲思总览图"></div>
+                    <div id="thought-stage-decor" class="thought-stage-decor"></div>
+                    <div id="thought-tooltip" class="overview-tooltip" hidden></div>
+                  </div>
+                </article>
+              </section>
+
+              <aside class="thought-detail-column">
+                <section class="panel-card thought-control-card">
+                  <div class="thought-block-head thought-block-head--tight">
+                    <span class="panel-head__eyebrow" id="thought-control-eyebrow">交互控制</span>
+                    <h3 class="thought-card-title" id="thought-control-title">二级聚焦</h3>
+                  </div>
+                  <div id="thought-secondary-tabs" class="thought-secondary-tabs"></div>
+                  <div id="thought-status-list" class="thought-status-list"></div>
+                </section>
+
+                <section class="panel-card thought-media-card">
+                  <div class="thought-block-head thought-block-head--tight">
+                    <span class="panel-head__eyebrow" id="thought-media-eyebrow">演示占位</span>
+                    <h3 class="thought-card-title" id="thought-media-title">图层预览</h3>
+                  </div>
+                  <div id="thought-media-body" class="thought-media-body"></div>
+                </section>
+
+                <section class="panel-card thought-text-card">
+                  <div class="thought-block-head thought-block-head--tight">
+                    <span class="panel-head__eyebrow" id="thought-text-eyebrow">内容解释</span>
+                    <h3 class="thought-card-title" id="thought-text-title">核心说明</h3>
+                  </div>
+                  <div id="thought-text-body" class="thought-text-body"></div>
+                </section>
+              </aside>
+            </div>
+          </section>
         </div>
 
-      </main>
+        <!-- ===== 模块三：巧物精工 ===== -->
+        <div class="module-layout module-layout--component" data-layout="component" h
+          <div class="component-topbar" id="component-topbar" role="tablist" aria-label="建筑选择">
+            <button class="component-building-btn is-active" data-building="太和殿" data-game="taihedian" type="button" role="tab" aria-selected="true">太和殿</button>
+            <button class="component-building-btn" data-building="角楼" data-game="jiaolou" type="button" role="tab" aria-selected="false">角楼</button>
+            <button class="component-building-btn" data-building="午门" data-game="wumen" type="button" role="tab" aria-selected="false">午门</button>
+            <button class="component-building-btn" data-building="九龙壁" data-game="jiulongbi" type="button" role="tab" aria-selected="false">九龙壁</button>
+          </div>
+          <div class="component-body">
+            <div class="component-stage-wrap">
+              <div class="component-stage-toolbar">
+                <button id="component-explode-btn" class="component-explode-btn" type="button"><span class="component-explode-btn__icon">&#8853;</span><span class="component-explode-btn__label">一键拆分</span></button>
+              </div>
+              <div class="component-stage" id="component-stage">
+                <img id="component-png" class="component-png" alt="" />
+                <div id="component-svg-host" class="component-svg-host"></div>
+                <div id="component-labels" class="component-labels"></div>
+              </div>
+              <div class="component-stage-actions">
+                <button id="component-btn-3d" class="component-action-btn" type="button">3D全景</button>
+                <button id="component-btn-workshop" class="component-action-btn" type="button">巧筑工坊</button>
+              </div>
+            </div>
+            <aside class="component-sidebar">
+              <div class="component-sidebar__head">
+                <span class="panel-head__eyebrow">重点构件</span>
+                <h3 class="panel-head__title" id="component-sidebar-title">太和殿构件</h3>
+              </div>
+              <div class="component-btns" id="component-btns" role="list" aria-label="构件列表"></div>
+              <div class="component-gallery" id="component-gallery">
+                <div id="component-gallery-track" class="component-gallery__track"></div>
+                <div id="component-gallery-dots" class="component-gallery__dots"></div>
+                <button id="component-gallery-prev" class="gallery-nav gallery-nav--prev" type="button" hidden aria-label="上一张">&#8249;</button>
+                <button id="component-gallery-next" class="gallery-nav gallery-nav--next" type="button" hidden aria-label="下一张">&#8250;</button>
+              </div>
+              <div class="component-card" id="component-card">
+                <div class="component-card__head">
+                  <span class="panel-head__eyebrow">重点构件解读</span>
+                  <h4 class="component-card__component-name" id="component-card-name"></h4>
+                </div>
+                <div class="component-card__tabs" role="tablist">
+                  <button class="component-card-tab is-active" data-tab="craft" type="button" role="tab">形制与工艺</button>
+                  <button class="component-card-tab" data-tab="physics" type="button" role="tab">物理与数学</button>
+                  <button class="component-card-tab" data-tab="culture" type="button" role="tab">文化与符号</button>
+                </div>
+                <div class="component-card__body" id="component-card-body" role="tabpanel"></div>
+              </div>
+            </aside>
+          </div>      </main>
     </div>
   </div>
 
@@ -150,10 +281,38 @@
   <script src="js/data.js"></script>
   <script src="js/svgScanner.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/module3-data.js"></script>
+  <script src="js/module3.js"></script>
   <script src="js/assistant/assistant-speech.js"></script>
   <script src="js/assistant/assistant-suggestions.js"></script>
   <script src="js/assistant/assistant-api.js"></script>
   <script src="js/assistant/assistant-widget.js"></script>
+  <script src="js/workshop-game-data.js"></script>
+  <script src="js/workshop-game.js"></script>
+
+  <!-- ===== 3D 模型查看器弹层 ===== -->
+  <div id="model-viewer-overlay" class="m3d-overlay" hidden role="dialog" aria-modal="true" aria-label="3D模型查看器">
+    <div class="m3d-backdrop" id="m3d-backdrop"></div>
+    <div class="m3d-panel">
+      <header class="m3d-panel__head">
+        <div class="m3d-panel__title-wrap">
+          <span class="panel-head__eyebrow">三维模型</span>
+          <h3 class="m3d-panel__title" id="m3d-title"></h3>
+        </div>
+        <button type="button" class="m3d-panel__close" id="m3d-close" aria-label="关闭">×</button>
+      </header>
+      <div class="m3d-canvas-wrap" id="m3d-canvas-wrap">
+        <div class="m3d-canvas-loading" id="m3d-loading">
+          <span>模型加载中…</span>
+        </div>
+        <div class="m3d-canvas-error" id="m3d-error" hidden>模型加载失败，请检查文件路径</div>
+      </div>
+      <footer class="m3d-panel__foot">
+        <p class="m3d-hint">拖拽旋转 · 滚轮缩放 · 右键平移</p>
+      </footer>
+    </div>
+  </div>
+  <script src="js/modules/model-viewer.js" type="module"></script>
   <div id="image-lightbox" class="image-lightbox" hidden role="dialog" aria-modal="true" aria-label="图片放大">
     <div class="image-lightbox__backdrop" data-lightbox-close></div>
     <button type="button" class="image-lightbox__close" data-lightbox-close aria-label="关闭">×</button>
