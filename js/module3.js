@@ -170,7 +170,7 @@
     if (el) el.textContent = m3State.building + '构件'
   }
 
-  /* ---------- 渲染：SVG 标签层 ---------- */
+  /* ---------- 渲染：SVG 标签层（带箭头和简介） ---------- */
   function renderLabels() {
     const layer = $('#component-labels')
     if (!layer) return
@@ -179,15 +179,44 @@
       layer.innerHTML = ''
       return
     }
+
+    const svg = document.querySelector('#component-svg-host svg')
+    const svgRect = svg ? svg.getBoundingClientRect() : null
+
     layer.innerHTML = data.components.map(c => {
-      const ex = c.explode.x
-      const ey = c.explode.y
+      const comp = m3State.componentPaths.find(p => p.id === c.id)
+      const ex = comp && comp.el ? getExplodeEndX(comp.el) : c.explode.x
+      const ey = comp && comp.el ? getExplodeEndY(comp.el) : c.explode.y
       const isActive = c.id === m3State.componentId
+
+      // 获取构件简介
+      const desc = c.brief || c.name
+      const svgScale = svgRect ? (svgRect.width / (svg.viewBox?.baseVal?.width || 1)) : 1
+
       return `<div class="component-label${isActive ? ' is-visible' : ''}"
-        style="left:${ex}px;top:${ey}px">
-        ${escape(c.name)}
+        style="left:${ex * svgScale}px;top:${ey * svgScale}px">
+        <span class="component-label__name">${escape(c.name)}</span>
+        ${desc !== c.name ? `<span class="component-label-desc">${escape(desc)}</span>` : ''}
       </div>`
     }).join('')
+  }
+
+  /* 获取构件爆炸后的最终X位置 */
+  function getExplodeEndX(el) {
+    const bbox = el.getBBox()
+    const svg = el.closest('svg')
+    const vb = svg?.viewBox?.baseVal
+    if (!vb || !vb.width) return bbox.x + bbox.width / 2
+    return (bbox.x + bbox.width / 2) * 1.15 + vb.width * 0.1
+  }
+
+  /* 获取构件爆炸后的最终Y位置 */
+  function getExplodeEndY(el) {
+    const bbox = el.getBBox()
+    const svg = el.closest('svg')
+    const vb = svg?.viewBox?.baseVal
+    if (!vb || !vb.height) return bbox.y + bbox.height / 2
+    return (bbox.y + bbox.height / 2) * 1.15 + vb.height * 0.1
   }
 
   /* ---------- 加载全景 PNG ---------- */
@@ -289,27 +318,83 @@
     })
   }
 
-  /* ---------- 拉出单个构件路径 ---------- */
-  function pullPath(id) {
-    const path = m3State.componentPaths.find(p => p.id === id)
-    if (!path) return
+/* ---------- 拉出单个构件路径 ---------- */
+function pullPath(id) {
+  const path = m3State.componentPaths.find(p => p.id === id)
+  if (!path) return
 
-    const { el, explode } = path
-    el.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1)'
-    el.style.transformOrigin = 'center center'
-    el.style.transform = `translate(${explode.x}px, ${explode.y}px) scale(1.06)`
-    el.classList.add('is-selected')
+  const { el, explode } = path
+  el.style.transition = 'filter 0.22s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+
+  // 根据 explode 方向决定爆炸方式
+  const direction = explode.direction || 'right' // 默认向右爆炸
+
+  // 计算SVG视图框大小（用于缩放和定位）
+  const svg = el.closest('svg')
+  if (!svg) return
+
+  let viewBox = svg.getAttribute('viewBox')
+  if (!viewBox) {
+    const vb = svg.viewBox.baseVal
+    if (vb && vb.width && vb.height) {
+      viewBox = `0 0 ${vb.width} ${vb.height}`
+    }
+  }
+  if (!viewBox) return
+
+  const [, , vw, vh] = viewBox.split(/\s+/).map(Number)
+
+  // 根据方向设置爆炸变换
+  let translateX = 0, translateY = 0, scale = 1.08
+  let rotation = 0
+
+  switch (direction) {
+    case 'up':      // 向上拆解
+      translateY = -(vh * 0.25)
+      break
+    case 'down':    // 向下拆解
+      translateY = (vh * 0.25)
+      break
+    case 'left':    // 向左拆解
+      translateX = -(vw * 0.25)
+      break
+    case 'right':   // 向右拆解
+      translateX = (vw * 0.25)
+      break
+    case 'explode-v': // 垂直爆炸（上下交错）
+      translateY = el !== m3State.componentPaths[0].el ?
+        (Math.random() > 0.5 ? -(vh * 0.2) : (vh * 0.2)) : 0
+      translateX = (Math.random() - 0.5) * vw * 0.15
+      break
+    case 'explode-h': // 水平爆炸（左右交错）
+      translateX = el !== m3State.componentPaths[0].el ?
+        (Math.random() > 0.5 ? -(vw * 0.2) : (vw * 0.2)) : 0
+      translateY = (Math.random() - 0.5) * vh * 0.15
+      break
+    case 'explode':  // 散射爆炸
+      const idx = m3State.componentPaths.indexOf(path)
+      const angle = (idx / m3State.componentPaths.length) * Math.PI * 2
+      translateX = Math.cos(angle) * vw * 0.2
+      translateY = Math.sin(angle) * vh * 0.2
+      break
   }
 
-  /* ---------- 重置单个构件路径 ---------- */
-  function resetPath(id) {
-    const path = m3State.componentPaths.find(p => p.id === id)
-    if (!path) return
-    path.el.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)'
-    path.el.style.transform = ''
-    path.el.style.filter = ''
-    path.el.classList.remove('is-selected')
-  }
+  // 应用变换（优先使用 transform 属性）
+  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`
+  el.style.transformOrigin = 'center center'
+  el.classList.add('is-selected')
+}
+
+/* ---------- 重置单个构件路径 ---------- */
+function resetPath(id) {
+  const path = m3State.componentPaths.find(p => p.id === id)
+  if (!path) return
+  path.el.style.transition = 'filter 0.22s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+  path.el.style.transform = ''
+  path.el.style.transformOrigin = ''
+  path.el.style.filter = ''
+  path.el.classList.remove('is-selected')
+}
 
   /* ---------- 切换建筑 ---------- */
   async function loadBuilding(name) {
@@ -360,6 +445,16 @@
     renderComponentButtons()
     renderCard()
     renderLabels()
+
+    // 更新图片轮播：显示选中构件的图片
+    if (comp.image) {
+      const track = $('#component-gallery-track')
+      if (track) {
+        track.innerHTML = `<img src="${comp.image}" alt="${escape(comp.name)}" loading="lazy" />`
+      }
+      // 清除轮播定时器，避免自动切换覆盖选中图片
+      clearAutoPlay()
+    }
 
     m3State.componentPaths.forEach(p => {
       if (p.id === id) {

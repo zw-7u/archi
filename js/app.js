@@ -795,7 +795,7 @@ function getModuleIntro() {
 }
 
 function getOverviewHint() {
-  return pick('悬停查看建筑名称，点击切换档案卡。', 'Hover to read the name, click to open archive cards.')
+  return ''
 }
 
 function getFunctionChartCaption() {
@@ -840,6 +840,7 @@ function bindElements() {
   els.archiveCard = $('#archive-card')
   els.cardContentArchive = $('#card-content-archive')
   els.cardContentEvent = $('#card-content-event')
+  els.cardContentSinology = $('#card-content-sinology')
   els.categoryCarousel = $('#category-carousel')
   els.carouselTrack = $('#carousel-track')
   els.carouselPrev = $('#carousel-prev')
@@ -1258,6 +1259,77 @@ function buildBuildingEventHTML(building) {
   `
 }
 
+/** 汉学卡：帮助留学生理解中国古建筑文化与智慧 */
+function buildBuildingSinologyHTML(building) {
+  const name = isZh() ? building.name : (building.nameEn || building.name)
+  const pinyin = building.pinyin || ''
+  const functionGroup = getFunctionOfBuilding(building.id)
+  const typeGroup = getTypeOfBuilding(building.id)
+  const functionText = functionGroup ? (isZh() ? functionGroup.labelZh : functionGroup.labelEn) : ''
+  const typeText = typeGroup ? (isZh() ? typeGroup.labelZh : typeGroup.labelEn) : ''
+
+  // 汉学内容：针对留学生设计，用通俗易懂的语言解释建筑文化
+  const sinologyData = {
+    wumen: {
+      zh: `【午门】是紫禁城的正门，俗称"五凤楼"。它位于城市中轴线的最南端，是皇帝举行重大仪式的地方。每逢宣战、献俘等盛典，皇帝会站在城楼上接受臣民的朝拜。这道门的设计体现了中国古代"居中为尊"的思想——最重要的人物站在中央最高处，象征着至高无上的权力。
+      
+      💡 给留学生的提示：想象一下，这就像一个国家的"国家大门"，但它是专门为皇帝建造的，比普通的城门更加庄严和精美。`,
+      en: `The Meridian Gate (Wumen) is the main southern entrance to the Forbidden City, nicknamed "Five Phoenix Tower." It sits precisely on the palace's central axis and was where emperors held major ceremonies like declaring war or receiving prisoners of war.
+      
+      💡 For international students: Think of it as your country's main national gate, but specifically designed for the emperor—much more grand and ceremonial than ordinary city gates.`,
+    },
+    taihedian: {
+      zh: `【太和殿】是紫禁城中最重要的建筑，也叫"金銮殿"。它是皇帝举行登基大典、婚礼、寿诞等重大仪式的地方。太和殿的屋顶使用了最高等级的"重檐庑殿顶"，显示出主人的尊贵身份。
+      
+      💡 给留学生的提示：太和殿就像一个大公司的"总部会议室"，但不是普通的会议室——它是用来举行公司最重要活动的地方，而且这家公司是整个国家的"老板"。
+      
+      🔑 关键词：重檐庑殿顶是中国古建筑中等级最高的屋顶形式，只有皇家建筑才能使用。`,
+      en: `The Hall of Supreme Harmony (Taihe Dian) is the most important building in the Forbidden City, also known as the "Golden Throne Hall." It hosted the emperor's enthronement ceremonies, weddings, and birthday celebrations.
+      
+      💡 For international students: Imagine this as a company's main boardroom, but it's where the most critical company events happen, and this company is run by the emperor of an entire country.
+      
+      🔑 Key term: The "double-eaved hip roof" is the highest-rank roof style in Chinese architecture—only imperial buildings could use it.`,
+    },
+    jiulongbi: {
+      zh: `【九龙壁】是一面用彩色琉璃砖拼砌成的墙壁，上面有九条形态各异的龙。九条龙象征着"九五之尊"，即皇帝是天下最尊贵的人。
+      
+      💡 给留学生的提示：在龙的中间有一条金色的龙（正面龙），它的爪子是五趾的，象征皇帝的身份；而其他八条龙是四趾的，代表贵族。这个设计是为了强调皇帝的独一无二。
+      
+      🎨 有趣的是，这条金色龙的龙腹处有一块砖是用木头做的！据说当年工匠不小心打碎了一块砖，害怕被处死，就用木头雕刻了一块冒充。`,
+      en: `The Nine Dragon Wall is a magnificent wall made of colored glazed tiles, featuring nine uniquely shaped dragons. The nine dragons symbolize "the supreme ruler" - the emperor being the most honored person under heaven.
+      
+      💡 For international students: Interestingly, one tile in the golden dragon's belly is actually made of wood! Legend says a craftsman accidentally broke a tile, feared punishment, and secretly replaced it with a wooden carving.`,
+    },
+  }
+
+  // 根据建筑ID获取汉学内容，没有则生成通用内容
+  const content = sinologyData[building.id] || {
+    zh: `【${name}】${pinyin ? `（${pinyin}）` : ''}是紫禁城中的一座重要建筑。${functionText ? `它的功能属于"${functionText}"，${typeText ? `形制属于"${typeText}"。` : ''}` : ''}
+    
+    💡 给留学生的提示：故宫的每座建筑都不只是房子，它们都是有故事的。这些建筑共同构成了一个巨大的"空间故事"，讲述着中国古代的政治制度、生活方式和审美观念。
+    
+    🔑 学习建议：当你参观故宫时，试着用"功能-形制-文化"三维度来观察每座建筑，你会惊讶地发现它们之间的联系竟然如此紧密。`,
+    en: `【${name}】${pinyin ? `（${pinyin}）` : ''} is an important building in the Forbidden City. ${functionText ? `Its function falls under "${functionText}", ${typeText ? `and its typology belongs to "${typeText}".` : ''}` : ''}
+    
+    💡 For international students: Each building in the Forbidden City is more than just a structure—they all have stories to tell. Together, they form a grand "spatial narrative" about ancient Chinese politics, lifestyle, and aesthetics.
+    
+    🔑 Learning tip: When visiting the Forbidden City, try observing each building through three dimensions: function, typology, and culture. You'll be amazed at how interconnected they are!`,
+  }
+
+  return `
+    <article class="building-record building-record--sinology">
+      <header class="building-record__hero building-record__hero--compact">
+        <div class="building-record__eyebrow">${escapeHTML(pick('汉学解析', 'Sinology Insights'))}</div>
+        <div class="info-title">${escapeHTML(name)}</div>
+        <div class="info-subtitle">${escapeHTML(pinyin || (isZh() ? '汉学卡片' : 'Sinology Card'))}</div>
+      </header>
+      <section class="building-record__summary">
+        <div class="info-body" style="white-space:pre-line;line-height:1.85;">${escapeHTML(isZh() ? content.zh : content.en)}</div>
+      </section>
+    </article>
+  `
+}
+
 function renderInfo() {
   const scope = getCurrentScope()
   stopCategoryCarousel()
@@ -1281,6 +1353,7 @@ function renderInfo() {
     })
     if (tabEls[0]) tabEls[0].textContent = pick('档案卡', 'Archive Card')
     if (tabEls[1]) tabEls[1].textContent = pick('事件卡', 'Event Card')
+    if (tabEls[2]) tabEls[2].textContent = pick('汉学卡', 'Sinology Card')
     ac.querySelectorAll('.card-tab').forEach((button) => {
       button.onclick = () => {
         state.infoTab = button.dataset.tab
@@ -1288,10 +1361,14 @@ function renderInfo() {
       }
     })
     const isEvent = state.infoTab === 'event'
-    ca.hidden = isEvent
+    const isSinology = state.infoTab === 'sinology'
+    ca.hidden = isEvent || isSinology
     ce.hidden = !isEvent
+    const cs = els.cardContentSinology
+    if (cs) cs.hidden = !isSinology
     ca.innerHTML = buildBuildingArchiveHTML(scope.item)
     ce.innerHTML = buildBuildingEventHTML(scope.item)
+    if (cs) cs.innerHTML = buildBuildingSinologyHTML(scope.item)
     ac.scrollTop = 0
     return
   }
@@ -1326,6 +1403,8 @@ function renderInfo() {
   ph.hidden = false
   ac.hidden = true
   ph.innerHTML = buildOverviewCardHTML(getModuleIntro())
+  // 总览层级启动轮播：展示所有建筑图片
+  startCategoryCarousel(collectCarouselUrlsFromBuildingIds(Object.keys(BUILDING_INDEX).filter(id => !GALLERY_EXCLUDED_BUILDING_IDS.has(id))))
 }
 
 function initCharts() {
@@ -1547,18 +1626,126 @@ function buildThoughtSideVisual(tab, focus) {
 }
 
 function buildThoughtTextBody(tab, focus) {
+  // 汉学解析内容：帮助留学生理解中国古建筑文化
+  const sinologyIntro = {
+    axis: {
+      zh: `【中轴礼序】是紫禁城空间组织的核心法则。整座宫城以南北向的中轴线为脊，两侧建筑左右对称排列，形成庄严有序的空间序列。这条中轴不是简单的几何线，而是一条"权力叙事线"。
+      
+      从南到北，这条轴线依次经过：
+      午门（礼仪入口）→ 太和门（过渡空间）→ 太和殿（权力中心）→ 中和殿（礼仪调节）→ 保和殿（盛大仪式）→ 乾清门（内外分界）→ 乾清宫（皇帝居所）→ 坤宁宫（皇后居所）→ 神武门（轴线终点）
+
+      💡 留学生提示：想象这是从一个城市的最南端到最北端画一条直线，这条线上站满了最重要的"大Boss"和他们的办公场所。这种设计叫做"居中为尊"——最重要的位置永远在线的正中间。
+
+      🔑 关键词解析：
+      · 中轴线：从南到北贯穿紫禁城的中心线
+      · 左右对称：建筑在轴线两边镜像排列
+      · 礼序：礼仪秩序，即各种重要活动的顺序和位置安排`,
+      en: `The Central Axis (Zhongzhou Lixu) is the core organizing principle of the Forbidden City. The entire palace complex is arranged symmetrically on either side of a north-south central axis, creating a solemn and orderly spatial sequence.
+      
+      From south to north, the axis passes through:
+      Meridian Gate → Gate of Supreme Harmony → Hall of Supreme Harmony → Hall of Central Harmony → Hall of Preserving Harmony → Gate of Heavenly Purity → Palace of Heavenly Purity → Palace of Earthly Tranquility → Gate of Divine Might
+
+      💡 For international students: Imagine drawing a straight line from the southernmost to the northernmost point of a city, and placing the most important "big bosses" and their offices along this line. This design principle is called "central supremacy" — the most important position is always exactly in the middle.
+      
+      🔑 Key terms:
+      · Central Axis: The north-south line running through the center of the Forbidden City
+      · Bilateral symmetry: Buildings arranged as mirror images on either side
+      · Ritual order: The sequence and placement of important ceremonial activities`,
+    },
+    yinyang: {
+      zh: `【阴阳五行】是中国古代理解世界的哲学框架，故宫的空间布局处处体现这一思想。
+
+      阴阳观念：
+      · 阴阳代表相对的两面：明/暗、外/内、刚/柔
+      · 外朝（三大殿）是"阳"——开阔、宏大、对外展示皇权
+      · 内廷（乾清宫等）是"阴"——私密、精致、皇帝日常生活
+      · 两者通过乾清门分界，形成"外阳内阴"的格局
+
+      五行观念：
+      · 五行（木、火、土、金、水）对应五个方位
+      · 木在东（青龙）、火在南（朱雀）
+      · 土在中央、金在西（白虎）、水在北（玄武）
+      · 故宫的布局暗合这一方位体系
+
+      💡 留学生提示：阴阳就像是一个开关的开和关，五行就像是一个家庭的五个成员——每个都有自己的位置和角色，一起构成了一个完整的系统。
+
+      🔑 趣味知识：阴阳鱼图（太极图）中的"鱼眼"代表阴中有阳、阳中有阴，这是中国古代的辩证思维。`,
+      en: `The Yin-Yang and Five Elements (Wuxing) system is a philosophical framework ancient Chinese used to understand the world, and the Forbidden City's spatial layout reflects this thinking throughout.
+
+      Yin-Yang concept:
+      · Yin and Yang represent opposite aspects: bright/dark, outer/inner, rigid/flexible
+      · The Outer Court (three main halls) is "Yang" — open, grand, displaying imperial power
+      · The Inner Court (Palace of Heavenly Purity, etc.) is "Yin" — private, refined, for the emperor's daily life
+      · They are divided by the Gate of Heavenly Purity, forming an "outer-Yang, inner-Yin" pattern
+
+      Five Elements concept:
+      · The five elements (Wood, Fire, Earth, Metal, Water) correspond to five directions
+      · Wood is in the east (Azure Dragon), Fire is in the south (Vermilion Bird)
+      · Earth is in the center, Metal is in the west (White Tiger), Water is in the north (Black Tortoise)
+      · The Forbidden City's layout secretly follows this directional system
+
+      💡 For international students: Think of Yin-Yang as a light switch's on and off, and the Five Elements as five family members — each has their own position and role, together forming a complete system.
+
+      🔑 Fun fact: The "fish eye" in the Yin-Yang diagram (Taijitu) represents Yin within Yang and Yang within Yin — this is ancient Chinese dialectical thinking.`,
+    },
+    fengshui: {
+      zh: `【风水格局】是中国古代选择和营造建筑环境的重要学问，故宫选址和布局充分运用了风水原理。
+
+      风水要素：
+      · 玄武（北）：景山作为背山，稳固可靠
+      · 朱雀（南）：金水河蜿蜒前方，活水聚财
+      · 青龙（东）：东向阳光充足，生机勃勃
+      · 白虎（西）：西向相对平静，收敛气场
+      · 中央：紫禁城核心，藏风聚气
+
+      "背山面水"格局：
+      故宫北依景山，南临金水河，形成"负阴抱阳"的理想格局——冬天阻挡北风，夏天迎纳南风，是生态智慧的体现。
+
+      💡 留学生提示：风水简单来说就是"环境和人的关系学"。好的风水就是让建筑和环境互相配合，让人住得舒服、做事顺利。故宫的选址和布局就是古代的"最佳实践"。
+
+      🔑 现代意义：虽然风水常被迷信化，但它本质上是一种考虑地形、气候、水源、光照的综合建筑规划智慧。`,
+      en: `Feng Shui is an important knowledge system ancient Chinese used for selecting and creating building environments, and the Forbidden City's location and layout fully applied Feng Shui principles.
+
+      Feng Shui elements:
+      · Xuanwu (North): Prospect Hill as the backing mountain, stable and reliable
+      · Zhuque (South): The Jinshui River winding in front, flowing water gathering wealth
+      · Qinglong (East): Eastern sunlight, full of vitality
+      · Baihu (West): Western side relatively peaceful, gathering energy
+      · Center: The core of the Forbidden City, concealing wind and gathering energy
+
+      "Backed by mountain, facing water" pattern:
+      The Forbidden City is north-backed by Prospect Hill and south-facing the Jinshui River, forming an ideal "embracing Yin, holding Yang" pattern — blocking northern winds in winter and welcoming southern winds in summer, embodying ecological wisdom.
+
+      💡 For international students: Simply put, Feng Shui is the "study of the relationship between environment and people." Good Feng Shui means buildings and environment mutually cooperate, making people comfortable and things go smoothly. The Forbidden City's location and layout is the ancient "best practice."
+
+      🔑 Modern significance: Although Feng Shui is often mystified, at its core it's a comprehensive architectural planning wisdom considering terrain, climate, water sources, and lighting.`,
+    },
+  }
+
+  const currentSinology = sinologyIntro[tab.id] || sinologyIntro.axis
+
   const intro = `
     <section class="thought-text-section">
       <h4 class="thought-text-section__title">${escapeHTML(pick(tab.titleZh, tab.titleEn || tab.titleZh))}</h4>
       <p class="thought-text-section__body">${escapeHTML(pick(tab.statusZh, tab.statusEn || tab.statusZh))}</p>
     </section>
   `
+
+  // 汉学解析段落
+  const sinologySection = `
+    <section class="thought-text-section thought-sinology-section">
+      <h4 class="thought-text-section__title">${escapeHTML(pick('汉学解析', 'Sinology Insights'))}</h4>
+      <p class="thought-text-section__body" style="white-space:pre-line;">${escapeHTML(isZh() ? currentSinology.zh : currentSinology.en)}</p>
+    </section>
+  `
+
   const sections = (focus.detailSections || []).map((section) => `
     <section class="thought-text-section">
       <h4 class="thought-text-section__title">${escapeHTML(pick(section.titleZh, section.titleEn || section.titleZh))}</h4>
       <p class="thought-text-section__body">${escapeHTML(pick(section.bodyZh, section.bodyEn || section.bodyZh))}</p>
     </section>
   `).join('')
+
   const note = state.thoughtSelectedBuilding ? getThoughtBuildingNote(state.thoughtSelectedBuilding) : null
   const noteHtml = note ? `
     <section class="thought-building-note">
@@ -1567,7 +1754,8 @@ function buildThoughtTextBody(tab, focus) {
       <p class="thought-building-note__body">${escapeHTML(note.body)}</p>
     </section>
   ` : ''
-  return intro + sections + noteHtml
+
+  return intro + sinologySection + sections + noteHtml
 }
 
 function buildThoughtStageDecor(tab, focus) {

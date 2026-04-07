@@ -16,17 +16,23 @@
   --m3d-radius:       20px;
 }
 
-/* ---- 遮罩背景（高斯模糊） ---- */
+/* ---- 遮罩背景 ---- */
 .m3d-overlay {
+  /* 默认隐藏；JS 打开时添加 .is-open 使其显示 */
+  display: none;
   position: fixed;
   inset: 0;
   z-index: 9998;
-  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.m3d-overlay.is-open {
+  display: flex;
   animation: m3d-fadein 0.28s ease;
 }
 
+/* 遮罩层：is-open 时才渲染 */
 .m3d-backdrop {
   position: absolute;
   inset: 0;
@@ -140,10 +146,15 @@
   background: radial-gradient(ellipse at center, rgba(58, 40, 22, 0.9), rgba(26, 18, 10, 0.95));
 }
 
+/* [hidden] 时可靠隐藏（author 样式不覆盖） */
+.m3d-canvas-error[hidden] {
+  display: none !important;
+}
+
 .m3d-canvas-error {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;               /* 默认隐藏；JS 移除 hidden 时显示 */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -153,12 +164,6 @@
   letter-spacing: 1px;
   background: rgba(26, 18, 10, 0.9);
   pointer-events: none;
-}
-
-.m3d-canvas-error::before {
-  content: "\26A0";
-  font-size: 30px;
-  line-height: 1;
 }
 
 /* ---- 底部提示区 ---- */

@@ -40,9 +40,12 @@ class ZhulingWidget {
     // 初始化 API 和语音模块
     this._api    = new AssistantAPI({ apiBase: this.apiBase })
     this._speech = new SpeechManager({
-      onInterim: (text) => this._updateMicInput(text),
+      apiBase: this.apiBase,
+      onAsrLoading: (loading) => this._onAsrLoading(loading),
       onFinal:   (text) => this._onMicResult(text),
-      onError:   (err)  => this._onSpeechError(err)
+      onError:   (err)  => this._onSpeechError(err),
+      onTTSStart: () => this._onTTSStart(),
+      onTTSEnd:   () => this._onTTSEnd()
     })
 
     // 创建 Shadow DOM 容器（隔离样式）
@@ -106,7 +109,7 @@ class ZhulingWidget {
   //  私有：构建 DOM
   // ================================================================
   _buildDOM() {
-    const isSRSupported = SpeechManager.isRecognitionSupported()
+    const isRecordingSupported = SpeechManager.isRecordingSupported()
 
     const html = `
       <!-- ========== 收起态悬浮入口 ========== -->
@@ -214,9 +217,9 @@ class ZhulingWidget {
             <button
               class="zl-btn-icon zl-mic-btn"
               id="zl-mic-btn"
-              title="${isSRSupported ? '按住说话' : '语音不可用'}"
+              title="${isRecordingSupported ? '按住说话' : '录音不可用'}"
               aria-label="语音输入"
-              ${!isSRSupported ? 'disabled' : ''}
+              ${!isRecordingSupported ? 'disabled' : ''}
             >
               <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                 <rect x="7" y="3" width="6" height="10" rx="3" stroke="currentColor" stroke-width="1.3"/>
@@ -258,10 +261,65 @@ class ZhulingWidget {
   }
 
   // ================================================================
+  //  私有：麦克风按钮 — 录音识别（按住说话 → 松开发送）
+  // ================================================================
+  _bindMicEvents() {
+    const { micBtn } = this._el
+    if (!micBtn) return
+
+    const isRecordingSupported = SpeechManager.isRecordingSupported()
+
+    // 如果不支持录音识别，禁用按钮
+    if (!isRecordingSupported) {
+      micBtn.disabled = true
+      micBtn.title = '录音不可用'
+      return
+    }
+
+    // 按下 → 开始录音
+    micBtn.addEventListener('mousedown', async (e) => {
+      e.preventDefault()
+      if (this._speech.isRecording || this._speech.isSpeaking) return
+      const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
+      const ok = await this._speech.startRecording(lang)
+      if (ok) {
+        micBtn.classList.add('zl-mic-active')
+      }
+    })
+
+    // 松开 → 停止录音 → ASR 识别
+    const stopAndRecognize = async () => {
+      if (!this._speech.isRecording) return
+      const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
+      micBtn.classList.remove('zl-mic-active')
+      await this._speech.stopRecording(lang)
+      // 识别结果通过 onFinal 回调处理
+    }
+
+    micBtn.addEventListener('mouseup', stopAndRecognize)
+    micBtn.addEventListener('mouseleave', stopAndRecognize)
+
+    // 移动端 touch
+    micBtn.addEventListener('touchstart', async (e) => {
+      e.preventDefault()
+      if (this._speech.isRecording || this._speech.isSpeaking) return
+      const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
+      const ok = await this._speech.startRecording(lang)
+      if (ok) {
+        micBtn.classList.add('zl-mic-active')
+      }
+    })
+    micBtn.addEventListener('touchend', (e) => {
+      e.preventDefault()
+      stopAndRecognize()
+    })
+  }
+
+  // ================================================================
   //  私有：绑定事件
   // ================================================================
   _bindEvents() {
-    const { launcher, sendBtn, input, micBtn, muteBtn, closeBtn } = this._el
+    const { launcher, sendBtn, input, muteBtn, closeBtn } = this._el
 
     // 点击悬浮入口 → 展开
     launcher.addEventListener('click', (e) => {
@@ -283,32 +341,8 @@ class ZhulingWidget {
       }
     })
 
-    // 麦克风按钮
-    let micHoldTimer = null
-
-    const startMic = () => {
-      if (this._speech.isListening) return
-      const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
-      const ok   = this._speech.startListening(lang)
-      if (ok) {
-        micBtn.classList.add('zl-mic-active')
-      }
-    }
-
-    const stopMic = () => {
-      this._speech.stopListening()
-      micBtn.classList.remove('zl-mic-active')
-    }
-
-    if (this._speech._recognition) {
-      // 支持按住说话（mousedown + mouseup）
-      micBtn.addEventListener('mousedown', startMic)
-      micBtn.addEventListener('mouseup',   stopMic)
-      micBtn.addEventListener('mouseleave', stopMic)
-      // 移动端 touch
-      micBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startMic() })
-      micBtn.addEventListener('touchend',   stopMic)
-    }
+    // 麦克风按钮（录音识别）
+    this._bindMicEvents()
 
     // 静音按钮
     muteBtn.addEventListener('click', () => {
@@ -364,8 +398,11 @@ class ZhulingWidget {
 
     this._el.launcher.style.display   = 'flex'
 
-    // 停止语音
-    this._speech?.stopListening()
+    // 停止语音和录音
+    this._speech?.stopSpeaking()
+    if (this._speech?.isRecording) {
+      this._speech?.stopRecording()
+    }
     this._el.micBtn?.classList.remove('zl-mic-active')
   }
 
@@ -382,7 +419,7 @@ class ZhulingWidget {
   }
 
   // ================================================================
-  //  私有：更新静音 UI
+  //  私有：发送按钮点击
   // ================================================================
   _onSend() {
     const text = this._el.input.value.trim()
@@ -392,24 +429,69 @@ class ZhulingWidget {
   }
 
   // ================================================================
-  //  私有：语音识别结果
+  //  私有：语音识别结果（麦克风录音识别完成后）
   // ================================================================
   _onMicResult(text) {
     this._el.micBtn?.classList.remove('zl-mic-active')
     if (!text) return
-    this._el.input.value = text
+    // 自动发送识别出的文字
     this._sendMessage(text)
-    this._el.input.value = ''
   }
 
+  // ================================================================
+  //  私有：ASR 识别中状态（显示加载动画）
+  // ================================================================
+  _onAsrLoading(loading) {
+    const { micBtn } = this._el
+    if (!micBtn) return
+    if (loading) {
+      micBtn.classList.add('zl-mic-loading')
+    } else {
+      micBtn.classList.remove('zl-mic-loading')
+    }
+  }
+
+  // ================================================================
+  //  私有：TTS 开始播报
+  // ================================================================
+  _onTTSStart() {
+    const { muteBtn } = this._el
+    if (muteBtn) {
+      muteBtn.classList.add('zl-tts-playing')
+    }
+  }
+
+  // ================================================================
+  //  私有：TTS 播报结束
+  // ================================================================
+  _onTTSEnd() {
+    const { muteBtn } = this._el
+    if (muteBtn) {
+      muteBtn.classList.remove('zl-tts-playing')
+    }
+  }
+
+  // ================================================================
+  //  私有：麦克风按下时的临时输入更新（用于浏览器原生 ASR）
+  // ================================================================
   _updateMicInput(text) {
     this._el.input.value = text
   }
 
+  // ================================================================
+  //  私有：语音识别错误处理
+  // ================================================================
   _onSpeechError(err) {
     this._el.micBtn?.classList.remove('zl-mic-active')
+    this._el.micBtn?.classList.remove('zl-mic-loading')
     if (err === 'not-supported') {
       this._el.micBtn.disabled = true
+      return
+    }
+    // 服务端返回的 ASR 说明（如暂未接入）直接展示在对话区
+    if (typeof err === 'string' && err.length > 12 && !err.includes('asr-failed')) {
+      this._appendErrorMessage(err)
+      this._scrollToBottom()
     }
   }
 
@@ -443,10 +525,10 @@ class ZhulingWidget {
       this._history.push({ role: 'assistant', content: result.reply })
       this._appendAssistantMessage(result.reply, result.suggestions || [])
 
-      // 语音播报（如果有的话，且未静音）
+      // 豆包 TTS 语音播报（未静音时自动播报）
       if (!this._speech.isMuted) {
         const speakLang = lang === 'en' ? 'en' : 'zh'
-        this._speech.speak(result.reply, speakLang)
+        this._speech.speakWithDoubao(result.reply, speakLang)
       }
 
     } catch (err) {

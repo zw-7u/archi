@@ -24,7 +24,8 @@ const MODULE3_DATA = {
         id: 'jishou',
         name: '脊兽',
         image: 'images/patterns/脊兽.jpg',
-        explode: { x: 80, y: 40 },
+        explode: { x: 80, y: 40, direction: 'up' },
+        brief: '位于屋顶正脊，象征等级与护卫',
         craft: `外观：由骑凤仙人领头，后随蹲兽（太和殿为10只：龙、凤、狮子、天马、海马、狻猊、押鱼、獬豸、斗牛、行什）。
 
 材料：黄琉璃（与瓦同），胎体为高岭土，表面施黄釉。
@@ -47,7 +48,8 @@ const MODULE3_DATA = {
         id: 'dougong',
         name: '斗拱',
         image: 'images/patterns/斗拱.jpg',
-        explode: { x: 160, y: 120 },
+        explode: { x: 160, y: 120, direction: 'explode' },
+        brief: '层层叠挑的受力构件，体现模数化营造',
         craft: `外观：由斗（方）、拱（弓形）、昂（斜木）层层叠挑。
 
 材料：优质硬木（楠木、红松）。
@@ -70,7 +72,8 @@ const MODULE3_DATA = {
         id: 'heixiyicaihua',
         name: '和玺彩画',
         image: 'images/patterns/和玺彩画.jpg',
-        explode: { x: 240, y: 80 },
+        explode: { x: 240, y: 80, direction: 'left' },
+        brief: '沥粉贴金的三段式彩画装饰',
         craft: `外观：三段式（箍头-藻头-枋心），以龙、凤为主，沥粉贴金。
 
 材料：矿物颜料（石青、石绿、朱砂）、金箔、桐油、胶粉。
@@ -93,7 +96,8 @@ const MODULE3_DATA = {
         id: 'zhongyanyanwuding',
         name: '重檐庑殿顶',
         image: 'images/patterns/重檐庑殿顶.jpg',
-        explode: { x: 320, y: 60 },
+        explode: { x: 320, y: 60, direction: 'up' },
+        brief: '等级最高的双层檐屋顶形式',
         craft: `外观：五脊（1正4戗）四面坡，双层檐，檐角上翘。
 
 材料：木构架（抬梁式）、黄琉璃瓦。
@@ -116,7 +120,8 @@ const MODULE3_DATA = {
         id: 'sanwusanyu',
         name: '三层汉白玉须弥座',
         image: 'images/patterns/三层汉白玉须弥座.jpg',
-        explode: { x: 120, y: 200 },
+        explode: { x: 120, y: 200, direction: 'down' },
+        brief: '承载殿宇的三层叠涩式石质台基',
         craft: `外观：三重叠涩，土衬→圭角→下枋→下枭→束腰→上枭→上枋。
 
 材料：汉白玉（房山）、青白石，内部夯土。
@@ -139,7 +144,8 @@ const MODULE3_DATA = {
         id: 'huangliuliwa',
         name: '黄琉璃瓦',
         image: 'images/patterns/黄琉璃瓦.jpg',
-        explode: { x: 200, y: 160 },
+        explode: { x: 200, y: 160, direction: 'explode-v' },
+        brief: '皇权专属的明黄色琉璃瓦',
         craft: `外观：筒瓦、板瓦、瓦当、明黄色，釉面光亮。
 
 材料：粘土胎，黄釉（黄丹、马牙石、黛赭石）。
@@ -181,7 +187,8 @@ const MODULE3_DATA = {
         id: 'duozhongyanyanwu',
         name: '多重檐复合屋面',
         image: 'images/patterns/多重檐复合屋面.jpg',
-        explode: { x: 160, y: 100 },
+        explode: { x: 160, y: 100, direction: 'up' },
+        brief: '十字交叉歇山顶的复合屋面结构',
         craft: `外观：三重檐、十字交叉歇山顶组合（九梁十八柱七十二脊）：
 
 上层：四面显山歇山顶，十字正脊交汇，置铜鎏金宝顶
@@ -223,7 +230,8 @@ const MODULE3_DATA = {
         id: 'gongquanjiegou',
         name: '拱券结构',
         image: 'images/patterns/拱券.jpg',
-        explode: { x: 100, y: 80 },
+        explode: { x: 100, y: 80, direction: 'left' },
+        brief: '五券五伏的拱券结构，外方内圆',
         craft: `外观：外方内圆——外部看为方形门洞，内部为筒形拱券；共5个门洞（明三暗五），中券最大（高约8m、宽约6m），两侧递减；采用五券五伏砌筑法（券内层承重、伏外层护面各五层）。
 
 材料：大城砖（澄泥砖，规格48×24×12cm）、糯米灰浆（糯米汁+石灰+桐油）、青白石券脸/门框/门槛、楠木门扇（金钉、铺首椒图）。
@@ -244,7 +252,8 @@ const MODULE3_DATA = {
         id: 'aoxingbuju',
         name: '凹形布局',
         image: 'images/patterns/凹形布局.jpg',
-        explode: { x: 200, y: 120 },
+        explode: { x: 200, y: 120, direction: 'explode' },
+        brief: '平面凹字形的三面围合结构',
         craft: `外观：平面凹字形，三面城台环抱方形广场；北为正楼（九间五进、重檐庑殿顶），东西雁翅楼（各13间），两端阙亭（重檐攒尖顶）；空间构成约9900㎡仪式空间；明三暗五门洞，正面3门两侧掖门（暗）。
 
 工艺：整体放样中轴线控制对称精准；高低错落正楼最高阙亭次之雁翅楼过渡；屋顶组合庑殿顶+攒尖顶+腰檐，统一中求变化；色彩统一，黄瓦红墙青绿彩画皇家标准。`,
@@ -276,7 +285,8 @@ const MODULE3_DATA = {
         id: 'liulipinjiegongyi',
         name: '琉璃拼接工艺',
         image: 'images/patterns/琉璃拼接工艺.jpg',
-        explode: { x: 120, y: 80 },
+        explode: { x: 120, y: 80, direction: 'up' },
+        brief: '270块琉璃拼接的影壁工艺',
         craft: `外观：单面琉璃影壁，长29.47m、高3.59m、厚0.45m；上部黄琉璃瓦庑殿顶仿木椽斗栱彩画；壁面高浮雕，龙体凸出壁面20cm，分九龙、山石、云气、海水四层；由270块琉璃塑块拼接，严丝合缝无错位；底部汉白玉须弥座雕卷草宝相花。
 
 材料：琉璃砖（官窑澄泥法烧制，高岭土+紫砂土）；七色五行配色：黄、蓝、白、紫、绿、青、红；糯米灰浆（石灰+糯米汁）；青白石/汉白玉基座。
@@ -297,7 +307,8 @@ const MODULE3_DATA = {
         id: 'longwenhuawen',
         name: '龙纹文化',
         image: 'images/patterns/龙纹文化.jpg',
-        explode: { x: 240, y: 100 },
+        explode: { x: 240, y: 100, direction: 'explode' },
+        brief: '九五之数，五爪龙纹的皇家符号',
         craft: `外观：九条龙分置5个空间（九五之数）；正龙（中）黄色五爪，正面威严托火珠；升龙白色龙头向上升腾之势；降龙蓝/紫色龙头向下温文尔雅；每龙五爪（皇家专用，民间禁四爪以上）。
 
 材料：龙体琉璃胎+高温色釉（黄釉锑铁金釉、蓝釉钴蓝、白釉高白釉）；釉上堆塑龙鳞龙须火焰纹立体生动；底纹蓝绿云水琉璃衬托龙纹。

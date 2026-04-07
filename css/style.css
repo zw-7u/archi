@@ -1,35 +1,72 @@
-﻿:root {
-  --paper: #e6d6b6;
-  --paper-light: #f3ead5;
-  --paper-deep: #d2bc91;
-  --ink: #2d2016;
-  --ink-soft: #655241;
-  --line: rgba(88, 58, 31, 0.24);
-  --line-strong: rgba(88, 58, 31, 0.42);
-  --gold: #b88a35;
-  --gold-soft: #ebd08c;
-  --wood: #39271d;
-  --wood-edge: #5a3a28;
-  --wood-active: #8e4d24;
-  --wood-active-2: #c68b42;
-  --red: #8a2f1c;
-  --jade: #526d57;
-  --shadow-soft: 0 8px 24px rgba(41, 26, 15, 0.12);
-  --shadow-deep: 0 18px 44px rgba(41, 26, 15, 0.2);
-  --radius-lg: 28px;
-  --radius-md: 22px;
-  --radius-sm: 16px;
-  --panel-fill: linear-gradient(180deg, rgba(245, 237, 220, 0.95), rgba(229, 213, 181, 0.92));
+/* =====================================================
+   故宫建筑导览系统 - 清新典雅古韵风格
+   配色：月白、浅灰、淡黄、黛瓦青
+   ===================================================== */
+
+:root {
+  /* === 主色调：清新典雅古韵 === */
+  /* 月白 - 淡雅清新的主背景色 */
+  --paper: #f7f8f5;
+  --paper-light: #fcfdfb;
+  --paper-deep: #eef0eb;
+  
+  /* 墨色 - 柔和的文字色 */
+  --ink: #3d3d3d;
+  --ink-soft: #7a7a7a;
+  
+  /* 线条色 */
+  --line: rgba(80, 90, 100, 0.12);
+  --line-strong: rgba(80, 90, 100, 0.22);
+  
+  /* 黛瓦青 - 主强调色，替代金色 */
+  --gold: #5a7a8a;
+  --gold-soft: #a8c5d4;
+  
+  /* 淡黄 - 暖色点缀 */
+  --accent-warm: #d4b896;
+  --accent-warm-light: #e8d9c4;
+  
+  /* 木材色 */
+  --wood: #5a5550;
+  --wood-edge: #8a8580;
+  --wood-active: #6a6560;
+  --wood-active-2: #8a7a6a;
+  
+  /* 朱红 - 中国传统色点缀 */
+  --red: #a85040;
+  --red-light: #c87868;
+  
+  /* 玉色 - 清雅绿 */
+  --jade: #6a8f7a;
+  --jade-light: #8ab09a;
+  
+  /* 阴影 */
+  --shadow-soft: 0 4px 16px rgba(60, 70, 80, 0.06);
+  --shadow-deep: 0 10px 28px rgba(60, 70, 80, 0.1);
+  
+  /* 圆角 */
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  
+  /* 面板填充色 - 白墙感 */
+  --panel-fill: linear-gradient(180deg, rgba(252, 253, 250, 0.97), rgba(248, 249, 246, 0.95));
+  
   --module-accent: var(--gold);
-  --function-ritual: #ba8743;
-  --function-living: #b85a3c;
-  --function-culture: #5e8066;
-  --function-worship: #756285;
-  --function-decor: #8a7453;
-  --type-hall: #9a512b;
-  --type-tower: #836033;
-  --type-gate: #556f5f;
-  --type-landscape: #7b6850;
+  
+  /* 功能分类颜色 */
+  --function-ritual: #7a9aaa;
+  --function-living: #a87868;
+  --function-culture: #6a9a7a;
+  --function-worship: #8a7a9a;
+  --function-decor: #9a8a6a;
+  
+  /* 形制分类颜色 */
+  --type-hall: #8a6a5a;
+  --type-tower: #7a6a5a;
+  --type-gate: #5a7a6a;
+  --type-landscape: #8a7a5a;
+  
   --overview-width: 987.436;
   --overview-height: 1398.857;
 }
@@ -49,34 +86,38 @@ body {
 body {
   color: var(--ink);
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 清新典雅古韵背景：白墙感 + 淡雅渐变 */
   background:
-    radial-gradient(circle at top left, rgba(255, 248, 225, 0.76), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(198, 139, 66, 0.14), transparent 26%),
-    linear-gradient(120deg, #a68764 0%, #d8c196 18%, #ebddbc 52%, #d2bb92 100%);
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 252, 0.6), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(168, 197, 212, 0.08), transparent 35%),
+    linear-gradient(160deg, #f8f9f7 0%, #f2f3f0 40%, #f5f6f3 70%, #eef0ec 100%);
   overflow: hidden;
 }
 
-body::before,
+/* 雕花窗棂纹理装饰 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    /* 雕花窗棂格纹 */
+    linear-gradient(90deg, rgba(90, 122, 138, 0.04) 0 1px, transparent 1px 100%),
+    linear-gradient(rgba(90, 122, 138, 0.03) 0 1px, transparent 1px 100%);
+  background-size: 48px 48px;
+}
+
+/* 淡雅光影 */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-}
-
-body::before {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 100%),
-    linear-gradient(rgba(94, 64, 38, 0.05) 0 1px, transparent 1px 100%);
-  background-size: 28px 28px;
-  opacity: 0.35;
-}
-
-body::after {
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.12), transparent 26%),
-    radial-gradient(circle at 82% 82%, rgba(136, 47, 28, 0.08), transparent 20%);
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.25), transparent 32%),
+    radial-gradient(circle at 85% 85%, rgba(168, 197, 212, 0.05), transparent 28%);
 }
 
 button {
@@ -92,37 +133,32 @@ button {
   overflow: hidden;
 }
 
-.wood-nav__foot {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-}
+/* =====================================================
+   左侧导航栏 - 清新典雅古韵
+   ===================================================== */
 
 .wood-nav {
   position: relative;
   display: flex;
   justify-content: center;
   min-height: 0;
-  padding: 40px 16px 72px;
+  padding: 32px 16px 60px;
+  /* 白墙黛瓦感背景 */
   background:
-    linear-gradient(180deg, rgba(40, 24, 15, 0.18), rgba(255, 244, 214, 0) 20%),
-    linear-gradient(180deg, rgba(255, 247, 223, 0.22), rgba(120, 87, 57, 0.12));
-  border-right: 1px solid rgba(70, 46, 26, 0.18);
+    linear-gradient(180deg, rgba(250, 251, 248, 0.98), rgba(242, 244, 240, 0.96));
+  border-right: 1px solid rgba(90, 122, 138, 0.12);
 }
 
+/* 缩短的导航竖线 */
 .wood-nav__spine {
   position: absolute;
-  top: 96px;
-  bottom: 114px;
-  width: 4px;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  height: 40%;
+  width: 1.5px;
   left: 50%;
-  transform: translateX(-50%);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 244, 212, 0.95), rgba(203, 180, 142, 0.94), rgba(252, 246, 229, 0.98));
-  box-shadow: 0 0 0 1px rgba(112, 78, 39, 0.08), 0 0 18px rgba(255, 232, 169, 0.28);
+  background: linear-gradient(180deg, rgba(90, 122, 138, 0.08), rgba(90, 122, 138, 0.2), rgba(90, 122, 138, 0.08));
 }
 
 .wood-nav__plates {
@@ -130,60 +166,61 @@ button {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 20px;
   width: 100%;
   align-items: center;
 }
 
+/* 吊坠装饰 - 改为青玉色 */
 .wood-nav__pendant {
   position: absolute;
   bottom: 20px;
   left: 50%;
-  width: 24px;
-  height: 94px;
+  width: 16px;
+  height: 42px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, #c54f2d, #8a1d13);
+  background: linear-gradient(180deg, var(--jade), #5a7a6a);
   clip-path: polygon(22% 0, 78% 0, 100% 84%, 50% 100%, 0 84%);
-  filter: drop-shadow(0 12px 16px rgba(115, 29, 18, 0.16));
+  filter: drop-shadow(0 4px 8px rgba(90, 122, 138, 0.1));
+  opacity: 0.65;
 }
 
+/* 导航按钮 - 清新典雅卡片 */
 .wood-plate {
   position: relative;
-  width: 118px;
-  min-height: 76px;
-  border: 1px solid rgba(255, 242, 214, 0.16);
-  border-radius: 6px;
-  padding: 14px 10px 12px;
-  background:
-    linear-gradient(180deg, rgba(103, 71, 51, 0.18), rgba(0, 0, 0, 0) 30%),
-    linear-gradient(135deg, #443128 0%, #2d2019 100%);
+  width: 110px;
+  min-height: 72px;
+  border: 1px solid rgba(90, 122, 138, 0.15);
+  border-radius: 12px;
+  padding: 12px 10px 10px;
+  background: linear-gradient(145deg, #fcfdfb 0%, #f5f6f3 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 239, 194, 0.08),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-    0 12px 20px rgba(41, 24, 14, 0.15);
-  color: rgba(241, 226, 198, 0.9);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 3px 10px rgba(60, 70, 80, 0.05);
+  color: var(--ink);
   cursor: pointer;
-  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
+/* 按钮连接线 - 缩短 */
 .wood-plate::before,
 .wood-plate::after {
   content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  background: linear-gradient(180deg, rgba(249, 237, 203, 0.95), rgba(203, 180, 142, 0.9));
+  width: 1px;
+  background: linear-gradient(180deg, rgba(90, 122, 138, 0.12), rgba(90, 122, 138, 0.25));
 }
 
 .wood-plate::before {
-  top: -32px;
-  height: 32px;
+  top: -14px;
+  height: 14px;
 }
 
 .wood-plate::after {
-  bottom: -32px;
-  height: 32px;
+  bottom: -14px;
+  height: 14px;
 }
 
 .wood-plate:last-child::after {
@@ -191,22 +228,19 @@ button {
 }
 
 .wood-plate:hover {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-2px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 239, 194, 0.14),
-    0 18px 28px rgba(41, 24, 14, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 6px 16px rgba(60, 70, 80, 0.08);
 }
 
 .wood-plate.active {
-  color: #fff6df;
-  background:
-    linear-gradient(180deg, rgba(255, 224, 164, 0.22), rgba(255, 255, 255, 0) 30%),
-    linear-gradient(135deg, var(--wood-active), var(--wood-active-2));
-  border-color: rgba(255, 231, 173, 0.38);
+  color: #f8fafb;
+  background: linear-gradient(145deg, var(--wood-active), var(--wood-active-2));
+  border-color: rgba(90, 122, 138, 0.25);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 224, 164, 0.2),
-    0 0 28px rgba(184, 138, 53, 0.28),
-    0 18px 32px rgba(90, 47, 21, 0.26);
+    0 0 16px rgba(90, 122, 138, 0.12),
+    0 6px 16px rgba(60, 70, 80, 0.1);
 }
 
 .wood-plate__zh,
@@ -217,22 +251,52 @@ button {
 
 .wood-plate__zh {
   font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 21px;
+  font-size: 19px;
   line-height: 1.25;
   letter-spacing: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .wood-plate__en {
   font-family: "Cormorant Garamond", "Georgia", serif;
-  font-size: 12px;
-  letter-spacing: 1.8px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  opacity: 0.88;
+  opacity: 0.82;
+}
+
+/* 语言切换按钮 */
+.lang-switch {
+  flex-shrink: 0;
+  border: 1px solid rgba(90, 122, 138, 0.15);
+  background: linear-gradient(180deg, rgba(252, 253, 250, 0.97), rgba(248, 249, 246, 0.97));
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px;
+  letter-spacing: 2px;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+
+.lang-switch:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(60, 70, 80, 0.08);
+  background: linear-gradient(180deg, rgba(252, 253, 250, 1), rgba(240, 244, 246, 1));
+}
+
+/* 导航底部 */
+.wood-nav__foot {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .app-frame {
-  padding: 10px 20px 10px 14px;
+  padding: 8px 18px 8px 12px;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -269,7 +333,7 @@ button {
   font-size: 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: rgba(91, 64, 39, 0.68);
+  color: rgba(100, 90, 78, 0.6);
 }
 
 .app-title {
@@ -289,8 +353,8 @@ button {
 
 .lang-switch {
   flex-shrink: 0;
-  border: 1px solid rgba(93, 60, 34, 0.24);
-  background: linear-gradient(180deg, rgba(255, 246, 225, 0.92), rgba(225, 209, 177, 0.94));
+  border: 1px solid rgba(160, 150, 135, 0.2);
+  background: linear-gradient(180deg, rgba(252, 250, 246, 0.95), rgba(240, 236, 228, 0.95));
   color: var(--ink);
   border-radius: 999px;
   padding: 10px 18px;
@@ -302,7 +366,7 @@ button {
 
 .lang-switch:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(41, 26, 15, 0.16);
+  box-shadow: 0 8px 18px rgba(60, 54, 46, 0.1);
 }
 
 .app-main {
@@ -354,27 +418,29 @@ button {
 .panel-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(91, 64, 39, 0.18);
+  border: 1px solid rgba(90, 122, 138, 0.1);
   border-radius: var(--radius-lg);
   background: var(--panel-fill);
-  box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(255, 247, 224, 0.3);
-}
-
-.panel-card::before,
-.panel-card::after {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border-radius: calc(var(--radius-lg) - 12px);
-  pointer-events: none;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(6px);
 }
 
 .panel-card::before {
-  border: 1px solid rgba(189, 152, 80, 0.14);
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+  border: 1px solid rgba(90, 122, 138, 0.05);
 }
 
 .panel-card::after {
-  background: radial-gradient(circle at top right, rgba(255, 244, 210, 0.24), transparent 34%);
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+  background: radial-gradient(circle at top right, rgba(168, 197, 212, 0.08), transparent 40%);
 }
 
 .panel-head {
@@ -428,7 +494,7 @@ button {
 .overview-hint {
   max-width: 250px;
   text-align: right;
-  color: rgba(79, 56, 33, 0.78);
+  color: rgba(60, 70, 80, 0.6);
   line-height: 1.7;
 }
 
@@ -436,11 +502,12 @@ button {
   position: relative;
   flex: 1;
   min-height: 0;
-  margin: 0 12px 12px;
-  border-radius: calc(var(--radius-lg) - 8px);
+  margin: 0 10px 10px;
+  border-radius: calc(var(--radius-lg) - 5px);
+  /* 清新白墙背景 */
   background:
-    radial-gradient(circle at top center, rgba(255, 246, 228, 0.38), transparent 32%),
-    linear-gradient(180deg, rgba(154, 117, 75, 0.08), rgba(255, 255, 255, 0));
+    radial-gradient(circle at top center, rgba(168, 197, 212, 0.06), transparent 35%),
+    linear-gradient(180deg, rgba(248, 249, 246, 0.25), rgba(252, 253, 250, 0));
   overflow: hidden;
 }
 
@@ -572,10 +639,10 @@ button {
   pointer-events: none;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(48, 29, 12, 0.92);
-  color: #fff6df;
-  border: 1px solid rgba(255, 223, 150, 0.24);
-  box-shadow: 0 10px 24px rgba(39, 24, 11, 0.2);
+  background: rgba(58, 54, 50, 0.9);
+  color: #faf8f4;
+  border: 1px solid rgba(184, 155, 94, 0.2);
+  box-shadow: 0 8px 20px rgba(60, 54, 46, 0.16);
   font-family: "Noto Serif SC", "STKaiti", serif;
   font-size: 13px;
   letter-spacing: 1px;
@@ -583,17 +650,45 @@ button {
 }
 
 .filter-card {
-  padding: 20px;
+  padding: 16px;
 }
 
+/* 折叠面板容器 - 固定高度，展开时覆盖而非下推 */
+.fold-card {
+  position: relative;
+}
+
+/* 折叠面板 - 使用绝对定位，展开时覆盖下方内容 */
+.fold-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid rgba(90, 122, 138, 0.1);
+  border-radius: var(--radius-sm);
+  background: rgba(252, 253, 250, 0.98);
+  box-shadow: var(--shadow-soft);
+  transition: opacity 0.25s ease;
+}
+
+.fold-panel[hidden] {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fold-panel:not([hidden]) {
+  opacity: 1;
+}
+
+/* 折叠按钮样式 */
 .fold-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.fold-card {
-  position: relative;
+  gap: 10px;
 }
 
 .fold-toggle {
@@ -601,28 +696,27 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgba(92, 61, 35, 0.18);
-  border-radius: 16px;
-  padding: 13px 15px;
-  background: linear-gradient(180deg, rgba(255, 246, 227, 0.88), rgba(219, 196, 153, 0.88));
+  border: 1px solid rgba(90, 122, 138, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  background: linear-gradient(180deg, rgba(252, 253, 250, 0.95), rgba(248, 249, 246, 0.95));
   color: var(--ink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   cursor: pointer;
 }
 
 .fold-toggle.is-open {
-  border-color: rgba(184, 138, 53, 0.34);
-  box-shadow: 0 0 0 1px rgba(184, 138, 53, 0.14);
+  border-color: rgba(90, 122, 138, 0.2);
 }
 
 .fold-toggle__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: rgba(57, 39, 29, 0.08);
+  background: rgba(90, 122, 138, 0.08);
   transition: transform 0.24s ease;
 }
 
@@ -630,14 +724,7 @@ button {
   transform: rotate(45deg);
 }
 
-.fold-panel {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid rgba(92, 61, 35, 0.14);
-  border-radius: 16px;
-  background: rgba(250, 244, 229, 0.84);
-}
-
+/* 筛选标签 */
 .filter-chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -645,24 +732,24 @@ button {
 }
 
 .filter-chip {
-  border: 1px solid color-mix(in srgb, var(--chip-color) 36%, transparent);
+  border: 1px solid color-mix(in srgb, var(--chip-color) 30%, transparent);
   border-radius: 999px;
-  padding: 7px 12px;
-  background: rgba(255, 251, 242, 0.8);
+  padding: 6px 12px;
+  background: rgba(252, 253, 250, 0.9);
   color: var(--chip-color);
   cursor: pointer;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .filter-chip:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(41, 24, 14, 0.1);
+  box-shadow: 0 6px 14px rgba(60, 70, 80, 0.08);
 }
 
 .filter-chip.active {
-  color: #fff8eb;
+  color: #f8fafb;
   background: var(--chip-color);
-  box-shadow: 0 0 0 1px rgba(255, 244, 222, 0.18) inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .gallery-card {
@@ -737,9 +824,9 @@ button {
   right: 16px;
   bottom: 16px;
   padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(40, 24, 15, 0.72);
-  color: #fff4d8;
+  border-radius: 12px;
+  background: rgba(58, 54, 50, 0.72);
+  color: #faf8f4;
   backdrop-filter: blur(12px);
 }
 
@@ -762,9 +849,9 @@ button {
   width: 34px;
   height: 56px;
   border: none;
-  border-radius: 16px;
-  background: rgba(40, 24, 15, 0.68);
-  color: #fff4d8;
+  border-radius: 12px;
+  background: rgba(58, 54, 50, 0.6);
+  color: #faf8f4;
   cursor: pointer;
 }
 
@@ -786,12 +873,12 @@ button {
   position: relative;
   height: 180px;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 12px;
   margin-bottom: 12px;
   background:
-    radial-gradient(circle at 50% 40%, rgba(255, 244, 210, 0.25), transparent 55%),
-    linear-gradient(180deg, rgba(229, 213, 181, 0.35), rgba(245, 237, 220, 0.5));
-  border: 1px solid rgba(184, 138, 53, 0.22);
+    radial-gradient(circle at 50% 40%, rgba(248, 246, 241, 0.3), transparent 55%),
+    linear-gradient(180deg, rgba(240, 236, 228, 0.4), rgba(248, 246, 241, 0.5));
+  border: 1px solid rgba(160, 150, 135, 0.16);
 }
 
 .category-carousel__track {
@@ -908,7 +995,7 @@ button {
 }
 
 .info-card {
-  padding: 12px 16px 14px;
+  padding: 12px 14px 12px;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -916,22 +1003,23 @@ button {
 
 .info-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
 .info-tab {
-  border: 1px solid rgba(92, 61, 35, 0.14);
+  border: 1px solid rgba(90, 122, 138, 0.12);
   border-radius: 999px;
-  padding: 9px 14px;
-  background: rgba(255, 249, 239, 0.78);
+  padding: 8px 14px;
+  background: rgba(252, 253, 250, 0.9);
   color: var(--ink-soft);
   cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .info-tab.active {
-  background: linear-gradient(135deg, var(--wood-active), var(--wood-active-2));
-  color: #fff7e3;
+  background: linear-gradient(145deg, var(--wood-active), var(--wood-active-2));
+  color: #f8fafb;
 }
 
 .info-content {
@@ -960,7 +1048,7 @@ button {
 
 .info-subtitle {
   margin-top: 6px;
-  color: rgba(79, 56, 33, 0.72);
+  color: var(--ink-soft);
   font-size: 13px;
   letter-spacing: 1.5px;
 }
@@ -979,16 +1067,16 @@ button {
 
 .info-block {
   padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(255, 249, 236, 0.72);
-  border: 1px solid rgba(92, 61, 35, 0.1);
+  border-radius: 14px;
+  background: rgba(248, 246, 241, 0.7);
+  border: 1px solid rgba(160, 150, 135, 0.1);
 }
 
 .info-block__label {
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(108, 79, 52, 0.68);
+  color: var(--ink-soft);
 }
 
 .info-block__value {
@@ -1005,9 +1093,9 @@ button {
 
 .info-list__item {
   padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255, 250, 241, 0.72);
-  border: 1px solid rgba(92, 61, 35, 0.08);
+  border-radius: 12px;
+  background: rgba(248, 246, 241, 0.7);
+  border: 1px solid rgba(160, 150, 135, 0.08);
   line-height: 1.8;
   color: var(--ink-soft);
 }
@@ -1272,90 +1360,103 @@ button {
 
 .thought-topbar {
   display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(180px, 200px) minmax(0, 1fr) auto;
   align-items: center;
-  gap: 18px;
-  padding: 14px 18px;
+  gap: 16px;
+  padding: 12px 16px;
 }
 
 .thought-topbar__title {
   margin: 4px 0 0;
 }
 
+/* 顶部一级标签 - 居中等宽排列 */
 .thought-primary-tabs {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .thought-primary-tab,
 .thought-secondary-tab {
   position: relative;
-  border: 1px solid rgba(166, 118, 37, 0.28);
-  background: linear-gradient(180deg, rgba(255, 248, 232, 0.92), rgba(226, 205, 164, 0.88));
+  border: 1px solid rgba(90, 122, 138, 0.15);
+  background: linear-gradient(180deg, rgba(252, 253, 250, 0.97), rgba(248, 249, 246, 0.95));
   color: var(--ink);
   cursor: pointer;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .thought-primary-tab {
-  min-width: 108px;
-  height: 108px;
-  padding: 14px 12px;
-  border-radius: 999px;
+  flex: 1;
+  max-width: 140px;
+  min-width: 100px;
+  height: 90px;
+  padding: 12px 10px;
+  border-radius: var(--radius-md);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: inset 0 0 0 1px rgba(255, 244, 214, 0.6), 0 10px 20px rgba(72, 45, 21, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .thought-primary-tab::before {
   content: "";
   position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(184, 138, 53, 0.28);
-  border-radius: 999px;
+  inset: 6px;
+  border: 1px solid rgba(90, 122, 138, 0.08);
+  border-radius: calc(var(--radius-md) - 4px);
   pointer-events: none;
 }
 
 .thought-primary-tab:hover,
 .thought-secondary-tab:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(72, 45, 21, 0.12);
+  box-shadow: 0 6px 14px rgba(60, 70, 80, 0.08);
 }
 
 .thought-primary-tab.active,
 .thought-secondary-tab.active {
-  border-color: rgba(184, 138, 53, 0.56);
-  box-shadow: 0 12px 26px rgba(125, 83, 26, 0.18), inset 0 0 0 1px rgba(255, 245, 220, 0.65);
+  border-color: rgba(90, 122, 138, 0.3);
+  background: linear-gradient(145deg, var(--wood-active), var(--wood-active-2));
+  color: #f8fafb;
+  box-shadow: 0 6px 14px rgba(60, 70, 80, 0.1);
+}
+
+.thought-primary-tab.active::before {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .thought-primary-tab__zh {
   font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
 }
 
 .thought-primary-tab__en {
-  margin-top: 6px;
-  font-size: 11px;
-  letter-spacing: 0.6px;
-  color: rgba(79, 56, 33, 0.72);
+  margin-top: 4px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+}
+
+.thought-primary-tab.active .thought-primary-tab__en {
+  color: rgba(248, 250, 251, 0.8);
 }
 
 .thought-status-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 7px 12px;
   border-radius: 999px;
-  background: rgba(255, 248, 232, 0.85);
-  border: 1px solid rgba(184, 138, 53, 0.22);
+  background: rgba(252, 253, 250, 0.92);
+  border: 1px solid rgba(90, 122, 138, 0.1);
   color: var(--ink-soft);
-  font-size: 12px;
+  font-size: 11px;
   white-space: nowrap;
 }
 
@@ -1462,9 +1563,9 @@ button {
 .thought-mini-card {
   width: 100%;
   text-align: left;
-  border: 1px solid rgba(184, 138, 53, 0.18);
-  background: rgba(255, 249, 236, 0.76);
-  border-radius: 18px;
+  border: 1px solid rgba(160, 150, 135, 0.14);
+  background: rgba(252, 250, 246, 0.75);
+  border-radius: 14px;
   padding: 12px 14px;
   color: var(--ink);
 }
@@ -1476,13 +1577,14 @@ button {
 
 .thought-side-btn:hover {
   transform: translateY(-1px);
-  border-color: rgba(184, 138, 53, 0.36);
-  box-shadow: 0 10px 18px rgba(71, 45, 22, 0.08);
+  border-color: rgba(184, 155, 94, 0.28);
+  box-shadow: 0 6px 14px rgba(60, 54, 46, 0.06);
 }
 
 .thought-side-btn.is-selected {
-  border-color: rgba(184, 138, 53, 0.52);
-  box-shadow: inset 0 0 0 1px rgba(255, 242, 214, 0.65), 0 10px 18px rgba(71, 45, 22, 0.1);
+  border-color: rgba(184, 155, 94, 0.4);
+  box-shadow: 0 6px 14px rgba(60, 54, 46, 0.08);
+  background: rgba(248, 244, 235, 0.9);
 }
 
 .thought-side-btn__title {
@@ -1542,8 +1644,8 @@ button {
   transform: translate(-50%, -50%);
   padding: 4px 9px;
   border-radius: 999px;
-  background: rgba(60, 39, 22, 0.78);
-  color: #fff7df;
+  background: rgba(58, 54, 50, 0.75);
+  color: #faf8f4;
   font-size: 11px;
   letter-spacing: 0.5px;
 }
@@ -1579,10 +1681,10 @@ button {
   transform: translate(-50%, -50%);
   padding: 7px 12px;
   border-radius: 999px;
-  background: rgba(54, 35, 20, 0.8);
-  color: #fff7df;
+  background: rgba(58, 54, 50, 0.78);
+  color: #faf8f4;
   font-size: 12px;
-  box-shadow: 0 10px 22px rgba(34, 20, 9, 0.14);
+  box-shadow: 0 6px 16px rgba(60, 54, 46, 0.12);
 }
 
 .thought-fengshui-field::before {
@@ -1622,8 +1724,8 @@ button {
   gap: 8px;
   padding: 7px 11px;
   border-radius: 999px;
-  background: rgba(255, 249, 236, 0.78);
-  border: 1px solid rgba(184, 138, 53, 0.16);
+  background: rgba(248, 246, 241, 0.8);
+  border: 1px solid rgba(160, 150, 135, 0.12);
   font-size: 12px;
   color: var(--ink-soft);
 }
@@ -1645,20 +1747,20 @@ button {
 
 .thought-poster {
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   min-height: 138px;
   padding: 18px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(235, 221, 188, 0.96), rgba(190, 156, 107, 0.55));
-  border: 1px solid rgba(184, 138, 53, 0.22);
+  background: linear-gradient(135deg, rgba(248, 246, 241, 0.95), rgba(240, 236, 228, 0.9));
+  border: 1px solid rgba(160, 150, 135, 0.14);
 }
 
 .thought-poster::before {
   content: "";
   position: absolute;
-  inset: 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 248, 228, 0.38);
+  inset: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(184, 155, 94, 0.1);
 }
 
 .thought-poster__title {
@@ -1731,14 +1833,23 @@ button {
   margin-top: 18px;
   padding: 14px 16px;
   border-radius: 18px;
-  background: rgba(255, 250, 239, 0.78);
-  border: 1px solid rgba(184, 138, 53, 0.18);
+  background: rgba(168, 197, 212, 0.1);
+  border: 1px solid rgba(90, 122, 138, 0.15);
 }
 
 .thought-building-note__title {
   margin: 0 0 8px;
   font-size: 14px;
   color: var(--ink);
+}
+
+/* 汉学解析特殊样式 */
+.thought-sinology-section {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(168, 197, 212, 0.08);
+  border: 1px solid rgba(90, 122, 138, 0.1);
 }
 
 .overview-region-overlay.thought-highlight {
@@ -1892,16 +2003,17 @@ button {
 
 /* =====================================================
    模块三：巧物精工 样式
-   风格：典雅清新古韵 — 汝窑青瓷 / 宣德炉 / 水墨绢本
+   风格：清新典雅古韵 — 白墙黛瓦 · 月白淡黄
    ===================================================== */
 
 /* --- 布局容器 --- */
 .module-layout--component {
   padding: 0;
+  /* 清新典雅白墙感背景 */
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(212, 168, 83, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 90%, rgba(180, 148, 90, 0.05) 0%, transparent 50%),
-    linear-gradient(160deg, #faf7f0 0%, #f0e8d8 60%, #e8dcc6 100%);
+    radial-gradient(ellipse at 20% 10%, rgba(168, 197, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(212, 184, 150, 0.05) 0%, transparent 50%),
+    linear-gradient(160deg, #f8f9f7 0%, #f2f3f0 60%, #eef0ec 100%);
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -1910,12 +2022,13 @@ button {
 /* --- 顶部建筑切换栏 --- */
 .component-topbar {
   display: flex;
-  gap: 10px;
-  padding: 12px 20px;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 18px;
   background:
-    linear-gradient(180deg, rgba(240, 232, 216, 0.88), rgba(224, 210, 184, 0.5)),
-    radial-gradient(ellipse at 50% 0%, rgba(255, 248, 232, 0.4), transparent 70%);
-  border-bottom: 1px solid rgba(180, 148, 90, 0.16);
+    linear-gradient(180deg, rgba(248, 249, 246, 0.92), rgba(240, 242, 238, 0.6)),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.4), transparent 70%);
+  border-bottom: 1px solid rgba(90, 122, 138, 0.1);
   backdrop-filter: blur(6px);
   flex-shrink: 0;
 }
@@ -1923,58 +2036,54 @@ button {
 .component-building-btn {
   display: flex;
   align-items: center;
-  padding: 8px 18px;
-  border: 1px solid rgba(180, 148, 90, 0.28);
-  border-radius: 8px;
-  background: rgba(250, 247, 240, 0.6);
-  color: #5a4028;
+  justify-content: center;
+  flex: 1;
+  max-width: 160px;
+  padding: 8px 16px;
+  border: 1px solid rgba(90, 122, 138, 0.2);
+  border-radius: 10px;
+  background: rgba(252, 253, 250, 0.7);
+  color: #4a5a65;
   font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 1.5px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(4px);
-  position: relative;
-  overflow: hidden;
 }
 
 .component-building-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(212, 168, 83, 0.0), rgba(180, 148, 90, 0.0));
+  background: linear-gradient(135deg, rgba(168, 197, 212, 0.0), rgba(90, 122, 138, 0.0));
   transition: background 0.25s ease;
 }
 
 .component-building-btn:hover {
-  background: rgba(212, 168, 83, 0.1);
-  border-color: rgba(180, 148, 90, 0.5);
+  background: rgba(168, 197, 212, 0.12);
+  border-color: rgba(90, 122, 138, 0.4);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(180, 148, 90, 0.14);
-}
-
-.component-building-btn:hover::before {
-  background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(180, 148, 90, 0.04));
+  box-shadow: 0 4px 12px rgba(90, 122, 138, 0.1);
 }
 
 .component-building-btn.is-active {
-  background: linear-gradient(135deg, rgba(212, 168, 83, 0.82), rgba(190, 155, 75, 0.72));
-  border-color: rgba(170, 138, 65, 0.55);
-  color: #fff;
+  background: linear-gradient(145deg, rgba(90, 122, 138, 0.85), rgba(70, 95, 108, 0.75));
+  border-color: rgba(90, 122, 138, 0.4);
+  color: #f8fafb;
   box-shadow:
-    0 0 0 1px rgba(212, 168, 83, 0.35),
-    0 4px 14px rgba(180, 148, 90, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  letter-spacing: 2px;
+    0 0 0 1px rgba(168, 197, 212, 0.3),
+    0 4px 12px rgba(90, 122, 138, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .component-building-btn.is-active:hover {
   transform: none;
   box-shadow:
-    0 0 0 1px rgba(212, 168, 83, 0.4),
-    0 5px 16px rgba(180, 148, 90, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 0 0 1px rgba(168, 197, 212, 0.35),
+    0 5px 14px rgba(90, 122, 138, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 /* --- 主工作区两列布局 --- */
@@ -2006,13 +2115,13 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 16px;
-  border: 1px solid rgba(180, 148, 90, 0.38);
+  padding: 6px 14px;
+  border: 1px solid rgba(90, 122, 138, 0.25);
   border-radius: 20px;
-  background: rgba(250, 247, 240, 0.72);
-  color: #5a4028;
+  background: rgba(252, 253, 250, 0.8);
+  color: #4a5a65;
   font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
@@ -2021,16 +2130,16 @@ button {
 }
 
 .component-explode-btn:hover {
-  background: rgba(212, 168, 83, 0.14);
-  border-color: rgba(180, 148, 90, 0.58);
-  box-shadow: 0 2px 10px rgba(180, 148, 90, 0.16);
+  background: rgba(168, 197, 212, 0.15);
+  border-color: rgba(90, 122, 138, 0.4);
+  box-shadow: 0 3px 10px rgba(90, 122, 138, 0.12);
   transform: translateY(-1px);
 }
 
 .component-explode-btn.is-exploded {
-  background: rgba(212, 168, 83, 0.18);
-  border-color: rgba(180, 148, 90, 0.52);
-  color: #7a5a38;
+  background: rgba(168, 197, 212, 0.2);
+  border-color: rgba(90, 122, 138, 0.35);
+  color: #3a4a55;
 }
 
 .component-explode-btn__icon {
@@ -2050,10 +2159,10 @@ button {
   border-radius: 14px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 15%, rgba(255, 248, 234, 0.35) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 85%, rgba(212, 168, 83, 0.06) 0%, transparent 40%),
-    linear-gradient(160deg, #f5ede0 0%, #ede4d2 50%, #e4d9c2 100%);
-  border: 1px solid rgba(180, 148, 90, 0.2);
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.4), transparent 45%),
+    radial-gradient(ellipse at 50% 85%, rgba(168, 197, 212, 0.06), transparent 40%),
+    linear-gradient(160deg, #f5f6f3 0%, #eef0ec 50%, #e8eae8 100%);
+  border: 1px solid rgba(90, 122, 138, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2082,10 +2191,10 @@ button {
   height: auto;
   top: 14px;
   left: 14px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow:
-    0 2px 16px rgba(40, 28, 12, 0.2),
-    0 0 0 1px rgba(180, 148, 90, 0.2);
+    0 3px 14px rgba(60, 70, 80, 0.15),
+    0 0 0 1px rgba(90, 122, 138, 0.15);
   cursor: zoom-in;
 }
 
@@ -2115,14 +2224,14 @@ button {
 }
 
 .component-svg-host g:hover {
-  filter: drop-shadow(0 0 5px rgba(180, 148, 90, 0.72));
+  filter: drop-shadow(0 0 6px rgba(90, 122, 138, 0.6));
 }
 
 .component-svg-host g.is-selected {
-  filter: drop-shadow(0 0 7px rgba(212, 168, 83, 0.95));
+  filter: drop-shadow(0 0 8px rgba(90, 122, 138, 0.8));
 }
 
-/* --- 构件标签层 --- */
+/* --- 构件标签层 - 带箭头标注 --- */
 .component-labels {
   position: absolute;
   inset: 0;
@@ -2132,35 +2241,62 @@ button {
 
 .component-label {
   position: absolute;
-  padding: 4px 10px;
-  border-radius: 5px;
-  background: rgba(50, 68, 72, 0.86);
-  color: #e8dcc6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(60, 70, 80, 0.9);
+  color: #f0f2f4;
   font-family: "Noto Serif SC", "STKaiti", serif;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   transform: translateY(3px) translateX(-50%);
   transition:
     opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(212, 168, 83, 0.28);
+  border: 1px solid rgba(168, 197, 212, 0.25);
 }
 
 .component-label.is-visible {
   opacity: 1;
   transform: translateY(0) translateX(-50%);
+  background: rgba(60, 70, 80, 0.92);
+  border-color: rgba(168, 197, 212, 0.4);
 }
 
-.component-label.is-visible {
-  background: rgba(70, 90, 95, 0.9);
-  border-color: rgba(212, 168, 83, 0.5);
+/* 标签箭头 */
+.component-label::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: rgba(60, 70, 80, 0.9);
+}
+
+.component-label.is-visible::before {
+  border-right-color: rgba(60, 70, 80, 0.92);
+}
+
+/* 标签简介 */
+.component-label__name {
+  font-weight: 700;
+}
+
+.component-label-desc {
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(200, 210, 220, 0.8);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* SVG 加载提示 */
@@ -2231,24 +2367,24 @@ button {
 
 .component-sidebar__head {
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background:
-    linear-gradient(135deg, rgba(250, 247, 240, 0.75), rgba(228, 215, 192, 0.45)),
-    radial-gradient(ellipse at 0% 50%, rgba(255, 248, 234, 0.25), transparent 65%);
-  border: 1px solid rgba(180, 148, 90, 0.18);
+    linear-gradient(135deg, rgba(252, 253, 250, 0.8), rgba(240, 242, 238, 0.5)),
+    radial-gradient(ellipse at 0% 50%, rgba(168, 197, 212, 0.08), transparent 65%);
+  border: 1px solid rgba(90, 122, 138, 0.1);
   flex-shrink: 0;
 }
 
 .component-sidebar__head .panel-head__eyebrow {
-  font-size: 10.5px;
-  color: rgba(90, 64, 40, 0.55);
+  font-size: 10px;
+  color: rgba(90, 122, 138, 0.6);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .component-sidebar__head .panel-head__title {
-  font-size: 15px;
-  color: #3a2818;
+  font-size: 14px;
+  color: #3d4d58;
   font-family: "Noto Serif SC", "STKaiti", serif;
   letter-spacing: 2px;
   margin-top: 2px;
@@ -2258,7 +2394,7 @@ button {
 .component-btns {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
 .component-btn {
@@ -2267,34 +2403,33 @@ button {
   gap: 8px;
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid rgba(180, 148, 90, 0.18);
-  border-radius: 7px;
-  background: rgba(250, 247, 240, 0.48);
-  color: #5a4028;
+  border: 1px solid rgba(90, 122, 138, 0.12);
+  border-radius: 8px;
+  background: rgba(252, 253, 250, 0.6);
+  color: #4a5a65;
   font-family: "Noto Serif SC", "STKaiti", serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(4px);
-  letter-spacing: 0.5px;
 }
 
 .component-btn:hover {
-  background: rgba(212, 168, 83, 0.1);
-  border-color: rgba(180, 148, 90, 0.42);
+  background: rgba(168, 197, 212, 0.12);
+  border-color: rgba(90, 122, 138, 0.3);
   transform: translateX(2px);
 }
 
 .component-btn.is-active {
-  background: rgba(212, 168, 83, 0.18);
-  border-color: rgba(180, 148, 90, 0.55);
-  color: #7a5a38;
+  background: rgba(168, 197, 212, 0.2);
+  border-color: rgba(90, 122, 138, 0.4);
+  color: #2a3a45;
   font-weight: 600;
   box-shadow:
-    0 0 0 1px rgba(180, 148, 90, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    0 0 0 1px rgba(90, 122, 138, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateX(3px);
 }
 
@@ -2302,27 +2437,27 @@ button {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(180, 148, 90, 0.5);
+  background: rgba(90, 122, 138, 0.4);
   flex-shrink: 0;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .component-btn.is-active .component-btn__dot {
-  background: #b8943c;
+  background: #5a7a8a;
   transform: scale(1.3);
-  box-shadow: 0 0 5px rgba(180, 148, 90, 0.55);
+  box-shadow: 0 0 6px rgba(90, 122, 138, 0.4);
 }
 
 /* --- 图片轮播区 --- */
 .component-gallery {
   position: relative;
-  height: 155px;
-  border-radius: 10px;
+  height: 150px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(255, 248, 234, 0.28), transparent 55%),
-    linear-gradient(180deg, rgba(224, 212, 190, 0.35), rgba(240, 230, 212, 0.5));
-  border: 1px solid rgba(180, 148, 90, 0.2);
+    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.3), transparent 55%),
+    linear-gradient(180deg, rgba(240, 242, 238, 0.4), rgba(248, 249, 246, 0.5));
+  border: 1px solid rgba(90, 122, 138, 0.1);
   flex-shrink: 0;
 }
 
@@ -2333,7 +2468,7 @@ button {
 
 .component-gallery__track img {
   width: 100%;
-  height: 155px;
+  height: 150px;
   object-fit: cover;
   display: block;
   cursor: zoom-in;
@@ -2359,23 +2494,23 @@ button {
   border: none;
   padding: 0;
   cursor: pointer;
-  background: rgba(90, 64, 40, 0.22);
+  background: rgba(90, 122, 138, 0.25);
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .component-gallery__dot.is-active {
-  background: #b8943c;
+  background: #5a7a8a;
   transform: scale(1.25);
 }
 
 /* --- 三标签知识卡 --- */
 .component-card {
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   padding: 12px;
   background:
-    linear-gradient(135deg, rgba(250, 247, 240, 0.78), rgba(228, 215, 192, 0.48)),
-    radial-gradient(ellipse at 0% 0%, rgba(255, 248, 234, 0.22), transparent 60%);
-  border: 1px solid rgba(180, 148, 90, 0.18);
+    linear-gradient(135deg, rgba(252, 253, 250, 0.85), rgba(240, 242, 238, 0.55)),
+    radial-gradient(ellipse at 0% 0%, rgba(168, 197, 212, 0.06), transparent 60%);
+  border: 1px solid rgba(90, 122, 138, 0.1);
   flex-shrink: 0;
 }
 
@@ -2384,30 +2519,30 @@ button {
 }
 
 .component-card__component-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
-  color: #3a2818;
+  color: #3d4d58;
   margin-top: 2px;
   letter-spacing: 1.5px;
 }
 
 .component-card__tabs {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   margin-bottom: 8px;
-  border-bottom: 1px solid rgba(90, 64, 40, 0.1);
+  border-bottom: 1px solid rgba(90, 122, 138, 0.08);
   padding-bottom: 8px;
 }
 
 .component-card-tab {
-  padding: 3px 9px;
+  padding: 4px 10px;
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: 6px;
   background: transparent;
-  color: rgba(90, 64, 40, 0.55);
+  color: rgba(90, 122, 138, 0.6);
   font-family: "Noto Serif SC", "STKaiti", serif;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -2415,22 +2550,22 @@ button {
 }
 
 .component-card-tab:hover {
-  color: #5a4028;
-  background: rgba(212, 168, 83, 0.08);
+  color: #3d4d58;
+  background: rgba(168, 197, 212, 0.1);
 }
 
 .component-card-tab.is-active {
-  background: rgba(212, 168, 83, 0.16);
-  border-color: rgba(180, 148, 90, 0.32);
-  color: #7a5a38;
+  background: rgba(168, 197, 212, 0.15);
+  border-color: rgba(90, 122, 138, 0.25);
+  color: #2a3a45;
   font-weight: 600;
 }
 
 .component-card__body {
-  font-size: 11.5px;
-  line-height: 1.9;
-  color: rgba(60, 42, 28, 0.8);
-  max-height: 175px;
+  font-size: 11px;
+  line-height: 1.85;
+  color: rgba(60, 70, 80, 0.85);
+  max-height: 160px;
   overflow-y: auto;
   white-space: pre-line;
 }
@@ -2440,22 +2575,22 @@ button {
 }
 
 .component-card__body::-webkit-scrollbar-thumb {
-  background: rgba(180, 148, 90, 0.28);
+  background: rgba(90, 122, 138, 0.25);
   border-radius: 2px;
 }
 
 .component-card__body .m3-card-h {
   font-family: "Noto Serif SC", "STKaiti", serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  color: #5a4028;
+  color: #4a5a65;
   margin: 6px 0 2px;
   letter-spacing: 0.5px;
 }
 
 .component-card__body .m3-card-sub {
-  font-size: 11px;
-  color: rgba(60, 42, 28, 0.62);
+  font-size: 10px;
+  color: rgba(90, 122, 138, 0.7);
   margin: 1px 0;
 }
 

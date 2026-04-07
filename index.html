@@ -125,9 +125,11 @@
                 <div class="info-tabs" style="display:flex;gap:10px;margin-bottom:16px;">
                   <button class="info-tab card-tab active" data-tab="archive" type="button">档案卡</button>
                   <button class="info-tab card-tab" data-tab="event" type="button">事件卡</button>
+                  <button class="info-tab card-tab" data-tab="sinology" type="button">汉学卡</button>
                 </div>
                 <div id="card-content-archive"></div>
                 <div id="card-content-event" hidden></div>
+                <div id="card-content-sinology" hidden></div>
               </div>
 
               <!-- 分类 / 形制简介 + 建筑列表 -->
@@ -226,7 +228,7 @@
         </div>
 
         <!-- ===== 模块三：巧物精工 ===== -->
-        <div class="module-layout module-layout--component" data-layout="component" h
+        <div class="module-layout module-layout--component" data-layout="component" hidden>
           <div class="component-topbar" id="component-topbar" role="tablist" aria-label="建筑选择">
             <button class="component-building-btn is-active" data-building="太和殿" data-game="taihedian" type="button" role="tab" aria-selected="true">太和殿</button>
             <button class="component-building-btn" data-building="角楼" data-game="jiaolou" type="button" role="tab" aria-selected="false">角楼</button>
@@ -328,7 +330,7 @@
 
       const root = document.getElementById('zhuling-root')
       if (root) {
-        root.style.cssText = 'position:fixed;bottom:20px;left:clamp(118px, 10vw, 170px);z-index:9999;'
+        root.style.cssText = 'position:fixed;bottom:20px;left:10px;z-index:9999;'
       }
     })
   </script>

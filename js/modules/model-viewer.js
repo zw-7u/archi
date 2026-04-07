@@ -10,28 +10,28 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 const MODEL_CONFIG = {
   jiaolou: {
     title:   '角楼三维模型',
-    src:     './models/jiaolou.glb',
+    src:     'models/jiaolou.glb',
     camera:  { x: 0,  y: 2,  z: 8  },
     target:  { x: 0,  y: 1,  z: 0  },
     scale:   1,
   },
   wumen: {
     title:   '午门三维模型',
-    src:     './models/wumen.glb',
+    src:     'models/wumen.glb',
     camera:  { x: 0,  y: 2,  z: 10 },
     target:  { x: 0,  y: 1.5,z: 0  },
     scale:   1,
   },
   taihedian: {
     title:   '太和殿三维模型',
-    src:     './models/taihedian.glb',
+    src:     'models/taihedian.glb',
     camera:  { x: 0,  y: 3,  z: 12 },
     target:  { x: 0,  y: 2,  z: 0  },
     scale:   1,
   },
   jiulongbi: {
     title:   '九龙壁三维模型',
-    src:     './models/jiulongbi.glb',
+    src:     'models/jiulongbi.glb',
     camera:  { x: 0,  y: 2,  z: 9  },
     target:  { x: 0,  y: 1.2,z: 0  },
     scale:   1,
@@ -76,8 +76,8 @@ function disposeObject(obj) {
 function disposeScene(sc) {
   if (!sc) return
   sc.traverse(disposeObject)
-  // 从场景移除当前模型（防止残留）
-  if (currentModel && sc.hasObject3D(currentModel)) {
+  // 移除当前模型（防止残留）
+  if (currentModel) {
     sc.remove(currentModel)
   }
 }
@@ -85,16 +85,22 @@ function disposeScene(sc) {
 /* ---- 显示 / 隐藏状态 ---- */
 function showOverlay(cfg) {
   titleEl.textContent = cfg.title
-  loadingEl.hidden = false
-  errorEl.hidden   = true
+  // 移除 hidden 属性（可靠隐藏），仅靠 .is-open 控制显示
+  overlayEl.removeAttribute('hidden')
+  overlayEl.classList.add('is-open')
+  // 重置加载/错误状态
+  loadingEl.setAttribute('hidden', '')
+  errorEl.setAttribute('hidden', '')
   errorEl.textContent = '模型加载失败，请检查文件路径'
-  canvasWrap.innerHTML = ''
-  overlayEl.hidden = false
+  // 清理旧 canvas（如果有的话）
+  canvasWrap.querySelectorAll('canvas').forEach(c => c.remove())
   document.body.style.overflow = 'hidden'
 }
 
 function hideOverlay() {
-  overlayEl.hidden = true
+  overlayEl.classList.remove('is-open')
+  // 加回 hidden，防止下次打开前闪烁
+  overlayEl.setAttribute('hidden', '')
   document.body.style.overflow = ''
 }
 
@@ -186,11 +192,14 @@ function initScene(cfg) {
 function loadModel(cfg) {
   if (!loader) loader = new GLTFLoader()
 
+  // 模型 URL：基于当前页面路径解析 ./models/xxx.glb
+  const modelUrl = new URL(cfg.src, window.location.href).href
+
   loader.load(
-    cfg.src,
+    modelUrl,
     (gltf) => {
       // 隐藏加载中提示
-      loadingEl.hidden = true
+      loadingEl.setAttribute('hidden', '')
 
       // 缩放处理
       const root = gltf.scene
@@ -218,8 +227,8 @@ function loadModel(cfg) {
       // onProgress（可选：实现加载进度条）
     },
     (err) => {
-      loadingEl.hidden = true
-      errorEl.hidden   = false
+      loadingEl.setAttribute('hidden', '')
+      errorEl.removeAttribute('hidden')
       console.error('[model-viewer] 模型加载失败:', cfg.src, err)
     }
   )
@@ -305,10 +314,10 @@ window.closeModelViewer = function() {
 
 /* ---- 绑定关闭事件 ---- */
 document.addEventListener('DOMContentLoaded', () => {
-  // 关闭按钮
+  // 关闭按钮 & 遮罩点击
   document.addEventListener('click', (e) => {
     const overlay = document.getElementById('model-viewer-overlay')
-    if (!overlay || overlay.hidden) return
+    if (!overlay || !overlay.classList.contains('is-open')) return
     if (
       e.target.id === 'm3d-close' ||
       e.target.id === 'm3d-backdrop'
@@ -321,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const overlay = document.getElementById('model-viewer-overlay')
-      if (overlay && !overlay.hidden) {
+      if (overlay && overlay.classList.contains('is-open')) {
         window.closeModelViewer()
       }
     }

@@ -17,13 +17,17 @@ require('dotenv').config()
 const express = require('express')
 const cors    = require('cors')
 const axios   = require('axios')
+const { v4: uuidv4 } = require('uuid')
 
 const app = express()
 app.use(cors())
-app.use(express.json({ limit: '1mb' }))
+app.use(express.json({ limit: '10mb' }))
+app.use(express.raw({ limit: '10mb', type: 'audio/*' }))
 
 const PORT    = process.env.PORT    || 3000
-const API_KEY = process.env.OPENAI_API_KEY || ''
+const API_KEY = process.env.ARK_API_KEY || ''
+const ARK_BASE_URL = process.env.ARK_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3/chat/completions'
+const DOUBAO_MODEL = process.env.DOUBAO_MODEL || 'doubao-seed-character-251128'
 
 // ===================================================
 //  建筑上下文数据（与前端 BUILDINGS 保持同步关键字段）
@@ -193,7 +197,7 @@ app.post('/api/chat', async (req, res) => {
   if (!API_KEY) {
     return res.status(500).json({
       success: false,
-      error: 'OPENAI_API_KEY is not configured on the server'
+      error: 'ARK_API_KEY 未配置，请检查 .env 文件'
     })
   }
 
@@ -211,11 +215,11 @@ app.post('/api/chat', async (req, res) => {
   ]
 
   try {
-    // 通义千问 Qwen API（dashscope）
+    // 火山引擎 ARK API（豆包大模型）
     const response = await axios.post(
-      'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
+      ARK_BASE_URL,
       {
-        model: 'qwen-plus',
+        model: DOUBAO_MODEL,
         messages,
         temperature: 0.7,
         max_tokens: 800
@@ -257,13 +261,138 @@ app.post('/api/chat', async (req, res) => {
   }
 })
 
+// 火山语音鉴权头：文档要求 "Bearer;${token}"，分号后不要空格
+function volcSpeechAuthHeader() {
+  const token = process.env.VOLC_SPEECH_API_KEY || ''
+  return token ? `Bearer;${token}` : ''
+}
+
+// ===================================================
+//  豆包语音识别 (ASR) — POST /api/asr
+//  说明：浏览器 WebM/Opus 与流式 ASR 二进制协议需单独对接；此处先返回占位，
+//  避免错误 WebSocket 导致进程双写响应崩溃。后续可接大模型录音文件识别 HTTP API。
+// ===================================================
+app.post('/api/asr', async (req, res) => {
+  if (!req.body || req.body.length === 0) {
+    return res.status(400).json({ success: false, error: '音频数据为空' })
+  }
+
+  console.warn('[ASR] 当前未对接火山 ASR（浏览器 WebM 需转码或走录音文件识别 HTTP API）')
+  return res.json({
+    success: false,
+    text: '',
+    error: '语音识别暂未接入，请使用文字输入。'
+  })
+})
+
+// ===================================================
+//  豆包语音合成 (TTS) — POST /api/tts
+//  使用官方 HTTP 一次性合成：https://openspeech.bytedance.com/api/v1/tts
+//  请求体为 { "json": "<内层 JSON 字符串>" }，见火山文档与开源示例。
+// ===================================================
+app.post('/api/tts', async (req, res) => {
+  const {
+    VOLC_SPEECH_API_KEY,
+    DOUBAO_APP_ID,
+    DOUBAO_VOICE_TYPE,
+    DOUBAO_TTS_CLUSTER,
+    DOUBAO_TTS_SPEED,
+    DOUBAO_TTS_PITCH
+  } = process.env
+  const { text } = req.body
+
+  if (!text || typeof text !== 'string') {
+    return res.status(400).json({ success: false, error: 'text 参数无效' })
+  }
+
+  if (!VOLC_SPEECH_API_KEY || !DOUBAO_APP_ID) {
+    return res.status(500).json({ success: false, error: 'VOLC_SPEECH_API_KEY 或 DOUBAO_APP_ID 未配置' })
+  }
+
+  // 短文本接口建议单段不超过约 1024 字节
+  const textTrim = text.trim().slice(0, 1024)
+  const reqid = uuidv4()
+  const cluster = DOUBAO_TTS_CLUSTER || 'volcano_tts'
+  const voiceType = DOUBAO_VOICE_TYPE || 'BV001_streaming'
+
+  const inner = {
+    app: {
+      appid: String(DOUBAO_APP_ID),
+      token: 'access_token',
+      cluster
+    },
+    user: { uid: 'archiweb-zhuling' },
+    audio: {
+      voice_type: voiceType,
+      encoding: 'mp3',
+      speed_ratio: parseFloat(DOUBAO_TTS_SPEED) || 1.0,
+      volume_ratio: 1.0,
+      pitch_ratio: parseFloat(DOUBAO_TTS_PITCH) || 1.0
+    },
+    request: {
+      reqid,
+      text: textTrim,
+      text_type: 'plain',
+      operation: 'query'
+    }
+  }
+
+  try {
+    const response = await axios.post(
+      'https://openspeech.bytedance.com/api/v1/tts',
+      { json: JSON.stringify(inner) },
+      {
+        headers: {
+          Authorization: volcSpeechAuthHeader(),
+          'Content-Type': 'application/json'
+        },
+        timeout: 60000,
+        validateStatus: () => true
+      }
+    )
+
+    if (response.status !== 200) {
+      console.error('[TTS HTTP]', response.status, response.data)
+      return res.status(502).json({
+        success: false,
+        error: 'TTS 网关异常，请检查密钥与网络'
+      })
+    }
+
+    const body = response.data
+    const code = body && typeof body.code === 'number' ? body.code : -1
+    const audioB64 = body && body.data
+
+    if (code !== 3000 || !audioB64) {
+      const msg = (body && (body.message || body.Message)) || `合成失败 code=${code}`
+      console.error('[TTS API]', body)
+      return res.status(500).json({ success: false, error: msg })
+    }
+
+    return res.json({
+      success: true,
+      audio: audioB64,
+      reqid,
+      format: 'mp3'
+    })
+  } catch (err) {
+    console.error('[TTS Error]', err.response?.data || err.message)
+    return res.status(500).json({
+      success: false,
+      error: err.response?.data?.message || err.message || 'TTS 请求失败'
+    })
+  }
+})
+
 // ===================================================
 //  健康检查
 // ===================================================
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    hasApiKey: !!API_KEY,
+    hasApiKey: !!(process.env.ARK_API_KEY),
+    hasSpeechKey: !!process.env.VOLC_SPEECH_API_KEY,
+    hasAppId: !!process.env.DOUBAO_APP_ID,
     timestamp: new Date().toISOString()
   })
 })

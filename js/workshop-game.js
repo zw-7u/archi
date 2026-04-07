@@ -337,6 +337,13 @@
         s.quizIndex++
       }
 
+      /* 重新渲染界面显示下一题或完成界面 */
+      const modal = $('#wg-modal')
+      if (modal) {
+        modal.innerHTML = ''
+        this._renderContent(modal)
+      }
+
       /* 判断下一阶段 */
       if (s.quizIndex >= d.quizzes.length) {
         if (d.wumenRules) {
