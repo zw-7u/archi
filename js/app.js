@@ -54,35 +54,35 @@ const TYPE_GROUP_META = {
 
 const BUILDING_MEDIA = {
   jiaolou: [
-    { src: 'images/buildings/角楼.jpg', titleZh: '角楼', titleEn: 'Corner Tower' },
+    { src: 'assets/images/buildings/角楼.jpg', titleZh: '角楼', titleEn: 'Corner Tower' },
   ],
   dongliugong: [
-    { src: 'images/buildings/东六宫.jpg', titleZh: '东六宫', titleEn: 'Eastern Six Palaces' },
-    { src: 'images/buildings/西六宫.jpg', titleZh: '西六宫', titleEn: 'Western Six Palaces' },
+    { src: 'assets/images/buildings/东六宫.jpg', titleZh: '东六宫', titleEn: 'Eastern Six Palaces' },
+    { src: 'assets/images/buildings/西六宫.jpg', titleZh: '西六宫', titleEn: 'Western Six Palaces' },
   ],
-  wumen: [{ src: 'images/buildings/午门.jpg', titleZh: '午门', titleEn: 'Meridian Gate' }],
-  taihedian: [{ src: 'images/buildings/太和殿.jpg', titleZh: '太和殿', titleEn: 'Hall of Supreme Harmony' }],
-  taiheimen: [{ src: 'images/buildings/太和门.jpg', titleZh: '太和门', titleEn: 'Gate of Supreme Harmony' }],
-  baohedian: [{ src: 'images/buildings/保和殿.jpg', titleZh: '保和殿', titleEn: 'Hall of Preserving Harmony' }],
-  zhonghedian: [{ src: 'images/buildings/中和殿.jpg', titleZh: '中和殿', titleEn: 'Hall of Central Harmony' }],
-  qianqinggong: [{ src: 'images/buildings/乾清宫.jpg', titleZh: '乾清宫', titleEn: 'Palace of Heavenly Purity' }],
-  kunninggong: [{ src: 'images/buildings/坤宁宫.jpg', titleZh: '坤宁宫', titleEn: 'Palace of Earthly Tranquility' }],
-  qianqingmen: [{ src: 'images/buildings/乾清门.jpg', titleZh: '乾清门', titleEn: 'Gate of Heavenly Purity' }],
-  wenhuadian: [{ src: 'images/buildings/文华殿.jpg', titleZh: '文华殿', titleEn: 'Hall of Literary Brilliance' }],
-  wuyingdian: [{ src: 'images/buildings/武英殿.jpg', titleZh: '武英殿', titleEn: 'Hall of Martial Valor' }],
-  shenwumen: [{ src: 'images/buildings/神武门.jpg', titleZh: '神武门', titleEn: 'Gate of Divine Might' }],
-  jiulongbi: [{ src: 'images/buildings/九龙壁.jpg', titleZh: '九龙壁', titleEn: 'Nine Dragon Wall' }],
-  yangxindian: [{ src: 'images/buildings/养心殿.jpg', titleZh: '养心殿', titleEn: 'Hall of Mental Cultivation' }],
-  yuhuayuan: [{ src: 'images/buildings/御花园.jpg', titleZh: '御花园', titleEn: 'Imperial Garden' }],
-  shufangzhai: [{ src: 'images/buildings/漱芳斋.jpg', titleZh: '漱芳斋', titleEn: 'Shufang Zhai' }],
-  changyinge: [{ src: 'images/buildings/畅音阁.jpg', titleZh: '畅音阁', titleEn: 'Changyin Pavilion' }],
-  qianlonghuayuan: [{ src: 'images/buildings/乾隆花园.jpg', titleZh: '乾隆花园', titleEn: 'Qianlong Garden' }],
-  cininggong: [{ src: 'images/buildings/慈宁宫.jpg', titleZh: '慈宁宫', titleEn: 'Cining Palace' }],
-  cininggonghuayuan: [{ src: 'images/buildings/慈宁宫花园.jpg', titleZh: '慈宁宫花园', titleEn: 'Cining Palace Garden' }],
-  shoukanggong: [{ src: 'images/buildings/寿康宫.jpg', titleZh: '寿康宫', titleEn: 'Shoukang Palace' }],
-  huangjidian: [{ src: 'images/buildings/皇极殿.jpg', titleZh: '皇极殿', titleEn: 'Huangji Hall' }],
-  jianting: [{ src: 'images/buildings/箭亭.jpg', titleZh: '箭亭', titleEn: 'Arrow Pavilion' }],
-  qinandian: [{ src: 'images/buildings/钦安殿.jpg', titleZh: '钦安殿', titleEn: "Qin'an Hall" }],
+  wumen: [{ src: 'assets/images/buildings/午门.jpg', titleZh: '午门', titleEn: 'Meridian Gate' }],
+  taihedian: [{ src: 'assets/images/buildings/太和殿.jpg', titleZh: '太和殿', titleEn: 'Hall of Supreme Harmony' }],
+  taiheimen: [{ src: 'assets/images/buildings/太和门.jpg', titleZh: '太和门', titleEn: 'Gate of Supreme Harmony' }],
+  baohedian: [{ src: 'assets/images/buildings/保和殿.jpg', titleZh: '保和殿', titleEn: 'Hall of Preserving Harmony' }],
+  zhonghedian: [{ src: 'assets/images/buildings/中和殿.jpg', titleZh: '中和殿', titleEn: 'Hall of Central Harmony' }],
+  qianqinggong: [{ src: 'assets/images/buildings/乾清宫.jpg', titleZh: '乾清宫', titleEn: 'Palace of Heavenly Purity' }],
+  kunninggong: [{ src: 'assets/images/buildings/坤宁宫.jpg', titleZh: '坤宁宫', titleEn: 'Palace of Earthly Tranquility' }],
+  qianqingmen: [{ src: 'assets/images/buildings/乾清门.jpg', titleZh: '乾清门', titleEn: 'Gate of Heavenly Purity' }],
+  wenhuadian: [{ src: 'assets/images/buildings/文华殿.jpg', titleZh: '文华殿', titleEn: 'Hall of Literary Brilliance' }],
+  wuyingdian: [{ src: 'assets/images/buildings/武英殿.jpg', titleZh: '武英殿', titleEn: 'Hall of Martial Valor' }],
+  shenwumen: [{ src: 'assets/images/buildings/神武门.jpg', titleZh: '神武门', titleEn: 'Gate of Divine Might' }],
+  jiulongbi: [{ src: 'assets/images/buildings/九龙壁.jpg', titleZh: '九龙壁', titleEn: 'Nine Dragon Wall' }],
+  yangxindian: [{ src: 'assets/images/buildings/养心殿.jpg', titleZh: '养心殿', titleEn: 'Hall of Mental Cultivation' }],
+  yuhuayuan: [{ src: 'assets/images/buildings/御花园.jpg', titleZh: '御花园', titleEn: 'Imperial Garden' }],
+  shufangzhai: [{ src: 'assets/images/buildings/漱芳斋.jpg', titleZh: '漱芳斋', titleEn: 'Shufang Zhai' }],
+  changyinge: [{ src: 'assets/images/buildings/畅音阁.jpg', titleZh: '畅音阁', titleEn: 'Changyin Pavilion' }],
+  qianlonghuayuan: [{ src: 'assets/images/buildings/乾隆花园.jpg', titleZh: '乾隆花园', titleEn: 'Qianlong Garden' }],
+  cininggong: [{ src: 'assets/images/buildings/慈宁宫.jpg', titleZh: '慈宁宫', titleEn: 'Cining Palace' }],
+  cininggonghuayuan: [{ src: 'assets/images/buildings/慈宁宫花园.jpg', titleZh: '慈宁宫花园', titleEn: 'Cining Palace Garden' }],
+  shoukanggong: [{ src: 'assets/images/buildings/寿康宫.jpg', titleZh: '寿康宫', titleEn: 'Shoukang Palace' }],
+  huangjidian: [{ src: 'assets/images/buildings/皇极殿.jpg', titleZh: '皇极殿', titleEn: 'Huangji Hall' }],
+  jianting: [{ src: 'assets/images/buildings/箭亭.jpg', titleZh: '箭亭', titleEn: 'Arrow Pavilion' }],
+  qinandian: [{ src: 'assets/images/buildings/钦安殿.jpg', titleZh: '钦安殿', titleEn: "Qin'an Hall" }],
 }
 
 const state = {
@@ -95,6 +95,7 @@ const state = {
   selectedHotspotId: null,
   hoveredHotspotId: null,
   infoTab: 'archive',
+  archiveCardTab: 'archive', // 'archive' | 'event' | 'sinology'
   thoughtTab: 'axis',
   thoughtFocus: 'ritual-core',
   thoughtSelectedBuilding: null,
@@ -104,12 +105,31 @@ const state = {
 window.state = state
 
 const els = {}
-let functionChart = null
-let typeChart = null
+let relationChart = null
 let archiveHotspots = []
 let thoughtHotspots = []
 
 const BUILDING_INDEX = Object.fromEntries(Object.values(BUILDINGS).map((item) => [item.id, item]))
+
+const THOUGHT_TAB_PINYIN = {
+  axis: 'Zhōng Zhóu Lǐ Xù',
+  yinyang: 'Yīn Yáng Wǔ Xíng',
+  fengshui: 'Fēng Shuǐ Gé Jú',
+}
+
+const THOUGHT_FOCUS_PINYIN = {
+  'ritual-core': 'Jū Zhōng Wéi Zūn',
+  'heaven-earth': 'Tiān Rén Hé Yī',
+  'time-space': 'Shí Kōng Dì Jìn',
+  'outer-inner': 'Wài Yáng Nèi Yīn',
+  'five-elements': 'Wǔ Xíng Fāng Wèi',
+  'cycle-flow': 'Shēng Kè Liú Zhuǎn',
+  'mountain-water': 'Bèi Shān Miàn Shuǐ',
+  'solar-order': 'Fù Yīn Bào Yáng',
+  'symbolic-guard': 'Fǎ Tiān Xiàng Dì',
+}
+
+const THOUGHT_VIDEO_EXTENSIONS = ['mp4', 'webm', 'mov']
 
 /** 不参与轮播 / 建筑图像展示的建筑 id（宁寿门、东华门、西华门） */
 const GALLERY_EXCLUDED_BUILDING_IDS = new Set(['ningshoumen', 'donghuamen', 'xihhuamen'])
@@ -532,6 +552,28 @@ function pick(zh, en) {
   return isZh() ? zh : en
 }
 
+function setLanguageMode() {
+  document.body.dataset.lang = state.lang
+  window.dispatchEvent(new CustomEvent('archi:languagechange', { detail: { lang: state.lang } }))
+}
+
+function withPinyin(label, pinyin) {
+  if (isZh() || !pinyin) return label
+  return `${label} · ${pinyin}`
+}
+
+function getThoughtTabPinyin(tabId) {
+  return THOUGHT_TAB_PINYIN[tabId] || ''
+}
+
+function getThoughtFocusPinyin(focusId) {
+  return THOUGHT_FOCUS_PINYIN[focusId] || ''
+}
+
+function getThoughtVideoCandidates(focus) {
+  return THOUGHT_VIDEO_EXTENSIONS.map((ext) => encodeAssetPath(`assets/videos/culture/${focus.labelZh}.${ext}`))
+}
+
 function escapeHTML(value) {
   return String(value || '')
     .replaceAll('&', '&amp;')
@@ -573,7 +615,9 @@ function getBuilding(buildingId) {
 function getBuildingLabel(buildingId) {
   const building = getBuilding(buildingId)
   if (!building) return ''
-  return isZh() ? building.name : (building.nameEn || building.name)
+  return isZh()
+    ? building.name
+    : withPinyin(building.nameEn || building.name, building.pinyin)
 }
 
 function getHotspotLabel(hotspot) {
@@ -598,7 +642,7 @@ function getBuildingMedia(buildingId) {
   }
 
   return [{
-    src: encodeAssetPath(`images/buildings/${building.name}.jpg`),
+    src: encodeAssetPath(`assets/images/buildings/${building.name}.jpg`),
     titleZh: building.name,
     titleEn: building.nameEn || building.name,
     buildingId,
@@ -765,16 +809,16 @@ function getCurrentScope() {
 function getModuleIntro() {
   if (state.module === 'archive') {
     return {
-      title: pick('故宫整体介绍', 'Forbidden City Overview'),
-      subtitle: pick('总览', 'Overview'),
+      title: pick('宫阙载史', 'Palace Archive'),
+      subtitle: pick('建筑档案联动系统', 'Building Archive System'),
       body: pick(
-        CATEGORY_INTROS.all?.desc || '故宫以中轴为骨，以礼制为空间秩序，形成了政治、生活、祭祀与审美共同构成的完整宫城系统。',
-        'Use the overview map to move between ceremonial, residential, devotional, and scenic layers of the Forbidden City.',
+        '点击中间总览图中的任意建筑热区，左侧将同步显示该建筑的关系网络与关键词标签，右侧呈现完整档案。',
+        'Click any building hotspot on the center overview map to sync the left relation network and keyword panel with the right building archive.',
       ),
       badges: [
-        pick('29 处建筑条目', '29 mapped records'),
-        pick('功能与形制双维度检索', 'Function + typology filters'),
-        pick('点击热区查看档案卡', 'Click hotspots for archive cards'),
+        pick('建筑关联网络', 'Building Relation Network'),
+        pick('关键词语义标签', 'Keyword Semantic Tags'),
+        pick('总览与档案联动', 'Overview-Archive Sync'),
       ],
     }
   }
@@ -788,8 +832,8 @@ function getModuleIntro() {
     ),
     badges: [
       pick('形制分类联动总览图', 'Typology-linked overview'),
-      pick('查看对应建筑档案', 'Browse matching archive records'),
-      pick('可切换到单体档案', 'Jump to single-building archive'),
+      pick('构件与形制互相参照', 'Components linked to typology'),
+      pick('切换建筑查看拆解关系', 'Switch buildings to compare assemblies'),
     ],
   }
 }
@@ -815,14 +859,10 @@ function getTypeChartCaption() {
 function bindElements() {
   els.btnLang = $('#btn-lang')
   els.navPlates = [...document.querySelectorAll('.wood-plate')]
-  els.functionChart = $('#function-chart')
-  els.typeChart = $('#type-chart')
-  els.functionChartEyebrow = $('#function-chart-eyebrow')
-  els.functionChartTitle = $('#function-chart-title')
-  els.functionChartCaption = $('#function-chart-caption')
-  els.typeChartEyebrow = $('#type-chart-eyebrow')
-  els.typeChartTitle = $('#type-chart-title')
-  els.typeChartCaption = $('#type-chart-caption')
+  els.graphEyebrow = $('#graph-eyebrow')
+  els.graphTitle = $('#graph-title')
+  els.keywordEyebrow = $('#keyword-eyebrow')
+  els.keywordTitle = $('#keyword-title')
   els.overviewEyebrow = $('#overview-eyebrow')
   els.overviewTitle = $('#overview-title')
   els.overviewHint = $('#overview-hint')
@@ -838,6 +878,8 @@ function bindElements() {
   els.typeFoldLabel = $('#type-fold-label')
   els.panelPlaceholder = $('#panel-placeholder')
   els.archiveCard = $('#archive-card')
+  els.archiveCardHero = $('#archive-card-hero')
+  els.archiveCardTabs = document.querySelectorAll('.archive-card-tab')
   els.cardContentArchive = $('#card-content-archive')
   els.cardContentEvent = $('#card-content-event')
   els.cardContentSinology = $('#card-content-sinology')
@@ -879,6 +921,7 @@ function bindElements() {
 function bindEvents() {
   els.btnLang.addEventListener('click', () => {
     state.lang = isZh() ? 'en' : 'zh'
+    setLanguageMode()
     renderAll()
   })
 
@@ -894,6 +937,7 @@ function bindEvents() {
       state.hoveredHotspotId = null
       state.openPanels = { function: false, type: false }
       state.infoTab = 'archive'
+      state.archiveCardTab = 'archive'
       state.thoughtSelectedBuilding = null
       state.thoughtHoveredHotspotId = null
       hideTooltip()
@@ -906,8 +950,39 @@ function bindEvents() {
     })
   })
 
-  els.functionFoldToggle.addEventListener('click', () => togglePanel('function'))
-  els.typeFoldToggle.addEventListener('click', () => togglePanel('type'))
+  if (els.functionFoldToggle) {
+    els.functionFoldToggle.addEventListener('click', () => togglePanel('function'))
+  }
+  if (els.typeFoldToggle) {
+    els.typeFoldToggle.addEventListener('click', () => togglePanel('type'))
+  }
+
+  // 档案卡 Tab 切换
+  if (els.archiveCardTabs?.length) {
+    els.archiveCardTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.archiveTab
+        if (!tab || state.archiveCardTab === tab) return
+        state.archiveCardTab = tab
+        // 切换 active 类
+        els.archiveCardTabs.forEach((b) => {
+          b.classList.toggle('active', b === btn)
+          b.setAttribute('aria-selected', String(b === btn))
+        })
+        // 切换内容可见性
+        const ca = els.cardContentArchive
+        const ce = els.cardContentEvent
+        const cs = els.cardContentSinology
+        if (ca) ca.classList.toggle('is-active', tab === 'archive')
+        if (ce) ce.classList.toggle('is-active', tab === 'event')
+        if (cs) cs.classList.toggle('is-active', tab === 'sinology')
+        // 滚动回顶
+        const body = document.querySelector('.archive-card-body')
+        if (body) body.scrollTop = 0
+      })
+    })
+  }
+
   els.overviewStage.addEventListener('click', (event) => {
     if (event.target.closest('[data-hotspot-id]')) return
     state.selectedBuilding = null
@@ -916,15 +991,43 @@ function bindEvents() {
     document.body.dataset.buildingId = ''
     window.currentBuilding = null
     renderOverview()
+    renderGraph()
+    renderKeywordPanel()
     renderInfo()
   })
   window.addEventListener('resize', () => {
-    functionChart?.resize()
-    typeChart?.resize()
+    relationChart?.resize()
+  })
+
+  // ===== 堪舆哲思：事件委托（避免每次 innerHTML 后重新绑定） =====
+  // 一级 Tab
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-thought-tab]')
+    if (btn) selectThoughtTab(btn.dataset.thoughtTab)
+  })
+
+  // 右侧二级按钮：自定义模块优先，再回退到默认 focus
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-m2-mode], [data-yy-btn], [data-thought-focus]')
+    if (!target) return
+    if (target.dataset.m2Mode && typeof Module2 !== 'undefined') {
+      Module2.selectMode(target.dataset.m2Mode)
+    } else if (target.dataset.yyBtn && typeof YinyangModule !== 'undefined') {
+      YinyangModule.selectBtn(target.dataset.yyBtn)
+    } else if (target.dataset.thoughtFocus) {
+      selectThoughtFocus(target.dataset.thoughtFocus)
+    }
+  })
+
+  // 左侧侧边栏建筑按钮
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-thought-building]')
+    if (btn) selectThoughtBuilding(btn.dataset.thoughtBuilding)
   })
 }
 
 function togglePanel(kind) {
+  if (!els.functionFoldToggle || !els.typeFoldToggle || !els.functionFoldPanel || !els.typeFoldPanel) return
   state.openPanels[kind] = !state.openPanels[kind]
   renderFilterPanels()
 }
@@ -932,26 +1035,30 @@ function togglePanel(kind) {
 function selectFunction(id) {
   state.selectedFunction = state.selectedFunction === id ? null : id
   state.selectedType = null
-  state.selectedBuilding = null
-  state.selectedHotspotId = null
+  if (!state.selectedBuilding) {
+    state.selectedBuilding = null
+    state.selectedHotspotId = null
+  }
   state.infoTab = 'archive'
   state.openPanels.function = true
   renderOverview()
   renderFilterPanels()
-  renderInfo()
+  if (!state.selectedBuilding) renderInfo()
   renderCharts()
 }
 
 function selectType(id) {
   state.selectedType = state.selectedType === id ? null : id
   state.selectedFunction = null
-  state.selectedBuilding = null
-  state.selectedHotspotId = null
+  if (!state.selectedBuilding) {
+    state.selectedBuilding = null
+    state.selectedHotspotId = null
+  }
   state.infoTab = 'archive'
   state.openPanels.type = true
   renderOverview()
   renderFilterPanels()
-  renderInfo()
+  if (!state.selectedBuilding) renderInfo()
   renderCharts()
 }
 
@@ -962,6 +1069,8 @@ function selectBuilding(buildingId, hotspotId = null) {
   document.body.dataset.buildingId = buildingId || ''
   window.currentBuilding = buildingId || null
   renderOverview()
+  renderGraph()
+  renderKeywordPanel()
   renderInfo()
 }
 
@@ -1004,7 +1113,7 @@ function initOverview() {
 
 async function createHotspots() {
   try {
-    const response = await fetch(new URL('images/map/overview.svg', window.location.href))
+    const response = await fetch(new URL('assets/images/map/overview.svg', window.location.href))
     if (!response.ok) throw new Error(`SVG load failed: ${response.status}`)
 
     const markup = await response.text()
@@ -1054,9 +1163,19 @@ function showTooltip(hotspot, event = null) {
     }
   }
 
-  const tooltipRect = els.overviewTooltip.getBoundingClientRect()
-  els.overviewTooltip.style.left = `${x - tooltipRect.width / 2}px`
-  els.overviewTooltip.style.top = `${y - tooltipRect.height - 16}px`
+  // rAF 保证 tooltip 已渲染出宽高，再读 rect 定位
+  requestAnimationFrame(() => {
+    if (els.overviewTooltip.hidden) return
+    const tooltipRect = els.overviewTooltip.getBoundingClientRect()
+    let left = x - tooltipRect.width / 2
+    let top = y - tooltipRect.height - 16
+    // 边界修正：左右不出视口
+    if (left < 8) left = 8
+    if (left + tooltipRect.width > window.innerWidth - 8) left = window.innerWidth - tooltipRect.width - 8
+    if (top < 8) top = y + 20 // 下方放不下则改到鼠标下方
+    els.overviewTooltip.style.left = `${left}px`
+    els.overviewTooltip.style.top = `${top}px`
+  })
 }
 
 function hideTooltip() {
@@ -1066,19 +1185,16 @@ function hideTooltip() {
 function renderHeader() {
   els.btnLang.textContent = isZh() ? '中 / EN' : 'EN / 中'
 
-  els.functionChartEyebrow.textContent = pick('功能分类', 'Function')
-  els.functionChartTitle.textContent = pick('故宫建筑的功能分类', 'Functional Distribution of Palace Buildings')
-  els.functionChartCaption.textContent = getFunctionChartCaption()
-
-  els.typeChartEyebrow.textContent = pick('形制分类', 'Typology')
-  els.typeChartTitle.textContent = pick('故宫建筑的形制分类', 'Typological Distribution of Palace Buildings')
-  els.typeChartCaption.textContent = getTypeChartCaption()
+  if (els.graphEyebrow) els.graphEyebrow.textContent = pick('建筑关联网络', 'Building Network')
+  if (els.graphTitle) els.graphTitle.textContent = pick('当前建筑在宫城空间中的关系位置', 'Relations of current building in palace space')
+  if (els.keywordEyebrow) els.keywordEyebrow.textContent = pick('建筑关键词', 'Building Keywords')
+  if (els.keywordTitle) els.keywordTitle.textContent = pick('类别 / 角色 / 形制 / 文化', 'Category / Role / Form / Culture')
 
   els.overviewEyebrow.textContent = 'Overview'
   els.overviewTitle.textContent = pick('故宫总览图', 'Forbidden City Overview')
   els.overviewHint.textContent = getOverviewHint()
-  els.functionFoldLabel.textContent = pick('功能分类', 'Function')
-  els.typeFoldLabel.textContent = pick('形制分类', 'Typology')
+  if (els.functionFoldLabel) els.functionFoldLabel.textContent = pick('功能分类', 'Function')
+  if (els.typeFoldLabel) els.typeFoldLabel.textContent = pick('形制分类', 'Typology')
 }
 
 function renderNav() {
@@ -1088,16 +1204,22 @@ function renderNav() {
 }
 
 function renderFilterPanels() {
+  if (!els.functionFoldToggle || !els.typeFoldToggle || !els.functionFoldPanel || !els.typeFoldPanel) return
+
   const functionOpen = state.openPanels.function
   const typeOpen = state.openPanels.type
 
   els.functionFoldToggle.classList.toggle('is-open', functionOpen)
   els.functionFoldToggle.setAttribute('aria-expanded', String(functionOpen))
-  els.functionFoldPanel.hidden = !functionOpen
+  els.functionFoldPanel.hidden = false
+  els.functionFoldPanel.classList.toggle('is-open', functionOpen)
+  els.functionFoldPanel.setAttribute('aria-hidden', String(!functionOpen))
 
   els.typeFoldToggle.classList.toggle('is-open', typeOpen)
   els.typeFoldToggle.setAttribute('aria-expanded', String(typeOpen))
-  els.typeFoldPanel.hidden = !typeOpen
+  els.typeFoldPanel.hidden = false
+  els.typeFoldPanel.classList.toggle('is-open', typeOpen)
+  els.typeFoldPanel.setAttribute('aria-hidden', String(!typeOpen))
 
   els.functionFoldPanel.innerHTML = `
     <div class="filter-chip-list">
@@ -1169,10 +1291,37 @@ function buildFallbackStyle(building) {
   return parts.join('；') || pick('暂无资料', 'No data')
 }
 
+function buildArchiveHeroHTML(building) {
+  const typeGroup = getTypeOfBuilding(building.id)
+  const media = getBuildingMedia(building.id)
+  const photo = media[0]
+  const photoSrc = photo?.src || photo || ''
+  const photoAlt = escapeHTML(isZh() ? (photo?.titleZh || building.name) : (photo?.titleEn || building.nameEn || building.name))
+  const missingText = pick('暂无影像', 'No image')
+  const subtitleParts = [
+    !isZh() ? building.pinyin || '' : '',
+    typeGroup ? (isZh() ? typeGroup.labelZh : typeGroup.labelEn) : '',
+  ].filter(Boolean)
+
+  const photoHtml = photoSrc
+    ? `<div class="archive-card-hero__photo">
+         <img src="${photoSrc}" alt="${photoAlt}" loading="lazy" onerror="this.closest('.archive-card-hero__photo').classList.add('is-missing');this.remove();">
+       </div>`
+    : `<div class="archive-card-hero__photo is-missing" data-missing-text="${missingText}"></div>`
+
+  return `
+    ${photoHtml}
+    <div class="archive-card-hero__name">
+      <span class="archive-card-hero__eyebrow">${escapeHTML(pick('宫阙档案', 'Building Archive'))}</span>
+      <div class="archive-card-hero__title">${escapeHTML(isZh() ? building.name : (building.nameEn || building.name))}</div>
+      <div class="archive-card-hero__subtitle">${escapeHTML(subtitleParts.join(' · ')) || escapeHTML(pick('故宫建筑条目', 'Forbidden City record'))}</div>
+    </div>
+  `
+}
+
 function buildBuildingArchiveHTML(building) {
   const kapian = BUILDING_KAPIAN_DATA[building.id] || {}
   const functionGroup = getFunctionOfBuilding(building.id)
-  const typeGroup = getTypeOfBuilding(building.id)
   const timeline = kapian.timeline || [building.built, building.rebuilt].filter(Boolean).join(' / ')
   const materials = kapian.materials || building.materials || pick('暂无资料', 'No data')
   const style = kapian.style || buildFallbackStyle(building)
@@ -1186,26 +1335,8 @@ function buildBuildingArchiveHTML(building) {
     { label: pick('功能归属', 'Function'), value: functionText },
   ]
 
-  const media = getBuildingMedia(building.id)
-  const photo = media[0]
-  const photoSrc = photo?.src || photo || ''
-  const photoAlt = escapeHTML(isZh() ? (photo?.titleZh || building.name) : (photo?.titleEn || building.nameEn || building.name))
-  const subtitleParts = [building.pinyin || '', typeGroup ? (isZh() ? typeGroup.labelZh : typeGroup.labelEn) : ''].filter(Boolean)
-  const photoHtml = photoSrc ? (
-    `<button class="info-building-photo" type="button" data-lightbox-src="${photoSrc}" title="${pick('点击放大查看', 'Click to enlarge')}">
-      <img class="info-building-photo__img" src="${photoSrc}" alt="${photoAlt}" loading="lazy" onerror="this.closest('.info-building-photo')?.classList.add('is-missing');this.remove();">
-      <span class="info-building-photo__hint">${pick('点击放大', 'Click to enlarge')}</span>
-    </button>`
-  ) : ''
-
   return `
     <article class="building-record building-record--archive">
-      <header class="building-record__hero">
-        <div class="building-record__eyebrow">${escapeHTML(pick('宫阙档案', 'Building Archive'))}</div>
-        <div class="info-title">${escapeHTML(isZh() ? building.name : (building.nameEn || building.name))}</div>
-        <div class="info-subtitle">${escapeHTML(subtitleParts.join(' · ')) || escapeHTML(pick('故宫建筑条目', 'Forbidden City record'))}</div>
-      </header>
-      ${photoHtml}
       <section class="building-record__summary">
         <div class="building-record__summary-label">${escapeHTML(pick('建筑身份', 'Identity'))}</div>
         <p class="building-record__summary-text">${escapeHTML(identity || pick('暂无资料', 'No data'))}</p>
@@ -1230,7 +1361,6 @@ function buildBuildingEventHTML(building) {
   })
   const festivals = kapian.festivals || []
   const anecdotes = kapian.anecdotes || building.anecdotes || []
-  const subtitleParts = [building.pinyin || '', pick('时间与故事', 'Timeline & Stories')].filter(Boolean)
 
   const sections = [
     { title: pick('历史事件', 'Historical Events'), items: historicalEvents },
@@ -1244,11 +1374,6 @@ function buildBuildingEventHTML(building) {
 
   return `
     <article class="building-record building-record--event">
-      <header class="building-record__hero building-record__hero--compact">
-        <div class="building-record__eyebrow">${escapeHTML(pick('事件脉络', 'Event Narrative'))}</div>
-        <div class="info-title">${escapeHTML(isZh() ? building.name : (building.nameEn || building.name))}</div>
-        <div class="info-subtitle">${escapeHTML(subtitleParts.join(' · '))}</div>
-      </header>
       ${sections.map((section) => `
         <section class="info-list info-list--event">
           <div class="info-list__title">${escapeHTML(section.title)}</div>
@@ -1262,7 +1387,7 @@ function buildBuildingEventHTML(building) {
 /** 汉学卡：帮助留学生理解中国古建筑文化与智慧 */
 function buildBuildingSinologyHTML(building) {
   const name = isZh() ? building.name : (building.nameEn || building.name)
-  const pinyin = building.pinyin || ''
+  const pinyin = !isZh() ? (building.pinyin || '') : ''
   const functionGroup = getFunctionOfBuilding(building.id)
   const typeGroup = getTypeOfBuilding(building.id)
   const functionText = functionGroup ? (isZh() ? functionGroup.labelZh : functionGroup.labelEn) : ''
@@ -1309,7 +1434,7 @@ function buildBuildingSinologyHTML(building) {
     💡 给留学生的提示：故宫的每座建筑都不只是房子，它们都是有故事的。这些建筑共同构成了一个巨大的"空间故事"，讲述着中国古代的政治制度、生活方式和审美观念。
     
     🔑 学习建议：当你参观故宫时，试着用"功能-形制-文化"三维度来观察每座建筑，你会惊讶地发现它们之间的联系竟然如此紧密。`,
-    en: `【${name}】${pinyin ? `（${pinyin}）` : ''} is an important building in the Forbidden City. ${functionText ? `Its function falls under "${functionText}", ${typeText ? `and its typology belongs to "${typeText}".` : ''}` : ''}
+    en: `${name}${pinyin ? ` (${pinyin})` : ''} is an important building in the Forbidden City. ${functionText ? `Its function falls under "${functionText}", ${typeText ? `and its typology belongs to "${typeText}".` : ''}` : ''}
     
     💡 For international students: Each building in the Forbidden City is more than just a structure—they all have stories to tell. Together, they form a grand "spatial narrative" about ancient Chinese politics, lifestyle, and aesthetics.
     
@@ -1318,11 +1443,6 @@ function buildBuildingSinologyHTML(building) {
 
   return `
     <article class="building-record building-record--sinology">
-      <header class="building-record__hero building-record__hero--compact">
-        <div class="building-record__eyebrow">${escapeHTML(pick('汉学解析', 'Sinology Insights'))}</div>
-        <div class="info-title">${escapeHTML(name)}</div>
-        <div class="info-subtitle">${escapeHTML(pinyin || (isZh() ? '汉学卡片' : 'Sinology Card'))}</div>
-      </header>
       <section class="building-record__summary">
         <div class="info-body" style="white-space:pre-line;line-height:1.85;">${escapeHTML(isZh() ? content.zh : content.en)}</div>
       </section>
@@ -1330,51 +1450,217 @@ function buildBuildingSinologyHTML(building) {
   `
 }
 
+/* =====================================================
+   建筑关系网（ECharts Graph）
+   ===================================================== */
+
+// 分类颜色映射（与 CATEGORIES 顺序对应）
+const CATEGORY_COLORS = [
+  '#556f5f',
+  '#9a512b',
+  '#7b6850',
+  '#836033',
+  '#b88a35',
+  '#756285',
+  '#5e8066',
+]
+
+function buildGraphData(centerName) {
+  const relations = BUILDING_RELATIONS[centerName] || []
+  const centerMeta = NODE_META[centerName] || { category: 0 }
+
+  const nodes = [
+    {
+      name: centerName,
+      category: centerMeta.category,
+      symbolSize: 64,
+      isCenter: true
+    },
+    ...relations.map(item => ({
+      name: item.target,
+      category: (NODE_META[item.target] || {}).category ?? 0,
+      symbolSize: 38,
+      isCenter: false
+    }))
+  ]
+
+  const links = relations.map(item => ({
+    source: centerName,
+    target: item.target,
+    value: item.value,
+    relationType: item.type
+  }))
+
+  return { nodes, links }
+}
+
+function initGraphChart() {
+  if (!window.echarts) return
+  const container = $('#relation-graph')
+  if (!container) return
+  relationChart = echarts.init(container)
+  relationChart.on('click', (params) => {
+    if (params?.data?.name && params.dataType === 'node') {
+      const clickedName = params.data.name
+      const buildingEntry = Object.values(BUILDINGS).find(b => b.name === clickedName)
+      if (buildingEntry) {
+        selectBuilding(buildingEntry.id)
+      }
+    }
+  })
+  renderGraph()
+}
+
+function renderGraph() {
+  if (!relationChart) return
+  const centerName = state.selectedBuilding
+    ? (BUILDINGS[state.selectedBuilding]?.name || '午门')
+    : '午门'
+  const { nodes, links } = buildGraphData(centerName)
+
+  relationChart.setOption({
+    animation: true,
+    animationDuration: 600,
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(40,24,15,0.92)',
+      borderColor: 'rgba(255,231,173,0.18)',
+      textStyle: { color: '#fff4d8' },
+      formatter: (params) => {
+        if (params.dataType === 'node') return params.name
+        if (params.dataType === 'edge') return params.data.relationType || ''
+        return ''
+      }
+    },
+    series: [{
+      type: 'graph',
+      layout: 'force',
+      symbol: 'circle',
+      categories: CATEGORIES.map(c => ({ name: c.name })),
+      data: nodes.map(n => ({
+        name: n.name,
+        category: n.category,
+        symbolSize: n.symbolSize,
+        itemStyle: {
+          color: n.isCenter ? '#c18a3b' : CATEGORY_COLORS[n.category] || '#8a7a6a',
+          borderColor: n.isCenter ? '#e8c86a' : 'rgba(255,255,255,0.4)',
+          borderWidth: n.isCenter ? 2.5 : 1.5,
+          shadowBlur: n.isCenter ? 16 : 8,
+          shadowColor: n.isCenter ? 'rgba(193,138,59,0.5)' : 'rgba(90,122,138,0.2)',
+        },
+        label: {
+          show: true,
+          position: 'bottom',
+          formatter: n.name,
+          fontSize: n.isCenter ? 12 : 10,
+          fontWeight: n.isCenter ? 'bold' : 'normal',
+          color: '#3d3d3d',
+          backgroundColor: 'rgba(252,253,250,0.85)',
+          borderRadius: 3,
+          padding: [2, 4],
+        }
+      })),
+      links: links.map(l => ({
+        source: l.source,
+        target: l.target,
+        value: l.value,
+        relationType: l.relationType,
+        lineStyle: {
+          color: '#b88a35',
+          opacity: 0.55,
+          width: l.value > 3 ? 2.5 : 1.5,
+          curveness: 0.2,
+        },
+        label: { show: false }
+      })),
+      emphasis: {
+        scale: true,
+        focus: 'adjacency',
+        lineStyle: { color: '#c18a3b', opacity: 1, width: 3 }
+      },
+      force: {
+        repulsion: 90,
+        gravity: 0.08,
+        edgeLength: [70, 140],
+        layoutAnimation: true,
+      },
+      roam: false,
+      draggable: false,
+      label: { show: false },
+    }]
+  }, true)
+}
+
+function renderKeywordPanel() {
+  const container = $('#keyword-panel')
+  if (!container) return
+
+  const centerName = state.selectedBuilding
+    ? (BUILDINGS[state.selectedBuilding]?.name || '午门')
+    : '午门'
+  const kw = BUILDING_KEYWORDS[centerName]
+
+  if (!kw) {
+    container.innerHTML = `<div class="overview-empty" style="padding:16px;font-size:13px;">${pick('暂无关键词数据', 'No keyword data')}</div>`
+    return
+  }
+
+  const renderGroup = (label, items) => {
+    if (!items || !items.length) return ''
+    return `
+      <div class="keyword-group">
+        <div class="keyword-group__label">${label}</div>
+        <div class="keyword-group__tags">
+          ${items.map(t => `<span class="keyword-tag">${escapeHTML(t)}</span>`).join('')}
+        </div>
+      </div>
+    `
+  }
+
+  container.innerHTML = `
+    ${renderGroup(pick('建筑类别', 'Category'), kw.category)}
+    ${renderGroup(pick('空间角色', 'Spatial Role'), kw.role)}
+    ${renderGroup(pick('形制关键词', 'Form Keywords'), kw.form)}
+    ${renderGroup(pick('文化关键词', 'Cultural Keywords'), kw.culture)}
+  `
+}
+
 function renderInfo() {
   const scope = getCurrentScope()
   stopCategoryCarousel()
 
-  const ph = els.panelPlaceholder
   const ac = els.archiveCard
   const ca = els.cardContentArchive
   const ce = els.cardContentEvent
-  const carousel = els.categoryCarousel
+  const cs = els.cardContentSinology
   const introCard = els.categoryIntroCard
-  if (!ph || !ac || !ca || !ce) return
+  if (!ac || !ca || !ce) return
 
   if (scope.kind === 'building') {
-    if (carousel) carousel.hidden = true
     if (introCard) introCard.hidden = true
-    ph.hidden = true
     ac.hidden = false
-    const tabEls = ac.querySelectorAll('.card-tab')
-    tabEls.forEach((button) => {
-      button.classList.toggle('active', button.dataset.tab === state.infoTab)
-    })
-    if (tabEls[0]) tabEls[0].textContent = pick('档案卡', 'Archive Card')
-    if (tabEls[1]) tabEls[1].textContent = pick('事件卡', 'Event Card')
-    if (tabEls[2]) tabEls[2].textContent = pick('汉学卡', 'Sinology Card')
-    ac.querySelectorAll('.card-tab').forEach((button) => {
-      button.onclick = () => {
-        state.infoTab = button.dataset.tab
-        renderInfo()
-      }
-    })
-    const isEvent = state.infoTab === 'event'
-    const isSinology = state.infoTab === 'sinology'
-    ca.hidden = isEvent || isSinology
-    ce.hidden = !isEvent
-    const cs = els.cardContentSinology
-    if (cs) cs.hidden = !isSinology
+
+    // 顶栏：建筑图 + 名称（始终显示当前建筑）
+    const heroEl = els.archiveCardHero
+    if (heroEl) heroEl.innerHTML = buildArchiveHeroHTML(scope.item)
+
+    // 写入三个内容槽（三个 builder 已去掉重复 header）
     ca.innerHTML = buildBuildingArchiveHTML(scope.item)
     ce.innerHTML = buildBuildingEventHTML(scope.item)
     if (cs) cs.innerHTML = buildBuildingSinologyHTML(scope.item)
-    ac.scrollTop = 0
+
+    // Tab 切换：仅当前槽显示
+    ca.classList.toggle('is-active', state.archiveCardTab === 'archive')
+    ce.classList.toggle('is-active', state.archiveCardTab === 'event')
+    if (cs) cs.classList.toggle('is-active', state.archiveCardTab === 'sinology')
+
+    // 让滚动回到顶部
+    const body = document.querySelector('.archive-card-body')
+    if (body) body.scrollTop = 0
     return
   }
 
   if (scope.kind === 'function') {
-    ph.hidden = true
     ac.hidden = true
     if (introCard) introCard.hidden = false
     const intro = CATEGORY_INTROS[scope.item.id]
@@ -1386,7 +1672,6 @@ function renderInfo() {
   }
 
   if (scope.kind === 'type') {
-    ph.hidden = true
     ac.hidden = true
     if (introCard) introCard.hidden = false
     const source = TYPE_GROUP_META[scope.item.id]?.source
@@ -1398,126 +1683,16 @@ function renderInfo() {
     return
   }
 
-  if (carousel) carousel.hidden = true
-  if (introCard) introCard.hidden = true
-  ph.hidden = false
-  ac.hidden = true
-  ph.innerHTML = buildOverviewCardHTML(getModuleIntro())
-  // 总览层级启动轮播：展示所有建筑图片
-  startCategoryCarousel(collectCarouselUrlsFromBuildingIds(Object.keys(BUILDING_INDEX).filter(id => !GALLERY_EXCLUDED_BUILDING_IDS.has(id))))
+  // 无建筑：回退午门
+  if (!state.selectedBuilding) selectBuilding('wumen', null)
 }
 
-function initCharts() {
-  if (!window.echarts) {
-    els.functionChart.innerHTML = `<div class="overview-empty">${escapeHTML(pick('ECharts 加载失败。', 'ECharts failed to load.'))}</div>`
-    els.typeChart.innerHTML = `<div class="overview-empty">${escapeHTML(pick('ECharts 加载失败。', 'ECharts failed to load.'))}</div>`
-    return
-  }
-
-  functionChart = echarts.init(els.functionChart)
-  typeChart = echarts.init(els.typeChart)
-
-  functionChart.on('click', (params) => {
-    if (params?.data?.groupId) selectFunction(params.data.groupId)
-  })
-
-  typeChart.on('click', (params) => {
-    if (params?.data?.groupId) selectType(params.data.groupId)
-  })
-
-  renderCharts()
+function initGraph() {
+  initGraphChart()
 }
 
 function renderCharts() {
-  if (!functionChart || !typeChart) return
-
-  functionChart.setOption({
-    animationDuration: 700,
-    grid: { left: 48, right: 14, top: 24, bottom: 48 },
-    xAxis: {
-      type: 'category',
-      axisLine: { lineStyle: { color: 'rgba(92,61,35,0.18)' } },
-      axisLabel: { color: '#5c4734', interval: 0, fontSize: 11, rotate: isZh() ? 0 : 12 },
-      data: FUNCTION_GROUPS.map((group) => isZh() ? group.labelZh : group.labelEn),
-    },
-    yAxis: {
-      type: 'value',
-      splitLine: { lineStyle: { color: 'rgba(92,61,35,0.08)' } },
-      axisLabel: { color: '#6d5744' },
-    },
-    tooltip: {
-      trigger: 'axis',
-      backgroundColor: 'rgba(40,24,15,0.9)',
-      borderColor: 'rgba(255,231,173,0.18)',
-      textStyle: { color: '#fff4d8' },
-      formatter: (params) => {
-        const current = params?.[0]?.data
-        if (!current) return ''
-        return `${isZh() ? current.labelZh : current.labelEn}<br>${pick('建筑数量', 'Count')}: ${current.value}`
-      },
-    },
-    series: [{
-      type: 'bar',
-      barWidth: '52%',
-      data: FUNCTION_GROUPS.map((group) => ({
-        value: group.ids.length,
-        labelZh: group.labelZh,
-        labelEn: group.labelEn,
-        groupId: group.id,
-        itemStyle: {
-          color: group.color,
-          shadowBlur: state.selectedFunction === group.id ? 18 : 10,
-          shadowColor: `${group.color}66`,
-          borderRadius: [12, 12, 2, 2],
-          opacity: state.selectedFunction && state.selectedFunction !== group.id ? 0.58 : 1,
-        },
-      })),
-    }],
-  })
-
-  typeChart.setOption({
-    animationDuration: 700,
-    grid: { left: 48, right: 14, top: 24, bottom: 48 },
-    xAxis: {
-      type: 'category',
-      axisLine: { lineStyle: { color: 'rgba(92,61,35,0.18)' } },
-      axisLabel: { color: '#5c4734', interval: 0, fontSize: 11, rotate: isZh() ? 0 : 12 },
-      data: TYPE_GROUPS.map((group) => isZh() ? group.labelZh : group.labelEn),
-    },
-    yAxis: {
-      type: 'value',
-      splitLine: { lineStyle: { color: 'rgba(92,61,35,0.08)' } },
-      axisLabel: { color: '#6d5744' },
-    },
-    tooltip: {
-      trigger: 'axis',
-      backgroundColor: 'rgba(40,24,15,0.9)',
-      borderColor: 'rgba(255,231,173,0.18)',
-      textStyle: { color: '#fff4d8' },
-      formatter: (params) => {
-        const current = params?.[0]?.data
-        if (!current) return ''
-        return `${isZh() ? current.labelZh : current.labelEn}<br>${pick('建筑数量', 'Count')}: ${current.value}`
-      },
-    },
-    series: [{
-      type: 'bar',
-      barWidth: '52%',
-      data: TYPE_GROUPS.map((group) => ({
-        value: group.ids.length,
-        labelZh: group.labelZh,
-        labelEn: group.labelEn,
-        groupId: group.id,
-        itemStyle: {
-          color: group.color,
-          shadowBlur: state.selectedType === group.id ? 18 : 10,
-          shadowColor: `${group.color}66`,
-          borderRadius: [12, 12, 2, 2],
-          opacity: state.selectedType && state.selectedType !== group.id ? 0.58 : 1,
-        },
-      })),
-    }],
-  })
+  // 柱状图已移除，仅保留空函数保持兼容性
 }
 
 
@@ -1562,7 +1737,7 @@ function getThoughtBuildingNote(buildingId) {
   const typeGroup = getTypeOfBuilding(buildingId)
   const title = isZh() ? building.name : (building.nameEn || building.name)
   const subtitle = [
-    building.pinyin || '',
+    !isZh() ? (building.pinyin || '') : '',
     functionGroup ? pick(functionGroup.labelZh, functionGroup.labelEn) : '',
     typeGroup ? pick(typeGroup.labelZh, typeGroup.labelEn) : '',
   ].filter(Boolean).join(' · ')
@@ -1582,10 +1757,12 @@ function toStagePos(buildingId) {
 function buildThoughtPrimaryTabs(tab) {
   return THOUGHT_TAB_ORDER.map((id) => {
     const item = THOUGHT_TABS[id]
+    const mainLabel = isZh() ? item.titleZh : (item.titleEn || item.titleZh)
+    const subLabel = !isZh() ? getThoughtTabPinyin(id) : ''
     return `
       <button class="thought-primary-tab${tab.id === id ? ' active' : ''}" type="button" data-thought-tab="${id}" role="tab" aria-selected="${String(tab.id === id)}">
-        <span class="thought-primary-tab__zh">${escapeHTML(pick(item.titleZh, item.titleEn || item.titleZh))}</span>
-        <span class="thought-primary-tab__en">${escapeHTML(isZh() ? (item.statusZh || '') : (item.statusEn || item.statusZh || ''))}</span>
+        <span class="thought-primary-tab__zh">${escapeHTML(mainLabel)}</span>
+        ${subLabel ? `<span class="thought-primary-tab__en">${escapeHTML(subLabel)}</span>` : ''}
       </button>
     `
   }).join('')
@@ -1593,7 +1770,10 @@ function buildThoughtPrimaryTabs(tab) {
 
 function buildThoughtSecondaryTabs(tab, focus) {
   return tab.focuses.map((item) => `
-    <button class="thought-secondary-tab${item.id === focus.id ? ' active' : ''}" type="button" data-thought-focus="${item.id}">${escapeHTML(pick(item.labelZh, item.labelEn || item.labelZh))}</button>
+    <button class="thought-secondary-tab${item.id === focus.id ? ' active' : ''}" type="button" data-thought-focus="${item.id}">
+      <span class="thought-secondary-tab__main">${escapeHTML(isZh() ? item.labelZh : (item.labelEn || item.labelZh))}</span>
+      ${!isZh() && getThoughtFocusPinyin(item.id) ? `<span class="thought-secondary-tab__sub">${escapeHTML(getThoughtFocusPinyin(item.id))}</span>` : ''}
+    </button>
   `).join('')
 }
 
@@ -1603,13 +1783,35 @@ function buildThoughtStatusItems(focus) {
   `).join('')
 }
 
-function buildThoughtPoster(focus) {
-  const bars = [96, 72, 54].map((value) => `<span style="width:${value}%"></span>`).join('')
+function buildThoughtMediaBody(tab, focus) {
+  const videoCandidates = getThoughtVideoCandidates(focus)
+  const primaryVideo = videoCandidates[0]
+  const posterLines = (focus.statusItems || []).slice(0, 3).map((item) => `
+    <span class="thought-media-tag">
+      <span class="thought-status-item__dot" style="--dot-color:${escapeHTML(item.color || '#b88a35')};"></span>
+      ${escapeHTML(pick(item.labelZh, item.labelEn || item.labelZh))}
+    </span>
+  `).join('')
   return `
-    <article class="thought-poster">
-      <div class="thought-poster__title">${escapeHTML(pick(focus.posterTitleZh, focus.posterTitleEn || focus.posterTitleZh))}</div>
-      <div class="thought-poster__body">${escapeHTML(pick(focus.posterBodyZh, focus.posterBodyEn || focus.posterBodyZh))}</div>
-      <div class="thought-poster__bars">${bars}</div>
+    <article class="thought-video-card">
+      <div class="thought-video-frame" data-video-lightbox-src="${escapeHTML(primaryVideo)}" data-video-label="${escapeHTML(pick(focus.labelZh, focus.labelEn || focus.labelZh))}" role="button" tabindex="0" aria-label="${escapeHTML(pick('放大查看视频', 'Open video preview'))}">
+        <video class="thought-video-frame__media" controls playsinline preload="metadata">
+          ${videoCandidates.map((src, idx) => `<source src="${escapeHTML(src)}" type="${idx === 1 ? 'video/webm' : 'video/mp4'}">`).join('')}
+        </video>
+        <span class="thought-video-frame__overlay">
+          <span class="thought-video-frame__play">${pick('放大查看', 'Expand')}</span>
+        </span>
+      </div>
+      <div class="thought-video-meta">
+        <div class="thought-video-meta__title">${escapeHTML(pick(focus.posterTitleZh, focus.posterTitleEn || focus.posterTitleZh))}</div>
+        <p class="thought-video-meta__body">${escapeHTML(pick(focus.posterBodyZh, focus.posterBodyEn || focus.posterBodyZh))}</p>
+        <code class="thought-video-meta__path">${escapeHTML(primaryVideo)}</code>
+      </div>
+    </article>
+    <article class="thought-poster thought-poster--summary">
+      <div class="thought-poster__title">${escapeHTML(pick(tab.stageTitleZh, tab.stageTitleEn || tab.stageTitleZh))}</div>
+      <div class="thought-poster__body">${escapeHTML(pick(tab.stageHintZh, tab.stageHintEn || tab.stageHintZh))}</div>
+      <div class="thought-media-tags">${posterLines}</div>
     </article>
   `
 }
@@ -1726,7 +1928,7 @@ function buildThoughtTextBody(tab, focus) {
 
   const intro = `
     <section class="thought-text-section">
-      <h4 class="thought-text-section__title">${escapeHTML(pick(tab.titleZh, tab.titleEn || tab.titleZh))}</h4>
+      <h4 class="thought-text-section__title">${escapeHTML(isZh() ? tab.titleZh : withPinyin(tab.titleEn || tab.titleZh, getThoughtTabPinyin(tab.id)))}</h4>
       <p class="thought-text-section__body">${escapeHTML(pick(tab.statusZh, tab.statusEn || tab.statusZh))}</p>
     </section>
   `
@@ -1758,44 +1960,81 @@ function buildThoughtTextBody(tab, focus) {
   return intro + sinologySection + sections + noteHtml
 }
 
+function buildThoughtStageSummary(tab, focus, lines) {
+  return `
+    <article class="thought-stage-summary">
+      <div class="thought-stage-summary__eyebrow">${escapeHTML(pick(tab.titleZh, tab.titleEn || tab.titleZh))}</div>
+      <h4 class="thought-stage-summary__title">${escapeHTML(pick(focus.labelZh, focus.labelEn || focus.labelZh))}</h4>
+      <p class="thought-stage-summary__body">${escapeHTML(pick(focus.posterBodyZh, focus.posterBodyEn || focus.posterBodyZh))}</p>
+      <div class="thought-stage-summary__list">
+        ${lines.map((line) => `<span class="thought-stage-summary__item">${escapeHTML(line)}</span>`).join('')}
+      </div>
+    </article>
+  `
+}
+
 function buildThoughtStageDecor(tab, focus) {
   if (tab.id === 'axis') {
     const nodes = (focus.buildingIds || []).map((id) => {
       const pos = toStagePos(id)
-      const label = getBuilding(id)?.name || ''
+      const building = getBuilding(id)
+      const label = isZh() ? (building?.name || '') : withPinyin(building?.nameEn || building?.name || '', building?.pinyin || '')
       return `
         <span class="thought-axis-node" style="left:${pos.left};top:${pos.top};"></span>
         <span class="thought-axis-label" style="left:${pos.left};top:calc(${pos.top} - 16px);">${escapeHTML(label)}</span>
       `
     }).join('')
-    return `<div class="thought-axis-line"></div>${nodes}`
+    return `
+      <div class="thought-axis-line"></div>
+      ${nodes}
+      ${buildThoughtStageSummary(tab, focus, [
+        pick('由南向北，礼序逐级抬升', 'The sequence rises from south to north'),
+        pick('中轴强化，左右作为陪衬', 'The central axis leads while the sides recede'),
+        pick('从城门到宫门再到殿宇，层层递进', 'Gates, courts, and halls advance in layers'),
+      ])}
+    `
   }
 
   if (tab.id === 'yinyang') {
     if (focus.id === 'outer-inner') {
       return `
         <div class="thought-yinyang-field"></div>
-        <span class="thought-direction-chip" style="left:50%;top:26%;">阳 · 外朝</span>
-        <span class="thought-direction-chip" style="left:50%;top:69%;">阴 · 内廷</span>
+        <span class="thought-direction-chip" style="left:50%;top:26%;">${escapeHTML(isZh() ? '阳 · 外朝' : withPinyin('Yang · Outer Court', 'Yáng · Wài Cháo'))}</span>
+        <span class="thought-direction-chip" style="left:50%;top:69%;">${escapeHTML(isZh() ? '阴 · 内廷' : withPinyin('Yin · Inner Court', 'Yīn · Nèi Tíng'))}</span>
+        ${buildThoughtStageSummary(tab, focus, [
+          pick('先分外朝与内廷，再读阴阳平衡', 'Read the outer-inner split before the balance'),
+          pick('交泰殿承担阴阳会通的节点作用', 'The Hall of Union mediates both forces'),
+          pick('空间尺度由公开走向私密', 'The scale shifts from public to private'),
+        ])}
       `
     }
     return `
       <div class="thought-yinyang-field"></div>
-      <span class="thought-direction-chip" style="left:78%;top:38%;">木 · 东</span>
-      <span class="thought-direction-chip" style="left:50%;top:84%;">火 · 南</span>
-      <span class="thought-direction-chip" style="left:50%;top:49%;">土 · 中</span>
-      <span class="thought-direction-chip" style="left:22%;top:38%;">金 · 西</span>
-      <span class="thought-direction-chip" style="left:50%;top:17%;">水 · 北</span>
+      <span class="thought-direction-chip" style="left:78%;top:38%;">${escapeHTML(isZh() ? '木 · 东' : withPinyin('Wood · East', 'Mù · Dōng'))}</span>
+      <span class="thought-direction-chip" style="left:50%;top:84%;">${escapeHTML(isZh() ? '火 · 南' : withPinyin('Fire · South', 'Huǒ · Nán'))}</span>
+      <span class="thought-direction-chip" style="left:50%;top:49%;">${escapeHTML(isZh() ? '土 · 中' : withPinyin('Earth · Center', 'Tǔ · Zhōng'))}</span>
+      <span class="thought-direction-chip" style="left:22%;top:38%;">${escapeHTML(isZh() ? '金 · 西' : withPinyin('Metal · West', 'Jīn · Xī'))}</span>
+      <span class="thought-direction-chip" style="left:50%;top:17%;">${escapeHTML(isZh() ? '水 · 北' : withPinyin('Water · North', 'Shuǐ · Běi'))}</span>
+      ${buildThoughtStageSummary(tab, focus, [
+        pick('五行与五方同步落位', 'Five elements align with five directions'),
+        pick('中央统摄，四方分工', 'The center governs while the four sides specialize'),
+        pick('方位、色彩与功能被统一编码', 'Direction, color, and function form one code'),
+      ])}
     `
   }
 
   return `
     <div class="thought-fengshui-field"></div>
-    <span class="thought-guard-chip" style="left:50%;top:12%;">景山 · 玄武</span>
-    <span class="thought-guard-chip" style="left:50%;top:88%;">金水河 · 朱雀</span>
-    <span class="thought-guard-chip" style="left:18%;top:50%;">东 · 青龙</span>
-    <span class="thought-guard-chip" style="left:82%;top:50%;">西 · 白虎</span>
-    <span class="thought-guard-chip" style="left:50%;top:50%;">紫禁城核心</span>
+    <span class="thought-guard-chip" style="left:50%;top:12%;">${escapeHTML(isZh() ? '景山 · 玄武' : withPinyin('Prospect Hill · North Guard', 'Jǐng Shān · Xuán Wǔ'))}</span>
+    <span class="thought-guard-chip" style="left:50%;top:88%;">${escapeHTML(isZh() ? '金水河 · 朱雀' : withPinyin('Jinshui River · South Guard', 'Jīn Shuǐ Hé · Zhū Què'))}</span>
+    <span class="thought-guard-chip" style="left:18%;top:50%;">${escapeHTML(isZh() ? '东 · 青龙' : withPinyin('East · Azure Dragon', 'Dōng · Qīng Lóng'))}</span>
+    <span class="thought-guard-chip" style="left:82%;top:50%;">${escapeHTML(isZh() ? '西 · 白虎' : withPinyin('West · White Tiger', 'Xī · Bái Hǔ'))}</span>
+    <span class="thought-guard-chip" style="left:50%;top:50%;">${escapeHTML(isZh() ? '紫禁城核心' : withPinyin('Forbidden City Core', 'Zǐ Jìn Chéng'))}</span>
+    ${buildThoughtStageSummary(tab, focus, [
+      pick('北有景山为靠，南有金水河为迎', 'Prospect Hill backs the north and the river greets the south'),
+      pick('环境、朝向与礼制共同构成宫城格局', 'Environment, orientation, and ritual form one setting'),
+      pick('风、水、光线被转化为空间秩序', 'Wind, water, and light become spatial order'),
+    ])}
   `
 }
 
@@ -1823,7 +2062,7 @@ function renderThoughtModule() {
 
   if (els.thoughtModuleKicker) els.thoughtModuleKicker.textContent = pick(MODULES.thought.kickerZh, MODULES.thought.kickerEn)
   if (els.thoughtModuleTitle) els.thoughtModuleTitle.textContent = pick(tab.titleZh, tab.titleEn || tab.titleZh)
-  if (els.thoughtModuleStatus) els.thoughtModuleStatus.textContent = pick(tab.statusZh, tab.statusEn || tab.statusZh)
+  if (els.thoughtModuleStatus) els.thoughtModuleStatus.textContent = pick('左辅 · 中主 · 右控', 'Left aid · center stage · right control')
   if (els.thoughtPrimaryTabs) els.thoughtPrimaryTabs.innerHTML = buildThoughtPrimaryTabs(tab)
   if (els.thoughtSideTitle) els.thoughtSideTitle.textContent = pick(tab.sideTitleZh, tab.sideTitleEn || tab.sideTitleZh)
   if (els.thoughtSideDesc) els.thoughtSideDesc.textContent = pick(tab.sideDescZh, tab.sideDescEn || tab.sideDescZh)
@@ -1831,27 +2070,107 @@ function renderThoughtModule() {
   if (els.thoughtSideFocus) els.thoughtSideFocus.textContent = pick(focus.posterBodyZh, focus.posterBodyEn || focus.posterBodyZh)
   if (els.thoughtStageEyebrow) els.thoughtStageEyebrow.textContent = 'Overview'
   if (els.thoughtStageTitle) els.thoughtStageTitle.textContent = pick(tab.stageTitleZh, tab.stageTitleEn || tab.stageTitleZh)
-  if (els.thoughtStageHint) els.thoughtStageHint.textContent = pick(tab.stageHintZh, tab.stageHintEn || tab.stageHintZh)
+  if (els.thoughtStageHint) els.thoughtStageHint.textContent = ''
   if (els.thoughtSecondaryTabs) els.thoughtSecondaryTabs.innerHTML = buildThoughtSecondaryTabs(tab, focus)
   if (els.thoughtStatusList) els.thoughtStatusList.innerHTML = buildThoughtStatusItems(focus)
-  if (els.thoughtMediaEyebrow) els.thoughtMediaEyebrow.textContent = pick(tab.mediaEyebrowZh, tab.mediaEyebrowEn || tab.mediaEyebrowZh)
-  if (els.thoughtMediaTitle) els.thoughtMediaTitle.textContent = pick(focus.posterTitleZh, focus.posterTitleEn || focus.posterTitleZh)
-  if (els.thoughtMediaBody) els.thoughtMediaBody.innerHTML = buildThoughtPoster(focus)
-  if (els.thoughtTextEyebrow) els.thoughtTextEyebrow.textContent = pick('内容解释', 'Interpretation')
+  if (els.thoughtMediaEyebrow) els.thoughtMediaEyebrow.textContent = pick('文化视频', 'Culture Video')
+  if (els.thoughtMediaTitle) els.thoughtMediaTitle.textContent = pick(focus.labelZh, focus.labelEn || focus.labelZh)
+  if (els.thoughtMediaBody) els.thoughtMediaBody.innerHTML = buildThoughtMediaBody(tab, focus)
+  if (els.thoughtTextEyebrow) els.thoughtTextEyebrow.textContent = pick('内容解释与汉学解析', 'Interpretation & Sinology')
   if (els.thoughtTextTitle) els.thoughtTextTitle.textContent = pick(focus.labelZh, focus.labelEn || focus.labelZh)
   if (els.thoughtTextBody) els.thoughtTextBody.innerHTML = buildThoughtTextBody(tab, focus)
   if (els.thoughtStageDecor) els.thoughtStageDecor.innerHTML = buildThoughtStageDecor(tab, focus)
 
-  els.thoughtPrimaryTabs?.querySelectorAll('[data-thought-tab]').forEach((button) => {
-    button.addEventListener('click', () => selectThoughtTab(button.dataset.thoughtTab))
-  })
-  els.thoughtSecondaryTabs?.querySelectorAll('[data-thought-focus]').forEach((button) => {
-    button.addEventListener('click', () => selectThoughtFocus(button.dataset.thoughtFocus))
-  })
-  els.thoughtSideVisual?.querySelectorAll('[data-thought-building]').forEach((button) => {
-    button.addEventListener('click', () => selectThoughtBuilding(button.dataset.thoughtBuilding))
-  })
+  // 对中轴礼序和阴阳五行模块的右侧按钮进行覆盖渲染
+  if (state.thoughtTab === 'axis' && typeof Module2 !== 'undefined' && typeof Module2.renderSecondaryTabsOnly === 'function') {
+    Module2.renderSecondaryTabsOnly()
+  }
+  if (state.thoughtTab === 'yinyang' && typeof YinyangModule !== 'undefined' && typeof YinyangModule.renderButtonsOnly === 'function') {
+    YinyangModule.renderButtonsOnly()
+  }
+  // 风水格局模块的右侧按钮覆盖渲染
+  if (state.thoughtTab === 'fengshui' && typeof FengshuiModule !== 'undefined' && typeof FengshuiModule.renderButtonsOnly === 'function') {
+    FengshuiModule.renderButtonsOnly()
+  }
 
+  renderThoughtOverview()
+
+  // 根据当前 tab 切换 SVG 文件
+  if (state.thoughtTab === 'fengshui') {
+    // 风水格局模块自己管理 SVG 加载与交互
+    if (els.thoughtSvgHost && els.thoughtSvgHost.dataset.currentFile !== 'fengshui-overlay') {
+      FengshuiModule.init().catch((err) => console.error(err))
+    } else if (typeof FengshuiModule !== 'undefined') {
+      FengshuiModule.renderAll()
+    }
+  } else {
+    const isYinyangTab = state.thoughtTab === 'yinyang'
+    const svgFile = isYinyangTab ? 'overview-with-overlay.svg' : 'overview.svg'
+    if (els.thoughtSvgHost && els.thoughtSvgHost.dataset.currentFile !== svgFile) {
+      switchThoughtSvg(svgFile).catch((err) => console.error(err))
+    }
+  }
+}
+
+async function switchThoughtSvg(svgFile) {
+  if (!els.thoughtSvgHost) return
+  const svgPath = `assets/images/map/${svgFile}`
+  try {
+    const response = await fetch(new URL(svgPath, window.location.href))
+    if (!response.ok) throw new Error(`SVG load failed: ${response.status}`)
+    els.thoughtSvgHost.innerHTML = await response.text()
+    const svg = els.thoughtSvgHost.querySelector('svg')
+    if (!svg) throw new Error('SVG root not found')
+    svg.removeAttribute('width')
+    svg.removeAttribute('height')
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet')
+    bindThoughtHotspotsFromSvg(svg)
+    els.thoughtSvgHost.dataset.currentFile = svgFile
+  } catch (error) {
+    console.error(error)
+    els.thoughtSvgHost.innerHTML = '<p class="overview-svg-fallback">堪舆总览图加载失败，请检查路径。</p>'
+    thoughtHotspots = []
+    delete els.thoughtSvgHost.dataset.currentFile
+  }
+}
+
+/** 在 #thought-svg-host 已注入 markup 后：图层 + 扫描热区 + 绑定（切换 tab 换图时须重新调用） */
+function bindThoughtHotspotsFromSvg(svg) {
+  const interactionLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+  interactionLayer.setAttribute('data-layer', 'hotspot-interaction')
+  const overlayLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+  overlayLayer.setAttribute('data-layer', 'hotspot-overlay')
+  svg.appendChild(interactionLayer)
+  svg.appendChild(overlayLayer)
+
+  thoughtHotspots = scanSVGHotspots(svg)
+  thoughtHotspots.forEach((hotspot) => {
+    hotspot.overlayEl = createHotspotOverlay(svg, hotspot)
+    if (hotspot.customPath) {
+      const sourceEl = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+      sourceEl.setAttribute('d', hotspot.customPath)
+      sourceEl.classList.add('overview-region-source')
+      sourceEl.style.fill = 'rgba(255,255,255,0.002)'
+      hotspot.sourceEl = sourceEl
+      svg.querySelector('[data-layer="hotspot-interaction"]').appendChild(sourceEl)
+    }
+    bindHotspotEvents(hotspot, {
+      onHover: (h, e) => {
+        state.thoughtHoveredHotspotId = h.hotspotId
+        renderThoughtOverview()
+        showThoughtTooltip(h, e)
+      },
+      onLeave: (h) => {
+        if (state.thoughtHoveredHotspotId === h.hotspotId) state.thoughtHoveredHotspotId = null
+        renderThoughtOverview()
+        hideThoughtTooltip()
+      },
+      onClick: (h) => {
+        selectThoughtBuilding(h.buildingId)
+        hideThoughtTooltip()
+      },
+    })
+  })
   renderThoughtOverview()
 }
 
@@ -1886,8 +2205,18 @@ function hideThoughtTooltip() {
 
 async function createThoughtHotspots() {
   if (!els.thoughtSvgHost) return
+  // 风水格局有自己的 SVG 加载逻辑
+  if (state.thoughtTab === 'fengshui') {
+    if (typeof FengshuiModule !== 'undefined') {
+      await FengshuiModule.init()
+    }
+    return
+  }
+  const isYinyangTab = state.thoughtTab === 'yinyang'
+  const svgFile = isYinyangTab ? 'overview-with-overlay.svg' : 'overview.svg'
+  const svgPath = `assets/images/map/${svgFile}`
   try {
-    const response = await fetch(new URL('images/map/overview.svg', window.location.href))
+    const response = await fetch(new URL(svgPath, window.location.href))
     if (!response.ok) throw new Error(`SVG load failed: ${response.status}`)
     const markup = await response.text()
     els.thoughtSvgHost.innerHTML = markup
@@ -1898,46 +2227,13 @@ async function createThoughtHotspots() {
     svg.removeAttribute('height')
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet')
 
-    const interactionLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-    interactionLayer.setAttribute('data-layer', 'hotspot-interaction')
-    const overlayLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-    overlayLayer.setAttribute('data-layer', 'hotspot-overlay')
-    svg.appendChild(interactionLayer)
-    svg.appendChild(overlayLayer)
-
-    thoughtHotspots = scanSVGHotspots(svg)
-    thoughtHotspots.forEach((hotspot) => {
-      hotspot.overlayEl = createHotspotOverlay(svg, hotspot)
-      if (hotspot.customPath) {
-        const sourceEl = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-        sourceEl.setAttribute('d', hotspot.customPath)
-        sourceEl.classList.add('overview-region-source')
-        sourceEl.style.fill = 'rgba(255,255,255,0.002)'
-        hotspot.sourceEl = sourceEl
-        svg.querySelector('[data-layer="hotspot-interaction"]').appendChild(sourceEl)
-      }
-      bindHotspotEvents(hotspot, {
-        onHover: (h, e) => {
-          state.thoughtHoveredHotspotId = h.hotspotId
-          renderThoughtOverview()
-          showThoughtTooltip(h, e)
-        },
-        onLeave: (h) => {
-          if (state.thoughtHoveredHotspotId === h.hotspotId) state.thoughtHoveredHotspotId = null
-          renderThoughtOverview()
-          hideThoughtTooltip()
-        },
-        onClick: (h) => {
-          selectThoughtBuilding(h.buildingId)
-          hideThoughtTooltip()
-        },
-      })
-    })
-    renderThoughtOverview()
+    bindThoughtHotspotsFromSvg(svg)
+    els.thoughtSvgHost.dataset.currentFile = svgFile
   } catch (error) {
     console.error(error)
     els.thoughtSvgHost.innerHTML = '<p class="overview-svg-fallback">堪舆总览图加载失败，请检查 overview.svg 路径。</p>'
     thoughtHotspots = []
+    delete els.thoughtSvgHost.dataset.currentFile
   }
 }
 
@@ -1967,37 +2263,91 @@ function closeLightbox() {
   document.body.style.overflow = ''
 }
 
+function openVideoLightbox(src, label = '') {
+  const root = document.getElementById('video-lightbox')
+  const video = document.getElementById('lightbox-video')
+  const path = document.getElementById('lightbox-video-path')
+  if (!root || !video || !src) return
+  video.src = src
+  video.setAttribute('aria-label', label || pick('文化视频', 'Culture video'))
+  if (path) path.textContent = src
+  root.hidden = false
+  document.body.style.overflow = 'hidden'
+  video.play().catch(() => {})
+}
+
+function closeVideoLightbox() {
+  const root = document.getElementById('video-lightbox')
+  const video = document.getElementById('lightbox-video')
+  const path = document.getElementById('lightbox-video-path')
+  if (!root) return
+  root.hidden = true
+  if (video) {
+    video.pause()
+    video.removeAttribute('src')
+    video.load()
+  }
+  if (path) path.textContent = ''
+  document.body.style.overflow = ''
+}
+
 function bindLightboxEvents() {
   const root = document.getElementById('image-lightbox')
-  if (!root) return
-  root.querySelectorAll('[data-lightbox-close]').forEach(function(el) {
-    el.addEventListener('click', closeLightbox)
-  })
+  const videoRoot = document.getElementById('video-lightbox')
+  if (root) {
+    root.querySelectorAll('[data-lightbox-close]').forEach(function(el) {
+      el.addEventListener('click', closeLightbox)
+    })
+  }
+  if (videoRoot) {
+    videoRoot.querySelectorAll('[data-video-lightbox-close]').forEach(function(el) {
+      el.addEventListener('click', closeVideoLightbox)
+    })
+  }
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !root.hidden) closeLightbox()
+    if (e.key === 'Escape') {
+      if (root && !root.hidden) closeLightbox()
+      if (videoRoot && !videoRoot.hidden) closeVideoLightbox()
+      return
+    }
+    const trigger = e.target?.closest?.('[data-video-lightbox-src]')
+    if (!trigger) return
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    const src = trigger.getAttribute('data-video-lightbox-src')
+    const label = trigger.getAttribute('data-video-label') || ''
+    if (src) openVideoLightbox(src, label)
   })
   document.addEventListener('click', function(e) {
     const trigger = e.target.closest('[data-lightbox-src]')
-    if (!trigger) return
+    if (trigger) {
+      e.preventDefault()
+      const src = trigger.getAttribute('data-lightbox-src')
+      if (src) openLightbox(src)
+      return
+    }
+    const videoTrigger = e.target.closest('[data-video-lightbox-src]')
+    if (!videoTrigger) return
     e.preventDefault()
-    const src = trigger.getAttribute('data-lightbox-src')
-    if (src) openLightbox(src)
+    const src = videoTrigger.getAttribute('data-video-lightbox-src')
+    const label = videoTrigger.getAttribute('data-video-label') || ''
+    if (src) openVideoLightbox(src, label)
   })
 }
 
 function renderAll() {
+  setLanguageMode()
   renderHeader()
   renderNav()
   renderLayoutVisibility()
   if (state.module === 'archive') {
+    renderGraph()
+    renderKeywordPanel()
     renderFilterPanels()
     renderOverview()
     renderInfo()
     renderCharts()
-    requestAnimationFrame(() => {
-      functionChart?.resize()
-      typeChart?.resize()
-    })
+    requestAnimationFrame(() => relationChart?.resize())
   } else if (state.module === 'thought') {
     stopCategoryCarousel()
     renderThoughtModule()
@@ -2009,17 +2359,26 @@ function renderAll() {
 
 function renderLayoutVisibility() {
   document.querySelectorAll('.module-layout').forEach((el) => {
-    el.hidden = el.dataset.layout !== state.module
+    const active = el.dataset.layout === state.module
+    el.hidden = !active
+    el.classList.remove('module-layout--enter')
+    if (active) {
+      void el.offsetWidth
+      el.classList.add('module-layout--enter')
+    }
   })
 }
 
 async function initApp() {
   bindElements()
+  setLanguageMode()
   bindLightboxEvents()
   bindEvents()
   await createHotspots()
   await createThoughtHotspots()
-  initCharts()
+  initGraph()
+  // 默认选中午门，首屏显示档案卡
+  selectBuilding('wumen', null)
   renderAll()
 }
 

@@ -714,6 +714,13 @@
   box-shadow: 0 8px 24px rgba(45, 32, 22, 0.15);
 }
 
+.wg-complete__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .wg-complete__btn {
   padding: 10px 32px;
   border: 1.5px solid var(--wg-paper-border);
@@ -730,6 +737,10 @@
   background: var(--wg-paper-border);
   border-color: var(--wg-gold);
   color: var(--wg-ink);
+}
+
+.wg-complete__btn--ghost {
+  background: rgba(255, 252, 246, 0.72);
 }
 
 /* ---- 响应式 ---- */

@@ -5,7 +5,7 @@
  *
  *  功能：
  *    - 录音识别：startRecording() / stopRecording()
- *      → 调用后端 /api/asr 获取识别文字
+ *      → 使用浏览器原生 SpeechRecognition
  *    - 语音播报：speakWithDoubao(text, lang)
  *      → 调用后端 /api/tts 获取音频并播放
  *    - 保留浏览器原生 speak() 作为降级
@@ -37,11 +37,6 @@ class SpeechManager {
     this._isListening  = false
     this._isMuted      = false
     this._speaking     = false
-    // 录音相关
-    this._mediaRecorder = null
-    this._audioChunks   = []
-    this._isRecording   = false
-    this._mediaStream   = null
     // TTS 音频播放
     this._audioElement  = null
     this._initRecognition()
@@ -54,7 +49,7 @@ class SpeechManager {
   _initRecognition() {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition
     if (!SR) {
-      console.warn('[SpeechManager] 浏览器不支持 SpeechRecognition，将使用后端 ASR')
+      console.warn('[SpeechManager] 浏览器不支持 SpeechRecognition')
       this._useNativeRecognition = false
       return
     }
@@ -118,8 +113,7 @@ class SpeechManager {
 
   // ================================================================
   //  公开：录音识别
-  //  优先使用浏览器原生 SpeechRecognition（兼容移动端）
-  //  若浏览器不支持，则使用后端 ASR（需麦克风权限）
+  //  仅使用浏览器原生 SpeechRecognition（兼容支持该能力的移动端）
   // ================================================================
   /**
    * 开始录音
@@ -127,61 +121,36 @@ class SpeechManager {
    * @returns {Promise<boolean>} 是否成功开始录音
    */
   async startRecording(lang = 'zh-CN') {
-    if (this._isListening || this._isRecording) return false
+    if (this._isListening) return false
 
-    // 优先使用浏览器原生 SpeechRecognition
-    if (this._useNativeRecognition && this._recognition) {
+    if (!this._useNativeRecognition || !this._recognition) {
+      if (this.onError) this.onError('browser-recognition-unavailable')
+      return false
+    }
+
+    try {
+      this._recognition.lang = lang
+      this._recognition.start()
+      this._isListening = true
+      return true
+    } catch (err) {
+      console.warn('[SpeechManager] SpeechRecognition 启动失败，准备重试:', err)
+      try {
+        this._recognition.abort?.()
+      } catch (abortErr) {
+        // ignore
+      }
+      await new Promise((resolve) => setTimeout(resolve, 120))
       try {
         this._recognition.lang = lang
         this._recognition.start()
         this._isListening = true
         return true
-      } catch (err) {
-        console.warn('[SpeechManager] SpeechRecognition 启动失败:', err)
-        // 如果启动失败，尝试使用后端 ASR
-        this._useNativeRecognition = false
+      } catch (retryErr) {
+        console.warn('[SpeechManager] SpeechRecognition 重试失败:', retryErr)
+        if (this.onError) this.onError('recognition-start-failed')
+        return false
       }
-    }
-
-    // 后备：使用麦克风 + 后端 ASR
-    try {
-      // 请求麦克风权限并获取音频流
-      this._mediaStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          sampleRate: 16000,
-          channelCount: 1,
-          echoCancellation: true,
-          noiseSuppression: true
-        }
-      })
-
-      // 选择合适的 MIME 类型
-      let mimeType = 'audio/webm;codecs=opus'
-      if (!MediaRecorder.isTypeSupported(mimeType)) {
-        mimeType = 'audio/ogg;codecs=opus'
-      }
-      if (!MediaRecorder.isTypeSupported(mimeType)) {
-        mimeType = 'audio/webm'
-      }
-
-      this._audioChunks = []
-      this._mediaRecorder = new MediaRecorder(this._mediaStream, {
-        mimeType: mimeType
-      })
-
-      this._mediaRecorder.ondataavailable = (event) => {
-        if (event.data && event.data.size > 0) {
-          this._audioChunks.push(event.data)
-        }
-      }
-
-      this._mediaRecorder.start(100)
-      this._isRecording = true
-      return true
-    } catch (err) {
-      console.error('[startRecording] 麦克风权限错误:', err)
-      if (this.onError) this.onError('mic-permission-denied')
-      return false
     }
   }
 
@@ -191,7 +160,6 @@ class SpeechManager {
    * @returns {Promise<string>} 识别后的文字
    */
   async stopRecording(lang = 'zh-CN') {
-    // 如果使用的是原生 SpeechRecognition，它会自动在识别结束时停止
     if (this._isListening && this._useNativeRecognition && this._recognition) {
       try {
         this._recognition.lang = lang
@@ -202,79 +170,7 @@ class SpeechManager {
       this._isListening = false
       return ''
     }
-
-    // 使用麦克风 + 后端 ASR
-    return new Promise((resolve) => {
-      if (!this._isRecording || !this._mediaRecorder) {
-        resolve('')
-        return
-      }
-
-      const mr = this._mediaRecorder
-
-      mr.onstop = async () => {
-        this._isRecording = false
-
-        // 清理麦克风流
-        if (this._mediaStream) {
-          this._mediaStream.getTracks().forEach(t => t.stop())
-          this._mediaStream = null
-        }
-
-        // 合并音频数据
-        const audioBlob = new Blob(this._audioChunks, { type: mr.mimeType })
-        this._audioChunks = []
-
-        if (audioBlob.size === 0) {
-          resolve('')
-          return
-        }
-
-        // 显示加载状态
-        if (this.onAsrLoading) this.onAsrLoading(true)
-
-        try {
-          const arrayBuffer = await audioBlob.arrayBuffer()
-
-          const response = await fetch(`${this.apiBase}/api/asr`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': mr.mimeType || 'audio/webm'
-            },
-            body: arrayBuffer
-          })
-
-          if (this.onAsrLoading) this.onAsrLoading(false)
-
-          const data = await response.json().catch(() => ({}))
-
-          if (!response.ok) {
-            throw new Error(data.error || `ASR 请求失败: ${response.status}`)
-          }
-
-          if (data.success === false) {
-            if (this.onError) this.onError(data.error || 'asr-unavailable')
-            resolve('')
-            return
-          }
-
-          const text = data.text || ''
-
-          if (text && this.onFinal) {
-            this.onFinal(text)
-          }
-
-          resolve(text)
-        } catch (err) {
-          if (this.onAsrLoading) this.onAsrLoading(false)
-          console.error('[stopRecording] ASR 请求失败:', err)
-          if (this.onError) this.onError('asr-failed')
-          resolve('')
-        }
-      }
-
-      mr.stop()
-    })
+    return ''
   }
 
   // ================================================================
@@ -303,7 +199,8 @@ class SpeechManager {
 
       if (!response.ok) {
         const err = await response.json().catch(() => ({}))
-        throw new Error(err.error || `TTS 请求失败: ${response.status}`)
+        const detail = err.upstreamMessage ? `（${err.upstreamMessage}）` : ''
+        throw new Error((err.error || `TTS 请求失败: ${response.status}`) + detail)
       }
 
       const data = await response.json()
@@ -427,14 +324,14 @@ class SpeechManager {
   }
 
   get isRecording() {
-    return this._isRecording || this._isListening
+    return this._isListening
   }
 
   // ================================================================
   //  公开：浏览器是否支持录音识别
   // ================================================================
   static isRecordingSupported() {
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+    return SpeechManager.isRecognitionSupported()
   }
 
   static isRecognitionSupported() {

@@ -1,0 +1,1712 @@
+/* =====================================================
+   js/data.js - 所有数据
+   ===================================================== */
+
+/* ---------- 建筑档案 ---------- */
+// NOTE: BUILDINGS keys must match the SVG hotspot IDs used by the current overview scanner.
+const BUILDINGS = {
+  taihedian: {
+    id: 'taihedian',
+    name: '太和殿', nameEn: 'Hall of Supreme Harmony', pinyin: 'Tài Hé Diàn',
+    alias: '金銮殿', aliasEn: 'Golden Throne Hall',
+    category: 'ritual', isKey: true, buildingType: 'hall',
+    roofType: '重檐庑殿顶', roofTypeEn: 'Double-eaved Hip Roof',
+    bays: 11, ridgeBeasts: 10, baseHeight: '8.13米',
+    built: '1420年（明永乐十八年）', builtEn: '1420 (18th year of Yongle, Ming)',
+    rebuilt: '1695年（清康熙三十四年）', rebuiltEn: '1695 (34th year of Kangxi, Qing)',
+    materials: '金砖、楠木、汉白玉',
+    location: '外朝三大殿正中',
+    archive: '太和殿是故宫核心建筑，明清皇帝举行登基、大婚、册封等重大典礼之所。殿身高8.13米，为全国古建筑之最。',
+    archiveEn: 'The Hall of Supreme Harmony is the core building of the Forbidden City, where major ceremonies such as enthronement were held.',
+    events: [
+      { year: '1420', desc: '始建于明永乐十八年', descEn: 'Original construction under Yongle Emperor' },
+      { year: '1695', desc: '康熙年间重建', descEn: 'Rebuilt under Emperor Kangxi' },
+    ],
+    anecdotes: [
+      '皇帝登基、大婚、册封等重大典礼在此举行',
+      '殿内金砖敲击有金属声响，称"金砖铺地"',
+    ],
+    images: [],
+    center: { x: 494, y: 901 },
+    components: [
+      {
+        id: 'jishou', name: '脊兽', nameEn: 'Roof Ridge Beasts', pinyin: 'Jǐ Shòu',
+        highlightColor: '#C04000',
+        craft: '脊兽位于屋脊之上，数量依建筑等级而定。太和殿为10只，为古建筑之最。排列顺序：龙、凤、狮子、天马、海马、狻猊、押鱼、獬豸、斗牛、行什。',
+        craftEn: 'The ridge beasts sit atop the roof ridge, with the number determined by building rank. The Hall of Supreme Harmony has 10, the maximum in ancient Chinese architecture.',
+        physics: '脊兽兼有固定瓦片、防止雨水渗入的功能，同时具有防雷的导电作用。',
+        culture: '龙象征皇帝权威，凤象征皇后仁德。天马为天上神马，象征忠勇圣贤。九为阳数之极，十为完满。',
+      },
+      {
+        id: 'dougong', name: '斗拱', nameEn: 'Dougong Bracket Sets', pinyin: 'Dǒu Gǒng',
+        highlightColor: '#5B7F5E',
+        craft: '斗拱是中国古建筑特有的结构构件，由斗形木块和弓形横木组成，层层叠加，承托屋檐，将屋顶重量分散传递至柱身。',
+        craftEn: 'Dougong is a unique Chinese architectural element composed of cup-shaped wooden blocks (dou) and bracket arms (gong), layered to support eaves and distribute roof weight.',
+        physics: '斗拱利用杠杆原理，将集中荷载分散为多个支点，既减震又抗震，体现了古代力学智慧的极致。',
+        culture: '斗拱层数与建筑等级直接相关，等级越高，斗拱越繁复。它是中国木构架建筑的标志性符号。',
+      },
+      {
+        id: 'hesixicaihua', name: '和玺彩画', nameEn: 'He-Xi Color Paintings', pinyin: 'Hé Xǐ Cǎi Huà',
+        highlightColor: '#B8860B',
+        craft: '和玺彩画是清代最高等级彩画，以双龙戏珠为主纹，两侧配以降龙，以青绿为主色，金线勾勒轮廓，贴金箔。',
+        craftEn: 'He-Xi paintings are the highest rank of color paintings in Qing architecture, featuring double dragons playing with pearls, in blue-green tones with gold outlines.',
+        physics: '彩画颜料以矿物和植物为原料，具有防腐防虫功能，延长木质结构寿命。',
+        culture: '和玺彩画仅用于皇帝理政场所。龙纹象征皇权，凤纹象征后德。蓝绿主色代表天空与大地。',
+      },
+      {
+        id: 'chongerwafang', name: '重檐庑殿顶', nameEn: 'Double-eaved Hip Roof', pinyin: 'Chóng Ér Wǔ Diàn Dǐng',
+        highlightColor: '#8B2500',
+        craft: '重檐庑殿顶是中国古建筑屋顶等级中最高形式，四面斜坡，下层屋檐称"下檐"，上层屋檐称"上檐"，整体形如大鹏展翅。',
+        craftEn: 'The double-eaved hip roof is the highest-ranked roof type in ancient Chinese architecture, with four sloping sides resembling a soaring roc.',
+        physics: '重檐设计增加屋檐出挑深度，有效保护台基免受雨水侵蚀，同时形成遮荫降低室内温度。',
+        culture: '庑殿顶只用于最高等级建筑，皇帝专属。重檐象征皇权至高无上，天地四方皆在庇护之下。',
+      },
+      {
+        id: 'sanloushimuzu', name: '三层须弥座', nameEn: 'Three-tier Sumeru Platform', pinyin: 'Sān Céng Xū Mí Zuò',
+        highlightColor: '#EDE7D9',
+        craft: '须弥座为佛像台座，后广泛用于宫殿建筑台基。太和殿台基高三层，绕以汉白玉栏杆，层层收分，稳重庄严。',
+        craftEn: 'The Sumeru platform, originally a Buddhist altar base, was adopted for palace architecture. The Hall of Supreme Harmony sits on a three-tier white marble platform.',
+        physics: '三层台基逐层内收，降低重心，增强整体稳定性，同时提供庄严的视觉效果。',
+        culture: '须弥座源于佛教宇宙观，象征须弥山——世界中心。三层象征天、地、人三才。',
+      },
+    ],
+    game: { type: 'stack-hall', title: '堆叠太和殿', titleEn: 'Stack the Hall' },
+  },
+
+  jiaolou: {
+    id: 'jiaolou',
+    name: '角楼', nameEn: 'Corner Tower', pinyin: 'Jiǎo Lóu',
+    alias: '', aliasEn: '',
+    category: 'decor', isKey: true, buildingType: 'tower',
+    roofType: '三出檐多角式', roofTypeEn: 'Multi-eaved Polygonal Tower',
+    bays: 3, ridgeBeasts: 72, baseHeight: '',
+    built: '1406年（明永乐四年）', builtEn: '1406 (4th year of Yongle, Ming)',
+    rebuilt: '1683年（清康熙二十二年）', rebuiltEn: '1683 (22nd year of Kangxi, Qing)',
+    materials: '砖木结构',
+    location: '城墙四角',
+    archive: '角楼建于城墙四角，结构精巧，造型独特，为九梁十八柱七十二条脊，是故宫建筑艺术精华之一。',
+    archiveEn: 'Corner towers stand at the four corners of the palace walls. Their intricate structure, nine beams, eighteen columns and seventy-two ridges, represents the essence of Forbidden City architecture.',
+    events: [
+      { year: '1406', desc: '始建于明永乐四年', descEn: 'Original construction under Yongle Emperor' },
+      { year: '1683', desc: '康熙年间重建', descEn: 'Rebuilt under Emperor Kangxi' },
+    ],
+    anecdotes: ['角楼结构精巧，为九梁十八柱七十二条脊'],
+    images: [],
+    center: { x: 838, y: 52 },
+    components: [
+      {
+        id: 'duochongyan', name: '多重檐复合屋面', nameEn: 'Multi-layered Eaves', pinyin: 'Duō Chóng Yán',
+        highlightColor: '#8B2500',
+        craft: '角楼屋面为三出檐多角式，层层叠涩，出檐深远，形成丰富的光影效果，同时有效排水。',
+        physics: '多层屋檐形成热缓冲层，夏季隔热、冬季保温，同时引导雨水向外排出，保护墙身。',
+        culture: '多重屋檐象征"九脊封十方"，寓意皇权庇护四方。层层叠叠体现建筑层次之美。',
+      },
+      {
+        id: 'sunmao', name: '榫卯结构', nameEn: 'Mortise-and-Tenon Joinery', pinyin: 'Sǔn Mǎo',
+        highlightColor: '#5B7F5E',
+        craft: '角楼全部采用榫卯连接，不用一颗铁钉。梁、柱、枋之间凹凸咬合，形成稳固的整体结构。',
+        physics: '榫卯允许轻微位移，形成柔性连接，地震时可消耗能量，实现"墙倒屋不塌"的抗震效果。',
+        culture: '榫卯是中华民族独创的木作工艺，"天衣无缝"形容榫卯之精密。它体现了中国古代"以柔克刚"的哲学思想。',
+      },
+    ],
+    game: { type: 'tower-puzzle', title: '角楼解谜', titleEn: 'Tower Puzzle' },
+  },
+
+  wumen: {
+    id: 'wumen',
+    name: '午门', nameEn: 'Meridian Gate', pinyin: 'Wǔ Mén',
+    alias: '五凤楼', aliasEn: 'Five-Phoenix Gate',
+    category: 'ritual', isKey: true, buildingType: 'gate',
+    roofType: '重檐庑殿顶', roofTypeEn: 'Double-eaved Hip Roof',
+    bays: 5, ridgeBeasts: 9, baseHeight: '',
+    built: '1420年（明永乐十八年）', builtEn: '1420 (18th year of Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '汉白玉',
+    location: '故宫南侧',
+    archive: '午门是紫禁城的正门，因正对天干之"午"（正南方向）而得名。皇帝颁诏、献俘等重大仪式均在此举行。',
+    archiveEn: 'The Meridian Gate is the main southern gate of the Forbidden City, named for its southern orientation. Major ceremonies including imperial edicts and prisoner presentations were held here.',
+    events: [
+      { year: '1420', desc: '始建于明永乐十八年', descEn: 'Original construction under Yongle Emperor' },
+    ],
+    anecdotes: ['午门是紫禁城的正门，皇帝颁诏、献俘等重大仪式均在此举行'],
+    images: [],
+    center: { x: 494, y: 1122 },
+    components: [
+      {
+        id: 'gongquan', name: '拱券结构', nameEn: 'Arch & Vault', pinyin: 'Gǒng Xuàn',
+        highlightColor: '#5B7F5E',
+        craft: '午门设有五个门洞，居中门洞专供皇帝通行。门洞上采用砖砌拱券，将上部墙体重量传递至两侧券墩。',
+        physics: '拱券将竖向荷载转化为侧向推力，通过券墩平衡，使大门可开设宽大洞口而不倒塌。',
+        culture: '中间门洞仅供皇帝一人专用，体现"君临天下"的礼仪制度。五门洞设计象征"五方来朝"。',
+      },
+      {
+        id: 'zhuantaibaitao', name: '城台砖石码套', nameEn: 'Brick Masonry Platform', pinyin: 'Chéng Tái Zhuān',
+        highlightColor: '#B8860B',
+        craft: '午门城台采用大砖砌筑，外包汉白玉栏杆，台面铺墁金砖，灰缝细密，工艺精湛。',
+        physics: '大砖密砌，分层夯实，形成坚固的承重结构；灰浆饱满防止雨水渗入导致冻融破坏。',
+        culture: '城台是皇权威严的象征，汉白玉栏杆代表纯洁与高贵。金砖铺地象征皇家专属。',
+      },
+      {
+        id: 'aoxingbuju', name: '凹形布局与中轴线', nameEn: 'Concave Layout', pinyin: 'Āo Xíng Bù Jú',
+        highlightColor: '#C04000',
+        craft: '午门平面呈凹字形，两侧向前伸出，形成宽阔的门前广场，可容纳大量仪仗人员。',
+        physics: '凹形布局提供遮蔽，减少风沙直入，同时形成声学反射，便于礼仪人员听候传旨。',
+        culture: '"凹"形如张开双臂迎接天子归来，象征皇权包容天下。门前列队彰显天朝威仪。',
+      },
+    ],
+    game: { type: 'imperial-passage', title: '十万人朝圣', titleEn: 'Imperial Passage' },
+  },
+
+  jiulongbi: {
+    id: 'jiulongbi',
+    name: '九龙壁', nameEn: 'Nine Dragon Wall', pinyin: 'Jiǔ Lóng Bì',
+    alias: '', aliasEn: '',
+    category: 'decor', isKey: true, buildingType: 'screen',
+    roofType: '庑殿顶', roofTypeEn: 'Hip Roof',
+    bays: 1, ridgeBeasts: 0, baseHeight: '',
+    built: '1773年（清乾隆三十八年）', builtEn: '1773 (38th year of Qianlong, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '琉璃砖',
+    location: '皇极殿前',
+    archive: '九龙壁为宁寿宫区入口建筑，壁上九条琉璃彩龙栩栩如生，是中国琉璃工艺的巅峰之作。',
+    archiveEn: 'The Nine Dragon Wall marks the entrance to the Longevity and Health Palace area. The nine glazed dragons are the pinnacle of Chinese glazed tile craftsmanship.',
+    events: [
+      { year: '1773', desc: '乾隆三十八年建', descEn: 'Built in 1773 under Qianlong Emperor' },
+    ],
+    anecdotes: ['壁上九条琉璃彩龙栩栩如生'],
+    images: [],
+    center: { x: 976, y: 972 },
+    components: [
+      {
+        id: 'liuliping', name: '琉璃拼接工艺', nameEn: 'Glazed Tile Mosaic', pinyin: 'Liú Lí Pīn',
+        highlightColor: '#2E5D8A',
+        craft: '九龙壁由数百块琉璃砖拼接而成，每块砖分别烧制后编号拼贴，砖缝精细，整体无缝感。',
+        physics: '琉璃砖耐腐蚀、耐光照，颜色历久弥新。拼接时留有热胀冷缩缝，防止开裂。',
+        culture: '琉璃在古代为皇家专用建材，色彩以黄为尊。九龙壁以黄龙为主，表现乾隆皇权。',
+      },
+      {
+        id: 'youcai', name: '琉璃釉彩化学', nameEn: 'Glaze Chemistry', pinyin: 'Yòu Cǎi',
+        highlightColor: '#D4772C',
+        craft: '琉璃釉料以石英、长石、铅丹为基料，掺入铜、铁、钴等金属氧化物，在800-900°C下一次烧成。',
+        physics: '氧化铜呈绿色，氧化铁呈黄褐色，氧化钴呈蓝色。通过控制窑温可精确控制颜色深浅。',
+        culture: '琉璃色彩象征天、地、海、火等自然元素。九龙各异形态，象征中国传统文化中的龙之九德。',
+      },
+      {
+        id: 'jiulong', name: '数字9与龙纹文化', nameEn: 'Number 9 & Dragon Culture', pinyin: 'Jiǔ Lóng',
+        highlightColor: '#7B1818',
+        craft: '九为阳数之极，象征至阳、至大、至尊。九龙各具姿态：升龙、降龙、团龙，体现龙的万千变化。',
+        physics: '龙纹疏密有致，形成韵律感，视觉上引导观者从两侧向中央主龙汇聚。',
+        culture: '龙是中华民族的象征。九为最大阳数，代表皇权至上。九龙壁表达了皇帝"真龙天子"的身份认同。',
+      },
+    ],
+    game: { type: 'dragon-mosaic', title: '九龙拼图', titleEn: 'Dragon Mosaic' },
+  },
+
+  taiheimen: {
+    id: 'taiheimen', name: '太和门', nameEn: 'Gate of Supreme Harmony',
+    category: 'ritual', isKey: true, buildingType: 'gate',
+    roofType: '重檐庑殿顶', bays: 5, ridgeBeasts: 9,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '汉白玉', location: '太和殿前',
+    archive: '太和门是外朝的正门，明代为御门听政之所。清代皇帝常在此受贺。',
+    archiveEn: 'The Gate of Supreme Harmony was the main gate of the Outer Court, where emperors held court sessions.',
+    events: [], anecdotes: ['明代为御门听政之所'],
+    images: [], center: { x: 494, y: 1006 },
+    components: [], game: null,
+  },
+  qianqinggong: {
+    id: 'qianqinggong', name: '乾清宫', nameEn: 'Palace of Heavenly Purity',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '重檐庑殿顶', bays: 9, ridgeBeasts: 9,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1797年（清嘉庆二年）', rebuiltEn: '1797 (2nd year of Jiaqing, Qing)',
+    materials: '金砖、楠木', location: '内廷三宫正中',
+    archive: '清代皇帝日常处理政务和召见大臣之处，也是皇帝的正寝宫殿。',
+    archiveEn: 'The Palace of Heavenly Purity served as the Emperor\'s residence and workspace during the Qing Dynasty.',
+    events: [], anecdotes: ['清代皇帝在此处理日常政务'],
+    images: [], center: { x: 494, y: 546 },
+    components: [], game: null,
+  },
+  kunninggong: {
+    id: 'kunninggong', name: '坤宁宫', nameEn: 'Palace of Earthly Tranquility',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '重檐庑殿顶', bays: 9, ridgeBeasts: 9,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1655年（清顺治十二年）', rebuiltEn: '1655 (12th year of Shunzhi, Qing)',
+    materials: '金砖、楠木', location: '乾清宫北侧',
+    archive: '清代为皇后寝宫，并作为萨满祭祀场所。',
+    archiveEn: 'During the Qing Dynasty, this was the Empress\'s residence and a site for Shamanist rituals.',
+    events: [], anecdotes: ['清代为皇后寝宫'],
+    images: [], center: { x: 494, y: 393 },
+    components: [], game: null,
+  },
+  jiaotaidian: {
+    id: 'jiaotaidian', name: '交泰殿', nameEn: 'Hall of Union',
+    category: 'culture', isKey: false, buildingType: 'hall',
+    roofType: '四角攒尖顶', bays: 3, ridgeBeasts: 4,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1802年（清嘉庆七年）', rebuiltEn: '1802 (7th year of Jiaqing, Qing)',
+    materials: '金砖', location: '乾清宫与坤宁宫之间',
+    archive: '存放皇帝宝玺（玉玺）之地，也是皇后生日受贺之处。',
+    archiveEn: 'The Hall of Union housed the imperial seals and was where the Empress received birthday greetings.',
+    events: [], anecdotes: ['存放宝玺之地'],
+    images: [], center: { x: 494, y: 468 },
+    components: [], game: null,
+  },
+  shenwumen: {
+    id: 'shenwumen', name: '神武门', nameEn: 'Gate of Divine Might',
+    category: 'ritual', isKey: true, buildingType: 'gate',
+    roofType: '重檐庑殿顶', bays: 3, ridgeBeasts: 7,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1672年（清康熙十一年）', rebuiltEn: '1672 (11th year of Kangxi, Qing)',
+    materials: '砖石结构', location: '故宫北侧',
+    archive: '紫禁城北门，为皇帝离宫出行之门，也是宫内人员出入的重要通道。',
+    archiveEn: 'The Gate of Divine Might is the northern gate of the Forbidden City.',
+    events: [], anecdotes: ['紫禁城北门，为神武门'],
+    images: [], center: { x: 494, y: 96 },
+    components: [], game: null,
+  },
+  donghuamen: {
+    id: 'donghuamen', name: '东华门', nameEn: 'East Gate',
+    category: 'gate', isKey: false, buildingType: 'gate',
+    roofType: '单檐庑殿顶', bays: 3, ridgeBeasts: 5,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '砖石结构', location: '故宫东侧',
+    archive: '清代为文官上朝入口之门，亦用于运送大件物品。',
+    archiveEn: 'During the Qing Dynasty, civil officials entered through this gate for court sessions.',
+    events: [], anecdotes: ['清代为文官上朝入口'],
+    images: [], center: { x: 960, y: 1244 },
+    components: [], game: null,
+  },
+  xihhuamen: {
+    id: 'xihhuamen', name: '西华门', nameEn: 'West Gate', pinyin: 'Xī Huá Mén',
+    alias: '', aliasEn: '',
+    category: 'gate', isKey: false, buildingType: 'gate',
+    roofType: '单檐庑殿顶', bays: 3, ridgeBeasts: 5,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '砖石结构', location: '故宫西侧',
+    archive: '清代为武官上朝入口之门。',
+    archiveEn: 'During the Qing Dynasty, military officials entered through this gate for court sessions.',
+    events: [], anecdotes: ['清代为武官上朝入口'],
+    images: [], center: { x: 28, y: 1244 },
+    components: [], game: null,
+  },
+  wuyingdian: {
+    id: 'wuyingdian', name: '武英殿', nameEn: 'Hall of Martial Valor',
+    category: 'ritual', isKey: false, buildingType: 'hall',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1803年（清嘉庆八年）', rebuiltEn: '1803 (8th year of Jiaqing, Qing)',
+    materials: '楠木、金砖', location: '外朝西侧',
+    archive: '清代武英殿曾设修书处（武英殿修书处），在此刊刻大量典籍，如《古今图书集成》《武英殿聚珍版丛书》等。',
+    archiveEn: 'The Hall of Martial Valor housed the Imperial Publishing Office during the Qing Dynasty.',
+    events: [], anecdotes: ['1644年李自成在武英殿举行登基大典'],
+    images: [], center: { x: 202, y: 1074 },
+    components: [], game: null,
+  },
+  yangxindian: {
+    id: 'yangxindian', name: '养心殿', nameEn: 'Hall of Mental Cultivation',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1530年（明嘉靖十四年）', builtEn: '1530 (14th year of Jiajing, Ming)',
+    rebuilt: '1806年（清嘉庆十一年）', rebuiltEn: '1806 (11th year of Jiaqing, Qing)',
+    materials: '楠木、金砖', location: '内廷西侧',
+    archive: '清代皇帝日常起居、理政之所，慈禧太后垂帘听政之处。',
+    archiveEn: 'The Hall of Mental Cultivation served as the Emperor\'s daily residence and office during the Qing Dynasty. Empress Dowager Cixi governed from here.',
+    events: [], anecdotes: ['清代皇帝日常起居、理政之所', '慈禧太后垂帘听政之处'],
+    images: [], center: { x: 238, y: 707 },
+    components: [], game: null,
+  },
+  yuhuayuan: {
+    id: 'yuhuayuan', name: '御花园', nameEn: 'Imperial Garden',
+    category: 'decor', isKey: true, buildingType: 'screen',
+    roofType: '', bays: 0, ridgeBeasts: 0,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '', location: '内廷北侧',
+    archive: '御花园是皇帝及后妃休憩、游赏的私家园林，汇集了松柏、银杏、奇石等。',
+    archiveEn: 'The Imperial Garden served as a private retreat for the Emperor and his consorts.',
+    events: [], anecdotes: ['皇帝及后妃休憩、游赏之所'],
+    images: [], center: { x: 494, y: 246 },
+    components: [], game: null,
+  },
+
+  // ===== 以下为计划补充的缺失建筑 =====
+  shufangzhai: {
+    id: 'shufangzhai', name: '漱芳斋', nameEn: 'Shufang Zhai',
+    alias: '', aliasEn: '',
+    category: 'culture', isKey: true, buildingType: 'tower',
+    roofType: '单檐歇山顶', bays: 3, ridgeBeasts: 5,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1742年（清乾隆七年）', rebuiltEn: '1742 (7th year of Qianlong, Qing)',
+    materials: '楠木、松木、黄色琉璃瓦',
+    location: '内廷西路',
+    archive: '漱芳斋是紫禁城内西路的一座院落，清代皇帝及后妃听戏、品茗、用膳的休闲娱乐场所。',
+    archiveEn: 'A western-side courtyard serving as a leisure venue for opera, tea, and dining.',
+    events: [
+      { year: '1742', desc: '乾隆七年改建为戏园', descEn: 'Rebuilt as opera garden in 1742' },
+    ],
+    anecdotes: ['电视剧《还珠格格》让漱芳斋闻名，但历史上从未有公主或格格在此居住'],
+    images: [],
+    center: { x: 118, y: 268 },
+    components: [
+      {
+        id: 'xitiantai', name: '戏台机关', nameEn: 'Stage Mechanisms', pinyin: 'Xì Tái',
+        highlightColor: '#8B2500',
+        craft: '漱芳斋戏台顶部设有天井，可演神仙下凡的戏码；台底设有地井，可演鬼怪升天。',
+        physics: '利用绳索、滑轮和辘轳等机械装置，实现演员从天井或地井中升降的效果。',
+        culture: '清代宫廷戏曲是皇权象征的一部分，机关戏台体现了皇家戏剧的奢华与神秘。',
+      },
+    ],
+    game: null,
+  },
+
+  qianlonghuayuan: {
+    id: 'qianlonghuayuan', name: '乾隆花园', nameEn: 'Qianlong Garden',
+    alias: '宁寿宫花园', aliasEn: 'Longevity Palace Garden',
+    category: 'decor', isKey: true, buildingType: 'screen',
+    roofType: '多种形式', bays: 0, ridgeBeasts: 0,
+    built: '1771年（清乾隆三十六年）', builtEn: '1771 (36th year of Qianlong, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '漆纱、竹丝、贝壳、琉璃',
+    location: '宁寿宫区内',
+    archive: '乾隆花园是乾隆皇帝为自己退位后颐养天年而修建的太上皇宫殿园林，是18世纪中国皇家建筑内檐装修的巅峰之作。',
+    archiveEn: 'Emperor Qianlong\'s retirement garden, embodying his personal aesthetics.',
+    events: [
+      { year: '1771', desc: '乾隆三十六年动工修建', descEn: 'Construction began in 1771' },
+      { year: '1776', desc: '乾隆四十一年完工', descEn: 'Completed in 1776' },
+    ],
+    anecdotes: ['花园第四进主体建筑符望阁因内部装修繁复，穿门越槛常令人迷失方向，故有"迷楼"之称'],
+    images: [],
+    center: { x: 848, y: 648 },
+    components: [], game: null,
+  },
+
+  changyinge: {
+    id: 'changyinge', name: '畅音阁', nameEn: 'Changyin Pavilion',
+    alias: '', aliasEn: '',
+    category: 'culture', isKey: true, buildingType: 'tower',
+    roofType: '三层戏台', bays: 0, ridgeBeasts: 0,
+    built: '1772年（清乾隆三十七年）', builtEn: '1772 (37th year of Qianlong, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '楠木、松木、黄色琉璃瓦',
+    location: '宁寿宫区东侧',
+    archive: '畅音阁是紫禁城内最大的戏台，位于宁寿宫区，是清代宫廷戏曲演出的核心场所。',
+    archiveEn: 'The largest opera stage in the Forbidden City, serving as the core venue for Qing court opera.',
+    events: [
+      { year: '1772', desc: '乾隆三十七年建成', descEn: 'Built in 1772' },
+    ],
+    anecdotes: ['畅音阁天井可让演员"从天而降"，地井可让演员"破土而出"，配合烟火效果'],
+    images: [],
+    center: { x: 802, y: 158 },
+    components: [
+      {
+        id: 'sancengxitai', name: '三层戏台', nameEn: 'Three-tier Opera Stage', pinyin: 'Sān Céng Xì Tái',
+        highlightColor: '#8B2500',
+        craft: '畅音阁有三层戏台，从上至下称"福台"、"禄台"、"寿台"，总高20余米。寿台面积约210平方米。',
+        physics: '三层设计使表演空间层次丰富，可同时使用或分层表演，增强戏剧表现力。',
+        culture: '福、禄、寿三层寓意吉祥，三层戏台是清代宫廷戏曲艺术顶峰的象征。',
+      },
+    ],
+    game: null,
+  },
+
+  qinandian: {
+    id: 'qinandian', name: '钦安殿', nameEn: 'Qin\'an Hall',
+    alias: '', aliasEn: '',
+    category: 'worship', isKey: true, buildingType: 'hall',
+    roofType: '重檐盝顶', bays: 5, ridgeBeasts: 7,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '清康熙、乾隆年间', rebuiltEn: 'Kangxi & Qianlong reign',
+    materials: '楠木、黄色琉璃瓦',
+    location: '御花园中轴线上',
+    archive: '钦安殿是紫禁城中轴线上唯一的道教神殿，供奉北方水神玄武大帝，寓意以水镇火、护佑宫城。',
+    archiveEn: 'The only Taoist temple on the central axis of the Forbidden City.',
+    events: [
+      { year: '1420', desc: '始建于明永乐十八年', descEn: 'Original construction in 1420' },
+    ],
+    anecdotes: ['紫禁城内佛寺众多，而钦安殿是唯一留存至今的明代道教建筑'],
+    images: [],
+    center: { x: 494, y: 220 },
+    components: [
+      {
+        id: 'xuanwudadi', name: '玄武大帝', nameEn: 'Xuanwu Deity', pinyin: 'Xuán Wǔ',
+        highlightColor: '#6B5B7B',
+        craft: '殿内供奉铜铸鎏金玄武大帝神像，玄武为北方水神，龟蛇合体，象征长寿与守护。',
+        physics: '铜铸鎏金工艺使神像坚固耐久，金属具有良好的防腐性能。',
+        culture: '玄武大帝为道教水神，钦安殿设于宫中轴线，以水镇火，护佑紫禁城免遭火灾。',
+      },
+    ],
+    game: null,
+  },
+
+  cininggong: {
+    id: 'cininggong', name: '慈宁宫', nameEn: 'Cining Palace',
+    alias: '', aliasEn: '',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '黄琉璃瓦重檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1536年（明嘉靖十五年）', builtEn: '1536 (15th year of Jiajing, Ming)',
+    rebuilt: '1769年（清乾隆三十四年）', rebuiltEn: '1769 (34th year of Qianlong, Qing)',
+    materials: '楠木、松木、黄色琉璃瓦',
+    location: '内廷西路',
+    archive: '慈宁宫是明清两代皇太后、太皇太后的正宫，是太后举行重大典礼的殿堂。',
+    archiveEn: 'The main palace for Empress Dowagers during Ming and Qing dynasties.',
+    events: [
+      { year: '1653', desc: '孝庄文皇后始居慈宁宫', descEn: 'Empress Dowager Xiaozhuang moved in 1653' },
+    ],
+    anecdotes: ['清代太后圣寿节在此举行庆贺仪式'],
+    images: [],
+    center: { x: 228, y: 778 },
+    components: [], game: null,
+  },
+
+  shoukanggong: {
+    id: 'shoukanggong', name: '寿康宫', nameEn: 'Shoukang Palace',
+    alias: '', aliasEn: '',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 5,
+    built: '1735年（清雍正十三年）', builtEn: '1735 (13th year of Yongzheng, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '楠木、松木、黄色琉璃瓦',
+    location: '慈宁宫西侧',
+    archive: '寿康宫是清代皇太后、太妃的居所，是乾隆帝为生母崇庆皇太后修建的颐养宫殿。',
+    archiveEn: 'A residence for Empress Dowagers, built by Qianlong for his mother.',
+    events: [
+      { year: '1735', desc: '雍正十三年始建', descEn: 'Built in 1735' },
+    ],
+    anecdotes: ['乾隆帝每日清晨从养心殿步行至寿康宫向母亲问安，风雨无阻'],
+    images: [],
+    center: { x: 108, y: 778 },
+    components: [], game: null,
+  },
+
+  baohedian: {
+    id: 'baohedian', name: '保和殿', nameEn: 'Hall of Preserving Harmony',
+    category: 'ritual', isKey: true, buildingType: 'hall',
+    roofType: '重檐歇山顶', bays: 9, ridgeBeasts: 9,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1627年（明天启七年）', rebuiltEn: '1627 (7th year of Tianqi, Ming)',
+    materials: '金砖、楠木', location: '中和殿北侧',
+    archive: '清代为科举殿试场所，科举最高级别考试在此举行。',
+    archiveEn: 'During the Qing Dynasty, the imperial civil examinations were held here.',
+    events: [], anecdotes: ['清代为科举殿试场所'],
+    images: [], center: { x: 494, y: 708 },
+    components: [], game: null,
+  },
+
+  wenhuadian: {
+    id: 'wenhuadian', name: '文华殿', nameEn: 'Hall of Literary Brilliance',
+    category: 'culture', isKey: true, buildingType: 'hall',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1802年（清嘉庆七年）', rebuiltEn: '1802 (7th year of Jiaqing, Qing)',
+    materials: '楠木、汉白玉', location: '内廷外朝东侧',
+    archive: '明代为太子东宫，清代为举行经筵讲学之所，皇帝在此接受儒臣讲解经典。',
+    archiveEn: 'During the Ming it served as the Crown Prince\'s Eastern Palace; during Qing, imperial lectures were held here.',
+    events: [], anecdotes: ['每年春、秋两季举行经筵，由大学士担任讲官'],
+    images: [], center: { x: 792, y: 1074 },
+    components: [], game: null,
+  },
+
+  cininggonghuayuan: {
+    id: 'cininggonghuayuan', name: '慈宁宫花园', nameEn: 'Cining Palace Garden',
+    alias: '寡妇花园', aliasEn: 'Widows\' Garden',
+    category: 'culture', isKey: true, buildingType: 'screen',
+    roofType: '多种形式', bays: 0, ridgeBeasts: 0,
+    built: '1536年（明嘉靖年间）', builtEn: '1536 (Jiajing period, Ming)',
+    rebuilt: '1769年（清乾隆三十四年）', rebuiltEn: '1769 (34th year of Qianlong, Qing)',
+    materials: '木结构、琉璃瓦',
+    location: '慈宁宫南侧',
+    archive: '慈宁宫花园是慈宁宫南侧的附属园林，明清两代皇太后、太妃、太嫔们游赏、礼佛、休息的专属花园。',
+    archiveEn: 'The garden south of Cining Palace, serving as an exclusive garden for Empress Dowagers.',
+    events: [
+      { year: '1769', desc: '乾隆三十四年大规模修葺', descEn: 'Major renovation in 1769' },
+    ],
+    anecdotes: ['因主要供太后、太妃（多为先帝遗孀）使用，故民间称为"寡妇花园"'],
+    images: [],
+    center: { x: 98, y: 858 },
+    components: [], game: null,
+  },
+
+  jianting: {
+    id: 'jianting', name: '箭亭', nameEn: 'Arrow Pavilion',
+    alias: '', aliasEn: '',
+    category: 'culture', isKey: true, buildingType: 'hall',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 5,
+    built: '1730年（清雍正八年）', builtEn: '1730 (8th year of Yongzheng, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '楠木、黄色琉璃瓦',
+    location: '紫禁城东部',
+    archive: '箭亭是紫禁城东部的一座大殿，清代皇帝及皇子练习射箭、举行武试的场所。',
+    archiveEn: 'An eastern hall where Qing emperors practiced archery and held military examinations.',
+    events: [
+      { year: '1730', desc: '雍正八年建造', descEn: 'Built in 1730' },
+    ],
+    anecdotes: ['殿内现存乾隆帝御制《训守冠服骑射碑》，碑文强调"骑射为国之本"'],
+    images: [],
+    center: { x: 792, y: 1074 },
+    components: [
+      {
+        id: 'shemian', name: '射面广场', nameEn: 'Archery Ground', pinyin: 'Shè Miàn',
+        highlightColor: '#5B7F5E',
+        craft: '箭亭前广场南北长100余米，东西宽约60米，是清代皇帝及皇子跑马射箭的场地。',
+        physics: '开阔场地保证射箭视线不受遮挡，同时马匹有足够加速空间。',
+        culture: '"骑射"是满族立国之本，乾隆帝亲临箭亭射箭并作文，要求子孙永遵满洲旧俗。',
+      },
+    ],
+    game: null,
+  },
+
+  huangjidian: {
+    id: 'huangjidian', name: '皇极殿', nameEn: 'Huangji Hall',
+    alias: '', aliasEn: '',
+    category: 'ritual', isKey: true, buildingType: 'hall',
+    roofType: '重檐庑殿顶', bays: 9, ridgeBeasts: 9,
+    built: '1772年（清乾隆三十七年）', builtEn: '1772 (37th year of Qianlong, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '金丝楠木、黄色琉璃瓦',
+    location: '宁寿宫区前朝',
+    archive: '皇极殿是宁寿宫区前朝主殿，乾隆皇帝为自己退位后作为太上皇临御受贺而建。',
+    archiveEn: 'The main hall of the Longevity Palace area, built for Qianlong\'s retirement.',
+    events: [
+      { year: '1772', desc: '乾隆三十七年动工', descEn: 'Construction began in 1772' },
+    ],
+    anecdotes: ['"皇极"出自《尚书》"皇建其有极"，意为皇帝建立最高准则'],
+    images: [],
+    center: { x: 708, y: 748 },
+    components: [], game: null,
+  },
+
+  ningshoumen: {
+    id: 'ningshoumen', name: '宁寿门', nameEn: 'Ningshou Gate',
+    alias: '', aliasEn: '',
+    category: 'ritual', isKey: true, buildingType: 'gate',
+    roofType: '重檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1772年（清乾隆三十七年）', builtEn: '1772 (37th year of Qianlong, Qing)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '楠木、黄色琉璃瓦',
+    location: '宁寿宫区正门',
+    archive: '宁寿门是宁寿宫区正门，位于皇极门以北，是进入宁寿宫前朝区域的第二道门。',
+    archiveEn: 'The main gate of the Longevity Palace area.',
+    events: [
+      { year: '1772', desc: '乾隆三十七年与宁寿宫区同时修建', descEn: 'Built in 1772' },
+    ],
+    anecdotes: ['"宁寿"取"安宁长寿"之意，但乾隆实际很少使用宁寿门'],
+    images: [],
+    center: { x: 758, y: 725 },
+    components: [], game: null,
+  },
+
+  qianqingmen: {
+    id: 'qianqingmen', name: '乾清门', nameEn: 'Gate of Heavenly Purity',
+    alias: '', aliasEn: '',
+    category: 'ritual', isKey: true, buildingType: 'gate',
+    roofType: '单檐歇山顶', bays: 5, ridgeBeasts: 7,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '', rebuiltEn: '',
+    materials: '汉白玉须弥座',
+    location: '乾清宫前',
+    archive: '乾清门是紫禁城内廷与外朝的分界之门，清代皇帝"御门听政"的主要场所。',
+    archiveEn: 'The gate separating the Inner and Outer Courts, serving as the venue for Qing emperors\' court sessions.',
+    events: [
+      { year: '1420', desc: '始建于明永乐十八年', descEn: 'Original construction in 1420' },
+    ],
+    anecdotes: ['康熙帝为表示勤政，坐在乾清门内的木凳上听政，而大臣们则跪在门外砖地上'],
+    images: [],
+    center: { x: 382, y: 598 },
+    components: [], game: null,
+  },
+
+  zhonghedian: {
+    id: 'zhonghedian', name: '中和殿', nameEn: 'Hall of Central Harmony',
+    category: 'ritual', isKey: false, buildingType: 'hall',
+    roofType: '四角攒尖顶', bays: 5, ridgeBeasts: 5,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1695年（清康熙三十四年）', rebuiltEn: '1695 (Kangxi, Qing)',
+    materials: '楠木、汉白玉', location: '太和殿北侧',
+    archive: '中和殿是皇帝在太和殿举行大典前休息的地方，也是清代举行殿试的场所。',
+    archiveEn: 'The Hall of Central Harmony served as the Emperor\'s resting place before major ceremonies in the Hall of Supreme Harmony.',
+    events: [], anecdotes: ['皇帝在太和殿举行大典前在此休息'],
+    images: [], center: { x: 494, y: 799 },
+    components: [], game: null,
+  },
+
+  dongliugong: {
+    id: 'dongliugong', name: '东西六宫', nameEn: 'Six Palaces',
+    category: 'living', isKey: true, buildingType: 'hall',
+    roofType: '', bays: 0, ridgeBeasts: 0,
+    built: '1420年（明永乐十八年）', builtEn: '1420 (Yongle, Ming)',
+    rebuilt: '1655年（清顺治十二年）', rebuiltEn: '1655 (12th year of Shunzhi, Qing)',
+    materials: '松木梁柱、黄色琉璃瓦、砖石台基',
+    location: '内廷东路',
+    archive: '东六宫是明清两代后妃居住的核心区域，由景仁宫、承乾宫、钟粹宫、景阳宫、永和宫、延禧宫组成，每宫为两进院的三合院形式。',
+    archiveEn: 'The core residence area for imperial consorts, comprising six eastern palaces.',
+    events: [
+      { year: '1859', desc: '咸丰年间，慈禧居储秀宫，在此生子载淳（同治帝）', descEn: 'Empress Dowager Cixi lived here during Xianfeng reign' },
+    ],
+    anecdotes: ['"一入宫门深似海"：东西六宫宫墙高耸，门禁森严'],
+    images: [],
+    center: { x: 642, y: 505 },
+    components: [], game: null,
+  },
+}
+
+/* ---------- 功能分类 ---------- */
+const FUNCTION_CATEGORIES = [
+  { id: 'ritual', labelZh: '礼仪政治', labelEn: 'Ritual & Politics', color: 'fn-ritual' },
+  { id: 'living', labelZh: '起居生活', labelEn: 'Living Quarters', color: 'fn-living' },
+  { id: 'culture', labelZh: '休闲文化', labelEn: 'Cultural', color: 'fn-culture' },
+  { id: 'worship', labelZh: '祭祀宗教', labelEn: 'Worship', color: 'fn-worship' },
+  { id: 'decor', labelZh: '装饰景观', labelEn: 'Decorative', color: 'fn-decor' },
+]
+
+/* ---------- 文化主题 ---------- */
+const CULTURE_THEMES = {
+  axis: {
+    id: 'axis',
+    title: '中轴线', titleEn: 'The Central Axis',
+    subtitle: '天下之脊', subtitleEn: 'Spine of the Empire',
+    content: '紫禁城以南北中轴线为脊柱，主要建筑严格对称分布。这条轴线从午门起，经太和殿、乾清宫、神武门，延伸至景山，全长约2.5公里。中轴线不仅是建筑布局的核心，更是皇权至上、天下归心的政治象征。\n\n北京城的规划同样以这条轴线为基准，体现了"以中为尊"的宇宙观。中轴线北指天、南向地，皇帝居中，统御四方，故称"天下之脊"。',
+    contentEn: 'The Forbidden City\'s north-south central axis serves as its spine, with major buildings symmetrically arranged. This axis runs from the Meridian Gate through the Hall of Supreme Harmony, Palace of Heavenly Purity, and Gate of Divine Might, extending northward to Jingshan Park—a total of about 2.5 kilometers.\n\nBeijing\'s city planning also uses this axis as its foundation, embodying the cosmological principle of "central supremacy." The Emperor, positioned at the center, governs all four directions, earning the title "Spine of the Empire."',
+    overlayType: 'axis',
+  },
+  yinyang: {
+    id: 'yinyang',
+    title: '阴阳五行', titleEn: 'Yin-Yang & Five Elements',
+    subtitle: '建筑中的宇宙观', subtitleEn: 'Cosmology in Architecture',
+    content: '故宫建筑处处体现阴阳五行的哲学思想。\n\n外朝属阳：太和殿广场开阔，金砖铺地，阳光充沛，举行大典，象征天、阳、刚。\n\n内廷属阴：乾清宫、坤宁宫布局紧凑，庭院幽深，色彩柔和，象征地、阴、柔。\n\n五行方面：黄色属土，象征皇权居中；绿色属木，象征文华殿文治；红色属火，象征热情与庆典；白色属金，用于汉白玉装饰；黑色属水，用于屋顶琉璃。\n\n《易经》曰："天地之大德曰生。"故宫正是这种生生不息宇宙观的物质表达。',
+    contentEn: 'The Forbidden City architecture embodies Yin-Yang and Five Elements philosophy throughout.\n\nThe Outer Court represents Yang: vast open plazas, gold bricks, abundant sunlight, grand ceremonies—symbolizing heaven, yang, and strength.\n\nThe Inner Court represents Yin: compact layouts, deep courtyards, soft colors—symbolizing earth, yin, and gentleness.\n\nIn Five Elements: Yellow belongs to Earth, symbolizing imperial central authority. Green belongs to Wood, representing civil culture. Red belongs to Fire, symbolizing passion and celebration. White belongs to Metal, used in white marble decoration. Black belongs to Water, used in glazed roof tiles.',
+    overlayType: 'yinyang',
+  },
+  fengshui: {
+    id: 'fengshui',
+    title: '风水格局', titleEn: 'Feng Shui',
+    subtitle: '藏风聚气的空间哲学', subtitleEn: 'Spatial Philosophy of Capturing Wind and Energy',
+    content: '故宫选址与布局遵循风水学原理。\n\n选址：紫禁城坐北朝南，背靠景山（镇山），前临金水河，形成"前朱雀、后玄武"的理想格局。\n\n金水河：从西北流入（天门），从东南流出（地户），呈玉带环抱之势，寓意财富不外流。\n\n建筑朝向：所有主要建筑均坐北朝南，顺应地球磁场，既便于采光取暖，也符合"面南而治"的政治隐喻。\n\n四象布局：左（东）为青龙，建文华殿；右（西）为白虎，建武英殿；前（南）为朱雀，建天坛；后（北）为玄武，建景山。',
+    contentEn: 'The Forbidden City\'s site selection and layout follow Feng Shui principles.\n\nSite: The palace faces south with Jingshan Mountain as its northern backdrop and the Golden Water River in front, forming the ideal "front Vermillion Bird, back Black Tortoise" configuration.\n\nGolden Water River: Flowing in from the northwest (Heavenly Gate) and out to the southeast (Earthly Gate), it embraces the palace like a jade belt, symbolizing the retention of wealth.\n\nBuilding Orientation: All major buildings face south, aligning with Earth\'s magnetic field for natural light and warmth.',
+    overlayType: 'fengshui',
+  },
+  stars: {
+    id: 'stars',
+    title: '天象对应', titleEn: 'Celestial Correspondence',
+    subtitle: '紫微垣与紫禁城', subtitleEn: 'Purple Enclosure & Forbidden City',
+    content: '紫禁城的名称直接来源于天文学。\n\n紫微垣：北极星所在的星区，古人认为紫微星（北极星）永居天心，是"帝座"的象征。地上皇帝仿天帝居于紫微垣，故所居之城称"紫禁城"。\n\n建筑对应：太和殿位于紫微垣中央，对应天帝；乾清宫对应太子宫；坤宁宫对应天后宫；东西六宫对应各星宿。\n\n星门布局：午门五门洞对应五宫；神武门高三层，对应三垣。\n\n天上紫微星不动，地上皇帝亦是"真龙天子"，其位不可动摇。',
+    contentEn: 'The name "Forbidden City" derives directly from astronomy.\n\nThe Purple Enclosure: The star region containing the North Celestial Pole. Ancient Chinese believed the Purple Immortal Star (Polaris) always remained at the center of heaven, symbolizing the "Imperial Seat." The earthly Emperor, modeled after the Heavenly Emperor, resided in the Forbidden City—literally "City of Purple Prohibition."\n\nArchitectural Correspondences: The Hall of Supreme Harmony sits at the center of the "Purple Enclosure," corresponding to the Heavenly Emperor. The Palace of Heavenly Purity corresponds to the Crown Prince\'s palace, and the six palaces on each side correspond to various star mansions.',
+    overlayType: 'stars',
+  },
+  'ritual-order': {
+    id: 'ritual-order',
+    title: '礼制秩序', titleEn: 'Ritual Order',
+    subtitle: '建筑等级与空间权力', subtitleEn: 'Architectural Hierarchy & Spatial Power',
+    content: '故宫是儒家礼制思想在建筑上的全面体现。\n\n屋顶等级：重檐庑殿顶（太和殿）> 重檐歇山顶 > 单檐庑殿顶 > 单檐歇山顶，等级森严，不可僭越。\n\n开间制度：太和殿11间（最高奇数），中和殿5间，保和殿9间。奇数开间为阳数，等级更高。\n\n脊兽数量：太和殿10只（最多），依次递减，最低1只。脊兽数量是建筑等级的最直观标志。\n\n色彩运用：黄色琉璃瓦为皇帝专用，绿色为皇子，红色为官员。色彩即身份，触目可知。\n\n《礼记》曰："君子小人，物有章伦，贵贱不衍，所谓礼也。"故宫正是这种礼制秩序的完美物质化表达。',
+    contentEn: 'The Forbidden City represents the fullest architectural embodiment of Confucian ritual principles.\n\nRoof Hierarchy: Double-eaved hip roof (Hall of Supreme Harmony) > Double-eaved gable roof > Single-eaved hip roof > Single-eaved gable roof—strict hierarchies that cannot be violated.\n\nBay System: The Hall of Supreme Harmony has 11 bays (the highest odd number), the Hall of Central Harmony has 5, and the Hall of Preserving Harmony has 9. Odd numbers represent yang and higher rank.\n\nRidge Beast Count: The Hall of Supreme Harmony has 10 (the maximum), decreasing for lower ranks. The number of ridge beasts is the most visible indicator of architectural rank.',
+    overlayType: 'ritual-order',
+  },
+}
+
+/* ---------- 构件类型说明（模块三初始状态） ---------- */
+const COMPONENT_TYPES = {
+  hall: {
+    name: '殿堂类', nameEn: 'Hall Type',
+    desc: '殿堂是故宫最重要的建筑类型，用于举行重大典礼和处理政务。太和殿、保和殿等属于殿堂类，其特点是体量宏大、屋顶等级最高、装饰最为华丽。',
+    descEn: 'Halls are the most important building type in the Forbidden City, used for major ceremonies and governance. They feature grand scale, the highest roof ranks, and the most ornate decoration.',
+  },
+  tower: {
+    name: '楼阁类', nameEn: 'Tower Type',
+    desc: '楼阁类建筑以角楼为代表，结构精巧，层层叠檐，展现了中国木构建筑的力学智慧。',
+    descEn: 'Tower-type buildings, exemplified by corner towers, feature intricate structure and layered eaves, showcasing the mechanical ingenuity of Chinese timber architecture.',
+  },
+  gate: {
+    name: '城门类', nameEn: 'Gate Type',
+    desc: '城门是故宫的出入口，也是礼仪空间的过渡。午门、神武门等城门既是防御设施，也是礼仪象征。',
+    descEn: 'Gates serve as entrances and exits to the Forbidden City and as transitions between ritual spaces. They function both as defensive structures and ritual symbols.',
+  },
+  screen: {
+    name: '影壁类', nameEn: 'Screen Type',
+    desc: '影壁是遮挡视线的墙壁或隔断，九龙壁是最著名的影壁建筑，既有装饰作用，也有分隔空间的功能。',
+    descEn: 'Screen walls block or partition space. The Nine Dragon Wall is the most famous screen, serving both decorative and spatial separation functions.',
+  },
+}
+
+/* ---------- 模块一分类介绍（来自 jieshao.md） ---------- */
+const CATEGORY_INTROS = {
+  all: {
+    desc: '故宫，又称紫禁城，是明清两代皇宫，也是中国古代宫城制度与木构建筑艺术的集大成者。整个空间以中轴线为骨架，外朝与内廷分区明确，既承载国家礼仪与皇权秩序，也容纳起居、祭祀、游赏与审美活动。通过殿堂、城门、园林、楼阁与景观装置的共同组织，故宫形成了兼具政治威严、生活秩序与文化意境的完整空间体系。',
+    buildings: Object.values(BUILDINGS).map(item => item.name),
+    buildingIds: Object.values(BUILDINGS).map(item => item.id),
+    images: Object.values(BUILDINGS).map(item => `assets/images/buildings/${item.name}.jpg`),
+  },
+  ritual: {
+    desc: '礼仪政治类建筑，是紫禁城中最能体现皇权秩序与国家制度的空间。这里不仅是皇帝举行登基、大婚、朝贺、颁诏、献俘等重大典礼的场所，也是封建王朝将"礼"转化为可见秩序的重要舞台。建筑往往体量宏大、轴线明确、装饰庄严，通过高台基、重檐屋顶和严格的空间等级，传达出至高无上的政治权威。',
+    buildings: ['太和殿', '午门', '中和殿', '保和殿', '太和门', '乾清门', '神武门', '武英殿', '文华殿'],
+    buildingIds: ['taihedian', 'wumen', 'zhonghedian', 'baohedian', 'taiheimen', 'qianqingmen', 'shenwumen', 'wuyingdian', 'wenhuadian'],
+    images: [
+      'assets/images/buildings/太和殿.jpg',
+      'assets/images/buildings/午门.jpg',
+      'assets/images/buildings/中和殿.jpg',
+      'assets/images/buildings/保和殿.jpg',
+      'assets/images/buildings/太和门.jpg',
+      'assets/images/buildings/乾清门.jpg',
+      'assets/images/buildings/神武门.jpg',
+      'assets/images/buildings/武英殿.jpg',
+      'assets/images/buildings/文华殿.jpg',
+    ],
+  },
+  living: {
+    desc: '起居生活类建筑，主要承担皇帝、皇后、后妃及宫廷成员的日常居住、起居、用膳与处理内廷事务等功能。与外朝建筑的恢弘威严相比，这类空间更贴近真实的宫廷生活，既有居住性的私密需求，也保留了森严的礼制规范。',
+    buildings: ['乾清宫', '坤宁宫', '养心殿', '寿康宫', '慈宁宫', '东西六宫'],
+    buildingIds: ['qianqinggong', 'kunninggong', 'yangxindian', 'shoukanggong', 'cininggong', 'dongliugong'],
+    images: [
+      'assets/images/buildings/乾清宫.jpg',
+      'assets/images/buildings/坤宁宫.jpg',
+      'assets/images/buildings/养心殿.jpg',
+      'assets/images/buildings/寿康宫.jpg',
+      'assets/images/buildings/慈宁宫.jpg',
+      'assets/images/buildings/东六宫.jpg',
+      'assets/images/buildings/西六宫.jpg',
+    ],
+  },
+  culture: {
+    desc: '休闲文化类建筑，是宫廷生活中相对柔和而富有审美意味的部分，承担游赏、听戏、宴饮、读书、赋诗、赏景等功能。它们展现的不是国家典制的威严，而是皇家生活中关于趣味、教养与文化品位的一面。',
+    buildings: ['漱芳斋', '御花园', '乾隆花园', '畅音阁', '慈宁宫花园', '箭亭'],
+    buildingIds: ['shufangzhai', 'yuhuayuan', 'qianlonghuayuan', 'changyinge', 'cininggonghuayuan', 'jianting'],
+    images: [
+      'assets/images/buildings/漱芳斋.jpg',
+      'assets/images/buildings/御花园.jpg',
+      'assets/images/buildings/乾隆花园.jpg',
+      'assets/images/buildings/畅音阁.jpg',
+      'assets/images/buildings/慈宁宫花园.jpg',
+      'assets/images/buildings/箭亭.jpg',
+    ],
+  },
+  worship: {
+    desc: '祭祀宗教类建筑，是皇室进行祭祖、祭神、祈福、礼佛或道教仪式的重要场所，承载着"敬天法祖"的核心观念。对古代帝王而言，祭祀不仅是宗教活动，更是合法性与正统性的象征，因此这类建筑在宫城中具有特殊意义。',
+    buildings: ['钦安殿'],
+    buildingIds: ['qinandian'],
+    images: [
+      'assets/images/buildings/钦安殿.jpg',
+    ],
+  },
+  decor: {
+    desc: '装饰景观类建筑或空间，主要承担环境营造、视觉引导、象征表达与皇家审美展示的功能。它们未必是日常政治活动的核心场所，却往往最能体现紫禁城在整体空间上的精致经营与文化意味。',
+    buildings: ['角楼', '九龙壁', '御花园', '乾隆花园'],
+    buildingIds: ['jiaolou', 'jiulongbi', 'yuhuayuan', 'qianlonghuayuan'],
+    images: [
+      'assets/images/buildings/角楼.jpg',
+      'assets/images/buildings/九龙壁.jpg',
+      'assets/images/buildings/御花园.jpg',
+      'assets/images/buildings/乾隆花园.jpg',
+    ],
+  },
+}
+
+/* ---------- 模块三类型介绍（来自 jieshao.md） ---------- */
+const COMPONENT_TYPE_INTROS = {
+  hall: {
+    desc: '殿堂类建筑是紫禁城中等级最高、最具核心地位的建筑类型，通常位于重要院落或中轴空间之上，用于举行朝会、典礼、祭祀、议政或重要内廷活动。它们在形制上普遍具有开间规整、屋顶等级高、台基宏大、装饰庄重等特点，是皇家建筑威严感最集中的体现。',
+    buildings: ['太和殿', '中和殿', '保和殿', '乾清宫', '坤宁宫', '养心殿', '乾清门', '太和门', '神武门', '箭亭'],
+    buildingIds: ['taihedian', 'zhonghedian', 'baohedian', 'qianqinggong', 'kunninggong', 'yangxindian', 'qianqingmen', 'taiheimen', 'shenwumen', 'jianting'],
+    images: [
+      'assets/images/buildings/太和殿.jpg',
+      'assets/images/buildings/中和殿.jpg',
+      'assets/images/buildings/保和殿.jpg',
+      'assets/images/buildings/乾清宫.jpg',
+      'assets/images/buildings/坤宁宫.jpg',
+      'assets/images/buildings/养心殿.jpg',
+      'assets/images/buildings/乾清门.jpg',
+      'assets/images/buildings/太和门.jpg',
+      'assets/images/buildings/神武门.jpg',
+    ],
+  },
+  tower: {
+    desc: '楼阁类建筑通常具有更强的观赏性、文化性和空间变化感，既可以用来登临远望，也可以承担藏书、听戏、游憩、陈设等功能。与殿堂类相比，楼阁类在气质上往往更灵动、更精巧，也更容易体现皇家园林和宫廷文化中的审美趣味。',
+    buildings: ['角楼', '漱芳斋', '畅音阁'],
+    buildingIds: ['jiaolou', 'shufangzhai', 'changyinge'],
+    images: [
+      'assets/images/buildings/角楼.jpg',
+      'assets/images/buildings/漱芳斋.jpg',
+      'assets/images/buildings/畅音阁.jpg',
+    ],
+  },
+  gate: {
+    desc: '城门类建筑是紫禁城空间秩序中的关键节点，承担宫城出入、礼仪通行、身份区分与安全防御等多重功能。它们不仅决定了人流与礼制的运行方式，也以门洞数量、通行规则、建筑等级等形式，体现出严格的宫廷等级制度。',
+    buildings: ['午门', '神武门', '乾清门', '太和门', '宁寿门'],
+    buildingIds: ['wumen', 'shenwumen', 'qianqingmen', 'taiheimen', 'ningshoumen'],
+    images: [
+      'assets/images/buildings/午门.jpg',
+      'assets/images/buildings/神武门.jpg',
+      'assets/images/buildings/乾清门.jpg',
+      'assets/images/buildings/太和门.jpg',
+    ],
+  },
+  screen: {
+    desc: '景观类主要包括园林、照壁、角楼、假山、水景以及具有观赏性的附属空间，它们在紫禁城中起到美化环境、组织视线、烘托氛围和强化象征意涵的作用。与功能性极强的殿堂或城门不同，景观类更强调空间体验与文化意境，是皇家审美、工艺技术和象征表达的集中体现。',
+    buildings: ['九龙壁', '御花园', '乾隆花园', '漱芳斋', '畅音阁', '慈宁宫花园', '箭亭', '角楼'],
+    buildingIds: ['jiulongbi', 'yuhuayuan', 'qianlonghuayuan', 'shufangzhai', 'changyinge', 'cininggonghuayuan', 'jianting', 'jiaolou'],
+    images: [
+      'assets/images/buildings/九龙壁.jpg',
+      'assets/images/buildings/御花园.jpg',
+      'assets/images/buildings/乾隆花园.jpg',
+      'assets/images/buildings/漱芳斋.jpg',
+      'assets/images/buildings/畅音阁.jpg',
+      'assets/images/buildings/慈宁宫花园.jpg',
+      'assets/images/buildings/箭亭.jpg',
+      'assets/images/buildings/角楼.jpg',
+    ],
+  },
+}
+
+/* ---------- kapian.md 建筑详细档案数据 ---------- */
+// 包含建筑身份、建造时间线、材料来源、建筑样式、功能分类、历史事件、节庆日、趣闻轶事
+const BUILDING_KAPIAN_DATA = {
+  taihedian: {
+    identity: '紫禁城"正朝"，外朝三大殿之首，明清两代国家礼仪的核心象征，中国现存最大的木结构大殿。',
+    identityEn: 'The main throne hall of the Forbidden City, the supreme symbol of Ming-Qing state rituals.',
+    timeline: '始建：明永乐十八年（1420年），初名奉天殿。重建：明永乐十九年（1421年）遭雷击焚毁，后多次重建。现存主体为清康熙三十四年（1695年）重建，耗时3年完工。',
+    materials: '木材：主要使用金丝楠木（初建），清重建时使用了松木等，采伐自四川、湖广、江西等地的深山老林。石料：台基和御路石料采自北京房山大石窝。琉璃瓦：屋顶瓦件为康熙三十四年（1695年）烧制。金砖：殿内铺墁的"金砖"产自苏州，制作工艺复杂，成本极高。',
+    style: '屋顶形式：重檐庑殿顶，是中国古代建筑中等级最高的屋顶样式。屋脊上装饰有10个仙人走兽（龙、凤、狮子、天马、海马、狻猊、押鱼、獬豸、斗牛、行什），为全国孤例。台基：三层汉白玉石雕基座，高8.13米。殿内共有72根大柱，其中6根为沥粉贴金蟠龙金柱。',
+    functionCat: '礼仪殿堂。用于举行皇帝登基、大婚、册封皇后、命将出征、以及万寿节、元旦、冬至三大节朝贺等国家最隆重的典礼。',
+    historicalEvents: [
+      '清康熙十八年（1679年），太和殿再次被雷击焚毁。因国家财政和战事吃紧，迟迟未能重建，荒废了十余年。直到康熙三十四年（1695年），康熙帝在平定三藩、收复台湾、抗击沙俄后，国力强盛，才下令重修，此次重建确立了今日太和殿的规模和形制。',
+      '太和殿命运多舛，历史上多次遭雷击焚毁。',
+    ],
+    festivals: [
+      '以清代的元旦（春节）大朝最为隆重。皇帝凌晨子时（约12:25）即起身，经过一系列繁杂的祭祀后，于辰时（约7:00）在太和殿接受百官朝贺。届时，太和殿广场卤簿（仪仗）威严，中和韶乐与丹陛大乐奏响，王公大臣行三跪九叩大礼。',
+    ],
+    anecdotes: [
+      '"专属BGM"：太和殿大典时，中和韶乐与丹陛大乐是皇帝的"专属BGM"，乐队配置庞大，包含金、石、丝、竹、匏、土、革、木八音，如编钟、编磬、琴、瑟、笙、箫等。',
+      '"千龙吐水"：太和殿基座的栏杆柱头下，设计有1142个螭首（龙子）排水口。大雨时，雨水会从这些螭口中喷涌而出，形成"千龙吐水"的壮观景象。',
+    ],
+  },
+  wumen: {
+    identity: '紫禁城"国门"，明清两代国家礼仪的核心象征之一，是皇帝举行重要典礼、颁布诏令的场所。',
+    identityEn: 'The main southern gate of the Forbidden City, a core symbol of Ming-Qing state rituals.',
+    timeline: '始建：明永乐十八年（1420年）。现存结构：清顺治四年（1647年）重修，嘉庆六年（1801年）又修。',
+    materials: '城台主体为明代大城砖砌筑，表面用灰浆抹面。上部五座崇楼为木结构，梁柱采用金丝楠木、松木等，屋顶覆黄色琉璃瓦。',
+    style: '平面形制："凹"字形，正楼居中，两侧向前延伸出两座墩台，墩台上各建有两座方亭（雁翅楼），形成"五凤楼"的格局。屋顶形式：正楼为重檐庑殿顶，是故宫内仅次于太和殿的规格。门洞：城台开有五个门洞，正中门洞为皇帝专用，形成严格的等级秩序。',
+    functionCat: '礼仪与防御之门。午门是故宫的正门，兼具城门防御功能。更重要的是，它是国家礼仪的核心空间：皇帝在此举行"颁朔礼"、接受重大战功"献俘礼"，以及颁布重要诏令。',
+    historicalEvents: [
+      '"午门廷杖"：明代，如果大臣触怒皇帝，会被在午门执行"廷杖"，即当众杖责。明正德、嘉靖年间，廷杖尤为惨烈，甚至出现当场杖毙的情况。',
+      '"推出午门斩首"的误解：民间有"推出午门斩首"的说法，但事实上，午门从未在此处斩首犯人。清代处决犯人通常在北京的菜市口。',
+    ],
+    festivals: [
+      '"颁朔礼"：每年农历十月初一，皇帝会在午门举行"颁朔礼"，将次年的历书（时宪书）颁布给全国。',
+      '"献俘礼"：每当重大军事胜利后，皇帝会在午门举行"献俘礼"，将俘虏献于宗庙和皇帝面前。',
+    ],
+    anecdotes: [
+      '"五凤楼"的传说：午门因五座崇楼的布局，形似凤凰展翅，故有"五凤楼"之称。科举殿试后，皇帝会在此设宴款待新科进士，称为"恩荣宴"。',
+      '雨燕的"家"：每年春天，数以万计的北京雨燕会从非洲飞回，在午门的屋檐下筑巢繁衍，已在故宫生活了六百年。',
+    ],
+  },
+  zhonghedian: {
+    identity: '外朝三大殿之一，皇帝在大典前的"预备厅"和"休息室"。',
+    identityEn: 'One of the three main halls, serving as the Emperor\'s preparation room before major ceremonies.',
+    timeline: '始建：明永乐十八年（1420年），初名华盖殿。清顺治二年（1645年）改名为中和殿。现存建筑为明天启七年（1627年）重建。',
+    materials: '材料与太和殿类似，采用上等木料（楠木等）、汉白玉台基和琉璃瓦件。',
+    style: '屋顶形式：单檐四角攒尖顶，屋面覆黄色琉璃瓦，顶部有铜胎鎏金宝顶。平面呈正方形，面阔、进深各3间，四面出廊，四面开门，便于皇帝通行。',
+    functionCat: '礼仪预备空间。皇帝在前往太和殿举行大典前，先在此殿休息，并接受内阁、礼部及执事官员的跪拜行礼。也是皇帝祭祀天、地、太庙等大典前，审阅祭文和亲耕籍田前检查种子农具的地方。',
+    historicalEvents: [
+      '中和殿不仅是休息室，也是重要的"排练场"。每逢大典，皇帝会在此先预览祝文（祭文），官员们则要在这里为皇帝演习礼仪。',
+    ],
+    festivals: [
+      '在太和殿大典的流程中，中和殿是皇帝角色转换的关键一环。例如在元旦大典时，皇帝从后宫乘舆到中和殿降舆，先在殿内设座，完成这一"候场"仪式后，再从中和殿乘舆到太和殿。',
+    ],
+    anecdotes: [
+      '"歇脚亭"的逆袭：相比于太和殿的显赫，中和殿的存在感似乎较低，但它却是皇帝最"需要"的地方。在盛大的典礼前，这里是唯一能让紧绷的皇帝稍作喘息和调整的私密空间，堪称皇权的"幕后缓冲区"。',
+    ],
+  },
+  baohedian: {
+    identity: '外朝三大殿之一，明清两代功能迥异，清代为科举最高等级考试"殿试"的固定场所。',
+    identityEn: 'One of the three main halls; during Qing, it became the venue for the imperial examination.',
+    timeline: '始建：明永乐十八年（1420年），初名谨身殿。清顺治二年（1645年）改名为保和殿。现存主体为明天启七年（1627年）重建。',
+    materials: '殿后有一块紫禁城内最大的云龙石雕，长16.57米，宽3.07米，厚1.7米，重约250吨，产自北京房山。如此巨石在冬季通过沿途打井泼水结冰，以"旱船"方式拉运至故宫，动用了数万民夫。',
+    style: '屋顶形式：重檐歇山顶，等级仅次于太和殿的重檐庑殿顶。结构：面阔9间，进深5间，殿内减去部分立柱，空间开阔，便于举行考试或宴会。',
+    functionCat: '多功能殿堂。明代多为皇帝在重大典礼前更衣的场所；清代则成为皇帝举行盛大宴会的场所，更是科举考试最高等级"殿试"的固定考场。',
+    historicalEvents: [
+      '乾隆五十四年（1789年），乾隆帝将殿试的地点由太和殿正式移至保和殿。从此，这里成为无数寒窗苦读的学子们鲤鱼跃龙门的最后一道关口。皇帝亲临现场主持考试，由读卷大臣评阅试卷后，前十名的试卷还要呈送皇帝亲自审阅钦定，选拔出状元、榜眼、探花。',
+    ],
+    festivals: [
+      '除夕，皇帝会在保和殿举行盛大的"外藩宴"，宴请蒙古王公、回部贵族及外国使节，以示怀柔。',
+    ],
+    anecdotes: [
+      '"和合"之意：保和殿的命名意为"志不外驰，恬神守志"，即保持心志的和谐统一。有趣的是，它的功能也从明代的更衣室，演变为清代的国宴厅和最高考场。',
+    ],
+  },
+  qianqinggong: {
+    identity: '明清两代皇帝的正式寝宫，也是内廷的核心象征。自雍正皇帝后虽移居养心殿，但乾清宫仍具有极高的政治象征意义。',
+    identityEn: 'The formal imperial bedchamber during Ming and Qing dynasties, and the core symbol of the Inner Court.',
+    timeline: '始建：明永乐十八年（1420年）。焚毁与重建：明正德、嘉靖年间多次遭火，现存建筑是清嘉庆三年（1798年）重建的。',
+    materials: '殿内铺墁"金砖"，梁柱采用上等松木等。殿内设有"金砖"地面和雕刻精美的屏风、宝座。',
+    style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间，象征九五之尊。殿内明间设有金漆雕龙宝座，宝座上方悬挂顺治帝御笔"正大光明"匾。殿内暖阁共有9间，是皇帝日常起居之所。',
+    functionCat: '寝宫与政厅。明代为皇帝寝宫，清代康熙皇帝在此居住并"御门听政"。自雍正起，虽然寝宫移至养心殿，但乾清宫仍是皇帝死后停灵的"正寝之所"。',
+    historicalEvents: [
+      '"正大光明"匾背后的秘密。自雍正帝创立秘密建储制度后，皇帝将选定的继承人的名字写好，一式两份，密封于匣中，放在乾清宫"正大光明"匾后。这一制度有效避免了皇子间残酷的储位之争。',
+    ],
+    festivals: [
+      '乾清宫是清宫家宴的主要场所。元旦、万寿节等重要节日，皇帝会在这里宴请皇族成员。不同于太和殿的国宴，乾清宫的家宴更有家族团聚的气氛。',
+    ],
+    anecdotes: [
+      '"天字第一号"文物：故宫博物院的文物编号中，"天字第一号"文物是一对乾清宫顶门用的大木墩子，被称为"大木梃"。这对看似普通的木墩，却以其特殊的地位成为故宫收藏的起点。',
+    ],
+  },
+  kunninggong: {
+    identity: '紫禁城内廷后三宫之一，明代为皇后寝宫，清代改为萨满教祭神场所及皇帝大婚的洞房。',
+    identityEn: 'One of the three inner palaces, serving as the Empress\'s residence in Ming and a shamanist altar in Qing.',
+    timeline: '始建：明永乐十八年（1420年）。改建：清顺治十二年（1655年），仿盛京清宁宫改建，成为萨满祭祀场所。',
+    materials: '木结构梁柱，屋顶覆黄色琉璃瓦。室内改建后增设"卍"字炕（连二炕）、大锅（煮祭肉用）。东暖阁装修华丽，以红、金色为主。',
+    style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间。内部布局：西侧四间为萨满祭神场所，设神位、神厨、大锅；东侧两间为皇帝大婚洞房（东暖阁）。正门不居中而偏东，体现满族"口袋房"特色。',
+    functionCat: '多用途殿堂。清代坤宁宫每日早晚有萨满祭祀，每月初一、十五有大祭；皇帝大婚时作为洞房。',
+    historicalEvents: [
+      '康熙帝大婚：1665年，康熙帝与赫舍里氏皇后在坤宁宫东暖阁成婚，婚后居住数日。溥仪婉容大婚（1922年）：末代皇帝溥仪与皇后婉容在坤宁宫东暖阁举办婚礼，这是坤宁宫最后一次作为洞房。',
+    ],
+    festivals: [
+      '萨满大祭：每月初一、十五，皇帝、皇后会亲临坤宁宫参加萨满祭神，杀猪煮肉，分赐近臣。祭神后，皇帝率王公大臣吃"祭神肉"。',
+    ],
+    anecdotes: [
+      '"吃肉大典"：清代坤宁宫祭祀后，皇帝会将煮好的猪肉分给大臣吃，称为"吃福肉"。肉不加盐，白水煮，许多大臣难以下咽，但不敢不吃。',
+      '"坤宁宫"牌匾的满文：坤宁宫匾额上有满、汉、蒙古三种文字，是故宫中少有的多语文匾额。',
+    ],
+  },
+  yangxindian: {
+    identity: '清代紫禁城内使用时间最长的皇帝寝宫，清代宫廷政治活动的中心，见证了清王朝从鼎盛到衰亡的全过程。',
+    identityEn: 'The longest-used imperial bedchamber in the Qing Dynasty, serving as the center of political activities.',
+    timeline: '始建：明嘉靖十六年（1537年）。清中期（乾隆时期）：建筑格局成熟，功能基本完备。修缮：2015年启动研究性保护项目，于2025年12月26日重新开放。',
+    materials: '木结构：部分大木结构为明代原物。排水立柱内部发现锡铅合金金属管，兼具防水防潮特性。东暖阁北墙采光"明瓦"由上千枚"海月"贝壳打磨而成。',
+    style: '平面布局：工字形结构，正殿、工字廊、后殿相连。正殿明间悬挂雍正御笔"中正仁和"匾。西暖阁悬挂"勤政亲贤"匾和"惟以一人治天下，岂为天下奉一人"对联。三希堂：因收藏王羲之《快雪时晴帖》、王献之《中秋帖》、王珣《伯远帖》三件稀世法帖而得名。',
+    functionCat: '寝宫与政厅。清代自雍正帝起，养心殿取代乾清宫成为皇帝日常居住和理政的场所，集寝宫、书房、政务堂、佛堂于一体。',
+    historicalEvents: [
+      '"元旦开笔"之典。始于康熙帝，后成为清代皇帝每年元旦（春节）子时的固定仪式。',
+      '"三希堂"的命名深意：乾隆帝强调"以三希名堂者，亦非尽为藏帖也"，更有"士希贤、贤希圣、圣希天"之意。',
+    ],
+    festivals: ['元旦开笔礼。每年正月初一子时，皇帝在养心殿东暖阁举行最私密、最重要的年度祈福仪式。'],
+    anecdotes: [
+      '百年修缮的惊人发现：在2015-2025年的修缮中，工作人员在西配殿发现了两件清代戏折及一张条幅，为清宫除夕承应戏单。',
+      '"明瓦"的巧思：东暖阁用于采光的透明雨棚材料，经细致辨认，竟是由上千枚"海月"贝壳打磨而成。',
+    ],
+  },
+  shenwumen: {
+    identity: '紫禁城北门，故宫的"后门"，明清两代帝后出行、选秀女入宫及皇室成员出入的重要通道。',
+    identityEn: 'The north gate of the Forbidden City, serving as a key passage for imperial exits and entrances.',
+    timeline: '始建：明永乐十八年（1420年），初名"玄武门"。避讳改名：清康熙年间，因避康熙帝名讳"玄烨"，改称"神武门"。',
+    materials: '城台为明代大城砖砌筑，上部城楼为木结构，梁柱采用松木等，屋顶覆黄色琉璃瓦。门洞内设石门券，地面铺花岗岩石板。',
+    style: '屋顶形式：重檐庑殿顶，面阔5间，进深1间，四周围廊。结构：城台开三门洞，上建城楼。门上旧设钟、鼓，每日黄昏后鸣钟108响，继而击鼓起更；启明时复鸣钟报晓。',
+    functionCat: '礼仪与防御之门。神武门是紫禁城北门，日常供宫人、太监、杂役出入；皇后祭先蚕、皇帝北狩等亦由此门出入。清代选秀女时，秀女由此门入宫。',
+    historicalEvents: [
+      '1924年，冯玉祥部将鹿钟麟率军从神武门进入故宫，驱逐溥仪出宫，结束了清室在紫禁城的最后岁月。',
+    ],
+    festivals: [
+      '皇帝祭地坛：每年夏至，皇帝前往地坛祭祀，出神武门，届时鸣钟，百官跪送。',
+      '皇后亲蚕礼：皇后出神武门至北海先蚕坛行亲蚕礼。',
+    ],
+    anecdotes: [
+      '"走出故宫"的最后一扇门：游客参观故宫通常从神武门离开，门外的景山万春亭是拍摄故宫全景的最佳机位。民间有"入宫走午门，出宫走神武"的说法。',
+    ],
+  },
+  jiaolou: {
+    identity: '紫禁城城墙的防御性建筑，兼具装饰功能，是中国古代木构建筑中结构最精巧、造型最华丽的代表作之一。',
+    identityEn: 'Defensive structures at the four corners of the Forbidden City walls, representing the finest Chinese timber architecture.',
+    timeline: '始建：明永乐十八年（1420年）。修缮：1957年进行过大木修缮工程。',
+    materials: '主体为木结构，梁柱采用松木等。屋面铺设琉璃瓦，是木工与瓦作、石作、油作等多工种协作的结晶。',
+    style: '屋顶形式：极其罕见的"十"字脊顶，实际上由一个三重檐的四方亭和四个重檐歇山顶的抱厦巧妙地结合而成，共有10个山花、28个翼角、16个窝角、72条脊，结构严谨，天衣无缝。',
+    functionCat: '军事防御与景观。角楼的功能主要是瞭望敌情，但其极致的建筑美学，使其成为紫禁城外围轮廓线上最华美的乐章。',
+    historicalEvents: [
+      '角楼因其结构复杂，有"九梁十八柱七十二条脊"的说法，是古代木匠技艺的巅峰考验。民间传说，角楼的设计灵感来源于一个卖蝈蝈的笼子，当时负责设计角楼的工匠百思不得其解，一个路过的卖蝈蝈老人手中的精巧笼子给了他们启发，从而完成了设计。',
+    ],
+    festivals: ['角楼在夜色中与护城河中的倒影相映成趣，是故宫最经典的摄影题材。尤其在月圆之夜，角楼的轮廓与天上的明月、水中的倒影构成一幅绝美的画面。'],
+    anecdotes: [
+      '"蝈蝈笼"传说：民间传说角楼的设计灵感来源于一个卖蝈蝈的笼子。',
+      '"样式雷"档案：在现存的"样式雷"图档中，保存有大量关于角楼修缮的设计图纸和烫样（模型）。这些图纸上的墨线，记录了古代皇家建筑师们为维护这座建筑奇迹所付出的心血。',
+    ],
+  },
+  jiulongbi: {
+    identity: '故宫宁寿宫区的入口照壁，是乾隆皇帝为自己修建的太上皇宫殿的一部分，与北海九龙壁、大同九龙壁并称中国三大九龙壁。',
+    identityEn: 'The entrance screen wall of the Longevity and Health Palace area, one of China\'s three famous Nine Dragon Walls.',
+    timeline: '建造时间：清乾隆三十七年（1772年），与宁寿宫区同时修建。修缮：2017年前后进行了大型修缮。',
+    materials: '主体为琉璃构件，由专门的皇家琉璃窑厂烧制，采用传统的"琉璃釉"工艺。九龙壁并非一体成型，而是由270块琉璃构件拼接而成，每块构件都有编号。',
+    style: '形制：单面琉璃照壁，长29.4米，高3.5米，厚0.45米。壁身主体为九条琉璃龙，采用高浮雕工艺，龙身蜿蜒、鳞爪清晰，形态各异。色彩：以黄色为主色调，辅以蓝、白、紫、绿等色。数字寓意："九"在传统文化中为阳数之极。',
+    functionCat: '建筑装饰与风水屏障。九龙壁作为照壁，主要功能是遮挡视线、避免外人直接窥见皇极门内的建筑群，同时在风水上起到"藏风聚气"的作用。',
+    historicalEvents: [
+      '九龙壁的修建与乾隆皇帝"归政"计划密切相关。乾隆帝在登基之初曾立誓，如果在位六十年，便会禅位给儿子。',
+    ],
+    festivals: ['每逢元旦、万寿节等重大节日，宁寿宫区会举行皇家宴会或戏曲演出，九龙壁前的区域会成为王公大臣们往来穿梭的通道。'],
+    anecdotes: [
+      '"木头龙腹"：九龙壁最著名的趣闻，是其中一条龙的腹部并非琉璃，而是一块刷了白漆的楠木。相传工匠不慎将其中一块龙的腹部构件损坏，急中生智用楠木雕刻后刷漆替换，竟瞒过了验收大臣。直到多年后，白漆脱落，才被人发现。',
+      '颜色之谜：九条龙的色彩并非随意排列，正中一条为正黄色，两侧分别为浅黄色、白色、蓝色、紫色，形成对称布局。其中紫色龙极为罕见。',
+    ],
+  },
+  shufangzhai: {
+    identity: '紫禁城内西路的一座院落，清代皇帝及后妃听戏、品茗、用膳的休闲娱乐场所，因电视剧《还珠格格》而闻名。',
+    identityEn: 'A western-side courtyard serving as a leisure entertainment venue for opera, tea, and dining.',
+    timeline: '始建：明永乐十八年（1420年），初为乾西五所之一。改建：清乾隆七年（1742年），乾隆帝将其改为重华宫附属的戏园，添建大戏台。',
+    materials: '建筑为木结构，梁柱采用松木、楠木，屋顶覆黄色琉璃瓦。戏台内部装饰彩绘，地面铺墁金砖。院内陈设假山、鱼池，点缀太湖石。',
+    style: '平面布局：漱芳斋为工字形殿，前殿与南房、东西配殿围成独立小院。戏台特色：台顶设天井，可演神仙下凡戏码；台底设地井，可演鬼怪升天。室内明间与次间以落地罩分隔，东次室额曰"静憩轩"。',
+    functionCat: '文化休闲殿堂。主要用于皇帝及后妃观戏、节日宴饮、文人雅集。乾隆帝常在此与大臣赋诗联句，赐茶款待。',
+    historicalEvents: ['清乾隆七年（1742年），乾隆帝将其改为重华宫附属的戏园，添建大戏台（漱芳斋戏台）。', '乾隆时期，漱芳斋是重华宫宴集演戏的重要场所。', '1923年，逊清皇室曾在漱芳斋戏台为敬懿皇贵太妃生日演出。'],
+    festivals: ['重华宫茶宴：每年正月初二至初十，乾隆帝在重华宫举行茶宴，与大学士、翰林等品茶赋诗。'],
+    anecdotes: [
+      '"还珠格格"的误会：电视剧《还珠格格》让漱芳斋成为"小燕子"的住所，但实际上清代漱芳斋从未住过公主或格格。',
+    ],
+  },
+  yuhuayuan: {
+    identity: '明清两代帝王后妃游赏、休憩的皇家园林，也是紫禁城内唯一的宫廷花园。',
+    identityEn: 'The imperial garden for the Emperor and consorts, and the only palace garden within the Forbidden City.',
+    timeline: '始建：明永乐十八年（1420年），与紫禁城同期建成。明代中后期及清代各朝均有修缮和添建。',
+    materials: '建筑：亭台楼阁采用木结构，覆黄色琉璃瓦。铺地：园内甬路以不同颜色的卵石精心铺砌而成，组成900余幅不同的图案。奇石：园内放置各色山石盆景，其中绛雪轩前的一段木化石尤为珍贵。',
+    style: '核心建筑：钦安殿（重檐盝顶），供奉玄武大帝，位于中轴线上。对称亭台：浮碧亭与澄瑞亭东西对称；万春亭与千秋亭为上圆下方、四面出抱厦的多角亭。园内现存古树160余株，彩石路面900余幅图案。',
+    functionCat: '皇家园林（休闲区域）。原为帝王后妃休息、游赏而建，但也有祭祀（钦安殿）、颐养、藏书、读书等用途。',
+    historicalEvents: ['钦安殿的玄武崇拜：明代宫廷笃信道教，在御花园中轴线上修建钦安殿供奉玄武大帝，寓意以水镇火、护佑宫城。'],
+    festivals: [
+      '中秋祭月：清代宫廷有中秋祭月的传统，御花园是重要的祭祀场所之一。',
+      '九九重阳登高：每年重阳节，帝后会登上御花园内的堆秀山登高望远。',
+    ],
+    anecdotes: [
+      '"连理柏"的浪漫传说：钦安殿前有两株古柏，枝干相互缠绕，被称为"连理柏"。传说这是明代一对相爱的宫人所植，象征生死不渝的爱情。乾隆帝曾为此树题诗。',
+      '地上的"连环画"：御花园的卵石铺地堪称一绝，900余幅图案中包括《水浒传》《西厢记》等戏曲故事、二十四孝人物等。',
+    ],
+  },
+  qianlonghuayuan: {
+    identity: '乾隆皇帝为自己退位后颐养天年而修建的太上皇宫殿园林，是他个人审美的集中体现，也是18世纪中国皇家建筑内檐装修的巅峰之作。',
+    identityEn: 'Emperor Qianlong\'s retirement garden, embodying his personal aesthetics and the pinnacle of 18th-century imperial interior decoration.',
+    timeline: '建造时间：清乾隆三十六年至四十一年（1771-1776年），历时5年建成。开放：2025年9月30日，其第一、二进院落百年来首度向公众开放。',
+    materials: '这是故宫的"材料实验场"：漆纱：符望阁落地罩上的漆纱，由23层材料叠加，厚度不足1毫米，工艺已失传。瓷砖：延禧宫灵沼轩内壁瓷砖来自德国。贝壳：点螺工艺使用的珍珠贝、鲍鱼壳等。竹丝：竹丝镶嵌工艺用南方竹丝，用于北方建筑。',
+    style: '四进院落，各有主题：第一进以古华轩、禊赏亭为主；第二进为遂初堂三合院；第三进以假山为主；第四进以符望阁（迷楼）、倦勤斋为核心，室内装修极尽奢华，融合了竹丝镶嵌、双面绣、掐丝珐琅、点螺、竹黄贴雕等多种江南及西洋工艺。',
+    functionCat: '皇家园林与退休居所。是乾隆皇帝退位后的休憩、娱乐和办公场所，寄托了他对江南园林的向往和对文人生活的追求。',
+    historicalEvents: ['乾隆皇帝虽修建了这座豪华的花园，但他在退位后并未真正在此久居，而是以太上皇身份仍住在养心殿。花园更多地成为了他寄托归隐情怀和彰显文治武功的艺术作品。'],
+    festivals: ['乾隆曾设想在此举办"千叟宴"之类的活动。花园中的禊赏亭内设有流杯渠，效仿王羲之兰亭雅集，是皇帝与近臣们行"曲水流觞"游戏的场所。'],
+    anecdotes: [
+      '"迷楼"之谜：花园第四进的主体建筑符望阁，因其内部装修采用了大量落地罩、隔断和镜面，穿门越槛之际，往往迷失方向，因此有"迷楼"之称。',
+      '九龙壁的"木头龙腹"：故宫九龙壁中，从东边数第三条白龙的腹部，并非琉璃烧制，而是一块刷了白漆的楠木。',
+    ],
+  },
+  changyinge: {
+    identity: '紫禁城内最大的戏台，位于宁寿宫区，是清代宫廷戏曲演出的核心场所。',
+    identityEn: 'The largest opera stage in the Forbidden City, serving as the core venue for Qing court opera performances.',
+    timeline: '始建：清乾隆三十七年（1772年），与宁寿宫区同期建造。修缮：嘉庆，光绪年间均有修葺。',
+    materials: '木结构，梁柱采用松木、楠木，屋顶覆黄色琉璃瓦。戏台内部设有天井、地井、辘轳等机械装置，以演神仙、鬼怪戏码。',
+    style: '建筑形制：三层戏台（从上至下称"福台"、"禄台"、"寿台"），总高20余米。寿台（底层）：面积约210平方米，台顶设天井3个，台底设地井5个，可升降演员或道具。',
+    functionCat: '文化休闲殿堂。清代宫廷重大节日（元旦、万寿节、冬至等）及帝后生日、皇子婚礼，常在畅音阁连演数日大戏。',
+    historicalEvents: [
+      '乾隆帝的"大戏情结"：乾隆帝曾命人编写《劝善金科》、《升平宝筏》等连台本戏（每部10本240出），在畅音阁演出，最多动用演员数千人。',
+      '1900年八国联军入侵，慈禧西逃，畅音阁戏箱被劫，部分剧本散失。',
+    ],
+    festivals: ['万寿节（皇帝生日）：畅音阁连演数日，剧目多为吉祥戏如《龙凤呈祥》。'],
+    anecdotes: [
+      '"神仙下凡"的机关：畅音阁天井可让演员"从天而降"，地井可让演员"破土而出"，配合烟火效果，令观众惊叹。',
+      '京剧名家谭鑫培、杨小楼等曾入宫在畅音阁为慈禧演出。',
+    ],
+  },
+  qinandian: {
+    identity: '紫禁城中轴线上唯一的道教神殿，供奉北方水神玄武大帝，寓意以水镇火、护佑宫城。',
+    identityEn: 'The only Taoist temple on the central axis of the Forbidden City, dedicated to the Northern Water God Xuanwu.',
+    timeline: '始建：明永乐十八年（1420年），位于御花园正中。修缮：明嘉靖年间重修；清康熙、乾隆朝亦有修缮。',
+    materials: '殿身为木结构，梁柱采用楠木等，屋顶覆黄色琉璃瓦。殿内神像为铜铸鎏金，法器多为铜、木、纸等。',
+    style: '屋顶形式：重檐盝顶（方形顶），面阔5间，进深3间，四周出廊。盝顶正中为鎏金宝顶，形制独特。殿前有月台，设石雕龙纹御路。',
+    functionCat: '祭祀宗教殿堂。明代皇帝常在此举行道教斋醮仪式，祈求风调雨顺、国泰民安。清代虽崇佛，但钦安殿仍保留道教祭祀。',
+    historicalEvents: ['嘉靖帝笃信道教，曾多次在钦安殿举行斋醮，甚至在此炼制丹药。他命道士邵元节、陶仲文主持法事，耗费大量银两。', '康熙帝的"避火"保护：清康熙十八年（1679年），太和殿失火后，钦安殿因供奉玄武而更被赋予"镇火护宫"的象征意义。'],
+    festivals: ['真武大帝诞辰（农历三月初三）：明代皇帝会亲临钦安殿上香，清帝亦派大臣致祭。'],
+    anecdotes: [
+      '"紫禁城唯一的道教神殿"之谜：紫禁城内佛寺众多，而钦安殿是唯一留存至今的明代道教建筑。',
+      '殿内神像曾"搬家"：20世纪50年代，钦安殿一度改为文物库房，神像被移走。1980年代恢复原状陈列。',
+    ],
+  },
+  cininggong: {
+    identity: '明清两代皇太后、太皇太后的正宫，是太后举行重大典礼的殿堂。',
+    identityEn: 'The main palace for Empress Dowagers and Grand Empress Dowagers during Ming and Qing.',
+    timeline: '始建：明嘉靖十五年（1536年）。定型：乾隆三十四年（1769年）兴工，将慈宁宫正殿由单檐改为重檐，始定今之形制。',
+    materials: '木结构采用上等楠木、松木，屋顶覆黄色琉璃瓦，殿前陈设鎏金铜香炉。',
+    style: '屋顶形式：黄琉璃瓦重檐歇山顶（乾隆三十四年由单檐改为重檐，等级提升）。台基：殿前出月台，正面出三阶，左右各出一阶。院落：东西两侧为廊庑。',
+    functionCat: '祭祀与礼仪殿堂（祭祀区域，紫色）。凡遇皇太后圣寿节、上徽号、进册宝、公主下嫁，均在此举行庆贺仪式。皇太后薨，梓宫奉安于慈宁宫中。',
+    historicalEvents: [
+      '孝庄文皇后与慈宁宫：清朝顺治十年（1653年），孝庄文皇后始居慈宁宫，成为清代第一位在此居住的太后。她历经三朝，辅佐顺治、康熙两代幼主，是清初政治格局中的重要人物。',
+      '乾隆十六年（1751年），乾隆帝为生母崇庆皇太后举办六十圣寿庆典，在慈宁宫举行了隆重仪式。',
+    ],
+    festivals: ['皇太后圣寿节：皇帝亲率王公大臣至慈宁宫行礼，并在宫中设宴。'],
+    anecdotes: [
+      '明代慈宁宫的特殊"住户"：明朝时，万历帝的郑皇贵妃等人曾在此居住。',
+    ],
+  },
+  shoukanggong: {
+    identity: '清代皇太后、太妃的居所，位于慈宁宫西侧，是乾隆帝为生母崇庆皇太后修建的颐养宫殿。',
+    identityEn: 'A residence for Empress Dowagers and Imperial Noble Consorts, built by Qianlong for his mother.',
+    timeline: '始建：清雍正十三年（1735年），乾隆帝即位后为母修建。',
+    materials: '木结构，梁柱楠木、松木，屋顶覆黄色琉璃瓦。室内装饰精美，多有"福寿"主题雕刻、彩绘。',
+    style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。院落三进，正殿为寿康宫，后殿为寝宫。装饰特色：殿内悬乾隆御笔"寿康"匾，陈设多以"蝙蝠"、"寿桃"为纹饰。',
+    functionCat: '起居生活殿堂（太后宫）。皇太后日常起居、接受皇帝问安、举行小型庆典之处。',
+    historicalEvents: [
+      '乾隆帝每日清晨从养心殿步行至寿康宫向母亲问安，风雨无阻。',
+      '崇庆皇太后的"福寿双全"：乾隆帝为母亲举办六十、七十、八十大寿，寿康宫张灯结彩，盛况空前。',
+    ],
+    festivals: ['皇太后圣寿节：皇帝在寿康宫正殿率百官行礼，宫中设宴。'],
+    anecdotes: [
+      '"金发塔"的传说：崇庆太后去世后，乾隆帝命人用其梳落的头发铸成一座金发塔，供奉在寿康宫佛堂，塔高1.6米，耗金3000余两。',
+    ],
+  },
+  cininggonghuayuan: {
+    identity: '慈宁宫南侧的附属园林，明清两代皇太后、太妃、太嫔们游赏、礼佛、休息的专属花园。',
+    identityEn: 'The garden south of Cining Palace, serving as an exclusive garden for Empress Dowagers.',
+    timeline: '始建：明嘉靖年间。清代重修：乾隆三十四年（1769年）大规模修葺，添建佛堂、亭台。',
+    materials: '建筑为木结构，亭台覆琉璃瓦或灰瓦。园内铺砌卵石路，种植松柏、槐树、玉兰等。佛堂内陈设铜佛、经卷。',
+    style: '布局：南北窄长，东西宽约50米，南北长约130米。主要建筑：咸若馆（正殿，佛堂）、宝相楼、吉云楼、临溪亭、含清斋。园中有一矩形鱼池，池上架石桥。',
+    functionCat: '景观休闲与宗教场所。太后太妃们在此散步、赏花、礼佛、吃茶。每月初一、十五，太后会率众妃嫔在咸若馆拈香诵经。',
+    historicalEvents: ['明代太后在此"避暑"：明代皇太后常居慈宁宫，花园是她们夏季纳凉之处。'],
+    festivals: ['佛诞日（农历四月初八）：太后在咸若馆举行浴佛仪式。'],
+    anecdotes: [
+      '"寡妇花园"的别称：慈宁宫花园主要供太后、太妃（多为先帝遗孀）使用，很少有皇帝、皇子进入，故民间称为"寡妇花园"。',
+    ],
+  },
+  jianting: {
+    identity: '紫禁城东部的一座大殿，清代皇帝及皇子练习射箭、举行武试的场所。',
+    identityEn: 'An eastern hall in the Forbidden City where Qing emperors practiced archery and held military examinations.',
+    timeline: '始建：清雍正八年（1730年）。用途：直至清末仍作为习武场所。',
+    materials: '木结构，单檐歇山顶，覆黄色琉璃瓦。殿内空旷，无立柱（减柱造），以便骑马射箭。',
+    style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。殿前广场南北长100余米，东西宽约60米，是跑马射箭的场地。殿内现存乾隆帝御制《训守冠服骑射碑》。',
+    functionCat: '军事文化殿堂。清代皇帝常在此皇子、侍卫射箭，并举办"御箭亭"考试选拔武官。',
+    historicalEvents: [
+      '乾隆帝"射箭示子"：乾隆帝亲临箭亭射箭，并作《箭亭碑记》刻于殿内石碑，要求子孙"永遵满洲旧俗"。',
+    ],
+    festivals: ['每三年一次的武举殿试后，中式武举在箭亭接受皇帝亲试骑射。'],
+    anecdotes: [
+      '箭亭的碑文：殿内现存乾隆帝御制《训守冠服骑射碑》，强调"骑射为国之本"。',
+    ],
+  },
+  wenhuadian: {
+    identity: '外朝东路核心建筑，明清两代皇帝举行经筵之礼的固定场所，明代曾为太子视事之所。',
+    identityEn: 'The core building of the eastern outer court, serving as the venue for Confucian lectures.',
+    timeline: '始建：明永乐十八年（1420年），曾覆绿色琉璃瓦。改覆黄瓦：明嘉靖十五年（1536年），改为皇帝便殿和经筵之所。',
+    materials: '主殿梁柱采用上等松木，屋顶覆黄色琉璃瓦，殿内铺墁金砖。',
+    style: '屋顶形式：黄琉璃瓦歇山顶。平面结构：工字形平面，前殿与后殿以穿廊相连。门窗装饰：明间开6扇三交六椀菱花槅扇门，属古建筑外檐装修中的高等级形式。',
+    functionCat: '文化教育殿堂。明清两朝，每岁春秋仲月在此举行经筵之礼。清代殿试阅卷亦在文华殿进行。',
+    historicalEvents: [
+      '明正统年间，经筵制度正式确立，每月初二日御文华殿进讲。康熙二十四年（1685年）定每年二月、八月举行经筵。',
+    ],
+    festivals: ['经筵日：每年春秋仲月（二月、八月）择日举行，是皇帝与文臣之间最重要的学术交流活动。'],
+    anecdotes: [
+      '"太子殿"的变迁：文华殿初为皇帝常御之便殿，明天顺、成化两朝曾作为太子践祚前"摄事"之所。因"五行说"东方属木，色为绿，表示生长，故太子使用的建筑覆绿色琉璃瓦。',
+    ],
+  },
+  wuyingdian: {
+    identity: '紫禁城外朝西路核心建筑，清代作为内府修书处（武英殿修书处），刊刻大量典籍（"殿本"书）。',
+    identityEn: 'The core western outer court building, serving as the Imperial Publishing Office during the Qing Dynasty.',
+    timeline: '始建：明永乐十八年（1420年）。明代用途：皇帝斋居、召见大臣。明末李自成在此登基称帝。清代：设武英殿修书处。',
+    materials: '木结构，梁柱松木等，屋顶覆黄色琉璃瓦。殿内曾设刻书工坊，存有大量雕版、书版。',
+    style: '屋顶形式：重檐歇山顶，面阔5间，进深3间。院落：前后两进，前殿为武英殿，后殿为敬思殿。周边：东有断虹桥，西有浴德堂（阿拉伯式浴室）。',
+    functionCat: '文化出版殿堂。清代武英殿修书处负责编纂、刊刻、校勘书籍，如《古今图书集成》、《康熙字典》、《武英殿聚珍版丛书》等。',
+    historicalEvents: [
+      '1644年，李自成攻占北京，在武英殿举行登基大典，次日即撤出。武英殿成为农民政权短暂存在的见证。',
+      '康有为在此创办《中外纪闻》，这是维新变法时期的重要刊物。',
+      '《四库全书》编纂：乾隆帝命纪昀等人在武英殿、文渊阁等地编纂《四库全书》，武英殿承担了部分校勘、缮写工作。',
+    ],
+    festivals: ['无特定节庆，但清代每逢皇帝"经筵"后，有时会在武英殿赐茶。'],
+    anecdotes: [
+      '"殿本"书的收藏价值：武英殿刻书多用开化纸，字大行疏，被藏书家视为珍品。',
+      '"浴德堂"的异域风情：浴德堂是武英殿旁的一座阿拉伯式建筑，内有穹顶浴室。',
+    ],
+  },
+  huangjidian: {
+    identity: '宁寿宫区前朝主殿，乾隆皇帝为自己退位后作为太上皇临御受贺而建。',
+    identityEn: 'The main hall of the Longevity Palace area, built by Qianlong for his retirement as Taishang Huang.',
+    timeline: '始建：清乾隆三十七年（1772年）至四十一年（1776年）。晚清用于慈禧万寿庆典。',
+    materials: '木结构，梁柱采用金丝楠木等，屋顶覆黄色琉璃瓦，殿内铺墁金砖。御座、屏风等陈设与太和殿相似但等级略低。',
+    style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间，前有月台。殿内悬"建极康宁"匾。',
+    functionCat: '礼仪殿堂。乾隆退位后，此处用于受贺、千叟宴等盛典；晚清用于慈禧万寿庆典等重大礼仪活动。',
+    historicalEvents: [
+      '乾隆"千叟宴"：乾隆帝退位后，皇极殿曾用于千叟宴等太上皇庆典。',
+    ],
+    festivals: ['千叟宴、慈禧万寿庆典。'],
+    anecdotes: [
+      '"皇极"的寓意：乾隆取"皇极"之名，出自《尚书》"皇建其有极"，意为皇帝建立最高准则。但他退位后仍掌实权，皇极殿并未真正成为"太上皇正殿"。',
+    ],
+  },
+  ningshoumen: {
+    identity: '宁寿宫区正门，位于皇极门以北，是进入宁寿宫前朝区域的第二道门。',
+    identityEn: 'The main gate of the Longevity Palace area, serving as the second entrance to the front court.',
+    timeline: '始建：清乾隆三十七年（1772年）。',
+    materials: '木结构，重檐歇山顶，覆黄色琉璃瓦。台基为汉白玉须弥座，门内外铺墁金砖。',
+    style: '屋顶形式：重檐歇山顶，面阔5间，进深3间。正中三门，门前列铜狮一对（较太和门小）。',
+    functionCat: '礼仪之门。皇帝进出宁寿宫区的主要通道。',
+    historicalEvents: [
+      '1796年正月初一，乾隆帝在皇极殿举行禅让大典后，从宁寿门回到宁寿宫后殿。',
+    ],
+    festivals: ['万寿节、元旦等，宁寿门前会陈设卤簿。'],
+    anecdotes: ['"宁寿"之名：取"安宁长寿"之意，但乾隆实际很少使用宁寿门，因为他退位后仍住在养心殿。'],
+  },
+  dongliugong: {
+    identity: '明清两代后妃居住的核心区域，由景仁宫、承乾宫、钟粹宫、景阳宫、永和宫、延禧宫组成。',
+    identityEn: 'The core residence area for imperial consorts, comprising six eastern palaces.',
+    timeline: '始建：明永乐十八年（1420年）。清初及中期修整：顺治十二年（1655年）首先修整靠近中轴线的六个宫。',
+    materials: '各宫建筑采用标准皇家用材：松木梁柱、黄色琉璃瓦、砖石台基。',
+    style: '布局形制：每宫为两进院的三合院形式，由前殿、后寝、东西配殿组成，四周围以高墙，自成院落。',
+    functionCat: '后妃生活区。前殿为后妃接受朝贺、处理宫务之所，后寝为日常起居之处。',
+    historicalEvents: [
+      '慈禧太后的"宫斗"舞台：咸丰年间，慈禧（时为懿贵妃）居储秀宫，在此生子载淳（即同治帝）。',
+      '延禧宫的"西洋梦"：道光二十五年（1845年）起火，仅存宫门。光绪年间计划在此修建西洋式水殿"水晶宫"，后因国库空虚而停工。',
+    ],
+    festivals: ['各宫主位生日（千秋节）：妃嫔生日时，本宫会举行小型庆贺活动。'],
+    anecdotes: [
+      '"一入宫门深似海"：东西六宫虽近在咫尺，但宫墙高耸，门禁森严，层层管控。',
+    ],
+  },
+  qianqingmen: {
+    identity: '紫禁城内廷与外朝的分界之门，清代皇帝"御门听政"的主要场所。',
+    identityEn: 'The gate separating the Inner and Outer Courts, serving as the venue for Qing emperors\' court sessions.',
+    timeline: '始建：明永乐十八年（1420年）。清代改建：顺治、康熙年间多次修葺，康熙帝定"御门听政"于乾清门。',
+    materials: '城台砖石结构，上部为木结构门楼，覆黄色琉璃瓦。门内设金砖墁地。',
+    style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。正中设门，左右各一掖门。门前有鎏金铜狮一对，象征皇权。',
+    functionCat: '礼仪与政务之门。清代康熙至咸丰年间，皇帝在此"御门听政"，接受大臣奏事。',
+    historicalEvents: [
+      '康熙御门听政：康熙帝每日黎明在乾清门听政，不论寒暑。大臣们凌晨2-3点便要在门外等候，皇帝在门内设座，各部院官员依次奏事，形成"乾清门御门听政"制度。',
+      '咸丰废止：咸丰帝（1851-1861）因战乱和身体原因，逐渐停止御门听政，改为召见大臣。此后乾清门听政成为历史。',
+    ],
+    festivals: ['元旦、冬至等大典前，皇帝会先在乾清门接受内阁大臣行礼。'],
+    anecdotes: [
+      '"御门"的板凳：据说康熙帝为表示勤政，在乾清门内设一木凳，坐在上面听政。大臣们则跪在门外砖地上。',
+    ],
+  },
+
+  taiheimen: {
+    identity: '紫禁城外朝正门，明代皇帝"御门听政"之处（明代称皇极门），也是外朝三大殿区的入口，是故宫内规模最大的宫门。',
+    identityEn: 'The main gate of the Outer Court, the largest palace gate in the Forbidden City.',
+    timeline: '始建：明永乐十八年（1420年），初名奉天门。明嘉靖四十一年（1562年）改称皇极门；清顺治二年（1645年）改称太和门。',
+    materials: '木结构梁柱，屋顶覆黄色琉璃瓦。门内铺墁金砖，门外广场铺花岗石。门前陈设铜狮、铜鼎等。',
+    style: '屋顶形式：重檐歇山顶，面阔9间，进深4间，是中国现存最大的宫门。正中三门，两侧各有一掖门（共5门）。门前有一对铜狮（明代铸造，故宫最大铜狮）。',
+    functionCat: '礼仪与政务之门。明代皇帝常在此"御门听政"，接受百官朝奏。清代改在乾清门，太和门则用于皇帝大婚、出征等大典的出入及重要诏书的颁布。',
+    historicalEvents: [
+      '光绪十四年大火：1887年12月16日夜，太和门因护军值班室失火，延及太和门、贞度门等，全部烧毁。正值光绪帝大婚在即，朝廷急调工匠连夜搭建彩棚伪装成太和门，婚礼才得以举行。',
+    ],
+    festivals: [
+      '皇帝大婚：皇后凤舆从太和门正中门洞抬入，象征"正宫"地位。',
+      '出征与凯旋：皇帝亲征或命将出征，在太和门举行授印、誓师仪式；凯旋时在此举行献俘礼。',
+    ],
+    anecdotes: [
+      '"太和门铜狮"的传说：太和门前的铜狮是明代遗物，狮头披卷毛，与清代的直毛不同。',
+      '"金砖"的误会：太和门内地面铺的是苏州产"金砖"，但并非黄金制成，而是敲击有金属声的细料方砖。',
+    ],
+  },
+}
+
+/* ---------- 补充缺失的普通建筑条目（来自 kapian.md 增强数据） ---------- */
+// 这些建筑已在上方 BUILDINGS 中存在，但补充了更多详情
+// 已在 BUILDINGS 中存在但 category/buildingType 需修正的建筑：
+// shenwumen: category 修正为 'gate'（原为 'gate'）
+// wenhuadian: category 修正为 'culture'
+// wuyingdian: category 修正为 'ritual'
+// yangxindian: category 修正为 'living'
+// yuhuayuan: category 修正为 'decor'
+
+/* =====================================================
+   建筑关系网 & 关键词数据（来自 README.md 模块一改版规划）
+   ===================================================== */
+
+// 建筑分类（7类）
+const CATEGORIES = [
+  { name: '城池门禁' },
+  { name: '外朝礼制' },
+  { name: '内廷起居' },
+  { name: '东西翼/政务' },
+  { name: '宁寿宫区' },
+  { name: '太后养老' },
+  { name: '戏曲游赏' }
+]
+
+// nodeMeta：建筑名 → 分类索引
+const NODE_META = {
+  '角楼': { category: 0 },
+  '神武门': { category: 0 },
+  '午门': { category: 0 },
+  '箭亭': { category: 0 },
+
+  '太和门': { category: 1 },
+  '太和殿': { category: 1 },
+  '保和殿': { category: 1 },
+
+  '乾清宫': { category: 2 },
+  '坤宁宫': { category: 2 },
+  '御花园': { category: 2 },
+  '东六宫': { category: 2 },
+  '西六宫': { category: 2 },
+  '钦安殿': { category: 2 },
+
+  '文华殿': { category: 3 },
+  '武英殿': { category: 3 },
+  '养心殿': { category: 3 },
+
+  '九龙壁': { category: 4 },
+  '皇极殿': { category: 4 },
+  '养性殿': { category: 4 },
+  '乾隆花园': { category: 4 },
+
+  '慈宁宫': { category: 5 },
+  '寿康宫': { category: 5 },
+  '慈宁宫花园': { category: 5 },
+
+  '漱芳斋': { category: 6 },
+  '畅音阁': { category: 6 }
+}
+
+// buildingRelations：建筑名 → 关联关系数组
+const BUILDING_RELATIONS = {
+  '午门': [
+    { target: '太和门', type: '中轴递进', value: 5 },
+    { target: '角楼', type: '门禁城防', value: 4 },
+    { target: '文华殿', type: '外朝东翼', value: 3 },
+    { target: '武英殿', type: '外朝西翼', value: 3 }
+  ],
+
+  '太和门': [
+    { target: '午门', type: '中轴递进', value: 5 },
+    { target: '太和殿', type: '中轴递进', value: 5 },
+    { target: '文华殿', type: '东西辅翼', value: 3 },
+    { target: '武英殿', type: '东西辅翼', value: 3 }
+  ],
+
+  '太和殿': [
+    { target: '太和门', type: '中轴递进', value: 5 },
+    { target: '保和殿', type: '中轴递进', value: 5 },
+    { target: '文华殿', type: '礼制辅翼', value: 3 },
+    { target: '武英殿', type: '礼制辅翼', value: 3 }
+  ],
+
+  '保和殿': [
+    { target: '太和殿', type: '中轴递进', value: 5 },
+    { target: '乾清宫', type: '外朝转内廷', value: 4 },
+    { target: '文华殿', type: '东翼关联', value: 2 },
+    { target: '武英殿', type: '西翼关联', value: 2 }
+  ],
+
+  '乾清宫': [
+    { target: '保和殿', type: '外朝转内廷', value: 4 },
+    { target: '坤宁宫', type: '后三宫', value: 5 },
+    { target: '东六宫', type: '东侧宫寝', value: 3 },
+    { target: '西六宫', type: '西侧宫寝', value: 3 },
+    { target: '养心殿', type: '政务起居', value: 4 }
+  ],
+
+  '坤宁宫': [
+    { target: '乾清宫', type: '后三宫', value: 5 },
+    { target: '御花园', type: '后寝向苑', value: 4 },
+    { target: '东六宫', type: '东侧宫寝', value: 2 },
+    { target: '西六宫', type: '西侧宫寝', value: 2 }
+  ],
+
+  '御花园': [
+    { target: '坤宁宫', type: '后寝向苑', value: 4 },
+    { target: '钦安殿', type: '御苑中轴', value: 5 },
+    { target: '神武门', type: '北向出口', value: 4 },
+    { target: '东六宫', type: '东侧游径', value: 3 },
+    { target: '西六宫', type: '西侧游径', value: 3 },
+    { target: '漱芳斋', type: '西路游宴', value: 3 }
+  ],
+
+  '钦安殿': [
+    { target: '御花园', type: '御苑中轴', value: 5 },
+    { target: '神武门', type: '北向轴线', value: 4 },
+    { target: '坤宁宫', type: '后苑宗教', value: 3 },
+    { target: '东六宫', type: '御苑联系', value: 2 }
+  ],
+
+  '神武门': [
+    { target: '御花园', type: '北向出口', value: 4 },
+    { target: '钦安殿', type: '北向轴线', value: 4 },
+    { target: '角楼', type: '城池门禁', value: 4 },
+    { target: '东六宫', type: '北侧联系', value: 2 },
+    { target: '西六宫', type: '北侧联系', value: 2 }
+  ],
+
+  '角楼': [
+    { target: '午门', type: '城池门禁', value: 4 },
+    { target: '神武门', type: '城池门禁', value: 4 },
+    { target: '文华殿', type: '东南城角-东翼', value: 2 },
+    { target: '武英殿', type: '西南城角-西翼', value: 2 }
+  ],
+
+  '文华殿': [
+    { target: '太和门', type: '东西辅翼', value: 3 },
+    { target: '太和殿', type: '礼制辅翼', value: 3 },
+    { target: '东六宫', type: '东路过渡', value: 4 },
+    { target: '箭亭', type: '东部武备', value: 3 },
+    { target: '午门', type: '外朝入口', value: 2 }
+  ],
+
+  '武英殿': [
+    { target: '太和门', type: '东西辅翼', value: 3 },
+    { target: '太和殿', type: '礼制辅翼', value: 3 },
+    { target: '养心殿', type: '西路政务', value: 4 },
+    { target: '午门', type: '外朝入口', value: 2 },
+    { target: '角楼', type: '西侧边界', value: 2 }
+  ],
+
+  '东六宫': [
+    { target: '乾清宫', type: '东侧宫寝', value: 3 },
+    { target: '御花园', type: '东侧游径', value: 3 },
+    { target: '文华殿', type: '东路过渡', value: 4 },
+    { target: '钦安殿', type: '御苑联系', value: 2 },
+    { target: '箭亭', type: '东部空间', value: 2 }
+  ],
+
+  '西六宫': [
+    { target: '乾清宫', type: '西侧宫寝', value: 3 },
+    { target: '御花园', type: '西侧游径', value: 3 },
+    { target: '养心殿', type: '西路政务起居', value: 4 },
+    { target: '漱芳斋', type: '西路游宴', value: 4 },
+    { target: '慈宁宫', type: '西部过渡', value: 3 }
+  ],
+
+  '养心殿': [
+    { target: '乾清宫', type: '政务起居', value: 4 },
+    { target: '西六宫', type: '西路政务起居', value: 4 },
+    { target: '慈宁宫', type: '西路过渡', value: 3 },
+    { target: '寿康宫', type: '西部养老联系', value: 2 },
+    { target: '养性殿', type: '形制同源', value: 5 }
+  ],
+
+  '漱芳斋': [
+    { target: '西六宫', type: '西路游宴', value: 4 },
+    { target: '御花园', type: '园林通达', value: 3 },
+    { target: '畅音阁', type: '戏曲文化', value: 5 },
+    { target: '慈宁宫', type: '西路文化', value: 2 }
+  ],
+
+  '慈宁宫': [
+    { target: '寿康宫', type: '太后养老', value: 5 },
+    { target: '慈宁宫花园', type: '宫苑游憩', value: 5 },
+    { target: '养心殿', type: '西路过渡', value: 3 },
+    { target: '西六宫', type: '西部过渡', value: 3 },
+    { target: '漱芳斋', type: '文化游宴', value: 2 }
+  ],
+
+  '寿康宫': [
+    { target: '慈宁宫', type: '太后养老', value: 5 },
+    { target: '慈宁宫花园', type: '宫苑游憩', value: 4 },
+    { target: '养心殿', type: '西部养老联系', value: 2 }
+  ],
+
+  '慈宁宫花园': [
+    { target: '慈宁宫', type: '宫苑游憩', value: 5 },
+    { target: '寿康宫', type: '宫苑游憩', value: 4 },
+    { target: '漱芳斋', type: '园林文化', value: 2 }
+  ],
+
+  '箭亭': [
+    { target: '文华殿', type: '东部武备', value: 3 },
+    { target: '东六宫', type: '东部空间', value: 2 },
+    { target: '午门', type: '礼武入口', value: 2 },
+    { target: '角楼', type: '东部边界', value: 2 }
+  ],
+
+  '九龙壁': [
+    { target: '皇极殿', type: '宁寿入口', value: 5 },
+    { target: '乾隆花园', type: '宁寿游赏', value: 2 },
+    { target: '畅音阁', type: '宁寿文化', value: 2 }
+  ],
+
+  '皇极殿': [
+    { target: '九龙壁', type: '宁寿入口', value: 5 },
+    { target: '养性殿', type: '前朝后寝', value: 5 },
+    { target: '畅音阁', type: '宁寿戏乐', value: 3 },
+    { target: '乾隆花园', type: '宁寿游赏', value: 4 }
+  ],
+
+  '养性殿': [
+    { target: '皇极殿', type: '前朝后寝', value: 5 },
+    { target: '乾隆花园', type: '后苑游赏', value: 4 },
+    { target: '畅音阁', type: '宁寿戏乐', value: 3 },
+    { target: '养心殿', type: '形制同源', value: 5 }
+  ],
+
+  '畅音阁': [
+    { target: '皇极殿', type: '宁寿戏乐', value: 3 },
+    { target: '养性殿', type: '后寝娱乐', value: 3 },
+    { target: '乾隆花园', type: '园林游赏', value: 4 },
+    { target: '漱芳斋', type: '戏曲文化', value: 5 },
+    { target: '九龙壁', type: '宁寿文化', value: 2 }
+  ],
+
+  '乾隆花园': [
+    { target: '养性殿', type: '后苑游赏', value: 4 },
+    { target: '皇极殿', type: '宁寿游赏', value: 4 },
+    { target: '畅音阁', type: '园林游赏', value: 4 },
+    { target: '九龙壁', type: '宁寿入口', value: 2 }
+  ]
+}
+
+// buildingKeywords：建筑名 → 四类关键词
+const BUILDING_KEYWORDS = {
+  '角楼': {
+    category: ['城防建筑', '楼阁类', '边角标志'],
+    role: ['宫城转角', '防御象征', '轮廓节点'],
+    form: ['飞檐', '多重转折', '造型复杂', '高耸', '角部识别'],
+    culture: ['城防', '秩序', '边界', '威严', '宫城轮廓']
+  },
+
+  '神武门': {
+    category: ['城门类', '北门', '门禁空间'],
+    role: ['北向出口', '后部城门', '宫城边界'],
+    form: ['门阙', '轴线尽端', '对称', '封闭性'],
+    culture: ['门禁', '边界', '出入秩序', '后廷收束']
+  },
+
+  '漱芳斋': {
+    category: ['园居建筑', '文化空间', '游宴空间'],
+    role: ['西路游赏', '宴集场所', '文化节点'],
+    form: ['庭院化', '精致', '私密', '园林联系'],
+    culture: ['游宴', '戏乐', '雅集', '宫廷生活']
+  },
+
+  '御花园': {
+    category: ['园林类', '皇家苑囿', '后苑空间'],
+    role: ['后廷花园', '游憩空间', '中轴后苑'],
+    form: ['园林化', '曲折', '点景', '对景'],
+    culture: ['游赏', '休憩', '后苑秩序', '皇家园林']
+  },
+
+  '东六宫': {
+    category: ['宫寝区', '后宫建筑群', '东路居住区'],
+    role: ['东侧宫寝', '妃嫔居所', '内廷生活'],
+    form: ['围合院落', '连续院群', '居住性'],
+    culture: ['起居', '后宫', '生活秩序', '内廷空间']
+  },
+
+  '西六宫': {
+    category: ['宫寝区', '后宫建筑群', '西路居住区'],
+    role: ['西侧宫寝', '妃嫔居所', '内廷生活'],
+    form: ['围合院落', '连续院群', '居住性'],
+    culture: ['起居', '后宫', '生活秩序', '内廷空间']
+  },
+
+  '钦安殿': {
+    category: ['宗教建筑', '殿宇类', '御苑核心'],
+    role: ['御苑中轴', '后苑信仰中心', '精神节点'],
+    form: ['中轴性', '独立殿体', '中心性'],
+    culture: ['信仰', '祭祀', '后苑精神中心', '静穆']
+  },
+
+  '坤宁宫': {
+    category: ['宫寝主殿', '后三宫', '后廷核心'],
+    role: ['后廷主宫', '中轴后寝', '内廷核心'],
+    form: ['中轴性', '主宫体量', '对称', '庄重'],
+    culture: ['内廷', '后寝', '礼制', '皇后空间']
+  },
+
+  '乾清宫': {
+    category: ['宫寝主殿', '后三宫', '后廷核心'],
+    role: ['后廷主宫', '中轴后寝', '政治与起居交汇'],
+    form: ['中轴性', '主宫体量', '对称', '庄严'],
+    culture: ['皇权', '起居', '后廷核心', '礼制延续']
+  },
+
+  '养性殿': {
+    category: ['宁寿宫区', '寝殿类', '后寝空间'],
+    role: ['宁寿后寝', '内向起居', '宁寿宫后区'],
+    form: ['寝殿格局', '内向', '规整', '与养心殿呼应'],
+    culture: ['退养', '静养', '后寝', '宁寿秩序']
+  },
+
+  '畅音阁': {
+    category: ['戏楼', '文化建筑', '游赏空间'],
+    role: ['演戏空间', '宁寿宫区文化节点', '观演中心'],
+    form: ['高台戏楼', '层次丰富', '观演关系'],
+    culture: ['宫廷戏曲', '庆典', '娱乐', '皇家观戏']
+  },
+
+  '乾隆花园': {
+    category: ['园林类', '宁寿宫区', '皇家花园'],
+    role: ['宁寿后苑', '游赏空间', '园林节点'],
+    form: ['曲折', '精巧', '园林层次', '小中见大'],
+    culture: ['游赏', '隐逸趣味', '养老审美', '园林精神']
+  },
+
+  '养心殿': {
+    category: ['政务起居建筑', '殿宇类', '西路核心'],
+    role: ['政务起居', '西路政治节点', '皇帝日常'],
+    form: ['规整', '实用性', '内向', '中尺度核心'],
+    culture: ['养心', '理政', '起居', '内廷决策']
+  },
+
+  '皇极殿': {
+    category: ['宁寿宫前朝', '殿堂类', '礼制空间'],
+    role: ['宁寿宫前朝核心', '祝寿礼仪', '尊崇象征'],
+    form: ['主殿体量', '对称', '中轴性', '礼仪性'],
+    culture: ['祝寿', '尊崇', '礼制', '宁寿秩序']
+  },
+
+  '寿康宫': {
+    category: ['太后养老区', '寝宫类', '后区居住'],
+    role: ['太后居所', '养老空间', '西路静养'],
+    form: ['院落化', '居住性', '安静', '围合'],
+    culture: ['养老', '安养', '慈和', '西部后廷']
+  },
+
+  '慈宁宫': {
+    category: ['太后养老区', '宫殿类', '西路主宫'],
+    role: ['太后主宫', '养老区核心', '西部重要节点'],
+    form: ['主宫格局', '庄重', '规整', '中尺度核心'],
+    culture: ['太后', '尊养', '后廷秩序', '慈宁']
+  },
+
+  '慈宁宫花园': {
+    category: ['园林类', '太后养老区', '附属花园'],
+    role: ['宫苑游憩', '养老花园', '静态游赏'],
+    form: ['园林化', '精巧', '静雅', '景观节点'],
+    culture: ['休憩', '赏景', '静养', '园居审美']
+  },
+
+  '箭亭': {
+    category: ['武备建筑', '演武空间', '附属构筑'],
+    role: ['骑射空间', '东部武备', '礼武结合'],
+    form: ['开敞', '实用', '训练属性'],
+    culture: ['骑射', '武备', '礼武并重', '尚武']
+  },
+
+  '九龙壁': {
+    category: ['景观构筑', '照壁类', '装饰建筑'],
+    role: ['宁寿入口标志', '礼仪过渡', '视觉焦点'],
+    form: ['照壁', '琉璃装饰', '平面展开', '强图案性'],
+    culture: ['吉祥', '皇家装饰', '龙纹象征', '威仪']
+  },
+
+  '保和殿': {
+    category: ['外朝殿堂', '礼制建筑', '中轴建筑'],
+    role: ['外朝后段', '礼仪递进', '前朝向后廷过渡'],
+    form: ['中轴性', '殿堂体量', '庄重', '对称'],
+    culture: ['礼制', '过渡', '秩序', '朝仪']
+  },
+
+  '太和殿': {
+    category: ['外朝主殿', '殿堂类', '中轴核心'],
+    role: ['外朝核心', '最高礼制中心', '皇权象征'],
+    form: ['高台', '重檐', '巨大体量', '绝对中轴'],
+    culture: ['皇权', '大典', '威严', '礼制顶峰']
+  },
+
+  '武英殿': {
+    category: ['殿宇类', '西翼建筑', '政务文化建筑'],
+    role: ['西路重要节点', '辅翼空间', '文治辅助'],
+    form: ['规整', '翼侧布局', '次核心'],
+    culture: ['辅政', '西翼', '文治', '秩序']
+  },
+
+  '文华殿': {
+    category: ['殿宇类', '东翼建筑', '文化空间'],
+    role: ['东路重要节点', '辅翼空间', '文教意涵'],
+    form: ['规整', '翼侧布局', '次核心'],
+    culture: ['文教', '东翼', '礼学', '文化秩序']
+  },
+
+  '太和门': {
+    category: ['门殿类', '外朝入口', '中轴建筑'],
+    role: ['前朝主门', '进入三大殿的礼仪门槛', '外朝中段'],
+    form: ['门殿结合', '轴线性', '对称', '庄严'],
+    culture: ['礼制门槛', '秩序开启', '朝仪前奏']
+  },
+
+  '午门': {
+    category: ['城门类', '南门', '宫城正门'],
+    role: ['中轴入口', '皇城正门', '礼制起点'],
+    form: ['门阙', '高台', '五凤楼意象', '强轴线性'],
+    culture: ['皇权入口', '礼仪起点', '威严', '门禁']
+  }
+}
+

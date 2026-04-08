@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="fengshui-overlay-only" viewBox="0 0 987.436 1398.857" width="987.436" height="1398.857" role="img" aria-label="Forbidden City fengshui overlay only"><!-- Lightweight overlay-only SVG extracted from overview_fengshui_overlay_fixed.svg --><defs><filter id="fsGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="fsSoftBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="fsSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="fsWaterGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="fsFrontGradient" x1="494" y1="1180" x2="494" y2="1398" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f5f1df" stop-opacity="0.1"/>
+      <stop offset="52%" stop-color="#dec177" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#c7ddd7" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="fsAxisGradient" x1="494" y1="740" x2="494" y2="1248" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#eef4f1" stop-opacity="0.04"/>
+      <stop offset="38%" stop-color="#d9c88e" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#c4d9d3" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="fsWaterGradient" x1="302" y1="1324" x2="612" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d7e9e7" stop-opacity="0.08"/>
+      <stop offset="32%" stop-color="#b7d5d5" stop-opacity="0.18"/>
+      <stop offset="74%" stop-color="#e3d4a2" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#f1efe4" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="fsWaterStroke" x1="388" y1="1326" x2="546" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9ecfd2" stop-opacity="0.72"/>
+      <stop offset="55%" stop-color="#cfd9bf" stop-opacity="0.54"/>
+      <stop offset="100%" stop-color="#ecd9a0" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="fsGuardGradientLeft" x1="72" y1="650" x2="426" y2="650" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d5e3df" stop-opacity="0.06"/>
+      <stop offset="52%" stop-color="#e5d5a7" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#f4f0e2" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="fsGuardGradientRight" x1="915" y1="650" x2="561" y2="650" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d5e3df" stop-opacity="0.06"/>
+      <stop offset="52%" stop-color="#e5d5a7" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#f4f0e2" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="fsInnerGradient" x1="494" y1="160" x2="494" y2="690" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#edf3ef" stop-opacity="0.04"/>
+      <stop offset="58%" stop-color="#ddd0a1" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#f6f3e7" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="fsBackGradient" x1="494" y1="0" x2="494" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f6f3e7" stop-opacity="0.08"/>
+      <stop offset="55%" stop-color="#ddd0a1" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#d0e0da" stop-opacity="0.07"/>
+    </linearGradient>
+    <linearGradient id="fsBackBandGradient" x1="494" y1="150" x2="494" y2="610" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f2efe0" stop-opacity="0.03"/>
+      <stop offset="50%" stop-color="#e5d39d" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#d3e2dd" stop-opacity="0.06"/>
+    </linearGradient>
+    <radialGradient id="fsCoreGlow" cx="494" cy="620" r="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f4ebc8" stop-opacity="0.45"/>
+      <stop offset="52%" stop-color="#e1d19c" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#d6e4df" stop-opacity="0"/>
+    </radialGradient>
+
+  </defs><style>
+      .fs-visual {
+        pointer-events: none;
+        transition: opacity .3s ease, fill-opacity .3s ease, stroke-opacity .3s ease;
+      }
+
+      .fs-front {
+        fill: url(#fsFrontGradient);
+        stroke: #d7b56a;
+        stroke-width: 2.4;
+        fill-opacity: .2;
+        stroke-opacity: .34;
+        filter: url(#fsSoftGlow);
+      }
+
+      .fs-front-axis {
+        fill: url(#fsAxisGradient);
+        stroke: #e7d9b4;
+        stroke-width: 1.6;
+        fill-opacity: .24;
+        stroke-opacity: .4;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-water-fill {
+        fill: url(#fsWaterGradient);
+        stroke: #9dc4c7;
+        stroke-width: 1.4;
+        fill-opacity: .16;
+        stroke-opacity: .24;
+        filter: url(#fsWaterGlow);
+      }
+
+      .fs-water-line {
+        fill: none;
+        stroke: url(#fsWaterStroke);
+        stroke-width: 5.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-opacity: .68;
+        filter: url(#fsWaterGlow);
+      }
+
+      .fs-guard-left {
+        fill: url(#fsGuardGradientLeft);
+        stroke: #d6c08a;
+        stroke-width: 2;
+        fill-opacity: .14;
+        stroke-opacity: .28;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-guard-right {
+        fill: url(#fsGuardGradientRight);
+        stroke: #d6c08a;
+        stroke-width: 2;
+        fill-opacity: .14;
+        stroke-opacity: .28;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-inner {
+        fill: url(#fsInnerGradient);
+        stroke: #d8cfa7;
+        stroke-width: 1.8;
+        fill-opacity: .13;
+        stroke-opacity: .24;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-back {
+        fill: url(#fsBackGradient);
+        stroke: #e5d8b5;
+        stroke-width: 1.8;
+        fill-opacity: .12;
+        stroke-opacity: .24;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-back-band {
+        fill: url(#fsBackBandGradient);
+        stroke: #d5c18b;
+        stroke-width: 1.4;
+        fill-opacity: .16;
+        stroke-opacity: .26;
+        filter: url(#fsSoftBlur);
+      }
+
+      .fs-core {
+        fill: url(#fsCoreGlow);
+        fill-opacity: .18;
+        stroke: #ebe1c4;
+        stroke-width: 1.2;
+        stroke-opacity: .18;
+        filter: url(#fsGlow);
+        pointer-events: none;
+      }
+
+      #fengshui-visual-overlay {
+        opacity: .96;
+      }
+
+      #fengshui-hit-overlay .fs-hit {
+        fill: rgba(255,255,255,0.01);
+        stroke: transparent;
+        stroke-width: 2.5;
+        pointer-events: auto;
+        cursor: pointer;
+        vector-effect: non-scaling-stroke;
+      }
+    </style><rect id="overlay-bounds" x="0" y="0" width="987.436" height="1398.857" fill="none" pointer-events="none"/><g id="fengshui-visual-overlay" style="opacity: 0.92;">
+    <path id="overlay-front-fan" class="fs-visual fs-front" d="M146 1390 C220 1315 325 1260 432 1226 C463 1217 524 1217 555 1226 C662 1260 767 1316 841 1390 L841 1398 L146 1398 Z"/>
+    <path id="overlay-front-axis-guide" class="fs-visual fs-front fs-front-axis" d="M472 1228 C480 1164 485 1103 489 1038 C492 967 494 897 494 820 C494 897 496 967 499 1038 C503 1103 508 1164 516 1228 C509 1238 503 1244 494 1244 C485 1244 479 1238 472 1228 Z"/>
+    <path id="overlay-water-curve" class="fs-visual fs-water fs-water-line" d="M388 1326 C415 1260 451 1192 497 1110 C542 1028 564 968 573 885 C580 823 569 765 546 700"/>
+    <path id="overlay-water-ripple" class="fs-visual fs-water fs-water-fill" d="M300 1324 C333 1281 372 1239 413 1179 C452 1122 486 1064 512 999 C539 932 551 872 548 812 C575 821 598 839 614 865 C611 917 599 974 574 1042 C547 1115 509 1181 468 1240 C430 1294 390 1335 353 1355 C336 1348 318 1338 300 1324 Z M383 1180 C411 1135 438 1090 463 1036 C491 976 511 920 522 864 C547 872 566 888 579 911 C568 958 550 1011 523 1069 C499 1120 471 1170 440 1216 C420 1207 401 1195 383 1180 Z"/>
+    <path id="overlay-left-guard" class="fs-visual fs-guard fs-guard-left" d="M72 1128 C52 950 68 718 120 506 C147 394 198 291 289 225 C332 194 377 180 426 184 C392 263 362 386 345 537 C327 699 329 870 382 1082 C329 1088 271 1092 211 1100 C150 1108 106 1120 72 1128 Z"/>
+    <path id="overlay-right-guard" class="fs-visual fs-guard fs-guard-right" d="M915 1128 C935 950 919 718 867 506 C840 394 789 291 698 225 C655 194 610 180 561 184 C595 263 625 386 642 537 C660 699 658 870 605 1082 C658 1088 716 1092 776 1100 C837 1108 881 1120 915 1128 Z"/>
+    <path id="overlay-inner-calm" class="fs-visual fs-inner" d="M316 184 C386 153 461 143 494 143 C527 143 602 153 672 184 C656 260 645 340 643 427 C641 511 647 581 663 652 C597 635 541 627 494 627 C447 627 391 635 325 652 C341 581 347 511 345 427 C343 340 332 260 316 184 Z"/>
+    <path id="overlay-back-support" class="fs-visual fs-back" d="M170 44 C270 20 377 10 494 10 C611 10 718 20 818 44 C800 111 776 173 733 225 C665 202 584 188 494 188 C404 188 323 202 255 225 C212 173 188 111 170 44 Z"/>
+    <ellipse id="overlay-core-glow" class="fs-visual fs-core" cx="494" cy="620" rx="164" ry="126"/>
+    <path id="overlay-back-axis-band" class="fs-visual fs-back fs-back-band" d="M446 176 C454 160 471 150 494 150 C517 150 534 160 542 176 C556 220 560 286 558 354 C556 432 550 500 542 584 C534 600 517 610 494 610 C471 610 454 600 446 584 C438 500 432 432 430 354 C428 286 432 220 446 176 Z"/>
+  </g>
+  <g id="fengshui-hit-overlay">
+    <path id="hit-front-outer" class="fs-hit fs-hit-front" d="M118 1397 L869 1397 C839 1328 760 1265 650 1229 C603 1213 552 1203 494 1202 C436 1203 385 1213 338 1229 C228 1265 149 1328 118 1397 Z"/>
+    <path id="hit-front-middle" class="fs-hit fs-hit-front" d="M214 1298 C281 1248 367 1217 494 1198 C621 1217 707 1248 774 1298 C731 1346 645 1375 494 1372 C343 1375 257 1346 214 1298 Z"/>
+    <path id="hit-front-core-link" class="fs-hit fs-hit-front" d="M363 1231 C404 1173 442 1118 494 1082 C546 1118 584 1173 625 1231 C592 1261 547 1283 494 1289 C441 1283 396 1261 363 1231 Z"/>
+    <path id="hit-water-entry" class="fs-hit fs-hit-water" d="M340 1323 C371 1271 414 1222 456 1160 C473 1135 488 1109 501 1084 C526 1098 548 1117 566 1140 C545 1175 522 1214 492 1254 C455 1304 419 1338 383 1354 C369 1344 355 1334 340 1323 Z"/>
+    <path id="hit-water-middle" class="fs-hit fs-hit-water" d="M433 1142 C466 1089 495 1027 519 954 C534 910 545 862 551 816 C581 828 604 847 617 871 C607 931 591 987 567 1045 C542 1108 513 1162 477 1204 C461 1185 447 1164 433 1142 Z"/>
+    <path id="hit-water-converge" class="fs-hit fs-hit-water" d="M520 830 C529 785 531 741 522 698 C515 661 499 630 476 604 C489 587 510 575 537 568 C567 605 586 648 593 699 C600 756 594 814 580 866 C560 859 540 847 520 830 Z"/>
+    <path id="hit-east-guard" class="fs-hit fs-hit-guard" d="M690 202 C777 245 840 337 878 490 C911 625 917 803 910 1025 C865 1060 801 1087 720 1098 C758 926 772 738 756 557 C742 395 716 279 690 202 Z"/>
+    <path id="hit-west-guard" class="fs-hit fs-hit-guard" d="M297 202 C210 245 147 337 109 490 C76 625 70 803 77 1025 C122 1060 186 1087 267 1098 C229 926 215 738 231 557 C245 395 271 279 297 202 Z"/>
+    <path id="hit-east-inner" class="fs-hit fs-hit-guard" d="M561 238 C620 262 663 329 686 455 C705 559 706 689 692 829 C684 919 665 997 628 1071 C588 1044 558 998 542 936 C553 838 556 716 548 586 C544 456 548 346 561 238 Z"/>
+    <path id="hit-west-inner" class="fs-hit fs-hit-guard" d="M426 238 C367 262 324 329 301 455 C282 559 281 689 295 829 C303 919 322 997 359 1071 C399 1044 429 998 445 936 C434 838 431 716 439 586 C443 456 439 346 426 238 Z"/>
+    <path id="hit-inner-calm" class="fs-hit fs-hit-inner" d="M323 178 C379 152 437 138 494 138 C551 138 609 152 665 178 C645 264 637 347 637 435 C637 520 646 594 665 655 C609 678 552 690 494 690 C436 690 379 678 323 655 C342 594 351 520 351 435 C351 347 343 264 323 178 Z"/>
+    <path id="hit-rear-garden" class="fs-hit fs-hit-back" d="M371 100 C408 77 448 64 494 64 C540 64 580 77 617 100 C598 135 584 176 578 224 C552 236 524 242 494 242 C464 242 436 236 410 224 C404 176 390 135 371 100 Z"/>
+    <path id="hit-rear-gate" class="fs-hit fs-hit-back" d="M309 0 L679 0 C674 45 656 87 625 120 C582 139 537 148 494 148 C451 148 406 139 363 120 C332 87 314 45 309 0 Z"/>
+  </g>
+
+</svg>

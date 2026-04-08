@@ -129,7 +129,7 @@ button {
   max-height: 100vh;
   min-height: 0;
   display: grid;
-  grid-template-columns: 164px minmax(0, 1fr);
+  grid-template-columns: 186px minmax(0, 1fr);
   overflow: hidden;
 }
 
@@ -142,7 +142,7 @@ button {
   display: flex;
   justify-content: center;
   min-height: 0;
-  padding: 32px 16px 60px;
+  padding: 26px 14px 58px;
   /* 白墙黛瓦感背景 */
   background:
     linear-gradient(180deg, rgba(250, 251, 248, 0.98), rgba(242, 244, 240, 0.96));
@@ -152,9 +152,9 @@ button {
 /* 缩短的导航竖线 */
 .wood-nav__spine {
   position: absolute;
-  top: 30%;
+  top: 31%;
   transform: translate(-50%, -50%);
-  height: 40%;
+  height: 28%;
   width: 1.5px;
   left: 50%;
   border-radius: 999px;
@@ -166,7 +166,7 @@ button {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
   width: 100%;
   align-items: center;
 }
@@ -174,10 +174,10 @@ button {
 /* 吊坠装饰 - 改为青玉色 */
 .wood-nav__pendant {
   position: absolute;
-  bottom: 20px;
+  bottom: 450px;
   left: 50%;
-  width: 16px;
-  height: 42px;
+  width: 20px;
+  height: 80px;
   transform: translateX(-50%);
   background: linear-gradient(180deg, var(--jade), #5a7a6a);
   clip-path: polygon(22% 0, 78% 0, 100% 84%, 50% 100%, 0 84%);
@@ -188,11 +188,11 @@ button {
 /* 导航按钮 - 清新典雅卡片 */
 .wood-plate {
   position: relative;
-  width: 110px;
-  min-height: 72px;
+  width: 128px;
+  min-height: 86px;
   border: 1px solid rgba(90, 122, 138, 0.15);
-  border-radius: 12px;
-  padding: 12px 10px 10px;
+  border-radius: 16px;
+  padding: 14px 12px 12px;
   background: linear-gradient(145deg, #fcfdfb 0%, #f5f6f3 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
@@ -259,10 +259,22 @@ button {
 
 .wood-plate__en {
   font-family: "Cormorant Garamond", "Georgia", serif;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   opacity: 0.82;
+}
+
+body[data-lang="zh"] .wood-plate__en {
+  display: none;
+}
+
+body[data-lang="en"] .wood-plate__zh {
+  display: none;
+}
+
+body[data-lang="en"] .wood-plate {
+  padding-top: 18px;
 }
 
 /* 语言切换按钮 */
@@ -296,7 +308,7 @@ button {
 }
 
 .app-frame {
-  padding: 8px 18px 8px 12px;
+  padding: 10px 20px 10px 14px;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -394,25 +406,37 @@ button {
   overflow: auto;
 }
 
-.charts-column,
 .detail-column {
-  display: grid;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* 改用子元素 margin-bottom 代替 gap，避免透明间隔在 overflow:hidden 祖先下露出 body 背景 */
   min-height: 0;
+}
+
+/* filter-card 需高于 info-card，才能让展开的 fold-panel 浮在上方 */
+.detail-column > .filter-card {
+  position: relative;
+  z-index: 3;
+  margin-bottom: 12px; /* 替代 gap */
+}
+
+.detail-column > .info-card {
+  position: relative;
+  z-index: 1;
 }
 
 .overview-column {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .charts-column {
+  display: grid;
   grid-template-rows: repeat(2, minmax(0, 1fr));
-}
-
-.detail-column {
-  grid-template-rows: auto minmax(0, 1fr);
+  gap: 12px;
+  min-height: 0;
 }
 
 .panel-card {
@@ -498,6 +522,10 @@ button {
   line-height: 1.7;
 }
 
+.overview-hint:empty {
+  display: none;
+}
+
 .overview-stage {
   position: relative;
   flex: 1;
@@ -521,12 +549,32 @@ button {
   user-select: none;
 }
 
-.overview-svg-host > svg {
+/* 宫阙总览：铺满舞台；堪舆哲思：见下方 #thought-svg-host，避免两套逻辑抢同一套尺寸 */
+#overview-svg-host > svg {
   width: 100%;
   height: 100%;
+  max-width: none;
+  margin: 0;
   display: block;
   overflow: visible;
   filter: drop-shadow(0 18px 30px rgba(48, 29, 12, 0.12));
+}
+
+#thought-svg-host.overview-svg-host {
+  z-index: 1;
+}
+
+#thought-svg-host.overview-svg-host > svg {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+  overflow: visible;
+  filter: saturate(0.94) drop-shadow(0 18px 30px rgba(48, 29, 12, 0.14));
+  border-radius: 18px;
+  background: rgba(255, 247, 231, 0.82);
+  color: var(--ink-soft);
 }
 
 .overview-svg-fallback {
@@ -650,38 +698,56 @@ button {
 }
 
 .filter-card {
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  overflow: visible; /* 覆盖 panel-card 默认 overflow:hidden，让 fold-panel 浮层不被裁切 */
 }
 
-/* 折叠面板容器 - 固定高度，展开时覆盖而非下推 */
-.fold-card {
+/* 折叠行：relative 让 fold-panel 绝对定位 */
+.fold-row {
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
-/* 折叠面板 - 使用绝对定位，展开时覆盖下方内容 */
+/* 折叠面板 - 绝对定位透明浮层，不撑开下方 */
 .fold-panel {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  z-index: 10;
-  margin-top: 8px;
-  padding: 10px;
-  border: 1px solid rgba(90, 122, 138, 0.1);
-  border-radius: var(--radius-sm);
-  background: rgba(252, 253, 250, 0.98);
-  box-shadow: var(--shadow-soft);
-  transition: opacity 0.25s ease;
+  z-index: 50;
+  padding: 0 10px;
+  border: 1px solid rgba(90, 122, 138, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(252, 253, 250, 0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(60, 54, 46, 0.13), 0 2px 8px rgba(60, 54, 46, 0.08);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.32s ease, opacity 0.22s ease, padding 0.22s ease;
+  pointer-events: none;
 }
 
 .fold-panel[hidden] {
   display: block;
-  opacity: 0;
-  pointer-events: none;
 }
 
-.fold-panel:not([hidden]) {
+.fold-panel.is-open {
+  max-height: 240px;
   opacity: 1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  pointer-events: auto;
+}
+
+.fold-panel:not(.is-open) {
+  pointer-events: none;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 /* 折叠按钮样式 */
@@ -725,6 +791,29 @@ button {
 }
 
 /* 筛选标签 */
+.fold-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.fold-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(60, 75, 85, 0.88);
+  letter-spacing: 1px;
+}
+
+.fold-arrow {
+  font-size: 16px;
+  color: rgba(90, 122, 138, 0.6);
+  transition: transform 0.24s ease;
+  line-height: 1;
+}
+
+.fold-toggle.is-open .fold-arrow {
+  transform: rotate(90deg);
+}
+
 .filter-chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -732,24 +821,27 @@ button {
 }
 
 .filter-chip {
-  border: 1px solid color-mix(in srgb, var(--chip-color) 30%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--chip-color) 50%, transparent);
   border-radius: 999px;
-  padding: 6px 12px;
-  background: rgba(252, 253, 250, 0.9);
+  padding: 6px 13px;
+  background: rgba(252, 253, 250, 0.88);
   color: var(--chip-color);
+  font-size: 12.5px;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
 }
 
 .filter-chip:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(60, 70, 80, 0.08);
+  box-shadow: 0 4px 14px rgba(60, 70, 80, 0.1);
+  background: color-mix(in srgb, var(--chip-color) 10%, rgba(252, 253, 250, 0.95));
 }
 
 .filter-chip.active {
   color: #f8fafb;
   background: var(--chip-color);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--chip-color) 40%, transparent);
 }
 
 .gallery-card {
@@ -999,6 +1091,14 @@ button {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow: visible; /* 滚动由内部 #archive-card / .archive-card-body 各自处理 */
+}
+
+/* 右侧档案/分类共用外壳：禁用 panel 装饰伪元素，避免其叠在可滚动正文之上（表现为大块白条挡字） */
+section.panel-card.info-card::before,
+section.panel-card.info-card::after {
+  display: none;
 }
 
 .info-tabs {
@@ -1169,7 +1269,9 @@ button {
 
   .charts-column,
   .detail-column {
-    grid-template-rows: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
 
   .charts-column {
@@ -1234,7 +1336,9 @@ button {
   }
 
   .detail-column {
-    grid-template-rows: auto minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
 
   .fold-grid {
@@ -1300,6 +1404,32 @@ button {
   background: rgba(80, 50, 28, 0.85);
 }
 
+.video-lightbox__panel {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-lightbox__video {
+  width: 100%;
+  max-height: 82vh;
+  border-radius: 16px;
+  background: #111;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.5);
+}
+
+.video-lightbox__path {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(252, 253, 250, 0.9);
+  color: rgba(79, 56, 33, 0.82);
+  font-size: 12px;
+  word-break: break-all;
+}
+
 /* ===== 档案卡照片按钮 ===== */
 .info-building-photo {
   display: block;
@@ -1334,13 +1464,24 @@ button {
   display: none !important;
 }
 
+.module-layout--enter {
+  animation: moduleFadeIn 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes moduleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===============================
    模块二：堪舆哲思
    =============================== */
-
-.wood-nav__plates {
-  gap: 24px;
-}
 
 .module-layout--thought,
 .module-layout--component {
@@ -1360,10 +1501,10 @@ button {
 
 .thought-topbar {
   display: grid;
-  grid-template-columns: minmax(180px, 200px) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) minmax(150px, 180px);
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
+  gap: 18px;
+  padding: 14px 18px;
 }
 
 .thought-topbar__title {
@@ -1372,10 +1513,10 @@ button {
 
 /* 顶部一级标签 - 居中等宽排列 */
 .thought-primary-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
 }
 
 .thought-primary-tab,
@@ -1389,12 +1530,10 @@ button {
 }
 
 .thought-primary-tab {
-  flex: 1;
-  max-width: 140px;
-  min-width: 100px;
-  height: 90px;
-  padding: 12px 10px;
-  border-radius: var(--radius-md);
+  width: 100%;
+  min-height: 96px;
+  padding: 14px 12px;
+  border-radius: 999px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -1407,8 +1546,8 @@ button {
   content: "";
   position: absolute;
   inset: 6px;
-  border: 1px solid rgba(90, 122, 138, 0.08);
-  border-radius: calc(var(--radius-md) - 4px);
+  border: 1px solid rgba(184, 155, 94, 0.14);
+  border-radius: 999px;
   pointer-events: none;
 }
 
@@ -1432,14 +1571,14 @@ button {
 
 .thought-primary-tab__zh {
   font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 16px;
-  letter-spacing: 1px;
+  font-size: 17px;
+  letter-spacing: 1.5px;
 }
 
 .thought-primary-tab__en {
   margin-top: 4px;
-  font-size: 10px;
-  letter-spacing: 0.5px;
+  font-size: 11px;
+  letter-spacing: 1px;
   color: var(--ink-soft);
 }
 
@@ -1464,8 +1603,8 @@ button {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(260px, 24%) minmax(420px, 1fr) minmax(300px, 31%);
-  gap: 12px;
+  grid-template-columns: minmax(250px, 23%) minmax(460px, 1fr) minmax(320px, 30%);
+  gap: 14px;
 }
 
 .thought-side-column,
@@ -1484,6 +1623,7 @@ button {
 }
 
 .thought-side-card,
+.thought-stage-card,
 .thought-control-card,
 .thought-media-card,
 .thought-text-card {
@@ -1493,8 +1633,8 @@ button {
 
 .thought-detail-column {
   display: grid;
-  gap: 12px;
-  grid-template-rows: auto minmax(180px, 0.9fr) minmax(260px, 1.1fr);
+  gap: 14px;
+  grid-template-rows: auto minmax(220px, 0.95fr) minmax(290px, 1.05fr);
 }
 
 .thought-block-head {
@@ -1529,10 +1669,14 @@ button {
 }
 
 .thought-side-focus {
-  padding: 0 18px 18px;
+  margin: 0 18px 18px;
+  padding: 14px 16px;
   color: var(--ink-soft);
   font-size: 13px;
   line-height: 1.8;
+  border-radius: 16px;
+  background: rgba(248, 246, 241, 0.86);
+  border: 1px solid rgba(160, 150, 135, 0.12);
 }
 
 .thought-axis-list,
@@ -1606,10 +1750,6 @@ button {
   isolation: isolate;
 }
 
-.thought-svg-host > svg {
-  filter: saturate(0.94) drop-shadow(0 18px 30px rgba(48, 29, 12, 0.14));
-}
-
 .thought-stage-decor {
   position: absolute;
   inset: 0;
@@ -1648,6 +1788,10 @@ button {
   color: #faf8f4;
   font-size: 11px;
   letter-spacing: 0.5px;
+  max-width: 180px;
+  text-align: center;
+  line-height: 1.45;
+  white-space: normal;
 }
 
 .thought-yinyang-field,
@@ -1685,6 +1829,10 @@ button {
   color: #faf8f4;
   font-size: 12px;
   box-shadow: 0 6px 16px rgba(60, 54, 46, 0.12);
+  max-width: 180px;
+  text-align: center;
+  line-height: 1.4;
+  white-space: normal;
 }
 
 .thought-fengshui-field::before {
@@ -1701,14 +1849,31 @@ button {
 
 .thought-secondary-tabs {
   padding: 0 18px 14px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 10px;
 }
 
 .thought-secondary-tab {
-  padding: 9px 14px;
-  border-radius: 999px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  text-align: left;
+}
+
+.thought-secondary-tab__main {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 14px;
+}
+
+.thought-secondary-tab__sub {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.78;
 }
 
 .thought-status-list {
@@ -1743,6 +1908,110 @@ button {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.thought-video-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.thought-video-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 190px;
+  padding: 0;
+  border: 1px solid rgba(160, 150, 135, 0.15);
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(248, 249, 246, 0.96), rgba(236, 239, 234, 0.92)),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.3), transparent 60%);
+  cursor: zoom-in;
+}
+
+.thought-video-frame:focus-visible {
+  outline: 2px solid rgba(184, 155, 94, 0.42);
+  outline-offset: 4px;
+}
+
+.thought-video-frame__media {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: linear-gradient(135deg, rgba(232, 235, 230, 0.95), rgba(244, 243, 238, 0.92));
+}
+
+.thought-video-frame__overlay {
+  position: absolute;
+  inset: auto 14px 14px auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(35, 42, 48, 0.72);
+  color: #faf8f4;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.thought-video-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thought-video-meta__title {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.thought-video-meta__body {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.thought-video-meta__path {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(248, 246, 241, 0.82);
+  border: 1px dashed rgba(184, 155, 94, 0.22);
+  font-size: 11px;
+  color: rgba(79, 56, 33, 0.78);
+  white-space: normal;
+  word-break: break-all;
+}
+
+.thought-poster--summary {
+  min-height: 0;
+}
+
+.thought-media-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.thought-media-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(248, 246, 241, 0.8);
+  border: 1px solid rgba(160, 150, 135, 0.12);
+  color: var(--ink-soft);
+  font-size: 12px;
 }
 
 .thought-poster {
@@ -1807,6 +2076,58 @@ button {
 .thought-text-body::-webkit-scrollbar-thumb {
   background: rgba(138, 102, 56, 0.28);
   border-radius: 999px;
+}
+
+.thought-stage-summary {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  width: min(280px, 42%);
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background: rgba(252, 253, 250, 0.88);
+  border: 1px solid rgba(160, 150, 135, 0.15);
+  box-shadow: 0 10px 24px rgba(60, 70, 80, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.thought-stage-summary__eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(79, 56, 33, 0.56);
+  text-transform: uppercase;
+}
+
+.thought-stage-summary__title {
+  margin: 6px 0 0;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.thought-stage-summary__body {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.thought-stage-summary__list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.thought-stage-summary__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(248, 246, 241, 0.82);
+  color: rgba(79, 56, 33, 0.88);
+  font-size: 12px;
 }
 
 .thought-text-section + .thought-text-section {
@@ -1874,18 +2195,183 @@ button {
 /* =====================================================
    模块三：巧物精工
    ===================================================== */
-/* ===== 模块一右侧建筑卡片稳定化修复 ===== */
-#archive-card {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* ===== 模块一右侧档案卡重构 ===== */
+/* 层级：#archive-card (z-index:2) > #category-intro-card (z-index:1)，确保档案卡始终在最前 */
+/* 内层曾误套 .info-card 与外壳重复 flex，易导致叠层与留白；hidden 须可靠隐藏，避免挡档案正文 */
+#category-intro-card {
+  position: relative;
+  z-index: 1;
 }
 
-#card-content-archive,
-#card-content-event {
+#category-intro-card[hidden] {
+  display: none !important;
+  pointer-events: none;
+}
+
+#category-intro-card:not([hidden]) {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+#archive-card {
+  position: relative;
+  z-index: 2; /* 高于 panel-card 装饰伪元素，避免正文被盖 */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+#archive-card-hero {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(90, 122, 138, 0.1);
+}
+
+.archive-card-hero__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: calc(var(--radius-md) - 2px);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(205, 178, 128, 0.15), rgba(57, 39, 29, 0.08));
+}
+
+.archive-card-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.archive-card-hero__photo.is-missing {
+  background: linear-gradient(135deg, rgba(205, 178, 128, 0.12), rgba(57, 39, 29, 0.06));
+}
+
+.archive-card-hero__photo.is-missing::after {
+  content: attr(data-missing-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(108, 79, 52, 0.4);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.archive-card-hero__name {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.archive-card-hero__eyebrow {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(184, 138, 53, 0.12);
+  color: rgba(92, 61, 35, 0.84);
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.archive-card-hero__title {
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  letter-spacing: 1px;
+}
+
+.archive-card-hero__subtitle {
+  font-size: 11.5px;
+  color: rgba(60, 75, 85, 0.6);
+  letter-spacing: 0.5px;
+}
+
+/* Tab 按钮行 */
+.archive-card-tabs {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 8px 0 4px;
+}
+
+.archive-card-tab {
+  flex: 1;
+  border: 1.5px solid rgba(90, 122, 138, 0.12);
+  border-radius: 999px;
+  padding: 7px 4px;
+  background: rgba(252, 253, 250, 0.8);
+  color: rgba(60, 75, 85, 0.7);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.archive-card-tab:hover {
+  background: rgba(252, 253, 250, 0.98);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(60, 54, 46, 0.08);
+}
+
+.archive-card-tab.active {
+  background: linear-gradient(145deg, rgba(163, 124, 56, 0.92), rgba(193, 148, 68, 0.9));
+  border-color: transparent;
+  color: #f8fafb;
+  box-shadow: 0 3px 10px rgba(163, 124, 56, 0.25);
+}
+
+/* 三个内容槽，仅当前 Tab 可见 */
+#card-content-archive,
+#card-content-event,
+#card-content-sinology {
+  display: none;
+  flex-direction: column;
   gap: 14px;
+  min-width: 0;
+}
+
+#card-content-archive.is-active,
+#card-content-event.is-active,
+#card-content-sinology.is-active {
+  display: flex;
+}
+
+/* 单滚动容器：仅此处可滚动 */
+.archive-card-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 2px;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+}
+
+.archive-card-body::-webkit-scrollbar {
+  width: 4px;
+}
+.archive-card-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.archive-card-body::-webkit-scrollbar-thumb {
+  background: rgba(90, 122, 138, 0.18);
+  border-radius: 999px;
+}
+
+.archive-card-grid {
+  /* 旧兼容：已由上方新结构替代，保留防错 */
+  display: none;
 }
 
 .building-record {
@@ -2021,10 +2507,11 @@ button {
 
 /* --- 顶部建筑切换栏 --- */
 .component-topbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 180px));
   justify-content: center;
-  gap: 12px;
-  padding: 10px 18px;
+  gap: 14px;
+  padding: 14px 24px 12px;
   background:
     linear-gradient(180deg, rgba(248, 249, 246, 0.92), rgba(240, 242, 238, 0.6)),
     radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.4), transparent 70%);
@@ -2037,20 +2524,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  max-width: 160px;
-  padding: 8px 16px;
-  border: 1px solid rgba(90, 122, 138, 0.2);
-  border-radius: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 18px;
+  border: 1px solid rgba(90, 122, 138, 0.18);
+  border-radius: 999px;
   background: rgba(252, 253, 250, 0.7);
   color: #4a5a65;
   font-family: "Noto Serif SC", "STKaiti", "KaiTi", serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 1.5px;
+  line-height: 1.5;
+  text-align: center;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(4px);
+  white-space: normal;
 }
 
 .component-building-btn::before {
@@ -2091,7 +2581,7 @@ button {
   display: flex;
   flex: 1;
   min-height: 0;
-  gap: 0;
+  gap: 8px;
 }
 
 /* --- 全景交互区容器 --- */
@@ -2099,8 +2589,8 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 14px 14px 14px 18px;
-  gap: 10px;
+  padding: 14px 10px 14px 18px;
+  gap: 12px;
   min-width: 0;
 }
 
@@ -2156,7 +2646,8 @@ button {
 .component-stage {
   position: relative;
   flex: 1;
-  border-radius: 14px;
+  min-height: 460px;
+  border-radius: 18px;
   overflow: hidden;
   background:
     radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.4), transparent 45%),
@@ -2187,14 +2678,14 @@ button {
 
 /* 拆分状态：PNG 缩到左上角 */
 .component-stage.is-exploded .component-png {
-  width: 36%;
+  width: 28%;
   height: auto;
-  top: 14px;
-  left: 14px;
-  border-radius: 10px;
+  top: 18px;
+  left: 18px;
+  border-radius: 14px;
   box-shadow:
-    0 3px 14px rgba(60, 70, 80, 0.15),
-    0 0 0 1px rgba(90, 122, 138, 0.15);
+    0 8px 24px rgba(60, 70, 80, 0.14),
+    0 0 0 1px rgba(90, 122, 138, 0.12);
   cursor: zoom-in;
 }
 
@@ -2217,17 +2708,17 @@ button {
 }
 
 /* SVG 热区样式 */
-.component-svg-host g {
+.component-svg-host [id] {
   pointer-events: all;
   cursor: pointer;
   transition: filter 0.22s ease;
 }
 
-.component-svg-host g:hover {
+.component-svg-host [id]:hover {
   filter: drop-shadow(0 0 6px rgba(90, 122, 138, 0.6));
 }
 
-.component-svg-host g.is-selected {
+.component-svg-host [id].is-selected {
   filter: drop-shadow(0 0 8px rgba(90, 122, 138, 0.8));
 }
 
@@ -2242,8 +2733,9 @@ button {
 .component-label {
   position: absolute;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   padding: 5px 10px;
   border-radius: 6px;
   background: rgba(60, 70, 80, 0.9);
@@ -2252,7 +2744,7 @@ button {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1px;
-  white-space: nowrap;
+  white-space: normal;
   pointer-events: none;
   opacity: 0;
   transform: translateY(3px) translateX(-50%);
@@ -2288,13 +2780,14 @@ button {
 /* 标签简介 */
 .component-label__name {
   font-weight: 700;
+  line-height: 1.35;
 }
 
 .component-label-desc {
   font-size: 10px;
   font-weight: 400;
   color: rgba(200, 210, 220, 0.8);
-  max-width: 120px;
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2342,11 +2835,11 @@ button {
 
 /* --- 右侧解读栏 --- */
 .component-sidebar {
-  width: 258px;
+  width: 286px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   padding: 14px 14px 14px 0;
   overflow-y: auto;
   max-height: calc(100vh - 90px);
@@ -2392,9 +2885,9 @@ button {
 
 /* --- 构件按钮列表 --- */
 .component-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .component-btn {
@@ -2402,9 +2895,10 @@ button {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 12px;
+  min-height: 50px;
+  padding: 10px 12px;
   border: 1px solid rgba(90, 122, 138, 0.12);
-  border-radius: 8px;
+  border-radius: 12px;
   background: rgba(252, 253, 250, 0.6);
   color: #4a5a65;
   font-family: "Noto Serif SC", "STKaiti", serif;
@@ -2414,12 +2908,18 @@ button {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(4px);
+  white-space: normal;
+}
+
+.component-btn__text {
+  display: block;
+  line-height: 1.45;
 }
 
 .component-btn:hover {
   background: rgba(168, 197, 212, 0.12);
   border-color: rgba(90, 122, 138, 0.3);
-  transform: translateX(2px);
+  transform: translateY(-1px);
 }
 
 .component-btn.is-active {
@@ -2430,7 +2930,7 @@ button {
   box-shadow:
     0 0 0 1px rgba(90, 122, 138, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transform: translateX(3px);
+  transform: translateY(-1px);
 }
 
 .component-btn__dot {
@@ -2525,6 +3025,15 @@ button {
   color: #3d4d58;
   margin-top: 2px;
   letter-spacing: 1.5px;
+  line-height: 1.45;
+}
+
+body[data-lang="en"] .component-building-btn,
+body[data-lang="en"] .component-btn,
+body[data-lang="en"] .component-card__component-name,
+body[data-lang="en"] .component-label {
+  font-family: "Cormorant Garamond", "Georgia", "Noto Serif SC", serif;
+  letter-spacing: 0.6px;
 }
 
 .component-card__tabs {
@@ -2635,15 +3144,136 @@ button {
   right: 5px;
 }
 
+/* =====================================================
+   左侧新结构：建筑关系网 & 关键词面板
+   ===================================================== */
+
+/* 关系网容器 */
+.graph-surface {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(180deg, rgba(252, 253, 250, 0.8), rgba(248, 249, 246, 0.6));
+  border-radius: 14px;
+  border: 1px solid rgba(90, 122, 138, 0.1);
+  overflow: hidden;
+}
+
+.graph-card {
+  flex-shrink: 0;
+}
+
+.keyword-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* 关键词面板 */
+.keyword-surface {
+  padding: 10px 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.keyword-surface::-webkit-scrollbar {
+  width: 3px;
+}
+
+.keyword-surface::-webkit-scrollbar-thumb {
+  background: rgba(90, 122, 138, 0.2);
+  border-radius: 2px;
+}
+
+.keyword-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.keyword-group__label {
+  font-size: 10px;
+  color: rgba(90, 122, 138, 0.7);
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.keyword-group__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.keyword-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: linear-gradient(135deg, rgba(90, 122, 138, 0.08), rgba(168, 197, 212, 0.12));
+  border: 1px solid rgba(90, 122, 138, 0.15);
+  color: rgba(60, 75, 85, 0.85);
+  cursor: default;
+  transition: all 0.2s ease;
+  line-height: 1.6;
+}
+
+.keyword-tag:hover {
+  background: rgba(193, 138, 59, 0.1);
+  border-color: rgba(193, 138, 59, 0.28);
+  color: #3d4d58;
+}
+
 /* --- 响应式 --- */
 @media (max-width: 1100px) {
+  .archive-card-grid {
+    grid-template-columns: 1fr;
+  }
+
   .thought-grid {
     grid-template-columns: 1fr;
   }
+
+  .thought-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .thought-primary-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .thought-stage-summary {
+    position: static;
+    width: auto;
+    margin: 18px;
+  }
+
   .module-layout[data-layout="archive"] {
     grid-template-columns: 1fr;
   }
   .charts-column {
     display: none;
+  }
+
+  .component-topbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .component-body {
+    flex-direction: column;
+  }
+
+  .component-sidebar {
+    width: auto;
+    max-height: none;
+    padding-left: 18px;
+  }
+
+  .component-stage.is-exploded .component-png {
+    width: 38%;
   }
 }

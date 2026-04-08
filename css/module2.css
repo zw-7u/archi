@@ -1,0 +1,518 @@
+/* =====================================================
+   css/module2.css — 中轴礼序 模块样式
+   ===================================================== */
+
+/* ===== 左侧双面板布局 ===== */
+.thought-side-column.axis-active {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+
+.thought-side-column.axis-active > .thought-side-card {
+  display: none;
+}
+
+/* ===== 礼意盘 ===== */
+.m2-ritual-dial {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--panel-fill);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.m2-ritual-dial__head {
+  padding: 14px 16px 8px;
+}
+
+.m2-ritual-dial__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px 14px;
+  gap: 12px;
+}
+
+.m2-ritual-center {
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(248, 246, 241, 0.9);
+  border: 1px solid rgba(160, 150, 135, 0.12);
+  min-width: 110px;
+}
+
+.m2-ritual-center__name {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+
+.m2-ritual-center__role {
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+
+.m2-ritual-concepts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.m2-concept-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  background: rgba(248, 246, 241, 0.8);
+  border: 1px solid rgba(160, 150, 135, 0.12);
+  color: var(--ink-soft);
+  transition: all 0.35s ease;
+}
+
+.m2-concept-chip.is-active {
+  background: rgba(193, 138, 59, 0.12);
+  border-color: rgba(193, 138, 59, 0.32);
+  color: #7a5c28;
+  box-shadow: 0 0 0 3px rgba(193, 138, 59, 0.06);
+}
+
+
+/* ===== 脉络盘 ===== */
+.m2-track-panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--panel-fill);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.m2-track-panel__head {
+  padding: 14px 16px 8px;
+}
+
+.m2-track-panel__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 14px 14px;
+}
+
+.m2-track-panel__body::-webkit-scrollbar {
+  width: 6px;
+}
+.m2-track-panel__body::-webkit-scrollbar-thumb {
+  background: rgba(138, 102, 56, 0.2);
+  border-radius: 999px;
+}
+
+.m2-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* 竖线 */
+.m2-track-list::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(160, 150, 135, 0.18);
+  border-radius: 2px;
+}
+
+.m2-track-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.m2-track-node:hover {
+  background: rgba(248, 246, 241, 0.8);
+}
+
+/* 圆点 */
+.m2-track-node::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(160, 150, 135, 0.25);
+  border: 2px solid transparent;
+  transition: all 0.35s ease;
+  z-index: 1;
+}
+
+.m2-track-node__label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  transition: color 0.3s ease;
+}
+
+.m2-track-node__meta {
+  font-size: 11px;
+  color: rgba(160, 150, 135, 0.7);
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+/* 已到达 */
+.m2-track-node.is-reached::before {
+  background: rgba(193, 138, 59, 0.5);
+  border-color: rgba(193, 138, 59, 0.2);
+}
+.m2-track-node.is-reached .m2-track-node__label {
+  color: rgba(79, 56, 33, 0.75);
+}
+
+/* 当前 */
+.m2-track-node.is-current {
+  background: rgba(193, 138, 59, 0.08);
+}
+.m2-track-node.is-current::before {
+  background: rgba(236, 193, 95, 0.95);
+  border-color: rgba(193, 138, 59, 0.35);
+  box-shadow: 0 0 0 4px rgba(193, 138, 59, 0.1), 0 0 12px rgba(193, 138, 59, 0.2);
+  width: 12px;
+  height: 12px;
+  left: -19px;
+}
+.m2-track-node.is-current .m2-track-node__label {
+  color: var(--ink);
+  font-weight: 600;
+}
+.m2-track-node.is-current .m2-track-node__meta {
+  color: #7a5c28;
+}
+
+/* 分界标记 */
+.m2-track-node.is-divider::after {
+  content: "分界";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(184, 90, 60, 0.12);
+  border: 1px solid rgba(184, 90, 60, 0.2);
+  color: rgba(184, 90, 60, 0.8);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* ===== 地图 Overlay 装饰 ===== */
+
+/* 金线中轴 */
+.m2-axis-line {
+  top: 5%;
+  bottom: 3%;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,
+    rgba(255, 235, 186, 0),
+    rgba(236, 193, 95, 0.85) 10%,
+    rgba(236, 193, 95, 0.85) 90%,
+    rgba(255, 235, 186, 0)
+  );
+  box-shadow: 0 0 12px rgba(236, 193, 95, 0.25);
+  pointer-events: none;
+}
+
+/* 节点圆 */
+.m2-axis-dot {
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 999px;
+  background: rgba(255, 236, 194, 0.85);
+  box-shadow: 0 0 0 4px rgba(232, 183, 81, 0.12);
+  transition: all 0.4s ease;
+}
+.m2-axis-dot.is-active {
+  background: rgba(255, 236, 194, 1);
+  box-shadow: 0 0 0 6px rgba(232, 183, 81, 0.22), 0 0 16px rgba(232, 183, 81, 0.35);
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+}
+.m2-axis-dot.is-dim {
+  background: rgba(200, 200, 200, 0.4);
+  box-shadow: none;
+}
+
+/* 节点标签 */
+.m2-axis-tag {
+  transform: translate(-50%, -100%);
+  margin-top: -12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(58, 54, 50, 0.72);
+  color: #faf8f4;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+.m2-axis-tag.is-active {
+  background: rgba(193, 138, 59, 0.88);
+  box-shadow: 0 4px 12px rgba(193, 138, 59, 0.25);
+}
+.m2-axis-tag.is-dim {
+  opacity: 0.4;
+}
+
+/* 前朝后寝模式的分区蒙版 */
+.m2-zone-overlay {
+  pointer-events: none;
+  border-radius: 12px;
+  transition: opacity 0.5s ease;
+}
+.m2-zone-outer {
+  background: rgba(193, 138, 59, 0.08);
+  border: 1px dashed rgba(193, 138, 59, 0.2);
+}
+.m2-zone-inner {
+  background: rgba(94, 128, 102, 0.07);
+  border: 1px dashed rgba(94, 128, 102, 0.18);
+}
+
+/* 分界线 */
+.m2-divider-line {
+  height: 2px;
+  left: 15%;
+  right: 15%;
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0),
+    rgba(184, 90, 60, 0.6),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 8px rgba(184, 90, 60, 0.2);
+  pointer-events: none;
+}
+
+/* 分区标签 */
+.m2-zone-label {
+  transform: translate(-50%, -50%);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.m2-zone-label--outer {
+  background: rgba(193, 138, 59, 0.18);
+  border: 1px solid rgba(193, 138, 59, 0.25);
+  color: #7a5c28;
+}
+.m2-zone-label--inner {
+  background: rgba(94, 128, 102, 0.16);
+  border: 1px solid rgba(94, 128, 102, 0.22);
+  color: #3a5c42;
+}
+
+/* ===== 右下解读卡 ===== */
+.m2-interpret-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.m2-interpret-card__name {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+
+.m2-interpret-card__role {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(193, 138, 59, 0.1);
+  border: 1px solid rgba(193, 138, 59, 0.18);
+  font-size: 12px;
+  color: #7a5c28;
+  letter-spacing: 1px;
+}
+
+.m2-interpret-card__subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.m2-interpret-card__desc {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+/* ===== 进度轴蒙版（由外入内模式） ===== */
+.m2-progress-reached {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,
+    rgba(255, 235, 186, 0),
+    rgba(236, 193, 95, 0.9) 8%,
+    rgba(236, 193, 95, 0.9)
+  );
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.m2-progress-unreached {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,
+    rgba(200, 200, 200, 0.3),
+    rgba(200, 200, 200, 0.3) 92%,
+    rgba(200, 200, 200, 0)
+  );
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+/* ===== 右上按钮在中轴模式下的样式增强 ===== */
+.thought-secondary-tab.m2-mode-btn {
+  position: relative;
+  overflow: hidden;
+}
+.thought-secondary-tab.m2-mode-btn.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: rgba(193, 138, 59, 0.7);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ===== 热区高亮增强 ===== */
+.overview-region-overlay.m2-highlight {
+  opacity: 1;
+  visibility: visible;
+  filter: drop-shadow(0 0 14px rgba(227, 174, 63, 0.28));
+}
+.overview-region-overlay.m2-highlight path,
+.overview-region-overlay.m2-highlight polygon,
+.overview-region-overlay.m2-highlight rect,
+.overview-region-overlay.m2-highlight circle,
+.overview-region-overlay.m2-highlight ellipse {
+  fill: rgba(233, 187, 80, 0.16) !important;
+  stroke: rgba(246, 218, 146, 0.88) !important;
+  stroke-width: 3px !important;
+}
+
+.overview-region-overlay.m2-highlight-outer path,
+.overview-region-overlay.m2-highlight-outer polygon,
+.overview-region-overlay.m2-highlight-outer rect {
+  fill: rgba(193, 138, 59, 0.14) !important;
+  stroke: rgba(193, 138, 59, 0.65) !important;
+  stroke-width: 3px !important;
+}
+
+.overview-region-overlay.m2-highlight-inner path,
+.overview-region-overlay.m2-highlight-inner polygon,
+.overview-region-overlay.m2-highlight-inner rect {
+  fill: rgba(94, 128, 102, 0.12) !important;
+  stroke: rgba(94, 128, 102, 0.55) !important;
+  stroke-width: 3px !important;
+}
+
+.overview-region-overlay.m2-highlight-divider path,
+.overview-region-overlay.m2-highlight-divider polygon,
+.overview-region-overlay.m2-highlight-divider rect {
+  fill: rgba(184, 90, 60, 0.12) !important;
+  stroke: rgba(184, 90, 60, 0.7) !important;
+  stroke-width: 4px !important;
+}
+
+.overview-region-overlay.m2-dim {
+  opacity: 0.3 !important;
+  filter: saturate(0.3);
+}
+
+/* 选中态：更亮 */
+.overview-region-overlay.m2-selected {
+  opacity: 1;
+  visibility: visible;
+  filter: drop-shadow(0 0 18px rgba(227, 174, 63, 0.4));
+}
+.overview-region-overlay.m2-selected path,
+.overview-region-overlay.m2-selected polygon,
+.overview-region-overlay.m2-selected rect {
+  fill: rgba(233, 187, 80, 0.25) !important;
+  stroke: rgba(255, 230, 160, 0.95) !important;
+  stroke-width: 4px !important;
+}
+
+/* hover 柔和金光 */
+.overview-region-overlay.m2-hover {
+  opacity: 1;
+  visibility: visible;
+}
+.overview-region-overlay.m2-hover path,
+.overview-region-overlay.m2-hover polygon,
+.overview-region-overlay.m2-hover rect {
+  fill: rgba(233, 187, 80, 0.1) !important;
+  stroke: rgba(246, 218, 146, 0.6) !important;
+  stroke-width: 2px !important;
+}
+
+/* ===== 点击保险：右侧按钮区层级高于 panel-card 伪元素 ===== */
+.thought-control-card {
+  position: relative;
+  z-index: 1;
+}
+.thought-control-card::before,
+.thought-control-card::after {
+  z-index: 0;
+}
+#thought-secondary-tabs {
+  position: relative;
+  z-index: 2;
+}
+#thought-secondary-tabs .thought-secondary-tab,
+#thought-secondary-tabs .yy-btn {
+  pointer-events: auto;
+}

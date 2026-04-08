@@ -1,0 +1,178 @@
+/* =====================================================
+   css/yinyang.css — 阴阳五行 模块样式
+   ===================================================== */
+
+/* ===== 左侧双表盘布局 ===== */
+.thought-side-column.yy-active {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+.thought-side-column.yy-active > .thought-side-card { display: none; }
+
+/* ===== 通用表盘面板 ===== */
+.yy-dial-panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--panel-fill);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.yy-dial-panel__head { padding: 12px 14px 6px; }
+.yy-dial-panel__body {
+  flex: 1; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px 8px 10px;
+}
+
+/* Canvas 容器 */
+.yy-dial-canvas-wrap {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.yy-dial-canvas-wrap canvas {
+  max-width: 100%; max-height: 100%;
+}
+
+/* ===== 右侧三段按钮 ===== */
+.yy-btn-group { margin-bottom: 8px; }
+.yy-btn-group:last-child { margin-bottom: 0; }
+
+.yy-btn-group__title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+  padding: 0 0 6px;
+  opacity: 0.7;
+}
+
+.yy-btn-group__list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+.yy-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(252,253,250,0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 13px;
+  font-family: "STKaiti","KaiTi","Noto Serif SC",serif;
+  color: var(--ink-soft);
+  text-align: left;
+}
+.yy-btn:hover {
+  background: rgba(248,246,241,0.9);
+  border-color: rgba(160,150,135,0.25);
+}
+.yy-btn.is-active {
+  background: rgba(193,138,59,0.1);
+  border-color: rgba(193,138,59,0.35);
+  color: #6a4e20;
+  box-shadow: 0 0 0 3px rgba(193,138,59,0.06);
+}
+.yy-btn__dot {
+  width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0;
+  transition: box-shadow 0.3s ease;
+}
+.yy-btn.is-active .yy-btn__dot {
+  box-shadow: 0 0 0 3px rgba(193,138,59,0.15);
+}
+
+/* ===== 地图 zone 高亮 (via SVG inline style) ===== */
+/* zone paths 默认透明，JS 控制可见 */
+#zones-overlay .zone { transition: fill 0.5s ease, stroke 0.5s ease, opacity 0.5s ease, filter 0.5s ease; }
+#zones-overlay .zone.yy-active-zone {
+  pointer-events: all;
+  cursor: pointer;
+}
+#zones-overlay .zone.yy-dim {
+  opacity: 0.06 !important;
+  pointer-events: none;
+}
+#zones-overlay .zone.yy-glow {
+  filter: drop-shadow(0 0 18px var(--yy-glow, rgba(200,170,80,0.25)));
+}
+
+/* ===== 关系线 SVG 层 ===== */
+.yy-relation-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  marker-end: url(#yy-arrow);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.yy-relation-line.is-visible { opacity: 1; }
+
+/* 相生动画：依次亮起 */
+@keyframes yy-line-draw {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+.yy-relation-line.is-animated {
+  stroke-dasharray: 600;
+  animation: yy-line-draw 1.2s ease forwards;
+}
+
+/* ===== 底部卡片 ===== */
+.yy-card { display: flex; flex-direction: column; gap: 10px; }
+.yy-card__title {
+  font-family: "STKaiti","KaiTi","Noto Serif SC",serif;
+  font-size: 18px; letter-spacing: 2px; color: var(--ink);
+}
+.yy-card__brief {
+  margin: 0; font-size: 13px; color: var(--ink-soft); font-style: italic;
+}
+.yy-card__body {
+  margin: 0; color: var(--ink-soft); line-height: 1.9; font-size: 13px;
+}
+.yy-card__tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
+}
+.yy-card__tag {
+  display: inline-block;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; letter-spacing: 0.5px;
+  background: rgba(248,246,241,0.8);
+  border: 1px solid rgba(160,150,135,0.15);
+  color: var(--ink-soft);
+}
+
+/* ===== 地图装饰：五行 anchor 标签 ===== */
+.yy-anchor-label {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 11px; letter-spacing: 1px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  transition: all 0.4s ease;
+  opacity: 0;
+  white-space: nowrap;
+}
+.yy-anchor-label.is-visible { opacity: 1; }
+.yy-anchor-label--wood  { background: rgba(80,140,90,0.22); border: 1px solid rgba(80,140,90,0.35); color: #3a6a40; }
+.yy-anchor-label--fire  { background: rgba(200,100,50,0.22); border: 1px solid rgba(200,100,50,0.35); color: #8a4020; }
+.yy-anchor-label--earth { background: rgba(184,138,53,0.22); border: 1px solid rgba(184,138,53,0.35); color: #7a5c20; }
+.yy-anchor-label--metal { background: rgba(180,170,150,0.22);border: 1px solid rgba(180,170,150,0.4); color: #6a6050; }
+.yy-anchor-label--water { background: rgba(60,100,140,0.22); border: 1px solid rgba(60,100,140,0.35); color: #304870; }
+
+/* ===== 五行 zone hover ===== */
+.yy-zone-hover-tip {
+  position: absolute;
+  transform: translate(-50%,-100%);
+  margin-top: -10px;
+  padding: 5px 12px; border-radius: 999px;
+  background: rgba(50,48,44,0.8);
+  color: #faf8f4; font-size: 12px;
+  pointer-events: none;
+  opacity: 0; transition: opacity 0.2s ease;
+  z-index: 10; white-space: nowrap;
+}
+.yy-zone-hover-tip.is-visible { opacity: 1; }

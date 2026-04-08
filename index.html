@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/assistant-widget.css">
   <link rel="stylesheet" href="css/workshop-game.css">
   <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/module2.css">
+  <link rel="stylesheet" href="css/yinyang.css">
+  <link rel="stylesheet" href="css/fengshui.css">
   <script type="importmap">
   {
     "imports": {
@@ -47,22 +50,22 @@
         <!-- ===== 模块一：宫阙载史 ===== -->
         <div class="module-layout" data-layout="archive">
           <aside class="charts-column">
-            <section class="panel-card chart-card">
+            <!-- 左侧上区：建筑关系网 -->
+            <section class="panel-card graph-card" id="graph-card">
               <div class="panel-head">
-                <span class="panel-head__eyebrow" id="function-chart-eyebrow">功能分类</span>
-                <h2 class="panel-head__title" id="function-chart-title">故宫建筑的功能分类</h2>
+                <span class="panel-head__eyebrow" id="graph-eyebrow">建筑关联网络</span>
+                <h2 class="panel-head__title" id="graph-title">当前建筑在宫城空间中的关系位置</h2>
               </div>
-              <div id="function-chart" class="chart-surface" aria-label="故宫建筑功能分类柱状图"></div>
-              <p id="function-chart-caption" class="chart-caption"></p>
+              <div id="relation-graph" class="graph-surface" aria-label="建筑关系网络图"></div>
             </section>
 
-            <section class="panel-card chart-card">
+            <!-- 左侧下区：建筑关键词面板 -->
+            <section class="panel-card keyword-card" id="keyword-card">
               <div class="panel-head">
-                <span class="panel-head__eyebrow" id="type-chart-eyebrow">形制分类</span>
-                <h2 class="panel-head__title" id="type-chart-title">故宫建筑的形制分类</h2>
+                <span class="panel-head__eyebrow" id="keyword-eyebrow">建筑关键词</span>
+                <h2 class="panel-head__title" id="keyword-title">类别 / 角色 / 形制 / 文化</h2>
               </div>
-              <div id="type-chart" class="chart-surface" aria-label="故宫建筑形制分类柱状图"></div>
-              <p id="type-chart-caption" class="chart-caption"></p>
+              <div id="keyword-panel" class="keyword-surface" aria-label="建筑关键词面板"></div>
             </section>
           </aside>
 
@@ -73,67 +76,55 @@
                   <span class="panel-head__eyebrow" id="overview-eyebrow">Overview</span>
                   <h2 class="panel-head__title" id="overview-title">故宫总览图</h2>
                 </div>
-                <p id="overview-hint" class="overview-hint">悬停查看建筑名称，点击切换图片与档案卡。</p>
+                <p id="overview-hint" class="overview-hint"></p>
               </div>
 
               <div id="overview-stage" class="overview-stage">
                 <div id="overview-svg-host" class="overview-svg-host" aria-label="故宫建筑总览图"></div>
-                <div id="overview-tooltip" class="overview-tooltip" hidden></div>
               </div>
             </article>
           </section>
 
           <aside class="detail-column">
-            <section class="panel-card filter-card">
-              <div class="fold-grid">
-                <article class="fold-card">
-                  <button id="function-fold-toggle" class="fold-toggle" type="button" aria-expanded="false" data-kind="function">
-                    <span id="function-fold-label">功能分类</span>
-                    <span class="fold-toggle__icon" aria-hidden="true">+</span>
-                  </button>
-                  <div id="function-fold-panel" class="fold-panel" hidden></div>
-                </article>
-
-                <article class="fold-card">
-                  <button id="type-fold-toggle" class="fold-toggle" type="button" aria-expanded="false" data-kind="type">
-                    <span id="type-fold-label">形制分类</span>
-                    <span class="fold-toggle__icon" aria-hidden="true">+</span>
-                  </button>
-                  <div id="type-fold-panel" class="fold-panel" hidden></div>
-                </article>
+            <!-- 功能/形制筛选卡片：固定在顶部 -->
+            <section class="panel-card filter-card" id="filter-card">
+              <!-- 功能折叠 -->
+              <div class="fold-row">
+                <button id="function-fold-toggle" class="fold-toggle" type="button" aria-expanded="false">
+                  <span id="function-fold-label" class="fold-label" data-text="功能筛选">功能筛选</span>
+                  <span class="fold-arrow">›</span>
+                </button>
+                <div id="function-fold-panel" class="fold-panel" hidden></div>
+              </div>
+              <!-- 形制折叠 -->
+              <div class="fold-row">
+                <button id="type-fold-toggle" class="fold-toggle" type="button" aria-expanded="false">
+                  <span id="type-fold-label" class="fold-label" data-text="形制筛选">形制筛选</span>
+                  <span class="fold-arrow">›</span>
+                </button>
+                <div id="type-fold-panel" class="fold-panel" hidden></div>
               </div>
             </section>
 
+            <!-- 档案内容区 -->
             <section class="panel-card info-card">
-              <!-- 分类轮播（功能/形制筛选时显示在顶部） -->
-              <div id="category-carousel" class="category-carousel" hidden>
-                <div id="carousel-track" class="category-carousel__track"></div>
-                <button id="carousel-prev" class="gallery-nav gallery-nav--prev" type="button" hidden aria-label="上一张">‹</button>
-                <button id="carousel-next" class="gallery-nav gallery-nav--next" type="button" hidden aria-label="下一张">›</button>
-                <div id="carousel-indicator" class="category-carousel__dots"></div>
-              </div>
-
-              <!-- 占位面板（archive 模块默认状态） -->
-              <div id="panel-placeholder" class="info-content">
-                <div class="info-title" style="font-size:22px;font-family:STKaiti,KaiTi,Noto Serif SC,serif;letter-spacing:2px;">宫阙载史</div>
-                <div class="info-subtitle" style="margin-top:6px;color:rgba(79,56,33,0.72);font-size:13px;letter-spacing:1.5px;">Palace Archive</div>
-                <div class="info-body" style="margin-top:14px;color:var(--ink-soft);line-height:1.9;"></div>
-              </div>
-
               <!-- 档案卡 -->
-              <div id="archive-card" class="info-content" hidden>
-                <div class="info-tabs" style="display:flex;gap:10px;margin-bottom:16px;">
-                  <button class="info-tab card-tab active" data-tab="archive" type="button">档案卡</button>
-                  <button class="info-tab card-tab" data-tab="event" type="button">事件卡</button>
-                  <button class="info-tab card-tab" data-tab="sinology" type="button">汉学卡</button>
+              <div id="archive-card" hidden>
+                <div id="archive-card-hero"></div>
+                <div class="archive-card-tabs" role="tablist" aria-label="档案内容切换">
+                  <button class="archive-card-tab active" data-archive-tab="archive" type="button" role="tab" aria-selected="true" data-tab-label="建筑卡">建筑卡</button>
+                  <button class="archive-card-tab" data-archive-tab="event" type="button" role="tab" aria-selected="false" data-tab-label="事件卡">事件卡</button>
+                  <button class="archive-card-tab" data-archive-tab="sinology" type="button" role="tab" aria-selected="false" data-tab-label="汉学卡">汉学卡</button>
                 </div>
-                <div id="card-content-archive"></div>
-                <div id="card-content-event" hidden></div>
-                <div id="card-content-sinology" hidden></div>
+                <div class="archive-card-body">
+                  <div id="card-content-archive"></div>
+                  <div id="card-content-event"></div>
+                  <div id="card-content-sinology"></div>
+                </div>
               </div>
 
               <!-- 分类 / 形制简介 + 建筑列表 -->
-              <div id="category-intro-card" class="info-card category-intro-card" hidden>
+              <div id="category-intro-card" class="category-intro-card" hidden>
                 <div id="category-intro-box" class="info-content"></div>
                 <div id="category-building-list" class="category-building-list"></div>
               </div>
@@ -200,8 +191,8 @@
               <aside class="thought-detail-column">
                 <section class="panel-card thought-control-card">
                   <div class="thought-block-head thought-block-head--tight">
-                    <span class="panel-head__eyebrow" id="thought-control-eyebrow">交互控制</span>
-                    <h3 class="thought-card-title" id="thought-control-title">二级聚焦</h3>
+                    <span class="panel-head__eyebrow" id="thought-control-eyebrow">交互按钮</span>
+                    <h3 class="thought-card-title" id="thought-control-title">主题切换</h3>
                   </div>
                   <div id="thought-secondary-tabs" class="thought-secondary-tabs"></div>
                   <div id="thought-status-list" class="thought-status-list"></div>
@@ -209,8 +200,8 @@
 
                 <section class="panel-card thought-media-card">
                   <div class="thought-block-head thought-block-head--tight">
-                    <span class="panel-head__eyebrow" id="thought-media-eyebrow">演示占位</span>
-                    <h3 class="thought-card-title" id="thought-media-title">图层预览</h3>
+                    <span class="panel-head__eyebrow" id="thought-media-eyebrow">视频演示</span>
+                    <h3 class="thought-card-title" id="thought-media-title">文化视频</h3>
                   </div>
                   <div id="thought-media-body" class="thought-media-body"></div>
                 </section>
@@ -275,22 +266,29 @@
                 <div class="component-card__body" id="component-card-body" role="tabpanel"></div>
               </div>
             </aside>
-          </div>      </main>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-  <script src="js/data.js"></script>
+  <script src="js/part1/data.js"></script>
   <script src="js/svgScanner.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/module3-data.js"></script>
-  <script src="js/module3.js"></script>
+  <script src="js/part2/module2-data.js"></script>
+  <script src="js/part2/module2.js"></script>
+  <script src="js/part2/yinyang-data.js"></script>
+  <script src="js/part2/yinyang.js"></script>
+  <script src="js/part2/fengshui-data.js"></script>
+  <script src="js/part2/fengshui.js"></script>
+  <script src="js/part3/module3-data.js"></script>
+  <script src="js/part3/module3.js"></script>
   <script src="js/assistant/assistant-speech.js"></script>
-  <script src="js/assistant/assistant-suggestions.js"></script>
   <script src="js/assistant/assistant-api.js"></script>
   <script src="js/assistant/assistant-widget.js"></script>
-  <script src="js/workshop-game-data.js"></script>
-  <script src="js/workshop-game.js"></script>
+  <script src="js/part3/workshop-game-data.js"></script>
+  <script src="js/part3/workshop-game.js"></script>
 
   <!-- ===== 3D 模型查看器弹层 ===== -->
   <div id="model-viewer-overlay" class="m3d-overlay" hidden role="dialog" aria-modal="true" aria-label="3D模型查看器">
@@ -320,17 +318,26 @@
     <button type="button" class="image-lightbox__close" data-lightbox-close aria-label="关闭">×</button>
     <img id="lightbox-img" class="image-lightbox__img" alt="">
   </div>
+  <div id="overview-tooltip" class="overview-tooltip" hidden></div>
+  <div id="video-lightbox" class="image-lightbox video-lightbox" hidden role="dialog" aria-modal="true" aria-label="视频放大">
+    <div class="image-lightbox__backdrop" data-video-lightbox-close></div>
+    <button type="button" class="image-lightbox__close" data-video-lightbox-close aria-label="关闭">×</button>
+    <div class="video-lightbox__panel">
+      <video id="lightbox-video" class="video-lightbox__video" controls playsinline></video>
+      <div id="lightbox-video-path" class="video-lightbox__path"></div>
+    </div>
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       window.zhuling = new ZhulingWidget({
         apiBase: 'http://localhost:3000',
-        ipImage: 'images/assistant/assistant.png'
+        ipImage: 'assets/images/assistant/assistant.png'
       })
       window.zhuling.init()
 
       const root = document.getElementById('zhuling-root')
       if (root) {
-        root.style.cssText = 'position:fixed;bottom:20px;left:10px;z-index:9999;'
+        root.style.cssText = 'position:fixed;bottom:18px;left:4px;z-index:9999;'
       }
     })
   </script>

@@ -45,8 +45,8 @@
     --zl-radius-md: 12px;
     --zl-radius-lg: 16px;
     --zl-radius-xl: 24px;
-    --zl-panel-w: 380px;
-    --zl-panel-h: 560px;
+    --zl-panel-w: 352px;
+    --zl-panel-h: 540px;
   }
   
   /* ===================================================
@@ -58,7 +58,7 @@
     cursor: pointer;
     /* ★★★ 调整小人大小请修改这里的 width ★★★
        改大=小人变大，改小=小人变小，高度自动按比例 */
-    width: 60px;
+    width: 52px;
     height: auto;
     overflow: visible;
     background: none;
@@ -154,7 +154,7 @@
   #zhuling-root .zl-panel {
     position: absolute;
     bottom: 100%;
-    left: 0;
+    left: -10px;
     margin-bottom: 8px;
     width: var(--zl-panel-w);
     height: var(--zl-panel-h);
@@ -171,6 +171,7 @@
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    margin-left: 2px;
   }
   
   #zhuling-root .zl-panel::before {
@@ -714,6 +715,9 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
   
   #zhuling-root .zl-hint {
@@ -759,5 +763,5 @@
   /* ===================================================
      10. IP 图片路径说明
      ===================================================
-     IP 形象图片路径：images/assistant/assistant.png
+     IP 形象图片路径：assets/images/assistant/assistant.png
      =================================================== */

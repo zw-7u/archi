@@ -18,13 +18,13 @@ class ZhulingWidget {
   /**
    * @param {Object} options
    * @param {string}  options.apiBase      - API 服务地址，默认 http://localhost:3000
-   * @param {string}  options.ipImage      - IP 形象全身图片路径（左下角小人），默认 images/assistant/assistant.png
-   * @param {string}  options.profileImage - IP 头像图片路径（面板头像+消息头像），默认 images/assistant/profile.png
+   * @param {string}  options.ipImage      - IP 形象全身图片路径（左下角小人），默认 assets/images/assistant/assistant.png
+   * @param {string}  options.profileImage - IP 头像图片路径（面板头像+消息头像），默认 assets/images/assistant/profile.png
    */
   constructor(options = {}) {
     this.apiBase      = options.apiBase      || 'http://localhost:3000'
-    this.ipImage      = options.ipImage      || 'images/assistant/assistant.png'
-    this.profileImage = options.profileImage || 'images/assistant/profile.png'
+    this.ipImage      = options.ipImage      || 'assets/images/assistant/assistant.png'
+    this.profileImage = options.profileImage || 'assets/images/assistant/profile.png'
     this._api      = null
     this._speech   = null
     this._isOpen   = false
@@ -51,7 +51,7 @@ class ZhulingWidget {
     // 创建 Shadow DOM 容器（隔离样式）
     this._root = document.createElement('div')
     this._root.id = 'zhuling-root'
-    this._root.style.cssText = 'position:fixed;bottom:5px;left:5px;z-index:9999;'
+    this._root.style.cssText = 'position:fixed;bottom:12px;left:4px;z-index:9999;'
     document.body.appendChild(this._root)
 
     // 注入样式
@@ -62,6 +62,9 @@ class ZhulingWidget {
 
     // 绑定事件
     this._bindEvents()
+
+    this._handleLanguageChange = () => this._syncLanguageUI()
+    window.addEventListener('archi:languagechange', this._handleLanguageChange)
   }
 
   // ================================================================
@@ -70,6 +73,9 @@ class ZhulingWidget {
   destroy() {
     this._speech?.stopListening()
     this._speech?.stopSpeaking()
+    if (this._handleLanguageChange) {
+      window.removeEventListener('archi:languagechange', this._handleLanguageChange)
+    }
     if (this._root) {
       this._root.remove()
       this._root = null
@@ -91,7 +97,7 @@ class ZhulingWidget {
   //  私有：获取当前语言
   // ================================================================
   _getLanguage() {
-    return (window.state?.language === 'en') ? 'en' : 'zh'
+    return (window.state?.lang === 'en') ? 'en' : 'zh'
   }
 
   // ================================================================
@@ -155,7 +161,7 @@ class ZhulingWidget {
               </div>
             </div>
             <div class="zl-header-info">
-              <span class="zl-name">筑灵</span>
+              <span class="zl-name" data-zh="筑灵" data-en="Zhuling">筑灵</span>
               <span class="zl-subtitle" data-zh="古建筑智能导览" data-en="Ancient Architecture Guide">古建筑智能导览</span>
             </div>
           </div>
@@ -186,7 +192,7 @@ class ZhulingWidget {
                 <img class="zl-msg-avatar-img" src="${this.profileImage}" alt="筑灵" onerror="this.style.display='none'">
               </div>
               <div class="zl-msg-bubble">
-                <span class="zl-msg-welcome-text" data-zh="您好！我是筑灵，专为探索故宫建筑之美而生。无论是礼制含义、空间秩序，还是色彩象征、历史用途，都可以问我 😊" data-en="Hi! I'm 筑灵 (Zhù Líng), your friendly guide to the Forbidden City's architecture. Ask me anything about ritual symbolism, spatial design, colors, history — I'm here to help! 😊">
+                <span class="zl-msg-welcome-text" data-zh="您好！我是筑灵，专为探索故宫建筑之美而生。无论是礼制含义、空间秩序，还是色彩象征、历史用途，都可以问我 😊" data-en="Hi! I'm Zhuling (Zhù Líng), your friendly guide to the Forbidden City's architecture. Ask me anything about ritual symbolism, spatial design, colors, history — I'm here to help! 😊">
                 </span>
               </div>
             </div>
@@ -276,43 +282,46 @@ class ZhulingWidget {
       return
     }
 
-    // 按下 → 开始录音
-    micBtn.addEventListener('mousedown', async (e) => {
-      e.preventDefault()
+    const startCapture = async (event) => {
+      event?.preventDefault?.()
       if (this._speech.isRecording || this._speech.isSpeaking) return
       const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
       const ok = await this._speech.startRecording(lang)
       if (ok) {
         micBtn.classList.add('zl-mic-active')
+        if (event?.pointerId !== undefined && micBtn.setPointerCapture) {
+          try {
+            micBtn.setPointerCapture(event.pointerId)
+          } catch (err) {
+            // ignore
+          }
+        }
       }
-    })
+    }
 
-    // 松开 → 停止录音 → ASR 识别
     const stopAndRecognize = async () => {
       if (!this._speech.isRecording) return
       const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
       micBtn.classList.remove('zl-mic-active')
       await this._speech.stopRecording(lang)
-      // 识别结果通过 onFinal 回调处理
     }
 
-    micBtn.addEventListener('mouseup', stopAndRecognize)
-    micBtn.addEventListener('mouseleave', stopAndRecognize)
-
-    // 移动端 touch
-    micBtn.addEventListener('touchstart', async (e) => {
-      e.preventDefault()
-      if (this._speech.isRecording || this._speech.isSpeaking) return
-      const lang = this._getLanguage() === 'en' ? 'en-US' : 'zh-CN'
-      const ok = await this._speech.startRecording(lang)
-      if (ok) {
-        micBtn.classList.add('zl-mic-active')
-      }
-    })
-    micBtn.addEventListener('touchend', (e) => {
-      e.preventDefault()
-      stopAndRecognize()
-    })
+    if ('PointerEvent' in window) {
+      micBtn.addEventListener('pointerdown', startCapture)
+      micBtn.addEventListener('pointerup', stopAndRecognize)
+      micBtn.addEventListener('pointercancel', stopAndRecognize)
+      micBtn.addEventListener('lostpointercapture', stopAndRecognize)
+    } else {
+      micBtn.addEventListener('mousedown', startCapture)
+      micBtn.addEventListener('mouseup', stopAndRecognize)
+      micBtn.addEventListener('mouseleave', stopAndRecognize)
+      micBtn.addEventListener('touchstart', startCapture, { passive: false })
+      micBtn.addEventListener('touchend', (e) => {
+        e.preventDefault()
+        stopAndRecognize()
+      }, { passive: false })
+      micBtn.addEventListener('touchcancel', stopAndRecognize)
+    }
   }
 
   // ================================================================
@@ -484,11 +493,29 @@ class ZhulingWidget {
   _onSpeechError(err) {
     this._el.micBtn?.classList.remove('zl-mic-active')
     this._el.micBtn?.classList.remove('zl-mic-loading')
+    const friendlyMessages = {
+      'browser-recognition-unavailable': this._getLanguage() === 'en'
+        ? 'Native browser speech recognition is not available here. Please type your question instead.'
+        : '当前浏览器不支持原生语音识别，请改用文字输入。',
+      'recognition-start-failed': this._getLanguage() === 'en'
+        ? 'Speech recognition could not start. Please tap the microphone again and check browser microphone permission.'
+        : '语音识别启动失败，请再次点击麦克风并检查浏览器麦克风权限。',
+      'mic-permission-denied': this._getLanguage() === 'en'
+        ? 'Microphone permission was denied. Please allow microphone access in your browser settings.'
+        : '麦克风权限被拒绝，请在浏览器设置中允许麦克风访问。',
+      'not-supported': this._getLanguage() === 'en'
+        ? 'This browser does not support native speech recognition.'
+        : '当前浏览器不支持原生语音识别。',
+    }
     if (err === 'not-supported') {
       this._el.micBtn.disabled = true
       return
     }
-    // 服务端返回的 ASR 说明（如暂未接入）直接展示在对话区
+    if (friendlyMessages[err]) {
+      this._appendErrorMessage(friendlyMessages[err])
+      this._scrollToBottom()
+      return
+    }
     if (typeof err === 'string' && err.length > 12 && !err.includes('asr-failed')) {
       this._appendErrorMessage(err)
       this._scrollToBottom()
@@ -645,6 +672,12 @@ class ZhulingWidget {
     this._root.querySelectorAll('[data-zh]').forEach(el => {
       el.textContent = el.getAttribute(`data-${lang}`)
     })
+    if (this._el.launcher) {
+      this._el.launcher.title = lang === 'en' ? 'Zhuling — Ancient Architecture Guide' : '筑灵 — 古建筑导览助手'
+    }
+    if (this._el.panel) {
+      this._el.panel.setAttribute('aria-label', lang === 'en' ? 'Zhuling intelligent guide' : '筑灵智能导览助手')
+    }
     this._el.input.placeholder = lang === 'en'
       ? 'Ask about the Forbidden City…'
       : '问我关于故宫建筑的问题…'
