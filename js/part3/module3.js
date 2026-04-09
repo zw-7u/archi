@@ -18,6 +18,8 @@
     galleryIndex: 0,
     galleryTimer: null,
     componentPaths: [],  // [{ el, id, name, explode }]
+    resolvedComponents: [],
+    explodeLayout: new Map(),
   }
 
   let initialized = false
@@ -288,22 +290,78 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
     return COMPONENT_I18N[comp?.id] || {}
   }
 
+  function getResolvedComponents() {
+    if (Array.isArray(m3State.resolvedComponents) && m3State.resolvedComponents.length) {
+      return m3State.resolvedComponents
+    }
+    return MODULE3_DATA[m3State.building]?.components || []
+  }
+
+  function findComponentById(id) {
+    return getResolvedComponents().find((comp) => comp.id === id) || null
+  }
+
+  function buildFallbackBrief(comp) {
+    const label = comp?.svgGroupName || comp?.name || '该构件'
+    if (isZhMode()) {
+      return `${label}：可单独观察位置、层级与连接关系。`
+    }
+    return `${label}: SVG group part isolated for location, hierarchy, and assembly reading.`
+  }
+
+  function buildFallbackCardText(comp, tab) {
+    const label = comp?.svgGroupName || comp?.name || '该构件'
+    if (!isZhMode()) {
+      if (tab === 'physics') {
+        return `${label}: This SVG group is separated from the whole so you can compare scale, boundaries, and adjacency with neighboring parts.`
+      }
+      if (tab === 'culture') {
+        return `${label}: The label follows the original SVG group name, keeping the author's own grouping language visible inside the module.`
+      }
+      return `${label}: This SVG group is now treated as an independent component so its place in the overall structure can be inspected directly.`
+    }
+
+    if (tab === 'physics') {
+      return `${label}\n拆分后可直接比对它与主体的尺度、边界和衔接位置。\n该编组保留原始路径关系，方便观察受力层次与构造界面。`
+    }
+    if (tab === 'culture') {
+      return `${label}\n当前名称直接取自 SVG 编组名称，用来保留你原始图层语义。\n即使没有单独录入资料，也能作为独立构件进行阅读和定位。`
+    }
+    return `${label}\n该构件来自你定义的 SVG 编组，现已纳入一键拆分视图。\n拆分后可以单独观察它在整座建筑中的位置、层级与装配关系。`
+  }
+
+  function buildRuntimeComponent(rawId, sourceComp, index) {
+    const runtimeId = sourceComp?.id || `svg-group-${index}`
+    const name = sourceComp?.name || rawId
+    return {
+      ...sourceComp,
+      id: runtimeId,
+      name,
+      svgGroupName: rawId,
+      brief: sourceComp?.brief || buildFallbackBrief({ svgGroupName: rawId, name }),
+      craft: sourceComp?.craft || buildFallbackCardText({ svgGroupName: rawId, name }, 'craft'),
+      physics: sourceComp?.physics || buildFallbackCardText({ svgGroupName: rawId, name }, 'physics'),
+      culture: sourceComp?.culture || buildFallbackCardText({ svgGroupName: rawId, name }, 'culture'),
+    }
+  }
+
   function getComponentName(comp) {
     const locale = getComponentLocale(comp)
     return isZhMode()
-      ? (comp?.name || '')
-      : displayEnglish(locale.nameEn || comp?.name || '', locale.pinyin || '')
+      ? (comp?.svgGroupName || comp?.name || '')
+      : displayEnglish(locale.nameEn || comp?.name || comp?.svgGroupName || '', locale.pinyin || '')
   }
 
   function getComponentBrief(comp) {
     const locale = getComponentLocale(comp)
-    return isZhMode() ? (comp?.brief || comp?.name || '') : (locale.briefEn || locale.nameEn || comp?.name || '')
+    if (isZhMode()) return comp?.brief || buildFallbackBrief(comp)
+    return locale.briefEn || locale.nameEn || comp?.name || comp?.svgGroupName || buildFallbackBrief(comp)
   }
 
   function getComponentCardText(comp, tab) {
     const locale = getComponentLocale(comp)
-    if (isZhMode()) return comp?.[tab] || ''
-    return locale[`${tab}En`] || locale.briefEn || comp?.brief || ''
+    if (isZhMode()) return comp?.[tab] || buildFallbackCardText(comp, tab)
+    return locale[`${tab}En`] || locale.briefEn || comp?.brief || buildFallbackCardText(comp, tab)
   }
 
   function renderStaticCopy() {
@@ -345,6 +403,112 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
     return `${path.slice(0, index + 1)}${encodeURIComponent(path.slice(index + 1))}`
   }
 
+  const SVG_NS = 'http://www.w3.org/2000/svg'
+  const XLINK_NS = 'http://www.w3.org/1999/xlink'
+
+  function createSvgEl(tag) {
+    return document.createElementNS(SVG_NS, tag)
+  }
+
+  function slugSvgId(value) {
+    return String(value || '')
+      .trim()
+      .replace(/[^\w\u4e00-\u9fa5-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .toLowerCase()
+  }
+
+  function copyImageHref(source, target) {
+    const href =
+      source.getAttribute('href')
+      || source.getAttributeNS(XLINK_NS, 'href')
+      || source.getAttribute('xlink:href')
+      || ''
+    if (!href) return
+    target.setAttribute('href', href)
+    target.setAttributeNS(XLINK_NS, 'xlink:href', href)
+  }
+
+  function materializeComponentPieces(svg) {
+    if (!svg || svg.dataset.segmented === 'true') return
+
+    const baseImage = Array.from(svg.children).find((node) => node.tagName?.toLowerCase() === 'image')
+    if (!baseImage) return
+
+    let defs = svg.querySelector(':scope > defs')
+    if (!defs) {
+      defs = createSvgEl('defs')
+      svg.insertBefore(defs, svg.firstChild)
+    }
+
+    const groups = Array.from(svg.querySelectorAll('g[id]')).filter((group) => {
+      const rawId = (group.id || '').trim()
+      if (!rawId || rawId === '图层_1' || /^Layer/i.test(rawId)) return false
+      if (group.closest('defs')) return false
+      if (group.querySelector('g[id]')) return false
+      return Array.from(group.children).some((child) =>
+        /^(path|polygon|polyline|rect|circle|ellipse)$/i.test(child.tagName || '')
+      )
+    })
+
+    groups.forEach((group, index) => {
+      if (group.dataset.segmented === 'true') return
+
+      const clipPath = createSvgEl('clipPath')
+      clipPath.setAttribute('id', `m3-piece-${slugSvgId(group.id)}-${index}`)
+
+      Array.from(group.children).forEach((child) => {
+        if (!/^(path|polygon|polyline|rect|circle|ellipse)$/i.test(child.tagName || '')) return
+        const shape = child.cloneNode(true)
+        shape.removeAttribute('id')
+        clipPath.appendChild(shape)
+      })
+
+      if (!clipPath.childNodes.length) return
+      defs.appendChild(clipPath)
+
+      const pieceGroup = createSvgEl('g')
+      pieceGroup.setAttribute('class', 'component-piece')
+
+      const pieceImage = createSvgEl('image')
+      Array.from(baseImage.attributes).forEach((attr) => {
+        if (attr.name === 'href' || attr.name === 'xlink:href') return
+        pieceImage.setAttribute(attr.name, attr.value)
+      })
+      copyImageHref(baseImage, pieceImage)
+      pieceImage.setAttribute('clip-path', `url(#${clipPath.id})`)
+      pieceGroup.appendChild(pieceImage)
+
+      const hitGroup = createSvgEl('g')
+      hitGroup.setAttribute('class', 'component-hit')
+      while (group.firstChild) {
+        const child = group.firstChild
+        group.removeChild(child)
+        if (!/^(path|polygon|polyline|rect|circle|ellipse)$/i.test(child.tagName || '')) continue
+        child.style.fill = 'rgba(0,0,0,0.001)'
+        child.style.stroke = 'transparent'
+        child.style.strokeWidth = child.getAttribute('stroke-width') || '0'
+        hitGroup.appendChild(child)
+      }
+
+      group.classList.add('component-node')
+      group.dataset.segmented = 'true'
+      group.appendChild(pieceGroup)
+      group.appendChild(hitGroup)
+    })
+
+    baseImage.classList.add('component-base-image')
+    svg.dataset.segmented = 'true'
+  }
+
+  function getComponentBBox(path) {
+    const bboxTarget = path?.hitEl || path?.el
+    if (!bboxTarget?.getBBox) {
+      return { x: 0, y: 0, width: 0, height: 0 }
+    }
+    return bboxTarget.getBBox()
+  }
+
   /* ---------- 渲染：建筑按钮选中态 ---------- */
   function renderBuildingButtons() {
     renderStaticCopy()
@@ -357,12 +521,11 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
 
   /* ---------- 渲染：构件按钮列表 ---------- */
   function renderComponentButtons() {
-    const data = MODULE3_DATA[m3State.building]
-    if (!data) return
     const list = $('#component-btns')
     if (!list) return
+    const components = getResolvedComponents()
 
-    list.innerHTML = data.components.map(c => {
+    list.innerHTML = components.map(c => {
       const active = c.id === m3State.componentId ? ' is-active' : ''
       return `<button type="button" class="component-btn${active}" data-component-id="${escape(c.id)}" role="listitem">
         <span class="component-btn__dot"></span>
@@ -379,21 +542,32 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
 
   /* ---------- 渲染：图片轮播 ---------- */
   function renderGallery(immediate) {
-    const data = MODULE3_DATA[m3State.building]
-    if (!data) return
-    const images = data.components.filter(c => c.image).map(c => ({
+    const images = getResolvedComponents().filter(c => c.image).map(c => ({
       id: c.id,
       src: safeSrc(c.image),
       name: getComponentName(c),
     }))
-    const n = images.length
-    if (n === 0) return
-
     const track = $('#component-gallery-track')
     const dots = $('#component-gallery-dots')
     const prevBtn = $('#component-gallery-prev')
     const nextBtn = $('#component-gallery-next')
     if (!track) return
+    const n = images.length
+
+    if (n === 0) {
+      track.innerHTML = `<div class="m3-svg-loading">${escape(isZhMode() ? '当前编组暂无单独图样' : 'No dedicated image for this SVG group yet')}</div>`
+      if (dots) dots.innerHTML = ''
+      if (prevBtn) prevBtn.hidden = true
+      if (nextBtn) nextBtn.hidden = true
+      return
+    }
+
+    const currentImageIndex = images.findIndex((item) => item.id === m3State.componentId)
+    if (currentImageIndex >= 0 && (immediate || m3State.galleryIndex >= n)) {
+      m3State.galleryIndex = currentImageIndex
+    } else if (m3State.galleryIndex >= n) {
+      m3State.galleryIndex = 0
+    }
 
     if (n <= 1) {
       const only = images[0]
@@ -401,9 +575,6 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
       if (dots) dots.innerHTML = ''
       if (prevBtn) prevBtn.hidden = true
       if (nextBtn) nextBtn.hidden = true
-      m3State.componentId = only.id
-      renderComponentButtons()
-      renderCard()
       return
     }
 
@@ -444,7 +615,7 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
       }
     }
 
-    show(immediate ? m3State.galleryIndex : 0, true)
+    show(m3State.galleryIndex, false)
     if (m3State.autoPlay) armAutoPlay(images.length)
   }
 
@@ -469,9 +640,7 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
 
   /* ---------- 渲染：知识卡片 ---------- */
   function renderCard() {
-    const data = MODULE3_DATA[m3State.building]
-    if (!data) return
-    const comp = data.components.find(c => c.id === m3State.componentId)
+    const comp = findComponentById(m3State.componentId)
     if (!comp) return
 
     const nameEl = $('#component-card-name')
@@ -590,6 +759,7 @@ Ritual code: Numbers, colors, and claw counts all followed rules that commoners 
       if (svg) {
         svg.style.width = '100%'
         svg.style.height = '100%'
+        materializeComponentPieces(svg)
       }
 
       bindSvgPaths()
@@ -896,10 +1066,446 @@ function resetPath(id) {
       t.addEventListener('click', () => switchTab(t.dataset.tab))
     })
 
+    window.addEventListener('resize', () => {
+      if (m3State.isExploded) {
+        renderLabels()
+      }
+    })
+
     loadBuilding(m3State.building)
   }
 
   /* ---------- 公开接口 ---------- */
+  function updateExplodeUi() {
+    const stage = $('#component-stage')
+    const explodeBtn = $('#component-explode-btn')
+    if (stage) stage.classList.toggle('is-exploded', m3State.isExploded)
+    if (explodeBtn) {
+      explodeBtn.classList.toggle('is-exploded', m3State.isExploded)
+      const label = explodeBtn.querySelector('.component-explode-btn__label')
+      if (label) {
+        label.textContent = isZhMode()
+          ? (m3State.isExploded ? '还原结构' : '一键拆分')
+          : (m3State.isExploded ? 'Restore Structure' : 'Explode Structure')
+      }
+    }
+  }
+
+  function getExplodeEndX(el) {
+    const id = el.dataset.componentId || ''
+    const path = m3State.componentPaths.find((item) => item.id === id)
+    const bbox = getComponentBBox(path)
+    const layout = m3State.explodeLayout.get(id)
+    if (layout) return layout.targetX
+    const match = (el.style.transform || '').match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/)
+    const dx = match ? Number(match[1]) : 0
+    return bbox.x + bbox.width / 2 + dx
+  }
+
+  function getExplodeEndY(el) {
+    const id = el.dataset.componentId || ''
+    const path = m3State.componentPaths.find((item) => item.id === id)
+    const bbox = getComponentBBox(path)
+    const layout = m3State.explodeLayout.get(id)
+    if (layout) return layout.targetY
+    const match = (el.style.transform || '').match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/)
+    const dy = match ? Number(match[2]) : 0
+    return bbox.y + bbox.height / 2 + dy
+  }
+
+  function getLabelPosition(path) {
+    const bbox = getComponentBBox(path)
+    const finalX = getExplodeEndX(path.el)
+    const finalY = getExplodeEndY(path.el)
+    const align = path.layout?.side === 'top' ? 'top' : 'bottom'
+    const gapY = Math.max(20, bbox.height * 0.22)
+    const x = finalX
+    const y = align === 'top'
+      ? finalY - bbox.height / 2 - gapY
+      : finalY + bbox.height / 2 + gapY
+    return { x, y, align }
+  }
+
+  function computeExplodeLayout() {
+    const svg = document.querySelector('#component-svg-host svg')
+    const vb = svg?.viewBox?.baseVal
+    if (!vb?.width || !vb?.height) {
+      m3State.explodeLayout = new Map()
+      return
+    }
+
+    const centerX = vb.x + vb.width / 2
+    const centerY = vb.y + vb.height / 2
+    const threshold = vb.height * 0.08
+    const top = []
+    const bottom = []
+
+    m3State.componentPaths.forEach((path, index) => {
+      const bbox = getComponentBBox(path)
+      const item = {
+        path,
+        bbox,
+        centerX: bbox.x + bbox.width / 2,
+        centerY: bbox.y + bbox.height / 2,
+        index,
+      }
+
+      if (item.centerY < centerY - threshold) {
+        top.push(item)
+      } else if (item.centerY > centerY + threshold) {
+        bottom.push(item)
+      } else {
+        ;(index % 2 === 0 ? top : bottom).push(item)
+      }
+    })
+
+    const layout = new Map()
+    const assignBand = (items, side) => {
+      items.sort((a, b) => a.centerX - b.centerX || a.centerY - b.centerY)
+      const count = items.length
+      if (!count) return
+
+      const minX = vb.x + vb.width * 0.13
+      const maxX = vb.x + vb.width * 0.87
+      const laneY = vb.y + vb.height * (side === 'top' ? 0.18 : 0.82)
+      const step = count > 1 ? (maxX - minX) / (count - 1) : 0
+
+      items.forEach((item, slotIndex) => {
+        const targetX = count > 1 ? minX + step * slotIndex : centerX
+        const staggerY = ((slotIndex % 2) - 0.5) * vb.height * 0.035
+        const targetY = laneY + staggerY
+        const info = {
+          side,
+          slotIndex,
+          targetX,
+          targetY,
+          translateX: targetX - item.centerX,
+          translateY: targetY - item.centerY,
+        }
+        item.path.layout = info
+        layout.set(item.path.id, info)
+      })
+    }
+
+    assignBand(top, 'top')
+    assignBand(bottom, 'bottom')
+    m3State.explodeLayout = layout
+  }
+
+  function renderGallery(immediate) {
+    const images = getResolvedComponents().filter((comp) => comp.image).map((comp) => ({
+      id: comp.id,
+      src: safeSrc(comp.image),
+      name: getComponentName(comp),
+    }))
+    const track = $('#component-gallery-track')
+    const dots = $('#component-gallery-dots')
+    const prevBtn = $('#component-gallery-prev')
+    const nextBtn = $('#component-gallery-next')
+    if (!track) return
+
+    const n = images.length
+    if (n === 0) {
+      track.innerHTML = `<div class="m3-svg-loading">${escape(isZhMode() ? '当前编组暂无单独图样' : 'No dedicated image for this SVG group yet')}</div>`
+      if (dots) dots.innerHTML = ''
+      if (prevBtn) prevBtn.hidden = true
+      if (nextBtn) nextBtn.hidden = true
+      return
+    }
+
+    const currentImageIndex = images.findIndex((item) => item.id === m3State.componentId)
+    if (currentImageIndex >= 0 && (immediate || m3State.galleryIndex >= n)) {
+      m3State.galleryIndex = currentImageIndex
+    } else if (m3State.galleryIndex >= n) {
+      m3State.galleryIndex = 0
+    }
+
+    if (n <= 1) {
+      const only = images[0]
+      track.innerHTML = `<button type="button" class="carousel-slide-btn" data-lightbox-src="${escape(only.src)}" aria-label="${escape(isZhMode() ? '放大查看构件图样' : 'Open component image')}"><img src="${escape(only.src)}" alt="${escape(only.name)}" loading="lazy" /></button>`
+      if (dots) dots.innerHTML = ''
+      if (prevBtn) prevBtn.hidden = true
+      if (nextBtn) nextBtn.hidden = true
+      return
+    }
+
+    const show = (idx, syncComponent = false) => {
+      m3State.galleryIndex = ((idx % n) + n) % n
+      const active = images[m3State.galleryIndex]
+      track.innerHTML = `<button type="button" class="carousel-slide-btn" data-lightbox-src="${escape(active.src)}" aria-label="${escape(isZhMode() ? '放大查看构件图样' : 'Open component image')}"><img src="${escape(active.src)}" alt="${escape(active.name)}" loading="lazy" /></button>`
+      if (syncComponent && active?.id) {
+        m3State.componentId = active.id
+        renderComponentButtons()
+        renderCard()
+        syncPathState()
+      }
+      if (dots) {
+        dots.innerHTML = images.map((_, i) =>
+          `<button type="button" class="component-gallery__dot${i === m3State.galleryIndex ? ' is-active' : ''}" data-idx="${i}" aria-label="${i + 1}/${n}"></button>`
+        ).join('')
+        dots.querySelectorAll('.component-gallery__dot').forEach((dot) => {
+          dot.addEventListener('click', () => {
+            clearAutoPlay(true)
+            show(Number(dot.dataset.idx), true)
+          })
+        })
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.hidden = false
+      prevBtn.onclick = () => {
+        clearAutoPlay(true)
+        show(m3State.galleryIndex - 1, true)
+      }
+    }
+    if (nextBtn) {
+      nextBtn.hidden = false
+      nextBtn.onclick = () => {
+        clearAutoPlay(true)
+        show(m3State.galleryIndex + 1, true)
+      }
+    }
+
+    show(m3State.galleryIndex, false)
+    if (m3State.autoPlay) armAutoPlay(images.length)
+  }
+
+  function renderCard() {
+    const comp = findComponentById(m3State.componentId)
+    if (!comp) return
+
+    const nameEl = $('#component-card-name')
+    const bodyEl = $('#component-card-body')
+    if (nameEl) nameEl.textContent = getComponentName(comp)
+
+    $$('.component-card-tab').forEach((tabButton) => {
+      tabButton.classList.toggle('is-active', tabButton.dataset.tab === m3State.tab)
+    })
+
+    if (bodyEl) {
+      bodyEl.innerHTML = formatCard(getComponentCardText(comp, m3State.tab))
+    }
+  }
+
+  function renderLabels() {
+    const layer = $('#component-labels')
+    if (!layer) return
+    if (!m3State.isExploded) {
+      layer.innerHTML = ''
+      return
+    }
+
+    const svg = document.querySelector('#component-svg-host svg')
+    const svgRect = svg?.getBoundingClientRect()
+    const vb = svg?.viewBox?.baseVal
+    if (!svgRect || !vb?.width || !vb?.height) {
+      layer.innerHTML = ''
+      return
+    }
+
+    const scaleX = svgRect.width / vb.width
+    const scaleY = svgRect.height / vb.height
+    const labelHalfWidth = isZhMode() ? 108 : 120
+    const edgePadding = 18
+
+    layer.innerHTML = m3State.componentPaths.map((path) => {
+      const comp = findComponentById(path.id) || path.component
+      if (!comp) return ''
+      const labelPosition = getLabelPosition(path)
+      let left = (labelPosition.x - vb.x) * scaleX
+      let top = (labelPosition.y - vb.y) * scaleY
+      const isActive = comp.id === m3State.componentId
+
+      left = Math.max(left, labelHalfWidth + edgePadding)
+      left = Math.min(left, svgRect.width - labelHalfWidth - edgePadding)
+      top = Math.max(top, labelPosition.align === 'top' ? 82 : 26)
+      top = Math.min(top, svgRect.height - (labelPosition.align === 'bottom' ? 82 : 26))
+
+      return `<div class="component-label component-label--${labelPosition.align} is-visible${isActive ? ' is-active' : ''}" style="left:${left}px;top:${top}px">
+        <span class="component-label__name">${escape(getComponentName(comp))}</span>
+        <span class="component-label-desc">${escape(getComponentBrief(comp))}</span>
+      </div>`
+    }).join('')
+  }
+
+  function bindSvgPaths() {
+    const host = $('#component-svg-host')
+    if (!host) return
+    const svg = host.querySelector('svg')
+    if (!svg) return
+
+    const vb = svg.viewBox?.baseVal
+    const data = MODULE3_DATA[m3State.building]
+    const svgNameMap = data?.svgNameMap || {}
+    const sourceComponents = data?.components || []
+
+    const groups = Array.from(svg.querySelectorAll('g[id]')).filter((group) => {
+      const rawId = (group.id || '').trim()
+      if (!rawId) return false
+      if (rawId === '图层_1' || /^Layer/i.test(rawId)) return false
+      if (group.closest('defs')) return false
+      if (group.querySelector('g[id]')) return false
+      try {
+        const bbox = (group.querySelector('.component-hit') || group).getBBox()
+        if (!bbox.width || !bbox.height) return false
+        if (vb?.width && vb?.height && bbox.width > vb.width * 0.96 && bbox.height > vb.height * 0.96) {
+          return false
+        }
+      } catch {
+        return false
+      }
+      return true
+    })
+
+    m3State.componentPaths = []
+    m3State.resolvedComponents = []
+    m3State.explodeLayout = new Map()
+
+    groups.forEach((group, index) => {
+      const rawId = group.id.trim()
+      const mappedId = svgNameMap[rawId] || rawId
+      const sourceComp =
+        sourceComponents.find((comp) => comp.id === mappedId) ||
+        sourceComponents.find((comp) => comp.name === rawId) ||
+        null
+      const component = buildRuntimeComponent(rawId, sourceComp, index)
+      const hitEl = group.querySelector('.component-hit') || group
+
+      group.dataset.componentId = component.id
+      group.style.cursor = 'pointer'
+      group.style.transition = 'filter 0.22s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+
+      group.addEventListener('mouseenter', () => {
+        if (!group.classList.contains('is-selected')) {
+          group.style.filter = 'drop-shadow(0 0 5px rgba(180,130,60,0.75))'
+        }
+      })
+      group.addEventListener('mouseleave', () => {
+        if (!group.classList.contains('is-selected')) {
+          group.style.filter = ''
+        }
+      })
+      group.addEventListener('click', () => {
+        showComponent(component.id, true)
+      })
+
+      m3State.resolvedComponents.push(component)
+      m3State.componentPaths.push({
+        el: group,
+        hitEl,
+        id: component.id,
+        rawId,
+        component,
+        layout: null,
+      })
+    })
+
+    if (!findComponentById(m3State.componentId)) {
+      m3State.componentId = m3State.resolvedComponents[0]?.id || null
+    }
+  }
+
+  function pullPath(id) {
+    const path = m3State.componentPaths.find((item) => item.id === id)
+    if (!path) return
+
+    const layout = m3State.explodeLayout.get(id)
+    if (!layout) return
+
+    const active = id === m3State.componentId
+    path.el.style.transform = `translate(${layout.translateX}px, ${layout.translateY}px) scale(${active ? 1.08 : 1.02})`
+    path.el.style.transformBox = 'fill-box'
+    path.el.style.transformOrigin = 'center center'
+    path.el.style.filter = active ? 'drop-shadow(0 0 9px rgba(90, 122, 138, 0.9))' : ''
+    path.el.classList.toggle('is-selected', active)
+  }
+
+  function resetPath(id) {
+    const path = m3State.componentPaths.find((item) => item.id === id)
+    if (!path) return
+    path.el.style.transform = ''
+    path.el.style.transformBox = ''
+    path.el.style.transformOrigin = ''
+    path.el.style.filter = ''
+    path.el.classList.remove('is-selected')
+  }
+
+  function syncPathState() {
+    if (m3State.isExploded) {
+      computeExplodeLayout()
+      m3State.componentPaths.forEach((path) => pullPath(path.id))
+      renderLabels()
+      return
+    }
+
+    m3State.componentPaths.forEach((path) => resetPath(path.id))
+    const current = m3State.componentPaths.find((path) => path.id === m3State.componentId)
+    if (current) {
+      current.el.classList.add('is-selected')
+      current.el.style.filter = 'drop-shadow(0 0 8px rgba(90, 122, 138, 0.8))'
+    }
+    renderLabels()
+  }
+
+  async function loadBuilding(name) {
+    if (!MODULE3_DATA[name]) return
+
+    m3State.building = name
+    m3State.isExploded = false
+    m3State.autoPlay = true
+    m3State.resolvedComponents = []
+    m3State.componentPaths = []
+    m3State.explodeLayout = new Map()
+    m3State.componentId = MODULE3_DATA[name].components[0]?.id || null
+    m3State.tab = 'craft'
+    m3State.galleryIndex = 0
+    clearAutoPlay()
+
+    loadPng(name)
+    updateExplodeUi()
+    await loadSvg(name)
+
+    renderBuildingButtons()
+    renderSidebarTitle()
+    renderComponentButtons()
+    renderGallery(true)
+    renderCard()
+    syncPathState()
+    renderLabels()
+  }
+
+  function showComponent(id, fromUser) {
+    const comp = findComponentById(id)
+    if (!comp) return
+
+    m3State.componentId = id
+    m3State.tab = 'craft'
+    if (fromUser) {
+      clearAutoPlay(true)
+      m3State.isExploded = true
+    }
+
+    if (comp.image) {
+      const imageIndex = getResolvedComponents().filter((item) => item.image).findIndex((item) => item.id === id)
+      if (imageIndex >= 0) {
+        m3State.galleryIndex = imageIndex
+      }
+    }
+
+    updateExplodeUi()
+    renderComponentButtons()
+    renderCard()
+    renderGallery(true)
+    syncPathState()
+  }
+
+  function toggleExplode() {
+    m3State.isExploded = !m3State.isExploded
+    updateExplodeUi()
+    syncPathState()
+  }
+
   window.initComponentModule = init
 
 })()

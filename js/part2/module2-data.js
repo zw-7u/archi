@@ -13,7 +13,7 @@ const AXIS_MODES = {
     descEn: 'Highlight the outer court ritual core',
     defaultRegion: 'taihedian',
     /** 高亮的建筑 id */
-    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'zhonghedian', 'baohedian'],
+    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'baohedian', 'qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
     /** 弱化区域 */
     dimIds: ['qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
   },
@@ -24,7 +24,7 @@ const AXIS_MODES = {
     descZh: '从午门到御花园的递进路径',
     descEn: 'A progressive path from the Meridian Gate to the Imperial Garden',
     defaultRegion: 'wumen',
-    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'zhonghedian', 'baohedian', 'qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
+    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'baohedian', 'qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
     dimIds: [],
   },
   courtLiving: {
@@ -34,10 +34,10 @@ const AXIS_MODES = {
     descZh: '突出前朝与后寝的分区关系',
     descEn: 'Highlight the division between the outer court and inner quarters',
     defaultRegion: 'qianqingmen',
-    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'zhonghedian', 'baohedian', 'qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
+    highlightIds: ['wumen', 'taiheimen', 'taihedian', 'baohedian', 'qianqingmen', 'qianqinggong', 'kunninggong', 'yuhuayuan'],
     dimIds: [],
     /** 前朝 */
-    outerIds: ['wumen', 'taiheimen', 'taihedian', 'zhonghedian', 'baohedian'],
+    outerIds: ['wumen', 'taiheimen', 'taihedian', 'baohedian'],
     /** 分界 */
     dividerId: 'qianqingmen',
     /** 后寝 */
@@ -47,12 +47,11 @@ const AXIS_MODES = {
 
 const AXIS_MODE_ORDER = ['ritual', 'progression', 'courtLiving']
 
-/** 中轴 9 大热区序列（从南向北） */
+/** 中轴热区序列（从南向北） */
 const AXIS_SEQUENCE = [
   'wumen',
   'taiheimen',
   'taihedian',
-  'zhonghedian',
   'baohedian',
   'qianqingmen',
   'qianqinggong',
@@ -60,7 +59,7 @@ const AXIS_SEQUENCE = [
   'yuhuayuan',
 ]
 
-/** 脉络盘 8 节点（不含中和殿，因 SVG 无独立分组） */
+/** 脉络盘节点（从南向北） */
 const AXIS_TRACK_NODES = [
   'wumen',
   'taiheimen',
@@ -70,15 +69,6 @@ const AXIS_TRACK_NODES = [
   'qianqinggong',
   'kunninggong',
   'yuhuayuan',
-]
-
-/** 礼意盘外圈五个概念 */
-const RITUAL_CONCEPTS = [
-  { id: 'hierarchy',    labelZh: '尊卑有序', labelEn: 'Ranked Order' },
-  { id: 'progression',  labelZh: '由外入内', labelEn: 'Outside In' },
-  { id: 'courtLiving',  labelZh: '前朝后寝', labelEn: 'Court & Living' },
-  { id: 'centrality',   labelZh: '居中而治', labelEn: 'Central Rule' },
-  { id: 'separation',   labelZh: '礼居分途', labelEn: 'Rite & Dwelling' },
 ]
 
 /** 每个热区的详细信息 */
@@ -110,14 +100,14 @@ const AXIS_REGION_DATA = {
     concepts: ['hierarchy', 'centrality'],
     trackIndex: 2,
   },
-  zhonghedian: {
-    nameZh: '中和殿', nameEn: 'Hall of Central Harmony',
-    roleZh: '礼仪调节', roleEn: 'Ritual Modulation',
-    subtitleZh: '于中取和，张弛有度', subtitleEn: 'A pause for balance between the grand halls',
-    descZh: '中和殿位于太和殿与保和殿之间，是皇帝前往太和殿前更衣休憩、阅览奏折之处。它在空间节奏上形成缓冲，"中"与"和"的命名直接呼应儒家中庸之道。',
-    descEn: 'The Hall of Central Harmony sits between the two major halls, providing a spatial and ceremonial pause. Its name directly invokes Confucian balance.',
-    concepts: ['hierarchy', 'centrality'],
-    trackIndex: -1, // 脉络盘中不单独列出
+  legacyAxisFallback: {
+    nameZh: '旧节点占位', nameEn: 'Legacy Placeholder',
+    roleZh: '未使用数据', roleEn: 'Unused Legacy Data',
+    subtitleZh: '仅为兼容旧状态保留', subtitleEn: 'Kept only for backward compatibility',
+    descZh: '该节点不参与当前中轴总览图联动。',
+    descEn: 'This placeholder does not participate in the current axis overview interactions.',
+    concepts: ['hierarchy'],
+    trackIndex: -1,
   },
   baohedian: {
     nameZh: '保和殿', nameEn: 'Hall of Preserving Harmony',
@@ -166,8 +156,8 @@ const AXIS_REGION_DATA = {
   },
 }
 
-/** 中轴礼序模式下的视频路径 */
-const AXIS_VIDEO_PATH = 'assets/videos/culture/中轴礼序'
+/** 中轴礼序模式下的视频路径（优先 ASCII 文件名，避免部分环境中文 URL 无法加载） */
+const AXIS_VIDEO_PATH = 'assets/videos/culture/axis-order'
 
 /** 前朝后寝模式的色彩 */
 const COURT_COLORS = {

@@ -866,9 +866,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城"正朝"，外朝三大殿之首，明清两代国家礼仪的核心象征，中国现存最大的木结构大殿。',
     identityEn: 'The main throne hall of the Forbidden City, the supreme symbol of Ming-Qing state rituals.',
     timeline: '始建：明永乐十八年（1420年），初名奉天殿。重建：明永乐十九年（1421年）遭雷击焚毁，后多次重建。现存主体为清康熙三十四年（1695年）重建，耗时3年完工。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), initially named Fengtian Dian. Rebuilt in 1421 after a lightning strike. Multiple reconstructions followed. Current structure dates to 1695 (34th year of Kangxi, Qing), completed after 3 years.',
     materials: '木材：主要使用金丝楠木（初建），清重建时使用了松木等，采伐自四川、湖广、江西等地的深山老林。石料：台基和御路石料采自北京房山大石窝。琉璃瓦：屋顶瓦件为康熙三十四年（1695年）烧制。金砖：殿内铺墁的"金砖"产自苏州，制作工艺复杂，成本极高。',
+    materialsEn: 'Timber: Primary use of nanmu (original construction); pine used in Qing reconstruction, sourced from deep mountain forests in Sichuan, Huguang, and Jiangxi. Stone: White marble base and imperial road stones from Fangshan, Beijing. Glazed tiles: Yellow glazed roof tiles fired in 1695 (Kangxi 34). Golden bricks: Fine-grained floor bricks produced in Suzhou, highly complex and expensive.',
     style: '屋顶形式：重檐庑殿顶，是中国古代建筑中等级最高的屋顶样式。屋脊上装饰有10个仙人走兽（龙、凤、狮子、天马、海马、狻猊、押鱼、獬豸、斗牛、行什），为全国孤例。台基：三层汉白玉石雕基座，高8.13米。殿内共有72根大柱，其中6根为沥粉贴金蟠龙金柱。',
+    styleEn: 'Roof: Double-eaved hip roof, the highest-ranked roof type in ancient Chinese architecture. Ten ridge beasts crown the ridge (dragon, phoenix, lion, heavenly horse, sea horse, suanni, yayu, xiezhi, douniu, xingshi) — a unique national example. Platform: Three-tier white marble base, 8.13 meters high. Interior: 72 columns total, including 6 gilded dragon pillars.',
     functionCat: '礼仪殿堂。用于举行皇帝登基、大婚、册封皇后、命将出征、以及万寿节、元旦、冬至三大节朝贺等国家最隆重的典礼。',
+    functionCatEn: 'Grand ceremonial hall. Used for the emperor\'s enthronement, weddings, coronations, military campaigns, and the three major festivals: New Year\'s Day (Wanshoujie), Winter Solstice, and New Year\'s Day.',
     historicalEvents: [
       '清康熙十八年（1679年），太和殿再次被雷击焚毁。因国家财政和战事吃紧，迟迟未能重建，荒废了十余年。直到康熙三十四年（1695年），康熙帝在平定三藩、收复台湾、抗击沙俄后，国力强盛，才下令重修，此次重建确立了今日太和殿的规模和形制。',
       '太和殿命运多舛，历史上多次遭雷击焚毁。',
@@ -885,9 +889,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城"国门"，明清两代国家礼仪的核心象征之一，是皇帝举行重要典礼、颁布诏令的场所。',
     identityEn: 'The main southern gate of the Forbidden City, a core symbol of Ming-Qing state rituals.',
     timeline: '始建：明永乐十八年（1420年）。现存结构：清顺治四年（1647年）重修，嘉庆六年（1801年）又修。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Current structure: rebuilt in 1647 (4th year of Shunzhi, Qing) and repaired again in 1801 (6th year of Jiaqing, Qing).',
     materials: '城台主体为明代大城砖砌筑，表面用灰浆抹面。上部五座崇楼为木结构，梁柱采用金丝楠木、松木等，屋顶覆黄色琉璃瓦。',
+    materialsEn: 'City platform: main body built with large Ming-era city bricks, plastered with mortar. Upper five-story towers: timber structure with nanmu and pine columns, yellow glazed tiles on roof.',
     style: '平面形制："凹"字形，正楼居中，两侧向前延伸出两座墩台，墩台上各建有两座方亭（雁翅楼），形成"五凤楼"的格局。屋顶形式：正楼为重檐庑殿顶，是故宫内仅次于太和殿的规格。门洞：城台开有五个门洞，正中门洞为皇帝专用，形成严格的等级秩序。',
+    styleEn: 'Plan: U-shaped layout with the main tower centered and two flanking wings, forming the "Five Phoenix Tower" (Wufeng Lou) configuration. Roof: Main tower uses double-eaved hip roof, second only to the Hall of Supreme Harmony. Five gate openings: the central one reserved exclusively for the emperor, enforcing strict hierarchy.',
     functionCat: '礼仪与防御之门。午门是故宫的正门，兼具城门防御功能。更重要的是，它是国家礼仪的核心空间：皇帝在此举行"颁朔礼"、接受重大战功"献俘礼"，以及颁布重要诏令。',
+    functionCatEn: 'Ceremonial and defensive gate. The Meridian Gate is the official front gate of the Forbidden City, serving both defensive and ceremonial functions. It hosted the issuing of imperial calendars, prisoner-of-war presentations, and the proclamation of major edicts.',
     historicalEvents: [
       '"午门廷杖"：明代，如果大臣触怒皇帝，会被在午门执行"廷杖"，即当众杖责。明正德、嘉靖年间，廷杖尤为惨烈，甚至出现当场杖毙的情况。',
       '"推出午门斩首"的误解：民间有"推出午门斩首"的说法，但事实上，午门从未在此处斩首犯人。清代处决犯人通常在北京的菜市口。',
@@ -905,9 +913,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '外朝三大殿之一，皇帝在大典前的"预备厅"和"休息室"。',
     identityEn: 'One of the three main halls, serving as the Emperor\'s preparation room before major ceremonies.',
     timeline: '始建：明永乐十八年（1420年），初名华盖殿。清顺治二年（1645年）改名为中和殿。现存建筑为明天启七年（1627年）重建。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), initially named Huagai Dian. Renamed Zhonghe Dian in 1645 (2nd year of Shunzhi, Qing). Current structure rebuilt in 1627 (7th year of Tianqi, Ming).',
     materials: '材料与太和殿类似，采用上等木料（楠木等）、汉白玉台基和琉璃瓦件。',
+    materialsEn: 'Similar materials to the Hall of Supreme Harmony: premium timber (nanmu), white marble platform, and glazed tiles.',
     style: '屋顶形式：单檐四角攒尖顶，屋面覆黄色琉璃瓦，顶部有铜胎鎏金宝顶。平面呈正方形，面阔、进深各3间，四面出廊，四面开门，便于皇帝通行。',
+    styleEn: 'Roof: Single-eaved square pyramidal roof, yellow glazed tiles, gilded bronze finial at the top. Square plan: 3 bays wide and deep, with corridors on all four sides and doors on all four walls for the emperor\'s easy passage.',
     functionCat: '礼仪预备空间。皇帝在前往太和殿举行大典前，先在此殿休息，并接受内阁、礼部及执事官员的跪拜行礼。也是皇帝祭祀天、地、太庙等大典前，审阅祭文和亲耕籍田前检查种子农具的地方。',
+    functionCatEn: 'Ceremonial preparation space. The emperor rested here before major ceremonies at the Hall of Supreme Harmony and received kneeling greetings from officials. Also used to review sacrificial texts and inspect seeds and tools before rites to Heaven, Earth, and the Ancestral Temple.',
     historicalEvents: [
       '中和殿不仅是休息室，也是重要的"排练场"。每逢大典，皇帝会在此先预览祝文（祭文），官员们则要在这里为皇帝演习礼仪。',
     ],
@@ -922,9 +934,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '外朝三大殿之一，明清两代功能迥异，清代为科举最高等级考试"殿试"的固定场所。',
     identityEn: 'One of the three main halls; during Qing, it became the venue for the imperial examination.',
     timeline: '始建：明永乐十八年（1420年），初名谨身殿。清顺治二年（1645年）改名为保和殿。现存主体为明天启七年（1627年）重建。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), initially named Jinshen Dian. Renamed Baohe Dian in 1645 (2nd year of Shunzhi, Qing). Current structure rebuilt in 1627 (7th year of Tianqi, Ming).',
     materials: '殿后有一块紫禁城内最大的云龙石雕，长16.57米，宽3.07米，厚1.7米，重约250吨，产自北京房山。如此巨石在冬季通过沿途打井泼水结冰，以"旱船"方式拉运至故宫，动用了数万民夫。',
+    materialsEn: 'Behind the hall stands the largest cloud-dragon stone carving in the Forbidden City: 16.57m long, 3.07m wide, 1.7m thick, weighing approximately 250 tons, sourced from Fangshan, Beijing. The stone was transported in winter by pouring water to form ice along the route, using tens of thousands of laborers.',
     style: '屋顶形式：重檐歇山顶，等级仅次于太和殿的重檐庑殿顶。结构：面阔9间，进深5间，殿内减去部分立柱，空间开阔，便于举行考试或宴会。',
+    styleEn: 'Roof: Double-eaved hip-and-gable roof, second only to the Hall of Supreme Harmony. Structure: 9 bays wide, 5 bays deep; some interior columns removed to create open space for examinations or banquets.',
     functionCat: '多功能殿堂。明代多为皇帝在重大典礼前更衣的场所；清代则成为皇帝举行盛大宴会的场所，更是科举考试最高等级"殿试"的固定考场。',
+    functionCatEn: 'Multi-purpose hall. During Ming: mainly used for the emperor to change clothes before major ceremonies. During Qing: grand banquets and the imperial civil service examination (diǎnshì), the highest level of the imperial examination system.',
     historicalEvents: [
       '乾隆五十四年（1789年），乾隆帝将殿试的地点由太和殿正式移至保和殿。从此，这里成为无数寒窗苦读的学子们鲤鱼跃龙门的最后一道关口。皇帝亲临现场主持考试，由读卷大臣评阅试卷后，前十名的试卷还要呈送皇帝亲自审阅钦定，选拔出状元、榜眼、探花。',
     ],
@@ -939,9 +955,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '明清两代皇帝的正式寝宫，也是内廷的核心象征。自雍正皇帝后虽移居养心殿，但乾清宫仍具有极高的政治象征意义。',
     identityEn: 'The formal imperial bedchamber during Ming and Qing dynasties, and the core symbol of the Inner Court.',
     timeline: '始建：明永乐十八年（1420年）。焚毁与重建：明正德、嘉靖年间多次遭火，现存建筑是清嘉庆三年（1798年）重建的。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Fires during Zhengde and Jiajing reigns; current structure rebuilt in 1798 (3rd year of Jiaqing, Qing).',
     materials: '殿内铺墁"金砖"，梁柱采用上等松木等。殿内设有"金砖"地面和雕刻精美的屏风、宝座。',
+    materialsEn: '"Golden bricks" (fine-grained floor tiles) throughout. Premium pine columns. Intricately carved screens and throne.',
     style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间，象征九五之尊。殿内明间设有金漆雕龙宝座，宝座上方悬挂顺治帝御笔"正大光明"匾。殿内暖阁共有9间，是皇帝日常起居之所。',
+    styleEn: 'Roof: Double-eaved hip roof, 9 bays wide, 5 bays deep, symbolizing the "nine-five" supremacy. Central bay: gilded dragon throne. Above the throne hangs the plaque "Zhengda Guangming" (Rectitude and Clarity) inscribed by the Shunzhi Emperor. Nine warm pavilions (暖阁) served as the emperor\'s daily residence.',
     functionCat: '寝宫与政厅。明代为皇帝寝宫，清代康熙皇帝在此居住并"御门听政"。自雍正起，虽然寝宫移至养心殿，但乾清宫仍是皇帝死后停灵的"正寝之所"。',
+    functionCatEn: 'Bedchamber and governance hall. Served as the emperor\'s bedroom during Ming. Emperor Kangxi lived here and held court sessions at the Qianqing Gate. From Yongzheng onward, though the bedchamber moved to Yangxin Dian, the Qianqing Palace remained the location for the emperor\'s memorial lying-in-state.',
     historicalEvents: [
       '"正大光明"匾背后的秘密。自雍正帝创立秘密建储制度后，皇帝将选定的继承人的名字写好，一式两份，密封于匣中，放在乾清宫"正大光明"匾后。这一制度有效避免了皇子间残酷的储位之争。',
     ],
@@ -956,9 +976,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城内廷后三宫之一，明代为皇后寝宫，清代改为萨满教祭神场所及皇帝大婚的洞房。',
     identityEn: 'One of the three inner palaces, serving as the Empress\'s residence in Ming and a shamanist altar in Qing.',
     timeline: '始建：明永乐十八年（1420年）。改建：清顺治十二年（1655年），仿盛京清宁宫改建，成为萨满祭祀场所。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Alteration: 1655 (12th year of Shunzhi, Qing), rebuilt in the style of Shengjing Qingning Palace, becoming a shamanist altar.',
     materials: '木结构梁柱，屋顶覆黄色琉璃瓦。室内改建后增设"卍"字炕（连二炕）、大锅（煮祭肉用）。东暖阁装修华丽，以红、金色为主。',
+    materialsEn: 'Timber columns and beams, yellow glazed tile roof. After alteration: "卍" shaped heated kang (connected double kang) and large cauldrons for cooking sacrificial meat. East warm pavilion (东暖阁) elaborately decorated in red and gold.',
     style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间。内部布局：西侧四间为萨满祭神场所，设神位、神厨、大锅；东侧两间为皇帝大婚洞房（东暖阁）。正门不居中而偏东，体现满族"口袋房"特色。',
+    styleEn: 'Roof: Double-eaved hip roof, 9 bays wide, 5 bays deep. Layout: West four bays — shamanist altar with deity tablets, kitchen, and large cauldrons; East two bays — imperial wedding chamber (东暖阁). Main gate offset eastward, reflecting the Manchu "pocket house" feature.',
     functionCat: '多用途殿堂。清代坤宁宫每日早晚有萨满祭祀，每月初一、十五有大祭；皇帝大婚时作为洞房。',
+    functionCatEn: 'Multi-purpose hall. During Qing: daily shamanist ceremonies morning and evening, major sacrifices on the 1st and 15th of each lunar month; served as the imperial wedding chamber.',
     historicalEvents: [
       '康熙帝大婚：1665年，康熙帝与赫舍里氏皇后在坤宁宫东暖阁成婚，婚后居住数日。溥仪婉容大婚（1922年）：末代皇帝溥仪与皇后婉容在坤宁宫东暖阁举办婚礼，这是坤宁宫最后一次作为洞房。',
     ],
@@ -974,9 +998,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '清代紫禁城内使用时间最长的皇帝寝宫，清代宫廷政治活动的中心，见证了清王朝从鼎盛到衰亡的全过程。',
     identityEn: 'The longest-used imperial bedchamber in the Qing Dynasty, serving as the center of political activities.',
     timeline: '始建：明嘉靖十六年（1537年）。清中期（乾隆时期）：建筑格局成熟，功能基本完备。修缮：2015年启动研究性保护项目，于2025年12月26日重新开放。',
+    timelineEn: 'Original construction: 1537 (16th year of Jiajing, Ming). Mid-Qing (Qianlong period): architectural layout matured and function stabilized. Restoration: research-based protection project launched in 2015, reopened December 26, 2025.',
     materials: '木结构：部分大木结构为明代原物。排水立柱内部发现锡铅合金金属管，兼具防水防潮特性。东暖阁北墙采光"明瓦"由上千枚"海月"贝壳打磨而成。',
+    materialsEn: 'Timber structure: some major beams are original Ming-era pieces. Drainage columns contain tin-lead alloy pipes providing waterproofing. North wall of east warm pavilion: "Mingwa" light panels made from thousands of sea-moon shells.',
     style: '平面布局：工字形结构，正殿、工字廊、后殿相连。正殿明间悬挂雍正御笔"中正仁和"匾。西暖阁悬挂"勤政亲贤"匾和"惟以一人治天下，岂为天下奉一人"对联。三希堂：因收藏王羲之《快雪时晴帖》、王献之《中秋帖》、王珣《伯远帖》三件稀世法帖而得名。',
+    styleEn: 'Layout: I-shaped structure connecting main hall, I-shaped corridor, and rear hall. Main hall central bay: plaque "Zhongzheng Renhe" (Balance and Benevolence) inscribed by Emperor Yongzheng. West warm pavilion: plaque "Qinzheng Qinxian" and couplet "We rule the world for all, not the world for one." Sanxi Tang: named for housing three calligraphic treasures by Wang Xizhi, Wang Xianzhi, and Wang Xun.',
     functionCat: '寝宫与政厅。清代自雍正帝起，养心殿取代乾清宫成为皇帝日常居住和理政的场所，集寝宫、书房、政务堂、佛堂于一体。',
+    functionCatEn: 'Bedchamber and governance hall. From Yongzheng onward, Yangxin Dian replaced Qianqing Palace as the emperor\'s daily residence and governance center, combining bedroom, study, council chamber, and Buddhist chapel.',
     historicalEvents: [
       '"元旦开笔"之典。始于康熙帝，后成为清代皇帝每年元旦（春节）子时的固定仪式。',
       '"三希堂"的命名深意：乾隆帝强调"以三希名堂者，亦非尽为藏帖也"，更有"士希贤、贤希圣、圣希天"之意。',
@@ -991,9 +1019,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城北门，故宫的"后门"，明清两代帝后出行、选秀女入宫及皇室成员出入的重要通道。',
     identityEn: 'The north gate of the Forbidden City, serving as a key passage for imperial exits and entrances.',
     timeline: '始建：明永乐十八年（1420年），初名"玄武门"。避讳改名：清康熙年间，因避康熙帝名讳"玄烨"，改称"神武门"。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), originally named Xuanwu Gate. Renamed: during Kangxi\'s reign to avoid the personal name "Xuan Ye," renamed Shenwu Gate.',
     materials: '城台为明代大城砖砌筑，上部城楼为木结构，梁柱采用松木等，屋顶覆黄色琉璃瓦。门洞内设石门券，地面铺花岗岩石板。',
+    materialsEn: 'City platform: Ming-era large bricks. Upper gate tower: timber structure with pine columns, yellow glazed tile roof. Gate openings: stone arch rings, granite floor slabs.',
     style: '屋顶形式：重檐庑殿顶，面阔5间，进深1间，四周围廊。结构：城台开三门洞，上建城楼。门上旧设钟、鼓，每日黄昏后鸣钟108响，继而击鼓起更；启明时复鸣钟报晓。',
+    styleEn: 'Roof: Double-eaved hip roof, 5 bays wide, 1 bay deep, surrounded by corridors. Structure: Three gate openings in the platform, gate tower above. Historically fitted with bell and drum: 108 rings at dusk followed by drum beats; bell again at dawn.',
     functionCat: '礼仪与防御之门。神武门是紫禁城北门，日常供宫人、太监、杂役出入；皇后祭先蚕、皇帝北狩等亦由此门出入。清代选秀女时，秀女由此门入宫。',
+    functionCatEn: 'Ceremonial and defensive gate. The north gate of the Forbidden City, used daily by palace servants and staff. Empresses performing silk-offering rites, emperors departing for northern hunts, and selection of imperial concubines all used this gate.',
     historicalEvents: [
       '1924年，冯玉祥部将鹿钟麟率军从神武门进入故宫，驱逐溥仪出宫，结束了清室在紫禁城的最后岁月。',
     ],
@@ -1009,9 +1041,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城城墙的防御性建筑，兼具装饰功能，是中国古代木构建筑中结构最精巧、造型最华丽的代表作之一。',
     identityEn: 'Defensive structures at the four corners of the Forbidden City walls, representing the finest Chinese timber architecture.',
     timeline: '始建：明永乐十八年（1420年）。修缮：1957年进行过大木修缮工程。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Major timber repair: 1957.',
     materials: '主体为木结构，梁柱采用松木等。屋面铺设琉璃瓦，是木工与瓦作、石作、油作等多工种协作的结晶。',
+    materialsEn: 'Timber structure primarily; pine columns. Glazed tile roofing — a collaborative masterpiece of carpenters, tilemakers, masons, and painters.',
     style: '屋顶形式：极其罕见的"十"字脊顶，实际上由一个三重檐的四方亭和四个重檐歇山顶的抱厦巧妙地结合而成，共有10个山花、28个翼角、16个窝角、72条脊，结构严谨，天衣无缝。',
+    styleEn: 'Roof: Extremely rare cross-shaped ridge configuration, combining a three-eaved square pavilion with four double-eaved hip-and-gable wings. Features: 10 gables, 28 upturned eaves, 16 recessed corners, 72 ridges — structurally precise and seamless.',
     functionCat: '军事防御与景观。角楼的功能主要是瞭望敌情，但其极致的建筑美学，使其成为紫禁城外围轮廓线上最华美的乐章。',
+    functionCatEn: 'Military defense and visual landmark. Primarily served as a watchtower for enemy approach, yet its extraordinary architectural beauty makes it the most magnificent element of the palace wall silhouette.',
     historicalEvents: [
       '角楼因其结构复杂，有"九梁十八柱七十二条脊"的说法，是古代木匠技艺的巅峰考验。民间传说，角楼的设计灵感来源于一个卖蝈蝈的笼子，当时负责设计角楼的工匠百思不得其解，一个路过的卖蝈蝈老人手中的精巧笼子给了他们启发，从而完成了设计。',
     ],
@@ -1025,9 +1061,14 @@ const BUILDING_KAPIAN_DATA = {
     identity: '故宫宁寿宫区的入口照壁，是乾隆皇帝为自己修建的太上皇宫殿的一部分，与北海九龙壁、大同九龙壁并称中国三大九龙壁。',
     identityEn: 'The entrance screen wall of the Longevity and Health Palace area, one of China\'s three famous Nine Dragon Walls.',
     timeline: '建造时间：清乾隆三十七年（1772年），与宁寿宫区同时修建。修缮：2017年前后进行了大型修缮。',
+    timelineEn: 'Construction: 1772 (37th year of Qianlong, Qing), built simultaneously with the Longevity Palace area. Major restoration: around 2017.',
     materials: '主体为琉璃构件，由专门的皇家琉璃窑厂烧制，采用传统的"琉璃釉"工艺。九龙壁并非一体成型，而是由270块琉璃构件拼接而成，每块构件都有编号。',
+    materialsEn: 'Glazed tile body, fired by imperial kilns using traditional glazed ceramic techniques. The wall was not cast as one piece but assembled from 270 individually numbered glazed tile blocks.',
     style: '形制：单面琉璃照壁，长29.4米，高3.5米，厚0.45米。壁身主体为九条琉璃龙，采用高浮雕工艺，龙身蜿蜒、鳞爪清晰，形态各异。色彩：以黄色为主色调，辅以蓝、白、紫、绿等色。数字寓意："九"在传统文化中为阳数之极。',
+    styleEn: 'Form: Single-sided glazed screen wall, 29.4m long, 3.5m high, 0.45m thick. Nine glazed dragons in high relief, each with flowing bodies and clearly defined scales and claws. Color: yellow dominant, with blue, white, purple, and green accents. Symbolic meaning: nine is the supreme yang number.',
     functionCat: '建筑装饰与风水屏障。九龙壁作为照壁，主要功能是遮挡视线、避免外人直接窥见皇极门内的建筑群，同时在风水上起到"藏风聚气"的作用。',
+    functionCatEn: 'Architectural decoration and fengshui screen. As a screen wall, its primary function was to obstruct direct view into the Huangji Palace area, while also serving as a fengshui element to gather and retain positive energy.',
+    functionCatEn: 'Architectural decoration and fengshui screen. As a screen wall, its primary function was to obstruct direct view into the Huangji Palace area, while also serving as a fengshui element to gather and retain positive energy.',
     historicalEvents: [
       '九龙壁的修建与乾隆皇帝"归政"计划密切相关。乾隆帝在登基之初曾立誓，如果在位六十年，便会禅位给儿子。',
     ],
@@ -1041,9 +1082,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城内西路的一座院落，清代皇帝及后妃听戏、品茗、用膳的休闲娱乐场所，因电视剧《还珠格格》而闻名。',
     identityEn: 'A western-side courtyard serving as a leisure entertainment venue for opera, tea, and dining.',
     timeline: '始建：明永乐十八年（1420年），初为乾西五所之一。改建：清乾隆七年（1742年），乾隆帝将其改为重华宫附属的戏园，添建大戏台。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), as one of the Qianxi Wusuo (five western residences). Alteration: 1742 (7th year of Qianlong, Qing), converted into a subsidiary opera garden of the Chonghua Palace, with a large opera stage added.',
     materials: '建筑为木结构，梁柱采用松木、楠木，屋顶覆黄色琉璃瓦。戏台内部装饰彩绘，地面铺墁金砖。院内陈设假山、鱼池，点缀太湖石。',
+    materialsEn: 'Timber structure with pine and nanmu columns, yellow glazed tile roof. Opera stage: painted interior, golden brick floor. Courtyard: artificial rockery, fishpond, and Taihu stones.',
     style: '平面布局：漱芳斋为工字形殿，前殿与南房、东西配殿围成独立小院。戏台特色：台顶设天井，可演神仙下凡戏码；台底设地井，可演鬼怪升天。室内明间与次间以落地罩分隔，东次室额曰"静憩轩"。',
+    styleEn: 'Layout: I-shaped hall complex, with front hall and south rooms surrounded by east and west annexes forming an independent courtyard. Stage features: ceiling opening for "gods descending" scenes; floor opening for "ghosts rising" scenes. Interior bays separated by floor-to-ceiling lattice screens.',
     functionCat: '文化休闲殿堂。主要用于皇帝及后妃观戏、节日宴饮、文人雅集。乾隆帝常在此与大臣赋诗联句，赐茶款待。',
+    functionCatEn: 'Cultural leisure venue. Primarily used for emperors and consorts to watch opera, hold banquets, and gather with scholars. Emperor Qianlong frequently composed poetry with officials and served tea here.',
     historicalEvents: ['清乾隆七年（1742年），乾隆帝将其改为重华宫附属的戏园，添建大戏台（漱芳斋戏台）。', '乾隆时期，漱芳斋是重华宫宴集演戏的重要场所。', '1923年，逊清皇室曾在漱芳斋戏台为敬懿皇贵太妃生日演出。'],
     festivals: ['重华宫茶宴：每年正月初二至初十，乾隆帝在重华宫举行茶宴，与大学士、翰林等品茶赋诗。'],
     anecdotes: [
@@ -1054,9 +1099,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '明清两代帝王后妃游赏、休憩的皇家园林，也是紫禁城内唯一的宫廷花园。',
     identityEn: 'The imperial garden for the Emperor and consorts, and the only palace garden within the Forbidden City.',
     timeline: '始建：明永乐十八年（1420年），与紫禁城同期建成。明代中后期及清代各朝均有修缮和添建。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), built simultaneously with the Forbidden City. Repairs and additions throughout late Ming and all Qing dynasties.',
     materials: '建筑：亭台楼阁采用木结构，覆黄色琉璃瓦。铺地：园内甬路以不同颜色的卵石精心铺砌而成，组成900余幅不同的图案。奇石：园内放置各色山石盆景，其中绛雪轩前的一段木化石尤为珍贵。',
+    materialsEn: 'Buildings: timber pavilions with yellow glazed tile roofs. Paving: walkways inlaid with colored pebbles forming over 900 distinct patterns. Rocks: various penjing stones and rockeries throughout; the petrified wood in front of Jiangxue Xuan is especially precious.',
     style: '核心建筑：钦安殿（重檐盝顶），供奉玄武大帝，位于中轴线上。对称亭台：浮碧亭与澄瑞亭东西对称；万春亭与千秋亭为上圆下方、四面出抱厦的多角亭。园内现存古树160余株，彩石路面900余幅图案。',
+    styleEn: "Core structure: Qin'an Hall (double-eaved lu ding roof), dedicated to Xuanwu Emperor, on the central axis. Symmetrical pavilions: Fubi Ting and Chengrui Ting facing each other east and west; Wanchun Ting and Qianqiu Ting are multi-corner pavilions with round tops above square bases and flared eaves on four sides. Over 160 ancient trees and 900 pebble-pattern walkways remain in the garden.",
     functionCat: '皇家园林（休闲区域）。原为帝王后妃休息、游赏而建，但也有祭祀（钦安殿）、颐养、藏书、读书等用途。',
+    functionCatEn: 'Imperial garden (recreation zone). Originally built for the emperor and consorts to rest and enjoy scenery; also served purposes including worship (Qin\'an Hall), retirement, library, and study.',
     historicalEvents: ['钦安殿的玄武崇拜：明代宫廷笃信道教，在御花园中轴线上修建钦安殿供奉玄武大帝，寓意以水镇火、护佑宫城。'],
     festivals: [
       '中秋祭月：清代宫廷有中秋祭月的传统，御花园是重要的祭祀场所之一。',
@@ -1071,9 +1120,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '乾隆皇帝为自己退位后颐养天年而修建的太上皇宫殿园林，是他个人审美的集中体现，也是18世纪中国皇家建筑内檐装修的巅峰之作。',
     identityEn: 'Emperor Qianlong\'s retirement garden, embodying his personal aesthetics and the pinnacle of 18th-century imperial interior decoration.',
     timeline: '建造时间：清乾隆三十六年至四十一年（1771-1776年），历时5年建成。开放：2025年9月30日，其第一、二进院落百年来首度向公众开放。',
+    timelineEn: 'Construction: 1771-1776 (36th-41st years of Qianlong, Qing), 5 years. Public opening: September 30, 2025, first and second courtyards opened to the public for the first time in a century.',
     materials: '这是故宫的"材料实验场"：漆纱：符望阁落地罩上的漆纱，由23层材料叠加，厚度不足1毫米，工艺已失传。瓷砖：延禧宫灵沼轩内壁瓷砖来自德国。贝壳：点螺工艺使用的珍珠贝、鲍鱼壳等。竹丝：竹丝镶嵌工艺用南方竹丝，用于北方建筑。',
+    materialsEn: 'A "materials laboratory" within the palace: Lacquered gauze: on Fuwang Pavilion\'s lattice screens, 23 layers under 1mm thick — technique now lost. Tiles: wall tiles in Yinxian Hall sourced from Germany. Shells: mother-of-pearl inlay using pearl and abalone shells. Bamboo: southern bamboo filament inlay adapted for northern architecture.',
     style: '四进院落，各有主题：第一进以古华轩、禊赏亭为主；第二进为遂初堂三合院；第三进以假山为主；第四进以符望阁（迷楼）、倦勤斋为核心，室内装修极尽奢华，融合了竹丝镶嵌、双面绣、掐丝珐琅、点螺、竹黄贴雕等多种江南及西洋工艺。',
+    styleEn: 'Four courtyard zones, each with a distinct theme: 1st — Guhua Xuan and Xishang Pavilion. 2nd — Suichu Hall courtyard. 3rd — rockery-focused. 4th — Fuwang Pavilion ("Labyrinth Hall") and Juanqin Zhai, featuring ultra-luxurious interiors combining bamboo inlay, double-sided embroidery, cloisonne, mother-of-pearl, and bamboo-yellow carving — Jiangnan and Western techniques combined.',
     functionCat: '皇家园林与退休居所。是乾隆皇帝退位后的休憩、娱乐和办公场所，寄托了他对江南园林的向往和对文人生活的追求。',
+    functionCatEn: "Imperial garden and retirement residence. Designed for Qianlong's post-retirement rest, entertainment, and work — embodying his longing for Jiangnan gardens and literati lifestyle.",
     historicalEvents: ['乾隆皇帝虽修建了这座豪华的花园，但他在退位后并未真正在此久居，而是以太上皇身份仍住在养心殿。花园更多地成为了他寄托归隐情怀和彰显文治武功的艺术作品。'],
     festivals: ['乾隆曾设想在此举办"千叟宴"之类的活动。花园中的禊赏亭内设有流杯渠，效仿王羲之兰亭雅集，是皇帝与近臣们行"曲水流觞"游戏的场所。'],
     anecdotes: [
@@ -1085,9 +1138,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城内最大的戏台，位于宁寿宫区，是清代宫廷戏曲演出的核心场所。',
     identityEn: 'The largest opera stage in the Forbidden City, serving as the core venue for Qing court opera performances.',
     timeline: '始建：清乾隆三十七年（1772年），与宁寿宫区同期建造。修缮：嘉庆，光绪年间均有修葺。',
+    timelineEn: 'Original construction: 1772 (37th year of Qianlong, Qing), built simultaneously with the Longevity Palace area. Repairs: Jiaqing and Guangxu reigns.',
     materials: '木结构，梁柱采用松木、楠木，屋顶覆黄色琉璃瓦。戏台内部设有天井、地井、辘轳等机械装置，以演神仙、鬼怪戏码。',
+    materialsEn: 'Timber structure with pine and nanmu columns, yellow glazed tile roof. Stage interior fitted with ceiling openings, floor openings, and windlass mechanisms for "gods descending" and "ghosts rising" stage effects.',
     style: '建筑形制：三层戏台（从上至下称"福台"、"禄台"、"寿台"），总高20余米。寿台（底层）：面积约210平方米，台顶设天井3个，台底设地井5个，可升降演员或道具。',
+    styleEn: 'Form: Three-tier opera stage (top to bottom: "Fortune Stage," "Prosperity Stage," "Longevity Stage"), total height over 20m. Longevity Stage (ground floor): approx. 210 sqm, 3 ceiling openings, 5 floor openings for raising and lowering performers or props.',
     functionCat: '文化休闲殿堂。清代宫廷重大节日（元旦、万寿节、冬至等）及帝后生日、皇子婚礼，常在畅音阁连演数日大戏。',
+    functionCatEn: "Cultural entertainment venue. Major Qing court festivals (New Year's Day, Birthday, Winter Solstice) and imperial birthdays and princely weddings were marked by multi-day opera performances at Changyin'ge.",
     historicalEvents: [
       '乾隆帝的"大戏情结"：乾隆帝曾命人编写《劝善金科》、《升平宝筏》等连台本戏（每部10本240出），在畅音阁演出，最多动用演员数千人。',
       '1900年八国联军入侵，慈禧西逃，畅音阁戏箱被劫，部分剧本散失。',
@@ -1102,9 +1159,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城中轴线上唯一的道教神殿，供奉北方水神玄武大帝，寓意以水镇火、护佑宫城。',
     identityEn: 'The only Taoist temple on the central axis of the Forbidden City, dedicated to the Northern Water God Xuanwu.',
     timeline: '始建：明永乐十八年（1420年），位于御花园正中。修缮：明嘉靖年间重修；清康熙、乾隆朝亦有修缮。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), centered in the Imperial Garden. Repairs: Jiajing reign, Ming; Kangxi and Qianlong, Qing.',
     materials: '殿身为木结构，梁柱采用楠木等，屋顶覆黄色琉璃瓦。殿内神像为铜铸鎏金，法器多为铜、木、纸等。',
+    materialsEn: 'Timber hall structure with nanmu columns, yellow glazed tile roof. Gilded bronze deity statue inside; ritual implements mainly bronze, wood, and paper.',
     style: '屋顶形式：重檐盝顶（方形顶），面阔5间，进深3间，四周出廊。盝顶正中为鎏金宝顶，形制独特。殿前有月台，设石雕龙纹御路。',
+    styleEn: 'Roof: Double-eaved lu-ding (square pyramidal) roof, 5 bays wide, 3 bays deep, surrounded by corridors. Unique gilded finial at the apex. Stone-paved imperial pathway with dragon carvings leads to the platform.',
     functionCat: '祭祀宗教殿堂。明代皇帝常在此举行道教斋醮仪式，祈求风调雨顺、国泰民安。清代虽崇佛，但钦安殿仍保留道教祭祀。',
+    functionCatEn: 'Religious temple. Ming emperors frequently held Taoist rituals here for rain, good harvests, and national peace. During Qing, though Buddhism was favored, Taoist worship was retained at Qin\'an Hall.',
     historicalEvents: ['嘉靖帝笃信道教，曾多次在钦安殿举行斋醮，甚至在此炼制丹药。他命道士邵元节、陶仲文主持法事，耗费大量银两。', '康熙帝的"避火"保护：清康熙十八年（1679年），太和殿失火后，钦安殿因供奉玄武而更被赋予"镇火护宫"的象征意义。'],
     festivals: ['真武大帝诞辰（农历三月初三）：明代皇帝会亲临钦安殿上香，清帝亦派大臣致祭。'],
     anecdotes: [
@@ -1116,9 +1177,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '明清两代皇太后、太皇太后的正宫，是太后举行重大典礼的殿堂。',
     identityEn: 'The main palace for Empress Dowagers and Grand Empress Dowagers during Ming and Qing.',
     timeline: '始建：明嘉靖十五年（1536年）。定型：乾隆三十四年（1769年）兴工，将慈宁宫正殿由单檐改为重檐，始定今之形制。',
+    timelineEn: 'Original construction: 1536 (15th year of Jiajing, Ming). Final form: 1769 (34th year of Qianlong, Qing), when the main hall was upgraded from single to double eaves, establishing its current appearance.',
     materials: '木结构采用上等楠木、松木，屋顶覆黄色琉璃瓦，殿前陈设鎏金铜香炉。',
+    materialsEn: 'Premium nanmu and pine timber, yellow glazed tile roof, gilded bronze incense burners in front.',
     style: '屋顶形式：黄琉璃瓦重檐歇山顶（乾隆三十四年由单檐改为重檐，等级提升）。台基：殿前出月台，正面出三阶，左右各出一阶。院落：东西两侧为廊庑。',
+    styleEn: 'Roof: Yellow glazed tile double-eaved hip-and-gable roof (upgraded by Qianlong in 1769, elevating its rank). Platform: stepped platform with three steps front, one each left and right. Courtyard: corridors and wings on east and west.',
     functionCat: '祭祀与礼仪殿堂（祭祀区域，紫色）。凡遇皇太后圣寿节、上徽号、进册宝、公主下嫁，均在此举行庆贺仪式。皇太后薨，梓宫奉安于慈宁宫中。',
+    functionCatEn: "Ceremonial and ritual hall (designated in purple). Hosted major celebrations: Empress Dowager's birthday, title ceremonies, princess weddings. When an Empress Dowager died, her coffin was temporarily placed here.",
     historicalEvents: [
       '孝庄文皇后与慈宁宫：清朝顺治十年（1653年），孝庄文皇后始居慈宁宫，成为清代第一位在此居住的太后。她历经三朝，辅佐顺治、康熙两代幼主，是清初政治格局中的重要人物。',
       '乾隆十六年（1751年），乾隆帝为生母崇庆皇太后举办六十圣寿庆典，在慈宁宫举行了隆重仪式。',
@@ -1132,9 +1197,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '清代皇太后、太妃的居所，位于慈宁宫西侧，是乾隆帝为生母崇庆皇太后修建的颐养宫殿。',
     identityEn: 'A residence for Empress Dowagers and Imperial Noble Consorts, built by Qianlong for his mother.',
     timeline: '始建：清雍正十三年（1735年），乾隆帝即位后为母修建。',
+    timelineEn: 'Original construction: 1735 (13th year of Yongzheng, Qing), built by Emperor Qianlong for his mother upon his accession.',
     materials: '木结构，梁柱楠木、松木，屋顶覆黄色琉璃瓦。室内装饰精美，多有"福寿"主题雕刻、彩绘。',
+    materialsEn: 'Timber structure with nanmu and pine columns, yellow glazed tile roof. Exquisite interior decorations featuring "fortune and longevity" themed carvings and paintings.',
     style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。院落三进，正殿为寿康宫，后殿为寝宫。装饰特色：殿内悬乾隆御笔"寿康"匾，陈设多以"蝙蝠"、"寿桃"为纹饰。',
+    styleEn: 'Roof: Single-eaved hip-and-gable, 5 bays wide, 3 bays deep. Three-courtyard compound; main hall is Shoukang Palace, rear hall is the bedchamber. Decoration: Qianlong\'s inscription "Shoukang" (Longevity and Health); furnishings feature bat and longevity peach motifs.',
     functionCat: '起居生活殿堂（太后宫）。皇太后日常起居、接受皇帝问安、举行小型庆典之处。',
+    functionCatEn: 'Residential hall for Empress Dowagers. Daily residence and imperial visits; venue for smaller ceremonies.',
     historicalEvents: [
       '乾隆帝每日清晨从养心殿步行至寿康宫向母亲问安，风雨无阻。',
       '崇庆皇太后的"福寿双全"：乾隆帝为母亲举办六十、七十、八十大寿，寿康宫张灯结彩，盛况空前。',
@@ -1148,9 +1217,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '慈宁宫南侧的附属园林，明清两代皇太后、太妃、太嫔们游赏、礼佛、休息的专属花园。',
     identityEn: 'The garden south of Cining Palace, serving as an exclusive garden for Empress Dowagers.',
     timeline: '始建：明嘉靖年间。清代重修：乾隆三十四年（1769年）大规模修葺，添建佛堂、亭台。',
+    timelineEn: 'Original construction: Jiajing period, Ming. Major Qing renovation: 1769 (34th year of Qianlong), adding a Buddhist hall and pavilions.',
     materials: '建筑为木结构，亭台覆琉璃瓦或灰瓦。园内铺砌卵石路，种植松柏、槐树、玉兰等。佛堂内陈设铜佛、经卷。',
+    materialsEn: 'Timber buildings, glazed or grey tile pavilions. Cobblestone paths, pine, locust, and magnolia trees. Buddhist hall with bronze Buddha statues and scriptures.',
     style: '布局：南北窄长，东西宽约50米，南北长约130米。主要建筑：咸若馆（正殿，佛堂）、宝相楼、吉云楼、临溪亭、含清斋。园中有一矩形鱼池，池上架石桥。',
+    styleEn: 'Layout: narrow north-south orientation, approx. 50m east-west, approx. 130m north-south. Main structures: Xianruo Hall (main hall and Buddhist chapel), Baoxiang Lou, Jiyun Lou, Linxi Ting, Hanqing Zhai. Rectangular fish pond with stone bridge.',
     functionCat: '景观休闲与宗教场所。太后太妃们在此散步、赏花、礼佛、吃茶。每月初一、十五，太后会率众妃嫔在咸若馆拈香诵经。',
+    functionCatEn: 'Recreation and religious space. Empress Dowagers strolled, viewed flowers, worshipped Buddha, and took tea here. On the 1st and 15th of each month, the Empress Dowager led concubines in Buddhist incense and scripture sessions at Xianruo Hall.',
     historicalEvents: ['明代太后在此"避暑"：明代皇太后常居慈宁宫，花园是她们夏季纳凉之处。'],
     festivals: ['佛诞日（农历四月初八）：太后在咸若馆举行浴佛仪式。'],
     anecdotes: [
@@ -1161,9 +1234,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城东部的一座大殿，清代皇帝及皇子练习射箭、举行武试的场所。',
     identityEn: 'An eastern hall in the Forbidden City where Qing emperors practiced archery and held military examinations.',
     timeline: '始建：清雍正八年（1730年）。用途：直至清末仍作为习武场所。',
+    timelineEn: 'Original construction: 1730 (8th year of Yongzheng, Qing). Use: remained an archery training venue until the late Qing.',
     materials: '木结构，单檐歇山顶，覆黄色琉璃瓦。殿内空旷，无立柱（减柱造），以便骑马射箭。',
+    materialsEn: 'Timber structure, single-eaved hip-and-gable roof, yellow glazed tiles. Open interior with columns reduced (jianzhu zao) to allow mounted archery.',
     style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。殿前广场南北长100余米，东西宽约60米，是跑马射箭的场地。殿内现存乾隆帝御制《训守冠服骑射碑》。',
+    styleEn: "Roof: single-eaved hip-and-gable, 5 bays wide, 3 bays deep. Open plaza: over 100m north-south, approx. 60m east-west, for mounted archery. Stele inside: Qianlong's edict on dress and archery customs.",
     functionCat: '军事文化殿堂。清代皇帝常在此皇子、侍卫射箭，并举办"御箭亭"考试选拔武官。',
+    functionCatEn: 'Military-cultural hall. Emperors practiced archery with princes and guards; hosted the imperial archery examination (御箭亭) to select military officers.',
     historicalEvents: [
       '乾隆帝"射箭示子"：乾隆帝亲临箭亭射箭，并作《箭亭碑记》刻于殿内石碑，要求子孙"永遵满洲旧俗"。',
     ],
@@ -1176,9 +1253,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '外朝东路核心建筑，明清两代皇帝举行经筵之礼的固定场所，明代曾为太子视事之所。',
     identityEn: 'The core building of the eastern outer court, serving as the venue for Confucian lectures.',
     timeline: '始建：明永乐十八年（1420年），曾覆绿色琉璃瓦。改覆黄瓦：明嘉靖十五年（1536年），改为皇帝便殿和经筵之所。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), originally roofed in green glazed tiles. Changed to yellow: 1536 (15th year of Jiajing, Ming), converted to imperial private hall and Confucian lecture venue.',
     materials: '主殿梁柱采用上等松木，屋顶覆黄色琉璃瓦，殿内铺墁金砖。',
+    materialsEn: 'Premium pine columns and beams, yellow glazed tile roof, golden brick floor.',
     style: '屋顶形式：黄琉璃瓦歇山顶。平面结构：工字形平面，前殿与后殿以穿廊相连。门窗装饰：明间开6扇三交六椀菱花槅扇门，属古建筑外檐装修中的高等级形式。',
+    styleEn: 'Roof: yellow glazed hip-and-gable. Plan: I-shaped, front and rear halls connected by corridors. Door decoration: six-panel three-over-six lattice doors — a high-rank exterior finish in ancient Chinese architecture.',
     functionCat: '文化教育殿堂。明清两朝，每岁春秋仲月在此举行经筵之礼。清代殿试阅卷亦在文华殿进行。',
+    functionCatEn: 'Cultural-educational hall. Spring and autumn lectures (经筵) held every year during Ming and Qing. Qing imperial examination papers were also reviewed at Wenhua Hall.',
     historicalEvents: [
       '明正统年间，经筵制度正式确立，每月初二日御文华殿进讲。康熙二十四年（1685年）定每年二月、八月举行经筵。',
     ],
@@ -1191,9 +1272,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城外朝西路核心建筑，清代作为内府修书处（武英殿修书处），刊刻大量典籍（"殿本"书）。',
     identityEn: 'The core western outer court building, serving as the Imperial Publishing Office during the Qing Dynasty.',
     timeline: '始建：明永乐十八年（1420年）。明代用途：皇帝斋居、召见大臣。明末李自成在此登基称帝。清代：设武英殿修书处。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Ming use: imperial retreat, receiving officials. Li Zicheng held his enthronement here in 1644. Qing: Imperial Publishing Office (武英殿修书处).',
     materials: '木结构，梁柱松木等，屋顶覆黄色琉璃瓦。殿内曾设刻书工坊，存有大量雕版、书版。',
+    materialsEn: 'Timber structure with pine columns, yellow glazed tile roof. Former printing workshop with large collection of woodblock and book plates.',
     style: '屋顶形式：重檐歇山顶，面阔5间，进深3间。院落：前后两进，前殿为武英殿，后殿为敬思殿。周边：东有断虹桥，西有浴德堂（阿拉伯式浴室）。',
+    styleEn: 'Roof: double-eaved hip-and-gable, 5 bays wide, 3 bays deep. Two-courtyard compound: Wuying Hall front, Jingsi Hall rear. Nearby: DuHong Bridge to the east, Yudetang (Arabic-style bathhouse) to the west.',
     functionCat: '文化出版殿堂。清代武英殿修书处负责编纂、刊刻、校勘书籍，如《古今图书集成》、《康熙字典》、《武英殿聚珍版丛书》等。',
+    functionCatEn: 'Cultural publishing hall. Qing Imperial Publishing Office compiled, carved, and proofread classics including the Imperial Dictionary (康熙字典) and Collected Treasures series.',
     historicalEvents: [
       '1644年，李自成攻占北京，在武英殿举行登基大典，次日即撤出。武英殿成为农民政权短暂存在的见证。',
       '康有为在此创办《中外纪闻》，这是维新变法时期的重要刊物。',
@@ -1209,9 +1294,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '宁寿宫区前朝主殿，乾隆皇帝为自己退位后作为太上皇临御受贺而建。',
     identityEn: 'The main hall of the Longevity Palace area, built by Qianlong for his retirement as Taishang Huang.',
     timeline: '始建：清乾隆三十七年（1772年）至四十一年（1776年）。晚清用于慈禧万寿庆典。',
+    timelineEn: 'Construction: 1772-1776 (37th-41st years of Qianlong, Qing). Late Qing: used for Empress Dowager Cixi\'s birthday celebrations.',
     materials: '木结构，梁柱采用金丝楠木等，屋顶覆黄色琉璃瓦，殿内铺墁金砖。御座、屏风等陈设与太和殿相似但等级略低。',
+    materialsEn: 'Timber structure with nanmu columns, yellow glazed tile roof, golden brick floor. Throne and screen furnishings similar to the Hall of Supreme Harmony but slightly lower in rank.',
     style: '屋顶形式：重檐庑殿顶，面阔9间，进深5间，前有月台。殿内悬"建极康宁"匾。',
+    styleEn: 'Roof: double-eaved hip roof, 9 bays wide, 5 bays deep, with platform front. Interior: plaque "Jianji Kangning" (Establish the Supreme and Ensure Peace).',
     functionCat: '礼仪殿堂。乾隆退位后，此处用于受贺、千叟宴等盛典；晚清用于慈禧万寿庆典等重大礼仪活动。',
+    functionCatEn: 'Ceremonial hall. Used for receptions and longevity banquets after Qianlong\'s abdication; major ceremonies during Cixi\'s reign.',
     historicalEvents: [
       '乾隆"千叟宴"：乾隆帝退位后，皇极殿曾用于千叟宴等太上皇庆典。',
     ],
@@ -1224,9 +1313,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '宁寿宫区正门，位于皇极门以北，是进入宁寿宫前朝区域的第二道门。',
     identityEn: 'The main gate of the Longevity Palace area, serving as the second entrance to the front court.',
     timeline: '始建：清乾隆三十七年（1772年）。',
+    timelineEn: 'Original construction: 1772 (37th year of Qianlong, Qing).',
     materials: '木结构，重檐歇山顶，覆黄色琉璃瓦。台基为汉白玉须弥座，门内外铺墁金砖。',
+    materialsEn: 'Timber structure, double-eaved hip-and-gable roof, yellow glazed tiles. White marble Sumeru platform, golden brick paving inside and out.',
     style: '屋顶形式：重檐歇山顶，面阔5间，进深3间。正中三门，门前列铜狮一对（较太和门小）。',
+    styleEn: 'Roof: double-eaved hip-and-gable, 5 bays wide, 3 bays deep. Three central gates; pair of bronze lions in front (smaller than at Taiheimen).',
     functionCat: '礼仪之门。皇帝进出宁寿宫区的主要通道。',
+    functionCatEn: 'Ceremonial gate. Primary passage for emperors entering and exiting the Longevity Palace area.',
     historicalEvents: [
       '1796年正月初一，乾隆帝在皇极殿举行禅让大典后，从宁寿门回到宁寿宫后殿。',
     ],
@@ -1237,9 +1330,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '明清两代后妃居住的核心区域，由景仁宫、承乾宫、钟粹宫、景阳宫、永和宫、延禧宫组成。',
     identityEn: 'The core residence area for imperial consorts, comprising six eastern palaces.',
     timeline: '始建：明永乐十八年（1420年）。清初及中期修整：顺治十二年（1655年）首先修整靠近中轴线的六个宫。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Qing repairs: 1655 (12th year of Shunzhi), the six palaces nearest the central axis were the first to be repaired.',
     materials: '各宫建筑采用标准皇家用材：松木梁柱、黄色琉璃瓦、砖石台基。',
+    materialsEn: 'Standard imperial materials throughout: pine columns, yellow glazed tiles, brick-and-stone platform.',
     style: '布局形制：每宫为两进院的三合院形式，由前殿、后寝、东西配殿组成，四周围以高墙，自成院落。',
+    styleEn: 'Layout: each palace is a two-courtyard siheyuan (courtyard house) with front hall, bedchamber, and east-west annexes, enclosed by high walls.',
     functionCat: '后妃生活区。前殿为后妃接受朝贺、处理宫务之所，后寝为日常起居之处。',
+    functionCatEn: 'Consort residence zone. Front halls: receiving honors and palace affairs; bedchambers: daily residence.',
     historicalEvents: [
       '慈禧太后的"宫斗"舞台：咸丰年间，慈禧（时为懿贵妃）居储秀宫，在此生子载淳（即同治帝）。',
       '延禧宫的"西洋梦"：道光二十五年（1845年）起火，仅存宫门。光绪年间计划在此修建西洋式水殿"水晶宫"，后因国库空虚而停工。',
@@ -1253,9 +1350,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城内廷与外朝的分界之门，清代皇帝"御门听政"的主要场所。',
     identityEn: 'The gate separating the Inner and Outer Courts, serving as the venue for Qing emperors\' court sessions.',
     timeline: '始建：明永乐十八年（1420年）。清代改建：顺治、康熙年间多次修葺，康熙帝定"御门听政"于乾清门。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming). Qing alterations: multiple repairs under Shunzhi and Kangxi; Kangxi formalized "court at the gate" (御门听政) at Qianqingmen.',
     materials: '城台砖石结构，上部为木结构门楼，覆黄色琉璃瓦。门内设金砖墁地。',
+    materialsEn: 'Brick-and-stone platform, timber gate tower above, yellow glazed tile roof. Golden brick paving inside the gate.',
     style: '屋顶形式：单檐歇山顶，面阔5间，进深3间。正中设门，左右各一掖门。门前有鎏金铜狮一对，象征皇权。',
+    styleEn: 'Roof: single-eaved hip-and-gable, 5 bays wide, 3 bays deep. Central gate with one flanking gate on each side. Pair of gilded bronze lions in front symbolizing imperial authority.',
     functionCat: '礼仪与政务之门。清代康熙至咸丰年间，皇帝在此"御门听政"，接受大臣奏事。',
+    functionCatEn: 'Ceremonial and governance gate. From Kangxi to Xianfeng, emperors held "court at the gate" (御门听政) here, receiving petitions from officials.',
     historicalEvents: [
       '康熙御门听政：康熙帝每日黎明在乾清门听政，不论寒暑。大臣们凌晨2-3点便要在门外等候，皇帝在门内设座，各部院官员依次奏事，形成"乾清门御门听政"制度。',
       '咸丰废止：咸丰帝（1851-1861）因战乱和身体原因，逐渐停止御门听政，改为召见大臣。此后乾清门听政成为历史。',
@@ -1270,9 +1371,13 @@ const BUILDING_KAPIAN_DATA = {
     identity: '紫禁城外朝正门，明代皇帝"御门听政"之处（明代称皇极门），也是外朝三大殿区的入口，是故宫内规模最大的宫门。',
     identityEn: 'The main gate of the Outer Court, the largest palace gate in the Forbidden City.',
     timeline: '始建：明永乐十八年（1420年），初名奉天门。明嘉靖四十一年（1562年）改称皇极门；清顺治二年（1645年）改称太和门。',
+    timelineEn: 'Original construction: 1420 (18th year of Yongle, Ming), initially named Fengtian Gate. Renamed Huangji Gate in 1562 (41st year of Jiajing, Ming); renamed Taiheimen in 1645 (2nd year of Shunzhi, Qing).',
     materials: '木结构梁柱，屋顶覆黄色琉璃瓦。门内铺墁金砖，门外广场铺花岗石。门前陈设铜狮、铜鼎等。',
+    materialsEn: 'Timber columns and beams, yellow glazed tile roof. Golden brick paving inside; granite paving on the outer square. Bronze lions and ding tripods displayed in front.',
     style: '屋顶形式：重檐歇山顶，面阔9间，进深4间，是中国现存最大的宫门。正中三门，两侧各有一掖门（共5门）。门前有一对铜狮（明代铸造，故宫最大铜狮）。',
+    styleEn: 'Roof: double-eaved hip-and-gable, 9 bays wide, 4 bays deep — the largest surviving palace gate in China. Three central gates with one flanking gate on each side (5 total). Pair of bronze lions in front (Ming-era casting, the largest in the palace).',
     functionCat: '礼仪与政务之门。明代皇帝常在此"御门听政"，接受百官朝奏。清代改在乾清门，太和门则用于皇帝大婚、出征等大典的出入及重要诏书的颁布。',
+    functionCatEn: 'Ceremonial and governance gate. Ming emperors held court sessions at Taiheimen. In Qing, court sessions moved to Qianqingmen; Taiheimen was used for imperial weddings, military campaigns, and issuing major edicts.',
     historicalEvents: [
       '光绪十四年大火：1887年12月16日夜，太和门因护军值班室失火，延及太和门、贞度门等，全部烧毁。正值光绪帝大婚在即，朝廷急调工匠连夜搭建彩棚伪装成太和门，婚礼才得以举行。',
     ],
@@ -1302,13 +1407,13 @@ const BUILDING_KAPIAN_DATA = {
 
 // 建筑分类（7类）
 const CATEGORIES = [
-  { name: '城池门禁' },
-  { name: '外朝礼制' },
-  { name: '内廷起居' },
-  { name: '东西翼/政务' },
-  { name: '宁寿宫区' },
-  { name: '太后养老' },
-  { name: '戏曲游赏' }
+  { name: '城池门禁', nameEn: 'City Wall & Gate' },
+  { name: '外朝礼制', nameEn: 'Outer Court Ritual' },
+  { name: '内廷起居', nameEn: 'Inner Court Residence' },
+  { name: '东西翼/政务', nameEn: 'East–West Wings' },
+  { name: '宁寿宫区', nameEn: 'Longevity Palace Area' },
+  { name: '太后养老', nameEn: 'Elder Empress' },
+  { name: '戏曲游赏', nameEn: 'Opera & Recreation' }
 ]
 
 // nodeMeta：建筑名 → 分类索引
@@ -1538,175 +1643,275 @@ const BUILDING_KEYWORDS = {
     category: ['城防建筑', '楼阁类', '边角标志'],
     role: ['宫城转角', '防御象征', '轮廓节点'],
     form: ['飞檐', '多重转折', '造型复杂', '高耸', '角部识别'],
-    culture: ['城防', '秩序', '边界', '威严', '宫城轮廓']
+    culture: ['城防', '秩序', '边界', '威严', '宫城轮廓'],
+    categoryEn: ['Fortification', 'Tower', 'Corner Landmark'],
+    roleEn: ['Wall Corner', 'Defense Symbol', 'Silhouette Node'],
+    formEn: ['Sweeping Eaves', 'Complex Geometry', 'Ornate Form', 'Tall', 'Corner Identification'],
+    cultureEn: ['Defense', 'Order', 'Boundary', 'Awe', 'Palace Silhouette']
   },
 
   '神武门': {
     category: ['城门类', '北门', '门禁空间'],
     role: ['北向出口', '后部城门', '宫城边界'],
     form: ['门阙', '轴线尽端', '对称', '封闭性'],
-    culture: ['门禁', '边界', '出入秩序', '后廷收束']
+    culture: ['门禁', '边界', '出入秩序', '后廷收束'],
+    categoryEn: ['Gate', 'North Gate', 'Access Control'],
+    roleEn: ['North Exit', 'Rear Gate', 'Palace Boundary'],
+    formEn: ['Gate Tower', 'Axis Terminus', 'Symmetry', 'Enclosure'],
+    cultureEn: ['Access Control', 'Boundary', 'Entry Order', 'Rear Court Closure']
   },
 
   '漱芳斋': {
     category: ['园居建筑', '文化空间', '游宴空间'],
     role: ['西路游赏', '宴集场所', '文化节点'],
     form: ['庭院化', '精致', '私密', '园林联系'],
-    culture: ['游宴', '戏乐', '雅集', '宫廷生活']
+    culture: ['游宴', '戏乐', '雅集', '宫廷生活'],
+    categoryEn: ['Garden Residence', 'Cultural Space', 'Entertainment Space'],
+    roleEn: ['West Path Recreation', 'Banquet Venue', 'Cultural Node'],
+    formEn: ['Courtyard Style', 'Delicate', 'Private', 'Garden Link'],
+    cultureEn: ['Entertainment', 'Opera', 'Gathering', 'Court Life']
   },
 
   '御花园': {
     category: ['园林类', '皇家苑囿', '后苑空间'],
     role: ['后廷花园', '游憩空间', '中轴后苑'],
     form: ['园林化', '曲折', '点景', '对景'],
-    culture: ['游赏', '休憩', '后苑秩序', '皇家园林']
+    culture: ['游赏', '休憩', '后苑秩序', '皇家园林'],
+    categoryEn: ['Garden', 'Imperial Garden', 'Rear Court Space'],
+    roleEn: ['Rear Court Garden', 'Recreation Space', 'Central Axis Garden'],
+    formEn: ['Landscaped', 'Winding', 'Scenic Focus', 'Vista'],
+    cultureEn: ['Recreation', 'Rest', 'Garden Order', 'Imperial Garden']
   },
 
   '东六宫': {
     category: ['宫寝区', '后宫建筑群', '东路居住区'],
     role: ['东侧宫寝', '妃嫔居所', '内廷生活'],
     form: ['围合院落', '连续院群', '居住性'],
-    culture: ['起居', '后宫', '生活秩序', '内廷空间']
+    culture: ['起居', '后宫', '生活秩序', '内廷空间'],
+    categoryEn: ['Palace Zone', 'Rear Palace Complex', 'East Residence'],
+    roleEn: ['East Palace Wing', 'Consort Residence', 'Inner Court Life'],
+    formEn: ['Courtyard Enclosure', 'Continuous Complex', 'Residential'],
+    cultureEn: ['Daily Life', 'Rear Palace', 'Living Order', 'Inner Court Space']
   },
 
   '西六宫': {
     category: ['宫寝区', '后宫建筑群', '西路居住区'],
     role: ['西侧宫寝', '妃嫔居所', '内廷生活'],
     form: ['围合院落', '连续院群', '居住性'],
-    culture: ['起居', '后宫', '生活秩序', '内廷空间']
+    culture: ['起居', '后宫', '生活秩序', '内廷空间'],
+    categoryEn: ['Palace Zone', 'Rear Palace Complex', 'West Residence'],
+    roleEn: ['West Palace Wing', 'Consort Residence', 'Inner Court Life'],
+    formEn: ['Courtyard Enclosure', 'Continuous Complex', 'Residential'],
+    cultureEn: ['Daily Life', 'Rear Palace', 'Living Order', 'Inner Court Space']
   },
 
   '钦安殿': {
     category: ['宗教建筑', '殿宇类', '御苑核心'],
     role: ['御苑中轴', '后苑信仰中心', '精神节点'],
     form: ['中轴性', '独立殿体', '中心性'],
-    culture: ['信仰', '祭祀', '后苑精神中心', '静穆']
+    culture: ['信仰', '祭祀', '后苑精神中心', '静穆'],
+    categoryEn: ['Religious Building', 'Hall Type', 'Garden Core'],
+    roleEn: ['Garden Central Axis', 'Rear Court Spiritual Center', 'Spiritual Node'],
+    formEn: ['Axial', 'Independent Hall', 'Centrality'],
+    cultureEn: ['Faith', 'Worship', 'Spiritual Center', 'Tranquility']
   },
 
   '坤宁宫': {
     category: ['宫寝主殿', '后三宫', '后廷核心'],
     role: ['后廷主宫', '中轴后寝', '内廷核心'],
     form: ['中轴性', '主宫体量', '对称', '庄重'],
-    culture: ['内廷', '后寝', '礼制', '皇后空间']
+    culture: ['内廷', '后寝', '礼制', '皇后空间'],
+    categoryEn: ['Palace Hall', 'Three Rear Palaces', 'Rear Court Core'],
+    roleEn: ['Rear Court Main Palace', 'Central Axis Rear Palace', 'Inner Court Core'],
+    formEn: ['Axial', 'Grand Scale', 'Symmetry', 'Dignity'],
+    cultureEn: ['Inner Court', 'Rear Palace', 'Ritual', 'Empress Space']
   },
 
   '乾清宫': {
     category: ['宫寝主殿', '后三宫', '后廷核心'],
     role: ['后廷主宫', '中轴后寝', '政治与起居交汇'],
     form: ['中轴性', '主宫体量', '对称', '庄严'],
-    culture: ['皇权', '起居', '后廷核心', '礼制延续']
+    culture: ['皇权', '起居', '后廷核心', '礼制延续'],
+    categoryEn: ['Palace Hall', 'Three Rear Palaces', 'Rear Court Core'],
+    roleEn: ['Rear Court Main Palace', 'Central Axis Rear Palace', 'Politics & Residence'],
+    formEn: ['Axial', 'Grand Scale', 'Symmetry', 'Solemnity'],
+    cultureEn: ['Imperial Power', 'Daily Life', 'Rear Court Core', 'Ritual Continuity']
   },
 
   '养性殿': {
     category: ['宁寿宫区', '寝殿类', '后寝空间'],
     role: ['宁寿后寝', '内向起居', '宁寿宫后区'],
     form: ['寝殿格局', '内向', '规整', '与养心殿呼应'],
-    culture: ['退养', '静养', '后寝', '宁寿秩序']
+    culture: ['退养', '静养', '后寝', '宁寿秩序'],
+    categoryEn: ['Longevity Palace Area', 'Bedchamber', 'Rear Palace Space'],
+    roleEn: ['Longevity Rear Palace', 'Private Residence', 'Longevity Rear Zone'],
+    formEn: ['Bedchamber Layout', 'Private', 'Regular', 'Echoes Yangxin Hall'],
+    cultureEn: ['Retirement', 'Quietude', 'Rear Palace', 'Longevity Order']
   },
 
   '畅音阁': {
     category: ['戏楼', '文化建筑', '游赏空间'],
     role: ['演戏空间', '宁寿宫区文化节点', '观演中心'],
     form: ['高台戏楼', '层次丰富', '观演关系'],
-    culture: ['宫廷戏曲', '庆典', '娱乐', '皇家观戏']
+    culture: ['宫廷戏曲', '庆典', '娱乐', '皇家观戏'],
+    categoryEn: ['Opera Stage', 'Cultural Building', 'Entertainment Space'],
+    roleEn: ['Performance Space', 'Longevity Area Cultural Node', 'Performance Hub'],
+    formEn: ['Raised Stage', 'Multi-level', 'Stage-Audience'],
+    cultureEn: ['Court Opera', 'Celebration', 'Entertainment', 'Imperial Theatre']
   },
 
   '乾隆花园': {
     category: ['园林类', '宁寿宫区', '皇家花园'],
     role: ['宁寿后苑', '游赏空间', '园林节点'],
     form: ['曲折', '精巧', '园林层次', '小中见大'],
-    culture: ['游赏', '隐逸趣味', '养老审美', '园林精神']
+    culture: ['游赏', '隐逸趣味', '养老审美', '园林精神'],
+    categoryEn: ['Garden', 'Longevity Palace Area', 'Imperial Garden'],
+    roleEn: ['Longevity Rear Garden', 'Recreation Space', 'Garden Node'],
+    formEn: ['Winding', 'Delicate', 'Garden Layers', 'Compact Grandeur'],
+    cultureEn: ['Recreation', 'Reclusion', 'Retirement Aesthetics', 'Garden Philosophy']
   },
 
   '养心殿': {
     category: ['政务起居建筑', '殿宇类', '西路核心'],
     role: ['政务起居', '西路政治节点', '皇帝日常'],
     form: ['规整', '实用性', '内向', '中尺度核心'],
-    culture: ['养心', '理政', '起居', '内廷决策']
+    culture: ['养心', '理政', '起居', '内廷决策'],
+    categoryEn: ['Governance & Residence', 'Hall Type', 'West Core'],
+    roleEn: ['Governance & Living', 'West Political Node', 'Imperial Daily Life'],
+    formEn: ['Regular', 'Functional', 'Private', 'Medium Core'],
+    cultureEn: ['Self-cultivation', 'Governance', 'Daily Life', 'Inner Court Decision']
   },
 
   '皇极殿': {
     category: ['宁寿宫前朝', '殿堂类', '礼制空间'],
     role: ['宁寿宫前朝核心', '祝寿礼仪', '尊崇象征'],
     form: ['主殿体量', '对称', '中轴性', '礼仪性'],
-    culture: ['祝寿', '尊崇', '礼制', '宁寿秩序']
+    culture: ['祝寿', '尊崇', '礼制', '宁寿秩序'],
+    categoryEn: ['Longevity Front Palace', 'Hall Type', 'Ritual Space'],
+    roleEn: ['Longevity Front Core', 'Longevity Ceremony', 'Reverence Symbol'],
+    formEn: ['Grand Hall Scale', 'Symmetry', 'Axial', 'Ceremonial'],
+    cultureEn: ['Birthday Celebration', 'Reverence', 'Ritual', 'Longevity Order']
   },
 
   '寿康宫': {
     category: ['太后养老区', '寝宫类', '后区居住'],
     role: ['太后居所', '养老空间', '西路静养'],
     form: ['院落化', '居住性', '安静', '围合'],
-    culture: ['养老', '安养', '慈和', '西部后廷']
+    culture: ['养老', '安养', '慈和', '西部后廷'],
+    categoryEn: ['Elder Empress Zone', 'Bedchamber', 'Rear Residence'],
+    roleEn: ['Elder Empress Residence', 'Retirement Space', 'West Quietude'],
+    formEn: ['Courtyard Style', 'Residential', 'Quiet', 'Enclosed'],
+    cultureEn: ['Retirement', 'Comfort', 'Benevolence', 'West Rear Court']
   },
 
   '慈宁宫': {
     category: ['太后养老区', '宫殿类', '西路主宫'],
     role: ['太后主宫', '养老区核心', '西部重要节点'],
     form: ['主宫格局', '庄重', '规整', '中尺度核心'],
-    culture: ['太后', '尊养', '后廷秩序', '慈宁']
+    culture: ['太后', '尊养', '后廷秩序', '慈宁'],
+    categoryEn: ['Elder Empress Zone', 'Palace', 'West Main Palace'],
+    roleEn: ['Elder Empress Main Palace', 'Retirement Zone Core', 'West Major Node'],
+    formEn: ['Main Palace Layout', 'Solemn', 'Regular', 'Medium Core'],
+    cultureEn: ['Elder Empress', 'Venerated Rest', 'Rear Court Order', 'Compassion']
   },
 
   '慈宁宫花园': {
     category: ['园林类', '太后养老区', '附属花园'],
     role: ['宫苑游憩', '养老花园', '静态游赏'],
     form: ['园林化', '精巧', '静雅', '景观节点'],
-    culture: ['休憩', '赏景', '静养', '园居审美']
+    culture: ['休憩', '赏景', '静养', '园居审美'],
+    categoryEn: ['Garden', 'Elder Empress Zone', 'Ancillary Garden'],
+    roleEn: ['Garden Recreation', 'Retirement Garden', 'Quiet Recreation'],
+    formEn: ['Landscaped', 'Delicate', 'Serene', 'Scenic Node'],
+    cultureEn: ['Rest', 'Viewing', 'Quietude', 'Garden Aesthetics']
   },
 
   '箭亭': {
     category: ['武备建筑', '演武空间', '附属构筑'],
     role: ['骑射空间', '东部武备', '礼武结合'],
     form: ['开敞', '实用', '训练属性'],
-    culture: ['骑射', '武备', '礼武并重', '尚武']
+    culture: ['骑射', '武备', '礼武并重', '尚武'],
+    categoryEn: ['Military Building', 'Training Space', 'Ancillary Structure'],
+    roleEn: ['Archery Space', 'East Military Zone', 'Ritual–Military'],
+    formEn: ['Open', 'Functional', 'Training'],
+    cultureEn: ['Archery', 'Military', 'Ritual & Martial', 'Martial Spirit']
   },
 
   '九龙壁': {
     category: ['景观构筑', '照壁类', '装饰建筑'],
     role: ['宁寿入口标志', '礼仪过渡', '视觉焦点'],
     form: ['照壁', '琉璃装饰', '平面展开', '强图案性'],
-    culture: ['吉祥', '皇家装饰', '龙纹象征', '威仪']
+    culture: ['吉祥', '皇家装饰', '龙纹象征', '威仪'],
+    categoryEn: ['Landscape Structure', 'Screen Wall', 'Decorative Building'],
+    roleEn: ['Longevity Entrance Marker', 'Ritual Transition', 'Visual Focus'],
+    formEn: ['Screen Wall', 'Glazed Decoration', 'Flat Composition', 'Strong Pattern'],
+    cultureEn: ['Auspiciousness', 'Imperial Decoration', 'Dragon Symbol', 'Grandeur']
   },
 
   '保和殿': {
     category: ['外朝殿堂', '礼制建筑', '中轴建筑'],
     role: ['外朝后段', '礼仪递进', '前朝向后廷过渡'],
     form: ['中轴性', '殿堂体量', '庄重', '对称'],
-    culture: ['礼制', '过渡', '秩序', '朝仪']
+    culture: ['礼制', '过渡', '秩序', '朝仪'],
+    categoryEn: ['Outer Court Hall', 'Ritual Building', 'Central Axis'],
+    roleEn: ['Outer Court Rear', 'Ritual Progression', 'Outer to Inner Transition'],
+    formEn: ['Axial', 'Hall Scale', 'Solemn', 'Symmetry'],
+    cultureEn: ['Ritual', 'Transition', 'Order', 'Court Ceremony']
   },
 
   '太和殿': {
     category: ['外朝主殿', '殿堂类', '中轴核心'],
     role: ['外朝核心', '最高礼制中心', '皇权象征'],
     form: ['高台', '重檐', '巨大体量', '绝对中轴'],
-    culture: ['皇权', '大典', '威严', '礼制顶峰']
+    culture: ['皇权', '大典', '威严', '礼制顶峰'],
+    categoryEn: ['Outer Court Main Hall', 'Hall Type', 'Central Axis Core'],
+    roleEn: ['Outer Court Core', 'Highest Ritual Center', 'Imperial Power Symbol'],
+    formEn: ['Raised Platform', 'Double Eaves', 'Massive Scale', 'Absolute Axis'],
+    cultureEn: ['Imperial Power', 'Grand Ceremony', 'Awe', 'Ritual Apex']
   },
 
   '武英殿': {
     category: ['殿宇类', '西翼建筑', '政务文化建筑'],
     role: ['西路重要节点', '辅翼空间', '文治辅助'],
     form: ['规整', '翼侧布局', '次核心'],
-    culture: ['辅政', '西翼', '文治', '秩序']
+    culture: ['辅政', '西翼', '文治', '秩序'],
+    categoryEn: ['Hall Type', 'West Wing Building', 'Governance & Culture'],
+    roleEn: ['West Major Node', 'Wing Space', 'Civil Governance'],
+    formEn: ['Regular', 'Wing Layout', 'Secondary Core'],
+    cultureEn: ['Auxiliary Governance', 'West Wing', 'Civil Order', 'Order']
   },
 
   '文华殿': {
     category: ['殿宇类', '东翼建筑', '文化空间'],
     role: ['东路重要节点', '辅翼空间', '文教意涵'],
     form: ['规整', '翼侧布局', '次核心'],
-    culture: ['文教', '东翼', '礼学', '文化秩序']
+    culture: ['文教', '东翼', '礼学', '文化秩序'],
+    categoryEn: ['Hall Type', 'East Wing Building', 'Cultural Space'],
+    roleEn: ['East Major Node', 'Wing Space', 'Cultural Meaning'],
+    formEn: ['Regular', 'Wing Layout', 'Secondary Core'],
+    cultureEn: ['Culture & Education', 'East Wing', 'Confucian Learning', 'Cultural Order']
   },
 
   '太和门': {
     category: ['门殿类', '外朝入口', '中轴建筑'],
     role: ['前朝主门', '进入三大殿的礼仪门槛', '外朝中段'],
     form: ['门殿结合', '轴线性', '对称', '庄严'],
-    culture: ['礼制门槛', '秩序开启', '朝仪前奏']
+    culture: ['礼制门槛', '秩序开启', '朝仪前奏'],
+    categoryEn: ['Gate-Hall', 'Outer Court Entrance', 'Central Axis'],
+    roleEn: ['Front Court Main Gate', 'Three-Halls Ritual Threshold', 'Outer Court Mid'],
+    formEn: ['Gate-Hall Combo', 'Axial', 'Symmetry', 'Solemnity'],
+    cultureEn: ['Ritual Threshold', 'Order Opening', 'Court Ceremony Prelude']
   },
 
   '午门': {
     category: ['城门类', '南门', '宫城正门'],
     role: ['中轴入口', '皇城正门', '礼制起点'],
     form: ['门阙', '高台', '五凤楼意象', '强轴线性'],
-    culture: ['皇权入口', '礼仪起点', '威严', '门禁']
+    culture: ['皇权入口', '礼仪起点', '威严', '门禁'],
+    categoryEn: ['Gate', 'South Gate', 'Palace Main Gate'],
+    roleEn: ['Central Axis Entrance', 'Imperial City Main Gate', 'Ritual Origin'],
+    formEn: ['Gate Tower', 'Raised Platform', 'Five Phoenix意象', 'Strong Axial'],
+    cultureEn: ['Imperial Entrance', 'Ritual Origin', 'Awe', 'Access Control']
   }
 }
 

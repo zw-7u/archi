@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 987.436 1398.857" width="987.436" height="1398.857">
+  <title>阴阳五行 overlay only</title>
+  <desc>仅包含模块二“阴阳五行”可交互热区图层，不含底图。</desc>
+
+  <!-- 阴阳五行专用 overlay -->
+  <g id="overlay-yinyang-wuxing-only">
+
+    <!-- 阴阳分区 -->
+    <g id="zones-yinyang" data-mode="yinyang">
+      <path id="zone-yin"
+            class="zone zone-yinyang"
+            d="M 20,20
+               Q 20,8 32,8
+               L 955,8
+               Q 967,8 967,20
+               L 967,610
+               C 810,620 690,610 493.718,605
+               C 300,610 180,620 20,610
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="yin"
+            data-group="yinyang"
+            data-label="内廷（阴）"
+            data-title="阴"
+            data-subtitle="内廷属阴，偏内敛、居住、收束"
+            data-keywords="内廷,居住,私密,收束,静" />
+
+      <path id="zone-yang"
+            class="zone zone-yinyang"
+            d="M 20,610
+               C 180,620 300,610 493.718,605
+               C 690,610 810,620 967,610
+               L 967,1379
+               Q 967,1391 955,1391
+               L 32,1391
+               Q 20,1391 20,1379
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="yang"
+            data-group="yinyang"
+            data-label="外朝（阳）"
+            data-title="阳"
+            data-subtitle="外朝属阳，偏礼制、开放、昭示"
+            data-keywords="外朝,礼制,开放,权威,动" />
+    </g>
+
+    <!-- 五行分区 -->
+    <g id="zones-wuxing" data-mode="wuxing">
+      <path id="zone-water"
+            class="zone zone-wuxing"
+            d="M 360,18
+               L 628,18
+               C 742,120 830,220 870,310
+               L 118,310
+               C 158,220 246,120 360,18
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="water"
+            data-group="wuxing"
+            data-label="水（北）"
+            data-title="水"
+            data-subtitle="北方属水，偏流动、涵养、静气"
+            data-keywords="北,水,流动,涵养,静气" />
+
+      <path id="zone-earth"
+            class="zone zone-wuxing"
+            d="M 318,318
+               L 670,318
+               Q 686,318 686,334
+               L 686,900
+               Q 686,916 670,916
+               L 318,916
+               Q 302,916 302,900
+               L 302,334
+               Q 302,318 318,318
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="earth"
+            data-group="wuxing"
+            data-label="土（中）"
+            data-title="土"
+            data-subtitle="中央属土，偏稳定、统摄、承载"
+            data-keywords="中央,土,稳定,统摄,承载" />
+
+      <path id="zone-fire"
+            class="zone zone-wuxing"
+            d="M 118,924
+               L 870,924
+               C 840,1005 740,1185 684,1391
+               L 304,1391
+               C 248,1185 148,1005 118,924
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="fire"
+            data-group="wuxing"
+            data-label="火（南）"
+            data-title="火"
+            data-subtitle="南方属火，偏昭示、礼仪、显赫"
+            data-keywords="南,火,礼仪,昭示,显赫" />
+
+      <path id="zone-metal"
+            class="zone zone-wuxing"
+            d="M 20,20
+               L 360,20
+               C 250,120 164,218 118,310
+               L 118,924
+               C 162,1010 250,1186 304,1391
+               L 32,1391
+               Q 20,1391 20,1379
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="metal"
+            data-group="wuxing"
+            data-label="金（西）"
+            data-title="金"
+            data-subtitle="西方属金，偏肃整、规制、收敛"
+            data-keywords="西,金,规制,肃整,收敛" />
+
+      <path id="zone-wood"
+            class="zone zone-wuxing"
+            d="M 628,20
+               L 955,20
+               Q 967,20 967,32
+               L 967,1379
+               Q 967,1391 955,1391
+               L 684,1391
+               C 738,1186 826,1010 870,924
+               L 870,310
+               C 824,218 738,120 628,20
+               Z"
+            fill="#000000"
+            fill-opacity="0.001"
+            stroke="none"
+            pointer-events="all"
+            data-zone="wood"
+            data-group="wuxing"
+            data-label="木（东）"
+            data-title="木"
+            data-subtitle="东方属木，偏生发、文教、舒展"
+            data-keywords="东,木,生发,文教,舒展" />
+    </g>
+  </g>
+</svg>

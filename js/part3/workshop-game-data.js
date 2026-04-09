@@ -450,7 +450,7 @@ const WORKSHOP_GAME_DATA = {
     subtitleEn: 'Meridian Gate',
     totalIdentities: 6,
     imageBase: 'assets/images/game/午门/',
-    wumenImage: '游戏午门.png',
+    wumenImage: '午门.png',
     completeMsg: '紫禁城先讲秩序，再讲通行。',
     quizzes: [
       {

@@ -125,8 +125,8 @@ button {
 }
 
 .app-shell {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   min-height: 0;
   display: grid;
   grid-template-columns: 186px minmax(0, 1fr);
@@ -174,10 +174,10 @@ button {
 /* 吊坠装饰 - 改为青玉色 */
 .wood-nav__pendant {
   position: absolute;
-  bottom: 450px;
+  bottom: 370px;
   left: 50%;
-  width: 20px;
-  height: 80px;
+  width: 40px;
+  height: 160px;
   transform: translateX(-50%);
   background: linear-gradient(180deg, var(--jade), #5a7a6a);
   clip-path: polygon(22% 0, 78% 0, 100% 84%, 50% 100%, 0 84%);
@@ -530,13 +530,36 @@ body[data-lang="en"] .wood-plate {
   position: relative;
   flex: 1;
   min-height: 0;
-  margin: 0 10px 10px;
+  margin: 16px;
   border-radius: calc(var(--radius-lg) - 5px);
   /* 清新白墙背景 */
   background:
     radial-gradient(circle at top center, rgba(168, 197, 212, 0.06), transparent 35%),
     linear-gradient(180deg, rgba(248, 249, 246, 0.25), rgba(252, 253, 250, 0));
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 堪舆哲思中间图：删除图上方标题说明，只保留整图 */
+.thought-stage-card > .panel-head--overview {
+  display: none;
+}
+
+/* 堪舆哲思中间栏：总览图完整显示，不做内部滚动 */
+.thought-stage-card {
+  overflow: hidden !important;
+}
+
+.thought-stage-card .overview-stage {
+  overflow: hidden !important;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* 强制 overview-stage 不裁切内部 SVG，让 SVG 自己等比缩放 */
+#thought-svg-host.overview-svg-host {
+  overflow: hidden !important;
 }
 
 .overview-svg-host {
@@ -562,12 +585,16 @@ body[data-lang="en"] .wood-plate {
 
 #thought-svg-host.overview-svg-host {
   z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 #thought-svg-host.overview-svg-host > svg {
+  /* 完整显示总览图：在舞台内等比缩放，避免底部被裁掉 */
   width: auto;
-  height: 100%;
+  height: auto;
   max-width: 100%;
+  max-height: 100%;
   display: block;
   margin: auto;
   overflow: visible;
@@ -1497,14 +1524,21 @@ section.panel-card.info-card::after {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow: hidden;
 }
 
 .thought-topbar {
   display: grid;
-  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) minmax(150px, 180px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 18px;
+  gap: 0;
   padding: 14px 18px;
+}
+
+.thought-topbar__copy,
+.thought-topbar__meta,
+.thought-topbar__status {
+  display: none;
 }
 
 .thought-topbar__title {
@@ -1513,8 +1547,8 @@ section.panel-card.info-card::after {
 
 /* 顶部一级标签 - 居中等宽排列 */
 .thought-primary-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  width: 100%;
   gap: 14px;
   align-items: stretch;
 }
@@ -1530,9 +1564,11 @@ section.panel-card.info-card::after {
 }
 
 .thought-primary-tab {
+  flex: 1 1 0;
   width: 100%;
-  min-height: 96px;
-  padding: 14px 12px;
+  min-width: 0;
+  min-height: 82px;
+  padding: 12px 10px;
   border-radius: 999px;
   display: inline-flex;
   flex-direction: column;
@@ -1569,17 +1605,27 @@ section.panel-card.info-card::after {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
+.thought-primary-tab:not(.active) {
+  border-color: rgba(173, 149, 112, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(247, 243, 235, 0.95)),
+    radial-gradient(circle at top, rgba(255,255,255,0.42), transparent 56%);
+}
+
+.thought-primary-tab.active {
+  border-color: rgba(130, 111, 86, 0.22);
+  background: linear-gradient(145deg, rgba(145, 133, 120, 0.96), rgba(132, 120, 108, 0.94));
+  box-shadow: 0 10px 22px rgba(84, 68, 45, 0.12);
+}
+
 .thought-primary-tab__zh {
   font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 17px;
-  letter-spacing: 1.5px;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
 .thought-primary-tab__en {
-  margin-top: 4px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--ink-soft);
+  display: none;
 }
 
 .thought-primary-tab.active .thought-primary-tab__en {
@@ -1620,6 +1666,8 @@ section.panel-card.info-card::after {
 .thought-text-card {
   height: 100%;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .thought-side-card,
@@ -1748,6 +1796,8 @@ section.panel-card.info-card::after {
 
 .thought-stage {
   isolation: isolate;
+  /* 不裁切总览图：由 SVG 在框内整体缩放适配 */
+  overflow: visible;
 }
 
 .thought-stage-decor {
@@ -1769,29 +1819,6 @@ section.panel-card.info-card::after {
   transform: translateX(-50%);
   background: linear-gradient(180deg, rgba(255, 235, 186, 0), rgba(236, 193, 95, 0.95) 20%, rgba(236, 193, 95, 0.95) 80%, rgba(255, 235, 186, 0));
   box-shadow: 0 0 12px rgba(236, 193, 95, 0.3);
-}
-
-.thought-axis-node {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  border-radius: 999px;
-  background: rgba(255, 236, 194, 0.95);
-  box-shadow: 0 0 0 4px rgba(232, 183, 81, 0.18), 0 0 14px rgba(232, 183, 81, 0.32);
-}
-
-.thought-axis-label {
-  transform: translate(-50%, -50%);
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: rgba(58, 54, 50, 0.75);
-  color: #faf8f4;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  max-width: 180px;
-  text-align: center;
-  line-height: 1.45;
-  white-space: normal;
 }
 
 .thought-yinyang-field,
@@ -1847,33 +1874,40 @@ section.panel-card.info-card::after {
   border-radius: 24px;
 }
 
+/* 中轴礼序二级按钮 - 三列紧凑布局 */
 .thought-secondary-tabs {
   padding: 0 18px 14px;
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
 .thought-secondary-tab {
   width: 100%;
-  padding: 10px 14px;
-  border-radius: 14px;
+  padding: 5px 4px;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
-  text-align: left;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  min-height: 30px;
+  font-size: 11px;
+  line-height: 1.3;
 }
 
 .thought-secondary-tab__main {
   font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .thought-secondary-tab__sub {
-  font-size: 11px;
-  letter-spacing: 1px;
-  opacity: 0.78;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  opacity: 0.75;
+  line-height: 1.2;
 }
 
 .thought-status-list {
@@ -1956,6 +1990,32 @@ section.panel-card.info-card::after {
   color: #faf8f4;
   font-size: 12px;
   letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.thought-video-frame__fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 160px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(248, 249, 246, 0.96);
+  border-radius: 18px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.thought-video-frame__fallback-icon {
+  font-size: 28px;
+  opacity: 0.45;
+}
+
+.thought-video-frame__fallback-text {
+  max-width: 100%;
 }
 
 .thought-video-meta {
@@ -2659,6 +2719,10 @@ section.panel-card.info-card::after {
   justify-content: center;
 }
 
+.component-stage.is-exploded {
+  overflow: visible;
+}
+
 .component-png {
   position: absolute;
   inset: 0;
@@ -2678,10 +2742,11 @@ section.panel-card.info-card::after {
 
 /* 拆分状态：PNG 缩到左上角 */
 .component-stage.is-exploded .component-png {
-  width: 28%;
+  width: 18%;
+  max-width: 150px;
   height: auto;
-  top: 18px;
-  left: 18px;
+  top: 12px;
+  left: 12px;
   border-radius: 14px;
   box-shadow:
     0 8px 24px rgba(60, 70, 80, 0.14),
@@ -2696,30 +2761,79 @@ section.panel-card.info-card::after {
   z-index: 2;
   pointer-events: none;
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: visible;
 }
 
 .component-stage.is-exploded .component-svg-host {
+  inset: 44px 28px 44px 28px;
   z-index: 3;
 }
 
 .component-svg-host svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
-/* SVG 热区样式 */
-.component-svg-host [id] {
+.component-base-image {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.component-piece {
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    filter 0.3s ease;
+}
+
+.component-piece image {
+  pointer-events: none;
+}
+
+.component-hit {
   pointer-events: all;
-  cursor: pointer;
-  transition: filter 0.22s ease;
 }
 
-.component-svg-host [id]:hover {
-  filter: drop-shadow(0 0 6px rgba(90, 122, 138, 0.6));
+.component-hit path,
+.component-hit polygon,
+.component-hit polyline,
+.component-hit rect,
+.component-hit circle,
+.component-hit ellipse {
+  fill: rgba(168, 197, 212, 0.001);
+  stroke: transparent;
+  stroke-width: 0;
+  vector-effect: non-scaling-stroke;
+  transition:
+    fill 0.22s ease,
+    stroke 0.22s ease,
+    stroke-width 0.22s ease;
 }
 
-.component-svg-host [id].is-selected {
-  filter: drop-shadow(0 0 8px rgba(90, 122, 138, 0.8));
+.component-stage.is-exploded .component-base-image {
+  opacity: 0.015;
+}
+
+.component-stage.is-exploded .component-piece {
+  opacity: 1;
+  filter: drop-shadow(0 10px 18px rgba(57, 68, 80, 0.18));
+}
+
+.component-node.is-selected .component-piece {
+  filter: drop-shadow(0 14px 22px rgba(57, 68, 80, 0.3));
+}
+
+.component-node.is-selected .component-hit path,
+.component-node.is-selected .component-hit polygon,
+.component-node.is-selected .component-hit polyline,
+.component-node.is-selected .component-hit rect,
+.component-node.is-selected .component-hit circle,
+.component-node.is-selected .component-hit ellipse {
+  fill: rgba(168, 197, 212, 0.18);
+  stroke: rgba(90, 122, 138, 0.6);
+  stroke-width: 1.2;
 }
 
 /* --- 构件标签层 - 带箭头标注 --- */
@@ -2728,6 +2842,7 @@ section.panel-card.info-card::after {
   inset: 0;
   z-index: 4;
   pointer-events: none;
+  overflow: visible;
 }
 
 .component-label {
@@ -2736,18 +2851,20 @@ section.panel-card.info-card::after {
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  padding: 5px 10px;
+  min-width: 126px;
+  max-width: 212px;
+  padding: 8px 12px;
   border-radius: 6px;
   background: rgba(60, 70, 80, 0.9);
   color: #f0f2f4;
   font-family: "Noto Serif SC", "STKaiti", serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.6px;
   white-space: normal;
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(3px) translateX(-50%);
+  opacity: 1;
+  transform: translateY(-50%);
   transition:
     opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2757,9 +2874,53 @@ section.panel-card.info-card::after {
 
 .component-label.is-visible {
   opacity: 1;
-  transform: translateY(0) translateX(-50%);
+  transform: translateY(-50%);
   background: rgba(60, 70, 80, 0.92);
   border-color: rgba(168, 197, 212, 0.4);
+}
+
+.component-label.is-active {
+  background: rgba(50, 63, 74, 0.98);
+  border-color: rgba(196, 219, 235, 0.6);
+  box-shadow: 0 8px 20px rgba(32, 42, 52, 0.18);
+}
+
+.component-label--left {
+  align-items: flex-end;
+  text-align: right;
+  transform: translate(-100%, -50%);
+}
+
+.component-label--left.is-visible {
+  transform: translate(-100%, -50%);
+}
+
+.component-label--right {
+  transform: translate(0, -50%);
+}
+
+.component-label--right.is-visible {
+  transform: translate(0, -50%);
+}
+
+.component-label--top {
+  align-items: center;
+  text-align: center;
+  transform: translate(-50%, -100%);
+}
+
+.component-label--top.is-visible {
+  transform: translate(-50%, -100%);
+}
+
+.component-label--bottom {
+  align-items: center;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+.component-label--bottom.is-visible {
+  transform: translate(-50%, 0);
 }
 
 /* 标签箭头 */
@@ -2777,6 +2938,44 @@ section.panel-card.info-card::after {
   border-right-color: rgba(60, 70, 80, 0.92);
 }
 
+.component-label--left::before {
+  left: auto;
+  right: -10px;
+  border-right-color: transparent;
+  border-left-color: rgba(60, 70, 80, 0.92);
+}
+
+.component-label--right::before {
+  left: -10px;
+  right: auto;
+  border-right-color: rgba(60, 70, 80, 0.92);
+  border-left-color: transparent;
+}
+
+.component-label--top::before {
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: -10px;
+  transform: translateX(-50%);
+  border-top-color: rgba(60, 70, 80, 0.92);
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.component-label--bottom::before {
+  left: 50%;
+  right: auto;
+  top: -10px;
+  bottom: auto;
+  transform: translateX(-50%);
+  border-bottom-color: rgba(60, 70, 80, 0.92);
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
 /* 标签简介 */
 .component-label__name {
   font-weight: 700;
@@ -2784,12 +2983,11 @@ section.panel-card.info-card::after {
 }
 
 .component-label-desc {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   color: rgba(200, 210, 220, 0.8);
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 /* SVG 加载提示 */
@@ -3243,7 +3441,16 @@ body[data-lang="en"] .component-label {
   }
 
   .thought-primary-tabs {
-    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .thought-primary-tab {
+    min-height: 74px;
+  }
+
+  .thought-primary-tab__zh {
+    font-size: 16px;
+    letter-spacing: 1.2px;
   }
 
   .thought-stage-summary {
@@ -3274,6 +3481,7 @@ body[data-lang="en"] .component-label {
   }
 
   .component-stage.is-exploded .component-png {
-    width: 38%;
+    width: 26%;
+    max-width: 128px;
   }
 }

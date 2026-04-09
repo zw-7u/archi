@@ -19,6 +19,13 @@
       .replace(/"/g, '&quot;')
   }
 
+  function safeSrc(path) {
+    if (!path || /^https?:\/\//.test(path) || path.startsWith('data:')) return path
+    const index = path.lastIndexOf('/')
+    if (index < 0) return encodeURIComponent(path)
+    return `${path.slice(0, index + 1)}${encodeURIComponent(path.slice(index + 1))}`
+  }
+
   function rnd(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
   }
@@ -356,11 +363,9 @@
         if (d.wumenRules) {
           /* 午门 → 通行阶段 */
           s.phase = 'wumen'
-          const identities = s.rewards
-          s.wumenIdentity = rnd(identities)
-          const rule = d.wumenRules[s.wumenIdentity]
-          s.wumenScene = rule.scene
-          s.pendingCorrectGate = rule.correctGate
+          s.wumenIdentity = null
+          s.wumenScene = null
+          s.pendingCorrectGate = null
           s.wumenResult = null
         } else {
           /* 拼图阶段 */
@@ -390,8 +395,12 @@
       if (d.wumenRules) {
         /* 身份卡 */
         s.rewards.forEach(name => {
-          const chip = document.createElement('span')
-          chip.className = 'wg-reward-identity'
+          const chip = document.createElement(s.phase === 'wumen' ? 'button' : 'span')
+          chip.className = 'wg-reward-identity' + (s.wumenIdentity === name ? ' is-active' : '')
+          if (chip.tagName === 'BUTTON') {
+            chip.type = 'button'
+            chip.addEventListener('click', () => this._selectWumenIdentity(name))
+          }
           chip.textContent = name
           items.appendChild(chip)
         })
@@ -400,7 +409,7 @@
         s.rewards.forEach(imgName => {
           const img = document.createElement('img')
           img.className = 'wg-reward-piece'
-          img.src = d.imageBase + imgName
+          img.src = safeSrc(d.imageBase + imgName)
           img.alt = imgName
           img.onerror = (e) => { e.target.style.display = 'none' }
           items.appendChild(img)
@@ -411,10 +420,21 @@
       return tray
     },
 
+    _selectWumenIdentity(identity) {
+      const rule = this._data?.wumenRules?.[identity]
+      if (!rule) return
+      this._state.wumenIdentity = identity
+      this._state.wumenScene = rule.scene
+      this._state.pendingCorrectGate = rule.correctGate
+      this._state.wumenResult = null
+      this._rerenderModal()
+    },
+
     /* ========== 拼图阶段 ========== */
     _renderPuzzle(container) {
       const d = this._data
       const s = this._state
+      container.classList.add('wg-puzzle')
 
       const instr = document.createElement('p')
       instr.className = 'wg-puzzle__instruction'
@@ -733,5 +753,331 @@
   }
 
   /* 暴露全局入口 */
+  WORKSHOP_GAME._selectWumenIdentity = function (identity) {
+    const rule = this._data?.wumenRules?.[identity]
+    if (!rule) return
+    this._state.wumenIdentity = identity
+    this._state.wumenScene = rule.scene
+    this._state.pendingCorrectGate = rule.correctGate
+    this._state.wumenResult = null
+    this._rerenderModal()
+  }
+
+  WORKSHOP_GAME._buildRewardTray = function () {
+    const d = this._data
+    const s = this._state
+    const tray = document.createElement('div')
+    tray.className = 'wg-reward-tray'
+
+    const lbl = document.createElement('div')
+    lbl.className = 'wg-reward-tray__label'
+    lbl.textContent = d.wumenRules ? '身份册' : '碎片收集'
+    tray.appendChild(lbl)
+
+    const items = document.createElement('div')
+    items.className = 'wg-reward-tray__items'
+    items.id = 'wg-reward-items'
+
+    if (d.wumenRules) {
+      s.rewards.forEach((name) => {
+        const chip = document.createElement(s.phase === 'wumen' ? 'button' : 'span')
+        chip.className = 'wg-reward-identity' + (s.wumenIdentity === name ? ' is-active' : '')
+        chip.textContent = name
+        if (chip.tagName === 'BUTTON') {
+          chip.type = 'button'
+          chip.addEventListener('click', () => this._selectWumenIdentity(name))
+        }
+        items.appendChild(chip)
+      })
+    } else {
+      s.rewards.forEach((imgName) => {
+        const img = document.createElement('img')
+        img.className = 'wg-reward-piece'
+        img.src = safeSrc(d.imageBase + imgName)
+        img.alt = imgName
+        img.onerror = (e) => { e.target.style.display = 'none' }
+        items.appendChild(img)
+      })
+    }
+
+    tray.appendChild(items)
+    return tray
+  }
+
+  WORKSHOP_GAME._renderPuzzle = function (container) {
+    const d = this._data
+    const s = this._state
+    container.classList.add('wg-puzzle')
+
+    const instr = document.createElement('p')
+    instr.className = 'wg-puzzle__instruction'
+    instr.textContent = '将下方碎片拖到对应轮廓里，拼成建筑形状；放对位置后会自动吸附。'
+    container.appendChild(instr)
+
+    const boardClass = d.totalPieces === 7
+      ? 'wg-puzzle__board wg-puzzle__board--7'
+      : d.totalPieces === 5
+        ? 'wg-puzzle__board wg-puzzle__board--5'
+        : 'wg-puzzle__board'
+    const board = document.createElement('div')
+    board.className = boardClass
+    board.id = 'wg-puzzle-board'
+
+    d.pieceImages.forEach((imgName, i) => {
+      const slot = document.createElement('div')
+      slot.className = 'wg-puzzle__slot'
+      slot.dataset.slot = i
+      slot.dataset.expectedPiece = i
+
+      const ghost = document.createElement('img')
+      ghost.className = 'wg-puzzle__ghost'
+      ghost.src = safeSrc(d.imageBase + imgName)
+      ghost.alt = ''
+      ghost.draggable = false
+      slot.appendChild(ghost)
+
+      slot.addEventListener('dragover', (e) => {
+        e.preventDefault()
+        slot.classList.add('is-over')
+      })
+      slot.addEventListener('dragleave', () => slot.classList.remove('is-over'))
+      slot.addEventListener('drop', (e) => {
+        e.preventDefault()
+        slot.classList.remove('is-over')
+        const pieceIdx = e.dataTransfer.getData('text/plain')
+        this._onPieceDrop(parseInt(pieceIdx, 10), i, slot)
+      })
+
+      board.appendChild(slot)
+    })
+
+    container.appendChild(board)
+
+    const piecesEl = document.createElement('div')
+    piecesEl.className = 'wg-puzzle__pieces'
+    piecesEl.id = 'wg-puzzle-pieces'
+
+    s.rewards.forEach((imgName, i) => {
+      const piece = document.createElement('img')
+      piece.className = 'wg-puzzle__piece'
+      piece.src = safeSrc(d.imageBase + imgName)
+      piece.alt = imgName
+      piece.draggable = true
+      piece.dataset.pieceIdx = i
+      piece.id = 'wg-piece-' + i
+
+      piece.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', String(i))
+        piece.classList.add('is-dragging')
+      })
+      piece.addEventListener('dragend', () => piece.classList.remove('is-dragging'))
+      piece.addEventListener('touchstart', (e) => this._onTouchStart(e, i), { passive: false })
+      piece.addEventListener('touchmove', (e) => this._onTouchMove(e), { passive: false })
+      piece.addEventListener('touchend', (e) => this._onTouchEnd(e, i), { passive: false })
+
+      piecesEl.appendChild(piece)
+    })
+
+    container.appendChild(piecesEl)
+  }
+
+  WORKSHOP_GAME._onPieceDrop = function (pieceIdx, slotIdx, slotEl) {
+    const d = this._data
+    const s = this._state
+    if (Number.isNaN(pieceIdx) || !slotEl || s.placedPieces.has(pieceIdx)) return
+    if (slotEl.querySelector('.wg-puzzle__piece-fixed')) return
+
+    const pieceEl = document.getElementById('wg-piece-' + pieceIdx)
+    const imgName = s.rewards[pieceIdx]
+    if (!imgName) return
+    const expectedIdx = Number(slotEl.dataset.expectedPiece)
+    const targetSlot = d.pieceImages.indexOf(imgName)
+    if (targetSlot !== expectedIdx) {
+      slotEl.classList.add('is-wrong')
+      pieceEl?.classList.add('is-wrong')
+      setTimeout(() => {
+        slotEl.classList.remove('is-wrong')
+        pieceEl?.classList.remove('is-wrong')
+      }, 420)
+      return
+    }
+
+    const img = document.createElement('img')
+    img.className = 'wg-puzzle__piece-fixed'
+    img.src = safeSrc(d.imageBase + imgName)
+    img.alt = imgName
+    slotEl.appendChild(img)
+    slotEl.classList.add('is-filled', 'is-snapped')
+    slotEl.classList.remove('is-over', 'is-wrong')
+
+    const ghost = slotEl.querySelector('.wg-puzzle__ghost')
+    if (ghost) ghost.classList.add('is-hidden')
+    if (pieceEl) pieceEl.remove()
+
+    s.placedPieces.add(pieceIdx)
+    setTimeout(() => slotEl.classList.remove('is-snapped'), 280)
+
+    if (s.placedPieces.size === d.pieceImages.length) {
+      setTimeout(() => this._onPuzzleComplete(), 420)
+    }
+  }
+
+  WORKSHOP_GAME._onTouchEnd = function (e, pieceIdx) {
+    if (!this._touchDragData) return
+    const touch = e.changedTouches[0]
+    const clone = this._touchDragData.clone
+    if (clone.parentNode) clone.parentNode.removeChild(clone)
+
+    const slots = document.querySelectorAll('.wg-puzzle__slot')
+    let targetSlot = null
+    slots.forEach((slot) => {
+      const r = slot.getBoundingClientRect()
+      if (touch.clientX >= r.left && touch.clientX <= r.right &&
+          touch.clientY >= r.top && touch.clientY <= r.bottom) {
+        targetSlot = slot
+      }
+    })
+
+    if (targetSlot) {
+      this._onPieceDrop(pieceIdx, parseInt(targetSlot.dataset.slot, 10), targetSlot)
+    }
+
+    this._touchDragData = null
+  }
+
+  WORKSHOP_GAME._renderWumen = function (container) {
+    const d = this._data
+    const s = this._state
+    container.classList.add('wg-wumen')
+
+    const sceneBar = document.createElement('div')
+    sceneBar.className = 'wg-wumen__scene-bar'
+    const identityEl = document.createElement('span')
+    identityEl.className = 'wg-wumen__identity'
+    identityEl.textContent = s.wumenIdentity || '请选择身份'
+    const sceneEl = document.createElement('span')
+    sceneEl.className = 'wg-wumen__scene'
+    sceneEl.textContent = s.wumenScene || '从下方身份册中选择一个身份'
+    sceneBar.appendChild(identityEl)
+    sceneBar.appendChild(sceneEl)
+    container.appendChild(sceneBar)
+
+    const hint = document.createElement('p')
+    hint.className = 'wg-wumen__hint'
+    hint.textContent = s.wumenIdentity
+      ? '身份已确定，请点击带光晕的三门，判断哪一道门符合礼序。'
+      : '先点击下方身份册选择身份，午门三门会以光晕提示可点击区域。'
+    container.appendChild(hint)
+
+    if (s.wumenResult) {
+      const result = document.createElement('div')
+      result.className = 'wg-pass-result ' + (s.wumenResult.correct ? 'wg-pass-result--correct' : 'wg-pass-result--wrong')
+      result.innerHTML = '<strong>' + escape(s.wumenResult.msg) + '</strong><br>' + escape(s.wumenResult.explain)
+      container.appendChild(result)
+    }
+
+    const stage = document.createElement('div')
+    stage.className = 'wg-wumen__stage' + (s.wumenIdentity ? ' is-ready' : '')
+
+    const img = document.createElement('img')
+    img.src = safeSrc(d.imageBase + d.wumenImage)
+    img.alt = '午门'
+    img.style.maxWidth = '480px'
+    img.onerror = () => { img.style.display = 'none' }
+    stage.appendChild(img)
+
+    ;[
+      { key: 'left', label: '左掖门', className: 'wg-wumen__gate--left' },
+      { key: 'center', label: '中门', className: 'wg-wumen__gate--center' },
+      { key: 'right', label: '右掖门', className: 'wg-wumen__gate--right' },
+    ].forEach((gate) => {
+      const gateEl = document.createElement('button')
+      gateEl.type = 'button'
+      gateEl.className = `wg-wumen__gate ${gate.className}${s.wumenIdentity ? ' is-ready' : ' is-disabled'}`
+      gateEl.innerHTML = `<span class="wg-wumen__gate-halo"></span><span class="wg-wumen__gate-label">${gate.label}</span>`
+      gateEl.disabled = !s.wumenIdentity
+      gateEl.addEventListener('click', () => this._onGateClick(gate.key))
+      stage.appendChild(gateEl)
+    })
+
+    container.appendChild(stage)
+    container.appendChild(this._buildRewardTray())
+  }
+
+  WORKSHOP_GAME._onGateClick = function (gate) {
+    const s = this._state
+    if (!s.pendingCorrectGate) return
+    const correct = gate === s.pendingCorrectGate
+
+    if (correct) {
+      s.wumenResult = {
+        correct: true,
+        msg: '此门合礼，可通行。',
+        explain: '在紫禁城里，空间不是中性的。门洞会根据身份、礼仪和时机，将不同的人引向不同的秩序路径。',
+      }
+      s.phase = 'complete'
+    } else {
+      s.wumenResult = {
+        correct: false,
+        msg: '此门不属汝位。',
+        explain: '紫禁城并不是按最近路径组织人流，而是按礼制组织空间。选错门，不是走错路，而是站到了不属于该身份的位置。',
+      }
+    }
+    this._rerenderModal()
+  }
+
+  WORKSHOP_GAME._renderComplete = function (container) {
+    const d = this._data
+    const complete = document.createElement('div')
+    complete.className = 'wg-complete'
+
+    const icon = document.createElement('div')
+    icon.className = 'wg-complete__icon'
+    icon.textContent = '✦'
+    complete.appendChild(icon)
+
+    const title = document.createElement('h3')
+    title.className = 'wg-complete__title'
+    title.textContent = d.title + ' · 完成'
+    complete.appendChild(title)
+
+    const msg = document.createElement('p')
+    msg.className = 'wg-complete__msg'
+    msg.textContent = d.completeMsg
+    complete.appendChild(msg)
+
+    const bldImg = document.createElement('img')
+    bldImg.className = 'wg-complete__building'
+    if (d.wumenRules) {
+      bldImg.src = safeSrc(d.imageBase + d.wumenImage)
+      bldImg.alt = '午门'
+    } else {
+      bldImg.src = safeSrc(d.imageBase + d.pieceImages[0])
+      bldImg.alt = d.subtitle
+    }
+    bldImg.onerror = () => { bldImg.style.display = 'none' }
+    complete.appendChild(bldImg)
+
+    const actions = document.createElement('div')
+    actions.className = 'wg-complete__actions'
+
+    const replayBtn = document.createElement('button')
+    replayBtn.className = 'wg-complete__btn'
+    replayBtn.type = 'button'
+    replayBtn.textContent = '重新体验'
+    replayBtn.addEventListener('click', () => this.init(this._key))
+    actions.appendChild(replayBtn)
+
+    const closeBtn = document.createElement('button')
+    closeBtn.className = 'wg-complete__btn wg-complete__btn--ghost'
+    closeBtn.type = 'button'
+    closeBtn.textContent = '完成返回'
+    closeBtn.addEventListener('click', () => this.close())
+    actions.appendChild(closeBtn)
+
+    complete.appendChild(actions)
+    container.appendChild(complete)
+  }
+
   window.openWorkshopGame = openWorkshopGame
 })()

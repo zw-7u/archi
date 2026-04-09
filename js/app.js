@@ -571,7 +571,13 @@ function getThoughtFocusPinyin(focusId) {
 }
 
 function getThoughtVideoCandidates(focus) {
-  return THOUGHT_VIDEO_EXTENSIONS.map((ext) => encodeAssetPath(`assets/videos/culture/${focus.labelZh}.${ext}`))
+  const tabVideoBase = {
+    axis: '中轴礼序',
+    yinyang: '阴阳五行',
+    fengshui: '风水格局',
+  }
+  const baseName = tabVideoBase[state.thoughtTab] || focus?.labelZh || '文化视频'
+  return THOUGHT_VIDEO_EXTENSIONS.map((ext) => encodeAssetPath(`assets/videos/culture/${baseName}.${ext}`))
 }
 
 function escapeHTML(value) {
@@ -929,6 +935,9 @@ function bindEvents() {
     button.addEventListener('click', () => {
       const nextModule = button.dataset.module
       if (!nextModule || nextModule === state.module) return
+      if (state.module === 'thought' && nextModule !== 'thought') {
+        resetThoughtStageCache()
+      }
       state.module = nextModule
       state.selectedFunction = null
       state.selectedType = null
@@ -1705,6 +1714,41 @@ function getThoughtFocus() {
   return tab.focuses.find((item) => item.id === state.thoughtFocus) || tab.focuses[0]
 }
 
+function resetThoughtStageCache() {
+  if (els.thoughtSvgHost) {
+    els.thoughtSvgHost.innerHTML = ''
+    delete els.thoughtSvgHost.dataset.currentFile
+  }
+  if (els.thoughtStageDecor) {
+    els.thoughtStageDecor.innerHTML = ''
+  }
+  const yyMapContainer = document.getElementById('yy-map-container')
+  if (yyMapContainer) yyMapContainer.remove()
+  const thoughtStageCard = els.thoughtStage?.closest('.thought-stage-card')
+  if (thoughtStageCard) {
+    thoughtStageCard.classList.remove('yy-stage-override')
+  }
+  const thoughtSideColumn = document.querySelector('.thought-side-column')
+  if (thoughtSideColumn) {
+    thoughtSideColumn.classList.remove('yy-active', 'axis-active', 'fs-active')
+  }
+  if (els.thoughtSideVisual) els.thoughtSideVisual.classList.remove('fs-side-visual')
+  if (els.thoughtSideFocus) els.thoughtSideFocus.classList.remove('fs-side-focus')
+  if (els.thoughtSecondaryTabs) {
+    els.thoughtSecondaryTabs.classList.remove('yy-tabs-active', 'axis-tabs-active', 'fs-tabs-active')
+    const controlCard = els.thoughtSecondaryTabs.closest('.thought-control-card')
+    if (controlCard) {
+      controlCard.classList.remove('yy-control-active', 'axis-control-active', 'fs-control-active')
+    }
+    const detailColumn = els.thoughtSecondaryTabs.closest('.thought-detail-column')
+    if (detailColumn) {
+      detailColumn.classList.remove('yy-detail-active', 'axis-detail-active', 'fs-detail-active')
+    }
+  }
+  thoughtHotspots = []
+  hideThoughtTooltip()
+}
+
 function selectThoughtTab(tabId) {
   const tab = THOUGHT_TABS[tabId]
   if (!tab) return
@@ -1712,6 +1756,7 @@ function selectThoughtTab(tabId) {
   state.thoughtFocus = tab.focuses[0]?.id || null
   state.thoughtSelectedBuilding = null
   state.thoughtHoveredHotspotId = null
+  resetThoughtStageCache()
   renderThoughtModule()
 }
 
@@ -1796,7 +1841,11 @@ function buildThoughtMediaBody(tab, focus) {
     <article class="thought-video-card">
       <div class="thought-video-frame" data-video-lightbox-src="${escapeHTML(primaryVideo)}" data-video-label="${escapeHTML(pick(focus.labelZh, focus.labelEn || focus.labelZh))}" role="button" tabindex="0" aria-label="${escapeHTML(pick('放大查看视频', 'Open video preview'))}">
         <video class="thought-video-frame__media" controls playsinline preload="metadata">
-          ${videoCandidates.map((src, idx) => `<source src="${escapeHTML(src)}" type="${idx === 1 ? 'video/webm' : 'video/mp4'}">`).join('')}
+          ${videoCandidates.map((src) => {
+            const ext = src.split('.').pop()?.toLowerCase()
+            const mime = ext === 'webm' ? 'video/webm' : ext === 'mov' ? 'video/quicktime' : 'video/mp4'
+            return `<source src="${escapeHTML(src)}" type="${mime}">`
+          }).join('')}
         </video>
         <span class="thought-video-frame__overlay">
           <span class="thought-video-frame__play">${pick('放大查看', 'Expand')}</span>
@@ -1975,18 +2024,8 @@ function buildThoughtStageSummary(tab, focus, lines) {
 
 function buildThoughtStageDecor(tab, focus) {
   if (tab.id === 'axis') {
-    const nodes = (focus.buildingIds || []).map((id) => {
-      const pos = toStagePos(id)
-      const building = getBuilding(id)
-      const label = isZh() ? (building?.name || '') : withPinyin(building?.nameEn || building?.name || '', building?.pinyin || '')
-      return `
-        <span class="thought-axis-node" style="left:${pos.left};top:${pos.top};"></span>
-        <span class="thought-axis-label" style="left:${pos.left};top:calc(${pos.top} - 16px);">${escapeHTML(label)}</span>
-      `
-    }).join('')
     return `
       <div class="thought-axis-line"></div>
-      ${nodes}
       ${buildThoughtStageSummary(tab, focus, [
         pick('由南向北，礼序逐级抬升', 'The sequence rises from south to north'),
         pick('中轴强化，左右作为陪衬', 'The central axis leads while the sides recede'),
@@ -2039,6 +2078,13 @@ function buildThoughtStageDecor(tab, focus) {
 }
 
 function renderThoughtOverview() {
+  if (state.thoughtTab === 'axis' && typeof Module2 !== 'undefined' && typeof Module2.refreshMapHighlights === 'function') {
+    Module2.refreshMapHighlights()
+    return
+  }
+  if (state.thoughtTab === 'yinyang' || state.thoughtTab === 'fengshui') {
+    return
+  }
   const focus = getThoughtFocus()
   const focusIds = new Set(focus.buildingIds || [])
   thoughtHotspots.forEach((hotspot) => {
@@ -2060,10 +2106,19 @@ function renderThoughtModule() {
   const focus = getThoughtFocus()
   if (!tab || !focus) return
 
+  // 公共顶栏信息（所有 tab 共享）
   if (els.thoughtModuleKicker) els.thoughtModuleKicker.textContent = pick(MODULES.thought.kickerZh, MODULES.thought.kickerEn)
   if (els.thoughtModuleTitle) els.thoughtModuleTitle.textContent = pick(tab.titleZh, tab.titleEn || tab.titleZh)
   if (els.thoughtModuleStatus) els.thoughtModuleStatus.textContent = pick('左辅 · 中主 · 右控', 'Left aid · center stage · right control')
   if (els.thoughtPrimaryTabs) els.thoughtPrimaryTabs.innerHTML = buildThoughtPrimaryTabs(tab)
+
+  // === 阴阳五行：完全由 YinyangModule 接管渲染 ===
+  if (state.thoughtTab === 'yinyang' && typeof YinyangModule !== 'undefined') {
+    YinyangModule.render()
+    return
+  }
+
+  // 以下为非 yinyang tab 的默认渲染流程
   if (els.thoughtSideTitle) els.thoughtSideTitle.textContent = pick(tab.sideTitleZh, tab.sideTitleEn || tab.sideTitleZh)
   if (els.thoughtSideDesc) els.thoughtSideDesc.textContent = pick(tab.sideDescZh, tab.sideDescEn || tab.sideDescZh)
   if (els.thoughtSideVisual) els.thoughtSideVisual.innerHTML = buildThoughtSideVisual(tab, focus)
@@ -2081,12 +2136,9 @@ function renderThoughtModule() {
   if (els.thoughtTextBody) els.thoughtTextBody.innerHTML = buildThoughtTextBody(tab, focus)
   if (els.thoughtStageDecor) els.thoughtStageDecor.innerHTML = buildThoughtStageDecor(tab, focus)
 
-  // 对中轴礼序和阴阳五行模块的右侧按钮进行覆盖渲染
-  if (state.thoughtTab === 'axis' && typeof Module2 !== 'undefined' && typeof Module2.renderSecondaryTabsOnly === 'function') {
-    Module2.renderSecondaryTabsOnly()
-  }
-  if (state.thoughtTab === 'yinyang' && typeof YinyangModule !== 'undefined' && typeof YinyangModule.renderButtonsOnly === 'function') {
-    YinyangModule.renderButtonsOnly()
+  // 对中轴礼序模块的右侧按钮进行覆盖渲染
+  if (state.thoughtTab === 'axis' && typeof Module2 !== 'undefined' && typeof Module2.render === 'function') {
+    Module2.render()
   }
   // 风水格局模块的右侧按钮覆盖渲染
   if (state.thoughtTab === 'fengshui' && typeof FengshuiModule !== 'undefined' && typeof FengshuiModule.renderButtonsOnly === 'function') {
@@ -2104,8 +2156,7 @@ function renderThoughtModule() {
       FengshuiModule.renderAll()
     }
   } else {
-    const isYinyangTab = state.thoughtTab === 'yinyang'
-    const svgFile = isYinyangTab ? 'overview-with-overlay.svg' : 'overview.svg'
+    const svgFile = 'overview.svg'
     if (els.thoughtSvgHost && els.thoughtSvgHost.dataset.currentFile !== svgFile) {
       switchThoughtSvg(svgFile).catch((err) => console.error(err))
     }
@@ -2212,8 +2263,14 @@ async function createThoughtHotspots() {
     }
     return
   }
-  const isYinyangTab = state.thoughtTab === 'yinyang'
-  const svgFile = isYinyangTab ? 'overview-with-overlay.svg' : 'overview.svg'
+  // 阴阳五行由 YinyangModule 自行管理地图
+  if (state.thoughtTab === 'yinyang') {
+    if (typeof YinyangModule !== 'undefined') {
+      YinyangModule.render()
+    }
+    return
+  }
+  const svgFile = 'overview.svg'
   const svgPath = `assets/images/map/${svgFile}`
   try {
     const response = await fetch(new URL(svgPath, window.location.href))

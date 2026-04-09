@@ -4,94 +4,20 @@
 
 /* ===== 左侧双面板布局 ===== */
 .thought-side-column.axis-active {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .thought-side-column.axis-active > .thought-side-card {
   display: none;
 }
 
-/* ===== 礼意盘 ===== */
-.m2-ritual-dial {
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--radius-lg);
-  background: var(--panel-fill);
-  border: 1px solid var(--line);
-  overflow: hidden;
-}
-
-.m2-ritual-dial__head {
-  padding: 14px 16px 8px;
-}
-
-.m2-ritual-dial__body {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 14px 14px;
-  gap: 12px;
-}
-
-.m2-ritual-center {
-  text-align: center;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(248, 246, 241, 0.9);
-  border: 1px solid rgba(160, 150, 135, 0.12);
-  min-width: 110px;
-}
-
-.m2-ritual-center__name {
-  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: var(--ink);
-}
-
-.m2-ritual-center__role {
-  margin-top: 4px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--ink-soft);
-}
-
-.m2-ritual-concepts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.m2-concept-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 11px;
-  border-radius: 999px;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  background: rgba(248, 246, 241, 0.8);
-  border: 1px solid rgba(160, 150, 135, 0.12);
-  color: var(--ink-soft);
-  transition: all 0.35s ease;
-}
-
-.m2-concept-chip.is-active {
-  background: rgba(193, 138, 59, 0.12);
-  border-color: rgba(193, 138, 59, 0.32);
-  color: #7a5c28;
-  box-shadow: 0 0 0 3px rgba(193, 138, 59, 0.06);
-}
-
-
 /* ===== 脉络盘 ===== */
 .m2-track-panel {
   display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
   flex-direction: column;
   border-radius: var(--radius-lg);
   background: var(--panel-fill);
@@ -107,7 +33,8 @@
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 4px 14px 14px;
+  padding: 8px 16px 16px;
+  display: flex;
 }
 
 .m2-track-panel__body::-webkit-scrollbar {
@@ -121,9 +48,12 @@
 .m2-track-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 100%;
+  gap: 4px;
   position: relative;
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 /* 竖线 */
@@ -143,8 +73,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 10px;
-  border-radius: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -176,11 +107,18 @@
 }
 
 .m2-track-node__meta {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(176, 151, 110, 0.14);
+  background: rgba(250, 246, 237, 0.92);
   font-size: 11px;
-  color: rgba(160, 150, 135, 0.7);
+  color: #7a6545;
   margin-left: auto;
   flex-shrink: 0;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 /* 已到达 */
@@ -210,31 +148,15 @@
 }
 .m2-track-node.is-current .m2-track-node__meta {
   color: #7a5c28;
-}
-
-/* 分界标记 */
-.m2-track-node.is-divider::after {
-  content: "分界";
-  position: absolute;
-  right: -4px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 2px 7px;
-  border-radius: 6px;
-  background: rgba(184, 90, 60, 0.12);
-  border: 1px solid rgba(184, 90, 60, 0.2);
-  color: rgba(184, 90, 60, 0.8);
-  font-size: 10px;
-  letter-spacing: 1px;
+  border-color: rgba(193, 138, 59, 0.26);
+  background: rgba(255, 248, 232, 0.96);
 }
 
 /* ===== 地图 Overlay 装饰 ===== */
 
-/* 金线中轴 */
+/* 金线中轴（left/top/height 由 JS 按热区锚定） */
 .m2-axis-line {
-  top: 5%;
-  bottom: 3%;
-  left: 50%;
+  position: absolute;
   width: 2px;
   transform: translateX(-50%);
   background: linear-gradient(180deg,
@@ -245,52 +167,6 @@
   );
   box-shadow: 0 0 12px rgba(236, 193, 95, 0.25);
   pointer-events: none;
-}
-
-/* 节点圆 */
-.m2-axis-dot {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  margin-top: -5px;
-  border-radius: 999px;
-  background: rgba(255, 236, 194, 0.85);
-  box-shadow: 0 0 0 4px rgba(232, 183, 81, 0.12);
-  transition: all 0.4s ease;
-}
-.m2-axis-dot.is-active {
-  background: rgba(255, 236, 194, 1);
-  box-shadow: 0 0 0 6px rgba(232, 183, 81, 0.22), 0 0 16px rgba(232, 183, 81, 0.35);
-  width: 14px;
-  height: 14px;
-  margin-left: -7px;
-  margin-top: -7px;
-}
-.m2-axis-dot.is-dim {
-  background: rgba(200, 200, 200, 0.4);
-  box-shadow: none;
-}
-
-/* 节点标签 */
-.m2-axis-tag {
-  transform: translate(-50%, -100%);
-  margin-top: -12px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: rgba(58, 54, 50, 0.72);
-  color: #faf8f4;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s ease;
-}
-.m2-axis-tag.is-active {
-  background: rgba(193, 138, 59, 0.88);
-  box-shadow: 0 4px 12px rgba(193, 138, 59, 0.25);
-}
-.m2-axis-tag.is-dim {
-  opacity: 0.4;
 }
 
 /* 前朝后寝模式的分区蒙版 */
@@ -382,33 +258,39 @@
   font-size: 13px;
 }
 
-/* ===== 进度轴蒙版（由外入内模式） ===== */
-.m2-progress-reached {
-  position: absolute;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg,
-    rgba(255, 235, 186, 0),
-    rgba(236, 193, 95, 0.9) 8%,
-    rgba(236, 193, 95, 0.9)
-  );
-  transition: all 0.5s ease;
-  pointer-events: none;
+/* ===== 右上「视角切换」：强制小三列，小按钮布局，避免被裁切、难点击 ===== */
+#thought-secondary-tabs.axis-tabs-active {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+  padding: 0 8px 8px !important;
+  z-index: 3;
 }
 
-.m2-progress-unreached {
-  position: absolute;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg,
-    rgba(200, 200, 200, 0.3),
-    rgba(200, 200, 200, 0.3) 92%,
-    rgba(200, 200, 200, 0)
-  );
-  transition: all 0.5s ease;
-  pointer-events: none;
+#thought-secondary-tabs.axis-tabs-active .thought-secondary-tab.m2-mode-btn {
+  min-height: 30px !important;
+  padding: 4px 5px !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+}
+
+#thought-secondary-tabs.axis-tabs-active .m2-mode-btn .thought-secondary-tab__main {
+  font-size: 11px !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
+}
+
+#thought-secondary-tabs.axis-tabs-active .m2-mode-btn .thought-secondary-tab__sub {
+  display: none !important;
+}
+
+/* 确保按钮容器不溢出 */
+.thought-control-card.axis-control-active {
+  overflow: visible !important;
 }
 
 /* ===== 右上按钮在中轴模式下的样式增强 ===== */
@@ -500,19 +382,233 @@
 }
 
 /* ===== 点击保险：右侧按钮区层级高于 panel-card 伪元素 ===== */
-.thought-control-card {
+.thought-control-card.axis-control-active {
   position: relative;
   z-index: 1;
+  overflow: visible;
 }
-.thought-control-card::before,
-.thought-control-card::after {
+.thought-control-card.axis-control-active::before,
+.thought-control-card.axis-control-active::after {
   z-index: 0;
 }
-#thought-secondary-tabs {
+#thought-secondary-tabs.axis-tabs-active {
   position: relative;
   z-index: 2;
 }
-#thought-secondary-tabs .thought-secondary-tab,
-#thought-secondary-tabs .yy-btn {
+#thought-secondary-tabs.axis-tabs-active .thought-secondary-tab,
+#thought-secondary-tabs.axis-tabs-active .yy-btn {
   pointer-events: auto;
+}
+
+/* ===== Module2 refresh: same-map linked modes ===== */
+
+#thought-secondary-tabs.axis-tabs-active .thought-secondary-tab.m2-mode-btn {
+  border: 1px solid rgba(193, 138, 59, 0.14) !important;
+  background: rgba(251, 248, 241, 0.9) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+#thought-secondary-tabs.axis-tabs-active .thought-secondary-tab.m2-mode-btn.active {
+  background: linear-gradient(180deg, rgba(205, 170, 104, 0.22), rgba(193, 138, 59, 0.18)) !important;
+  border-color: rgba(193, 138, 59, 0.3) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 252, 245, 0.84), 0 10px 20px rgba(193, 138, 59, 0.08);
+}
+
+#thought-secondary-tabs.axis-tabs-active .thought-secondary-tab.m2-mode-btn.active::after {
+  width: 2px;
+  background: rgba(193, 138, 59, 0.72);
+}
+
+.m2-track-node.is-core::before {
+  background: rgba(236, 193, 95, 0.86);
+  box-shadow: 0 0 0 4px rgba(236, 193, 95, 0.12);
+}
+
+.m2-track-node.is-secondary::before {
+  background: rgba(219, 174, 86, 0.68);
+}
+
+.m2-track-node.is-soft::before {
+  background: rgba(181, 165, 138, 0.46);
+}
+
+.m2-track-node.is-outer::before {
+  background: rgba(205, 156, 78, 0.72);
+}
+
+.m2-track-node.is-inner::before {
+  background: rgba(129, 138, 124, 0.66);
+}
+
+.m2-track-node.is-divider::before {
+  background: rgba(171, 126, 83, 0.88);
+  box-shadow: 0 0 0 4px rgba(171, 126, 83, 0.12);
+}
+
+/* 沿中轴移动的光点（自午门至当前选中节点） */
+.m2-progress-orb {
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 35%,
+    rgba(255, 247, 226, 0.96) 0%,
+    rgba(242, 202, 118, 0.96) 40%,
+    rgba(221, 164, 58, 0.94) 72%,
+    rgba(221, 164, 58, 0) 100%
+  );
+  box-shadow: 0 0 24px rgba(236, 193, 95, 0.4), 0 0 10px rgba(236, 193, 95, 0.3);
+  animation: m2-progress-orb-travel 2.8s ease-in-out infinite;
+}
+
+@keyframes m2-progress-orb-travel {
+  0% {
+    top: var(--m2-progress-start);
+    transform: translate(-50%, -50%);
+    opacity: 0.72;
+  }
+  58% {
+    top: var(--m2-progress-end);
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    top: var(--m2-progress-end);
+    transform: translate(-50%, -50%);
+    opacity: 0.82;
+  }
+}
+
+.m2-interpret-card__mode-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.m2-interpret-card__mode,
+.m2-interpret-card__focus {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+.m2-interpret-card__mode {
+  color: #7a5b2a;
+  background: rgba(193, 138, 59, 0.1);
+  border: 1px solid rgba(193, 138, 59, 0.18);
+}
+
+.m2-interpret-card__focus {
+  color: var(--ink-soft);
+  background: rgba(248, 246, 241, 0.88);
+  border: 1px solid rgba(170, 158, 137, 0.14);
+}
+
+.m2-interpret-card__lead {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.85;
+  font-size: 13px;
+}
+
+.m2-interpret-card__subtitle {
+  font-style: normal;
+  color: #776b5d;
+  line-height: 1.8;
+}
+
+.overview-region-overlay.m2-map-off-axis {
+  opacity: 0.08 !important;
+  visibility: visible;
+  filter: saturate(0.22);
+}
+
+.overview-region-overlay.m2-map-off-axis :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: transparent !important;
+  stroke: rgba(173, 164, 146, 0.18) !important;
+  stroke-width: 1.4px !important;
+}
+
+.overview-region-overlay.m2-map-ritual-core,
+.overview-region-overlay.m2-map-ritual-secondary,
+.overview-region-overlay.m2-map-ritual-soft,
+.overview-region-overlay.m2-map-progress-past,
+.overview-region-overlay.m2-map-progress-current,
+.overview-region-overlay.m2-map-progress-future,
+.overview-region-overlay.m2-map-court-outer,
+.overview-region-overlay.m2-map-court-divider,
+.overview-region-overlay.m2-map-court-inner {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.overview-region-overlay.m2-map-ritual-core {
+  filter: drop-shadow(0 0 12px rgba(227, 174, 63, 0.18));
+}
+
+.overview-region-overlay.m2-map-ritual-core :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(236, 193, 95, 0.08) !important;
+  stroke: rgba(247, 223, 163, 0.92) !important;
+  stroke-width: 3px !important;
+}
+
+.overview-region-overlay.m2-map-ritual-secondary :is(path, polygon, rect, circle, ellipse, line, polyline),
+.overview-region-overlay.m2-map-progress-past :is(path, polygon, rect, circle, ellipse, line, polyline),
+.overview-region-overlay.m2-map-court-outer :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(212, 164, 78, 0.06) !important;
+  stroke: rgba(228, 197, 134, 0.8) !important;
+  stroke-width: 2.6px !important;
+}
+
+.overview-region-overlay.m2-map-ritual-soft :is(path, polygon, rect, circle, ellipse, line, polyline),
+.overview-region-overlay.m2-map-progress-future :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(184, 174, 154, 0.035) !important;
+  stroke: rgba(213, 202, 181, 0.54) !important;
+  stroke-width: 2.1px !important;
+}
+
+.overview-region-overlay.m2-map-progress-current {
+  filter: drop-shadow(0 0 14px rgba(233, 184, 76, 0.22));
+}
+
+.overview-region-overlay.m2-map-progress-current :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(236, 193, 95, 0.09) !important;
+  stroke: rgba(247, 225, 173, 0.94) !important;
+  stroke-width: 3.1px !important;
+}
+
+.overview-region-overlay.m2-map-court-inner :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(129, 138, 124, 0.055) !important;
+  stroke: rgba(189, 198, 187, 0.74) !important;
+  stroke-width: 2.6px !important;
+}
+
+.overview-region-overlay.m2-map-court-divider {
+  filter: drop-shadow(0 0 12px rgba(171, 126, 83, 0.16));
+}
+
+.overview-region-overlay.m2-map-court-divider :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(171, 126, 83, 0.08) !important;
+  stroke: rgba(233, 211, 186, 0.9) !important;
+  stroke-width: 3.2px !important;
+}
+
+.overview-region-overlay.m2-map-selected {
+  filter: drop-shadow(0 0 18px rgba(227, 174, 63, 0.28));
+}
+
+.overview-region-overlay.m2-map-selected :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(244, 207, 125, 0.14) !important;
+  stroke: rgba(255, 239, 196, 0.98) !important;
+  stroke-width: 4px !important;
+}
+
+.overview-region-overlay.m2-map-hover :is(path, polygon, rect, circle, ellipse, line, polyline) {
+  fill: rgba(244, 207, 125, 0.08) !important;
+  stroke: rgba(248, 228, 181, 0.84) !important;
+  stroke-width: 3px !important;
 }
