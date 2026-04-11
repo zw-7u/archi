@@ -1,0 +1,235 @@
+/**
+ * =====================================================
+ *  css/home.css
+ *  首页主入口样式 - 宫阙云览·故宫可视化平台
+ *
+ *  融合故宫「白墙黛瓦」的清雅气质与当代界面设计的精致感
+ *  =====================================================
+ */
+
+/* =====================================================
+   CSS 变量系统
+   ===================================================== */
+:root {
+  /* 主色调：清新典雅古韵 */
+  /* 月白 - 淡雅清新的主背景色 */
+  --paper: #f7f8f5;
+  --paper-light: #fcfdfb;
+  --paper-deep: #eef0eb;
+
+  /* 墨色 - 柔和的文字色 */
+  --ink: #3d3d3d;
+  --ink-soft: #7a7a7a;
+  --ink-light: #a0a0a0;
+
+  /* 线条色 */
+  --line: rgba(80, 90, 100, 0.12);
+  --line-strong: rgba(80, 90, 100, 0.22);
+
+  /* 黛瓦青 - 主强调色 */
+  --gold: #5a7a8a;
+  --gold-soft: #a8c5d4;
+  --gold-light: #c5d8e2;
+
+  /* 淡黄 - 暖色点缀 */
+  --accent-warm: #d4b896;
+  --accent-warm-light: #e8d9c4;
+
+  /* 朱红 - 中国传统色点缀 */
+  --red: #a85040;
+  --red-light: #c87868;
+
+  /* 玉色 - 清雅绿 */
+  --jade: #6a8f7a;
+  --jade-light: #8ab09a;
+
+  /* 明朝时间线颜色 */
+  --ming-color: #4a7a9a;
+  --ming-light: #6a9aba;
+
+  /* 清朝时间线颜色 */
+  --qing-color: #a85040;
+  --qing-light: #c87060;
+
+  /* 现代时间线颜色 */
+  --modern-color: #d4b896;
+  --modern-light: #e4c8a6;
+
+  /* 阴影 */
+  --shadow-soft: 0 4px 16px rgba(60, 70, 80, 0.06);
+  --shadow-deep: 0 10px 28px rgba(60, 70, 80, 0.1);
+  --shadow-glow: 0 0 20px rgba(168, 37, 0, 0.15);
+
+  /* 圆角 */
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  /* 布局尺寸 */
+  --nav-width: 180px;
+  --info-width: clamp(380px, 32vw, 520px);
+
+  /* 过渡 */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 建筑详情弹层需要的变量（覆盖/补充） */
+  --palace-red: #8B1A1A;
+  --palace-gold: #D4AF37;
+  --bg-deep: #0A0806;
+  --bg-overlay: rgba(10, 8, 6, 0.92);
+  --bg-card: rgba(42, 32, 24, 0.85);
+  --bg-card-hover: rgba(54, 42, 32, 0.92);
+  --text-primary: #F5F0E8;
+  --text-secondary: rgba(245, 240, 232, 0.75);
+  --text-muted: rgba(245, 240, 232, 0.5);
+  --border-subtle: rgba(212, 175, 55, 0.15);
+  --border-accent: rgba(212, 175, 55, 0.35);
+  --glow-gold: 0 0 20px rgba(168, 37, 0, 0.15);
+  --glow-gold-strong: 0 0 40px rgba(168, 37, 0, 0.25);
+  --shadow-soft: 0 4px 16px rgba(60, 70, 80, 0.06);
+  --shadow-deep: 0 10px 28px rgba(60, 70, 80, 0.1);
+  --text-muted: rgba(74, 58, 42, 0.5);
+}
+
+/* =====================================================
+   基础重置
+   ===================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+body {
+  color: var(--ink);
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 252, 0.6), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(168, 197, 212, 0.08), transparent 35%),
+    linear-gradient(160deg, #f8f9f7 0%, #f2f3f0 40%, #f5f6f3 70%, #eef0ec 100%);
+  overflow: hidden;
+}
+
+/* 窗棂纹理装饰 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(90, 122, 138, 0.04) 0 1px, transparent 1px 100%),
+    linear-gradient(rgba(90, 122, 138, 0.03) 0 1px, transparent 1px 100%);
+  background-size: 48px 48px;
+}
+
+/* 淡雅光影 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.25), transparent 32%),
+    radial-gradient(circle at 85% 85%, rgba(168, 197, 212, 0.05), transparent 28%);
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* =====================================================
+   首页主容器
+   ===================================================== */
+.home-page {
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--nav-width) minmax(0, 1fr) var(--info-width);
+  overflow: hidden;
+  position: relative;
+}
+
+/* =====================================================
+   响应式布局
+   ===================================================== */
+@media (max-width: 1200px) {
+  :root {
+    --nav-width: 160px;
+    --info-width: clamp(340px, 34vw, 440px);
+  }
+}
+
+@media (max-width: 992px) {
+  .home-page {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+
+  .home-info {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .home-nav {
+    flex-direction: row;
+    height: auto;
+    padding: 12px;
+    overflow-x: auto;
+  }
+
+  .home-nav__btns {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .home-nav__assistant {
+    flex-direction: row;
+    margin-left: auto;
+  }
+
+  .home-nav__btn {
+    min-width: 100px;
+    min-height: 60px;
+  }
+
+  .home-overview {
+    height: 100%;
+  }
+
+  .home-info {
+    display: none;
+  }
+}
+
+/* =====================================================
+   无障碍：减少动画
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

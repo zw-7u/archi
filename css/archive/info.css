@@ -1,0 +1,225 @@
+/**
+ * =====================================================
+ *  css/home-info.css
+ *  右侧信息面板样式
+ *  宫阙云览·故宫可视化平台
+ *  =====================================================
+ */
+
+/* =====================================================
+   右侧信息面板容器
+   ===================================================== */
+.home-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 28px 24px 24px;
+  background:
+    linear-gradient(180deg, rgba(252, 253, 250, 0.98), rgba(248, 249, 246, 0.96));
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 自定义滚动条 */
+.home-info::-webkit-scrollbar {
+  width: 6px;
+}
+
+.home-info::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.home-info::-webkit-scrollbar-thumb {
+  background: rgba(90, 122, 138, 0.2);
+  border-radius: 3px;
+}
+
+.home-info::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 122, 138, 0.3);
+}
+
+/* =====================================================
+   标题区
+   ===================================================== */
+.home-info__title {
+  position: relative;
+  text-align: center;
+  padding-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.home-info__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--red),
+    transparent
+  );
+  border-radius: 1px;
+}
+
+.home-info__title h1 {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--red);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 8px;
+  text-shadow: 0 2px 8px rgba(168, 37, 0, 0.15);
+}
+
+.home-info__subtitle {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin: 8px 0 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* =====================================================
+   关键数据标签
+   ===================================================== */
+.home-info__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.home-info__stat-card {
+  position: relative;
+  padding: 14px 12px;
+  background: linear-gradient(145deg, #ffffff, #f8f9f7);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.home-info__stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--gold-soft);
+}
+
+.home-info__stat-value {
+  display: block;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+.home-info__stat-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-left: 2px;
+}
+
+.home-info__stat-label {
+  display: block;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 11px;
+  color: var(--ink-light);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   整体介绍
+   ===================================================== */
+.home-info__intro {
+  margin-bottom: 28px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+}
+
+.home-info__intro p {
+  font-family: "Noto Serif SC", "STSong", serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink);
+  margin: 0;
+  text-align: justify;
+  text-indent: 2em;
+}
+
+.home-info__intro p::first-letter {
+  font-size: 16px;
+  color: var(--red);
+}
+
+/* =====================================================
+   时间线标题
+   ===================================================== */
+.home-info__timeline-section {
+  flex: 1;
+}
+
+.home-info__timeline-title {
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-info__timeline-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: var(--red);
+  border-radius: 2px;
+}
+
+/* =====================================================
+   时间线容器
+   ===================================================== */
+.home-info__timeline {
+  position: relative;
+}
+
+/* =====================================================
+   响应式
+   ===================================================== */
+@media (max-width: 992px) {
+  .home-info {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-info__title h1 {
+    font-size: 48px;
+    letter-spacing: 6px;
+  }
+
+  .home-info__stat-value {
+    font-size: 22px;
+  }
+}
