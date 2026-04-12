@@ -1,0 +1,563 @@
+/* ============================================
+   第二章 宫阙清赏 - 脊兽章节样式
+   ============================================ */
+
+.chapter--jishou {
+  display: grid;
+  place-items: center;
+}
+
+/* 布局容器 - 参考图片：左上五脊、左下十小兽、右侧信息区 */
+.jishou-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(340px, 1fr) minmax(400px, 1.1fr);
+  grid-template-rows: auto 1fr;
+  gap: clamp(20px, 2vw, 36px);
+  padding: clamp(28px, 3vh, 48px) clamp(24px, 3vw, 48px);
+  box-sizing: border-box;
+}
+
+/* 左侧区域 - 五脊 + 十小兽垂直排列 */
+.jishou-left {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vh, 28px);
+  min-height: 0;
+}
+
+/* 五脊区域 */
+.jishou-ridge-zone {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 140px;
+  background: linear-gradient(180deg, rgba(255, 251, 244, 0.52), rgba(246, 232, 206, 0.28));
+  border-radius: 24px;
+  padding: 16px 16px 12px;
+  box-shadow: inset 0 0 0 1px rgba(118, 80, 43, 0.12);
+  overflow: visible;
+}
+
+.jishou-ridge-zone__title {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(110, 75, 43, 0.48);
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+
+/* 五脊SVG容器 */
+.jishou-ridge-svg {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+/* 十小兽区域 */
+.jishou-beasts-zone {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: linear-gradient(180deg, rgba(255, 251, 244, 0.52), rgba(246, 232, 206, 0.28));
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: inset 0 0 0 1px rgba(118, 80, 43, 0.12);
+  overflow: hidden;
+}
+
+.jishou-beasts-zone__title {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(110, 75, 43, 0.48);
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+
+.jishou-beasts-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 右侧信息区 */
+.jishou-right {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vh, 20px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 艺术字标题区 */
+.jishou-title-zone {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 8px 12px 4px;
+}
+
+.jishou-title-zone__art {
+  font-size: clamp(48px, 5vw, 80px);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  margin: 0;
+  background: linear-gradient(135deg, #8b5a3c 0%, #a67048 25%, #c9945a 50%, #a67048 75%, #8b5a3c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 12px rgba(139, 90, 60, 0.18));
+}
+
+/* 介绍文本区 */
+.jishou-intro-zone {
+  flex: 0 0 auto;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(255, 251, 244, 0.62), rgba(246, 232, 206, 0.32));
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(118, 80, 43, 0.10);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.jishou-intro-zone::-webkit-scrollbar {
+  width: 5px;
+}
+
+.jishou-intro-zone::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.jishou-intro-zone::-webkit-scrollbar-thumb {
+  background: rgba(118, 80, 43, 0.24);
+  border-radius: 3px;
+}
+
+.jishou-intro-zone__subtitle {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: rgba(162, 94, 57, 0.88);
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+}
+
+.jishou-intro-zone__content {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(51, 33, 20, 0.84);
+  margin: 0;
+}
+
+.jishou-intro-zone__content ul {
+  margin: 6px 0;
+  padding-left: 16px;
+}
+
+.jishou-intro-zone__content li {
+  margin-bottom: 3px;
+}
+
+/* 桑基图区域 */
+.jishou-sankey-zone {
+  flex: 1;
+  min-height: 0;
+  background: linear-gradient(180deg, rgba(255, 251, 244, 0.48), rgba(246, 232, 206, 0.24));
+  border-radius: 22px;
+  padding: 14px 16px;
+  box-shadow: inset 0 0 0 1px rgba(118, 80, 43, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.jishou-sankey-zone__title {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(110, 75, 43, 0.48);
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.jishou-sankey-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* ============================================
+   圆形虚线按钮
+   ============================================ */
+.jishou-circle-btn {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px dashed rgba(162, 94, 57, 0.5);
+  background: rgba(255, 250, 242, 0.8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.24s ease,
+              border-color 0.24s ease,
+              background 0.24s ease;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.jishou-circle-btn:hover {
+  transform: scale(1.2) !important;
+  border-color: rgba(162, 94, 57, 0.85);
+  background: rgba(255, 250, 242, 0.95);
+  box-shadow: 0 8px 24px rgba(139, 90, 60, 0.28);
+}
+
+.jishou-circle-btn.is-active {
+  transform: scale(1.15) !important;
+  border-color: rgba(185, 100, 58, 0.9);
+  background: rgba(231, 167, 93, 0.35);
+  box-shadow: 0 6px 20px rgba(173, 100, 56, 0.32);
+}
+
+.jishou-circle-btn__img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.jishou-circle-btn__label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: rgba(110, 75, 43, 0.72);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ============================================
+   五脊区域按钮定位
+   ============================================ */
+/* 鸱吻按钮 - 正脊两端 */
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chiwen"]:first-of-type {
+  top: 12px;
+  left: 12%;
+}
+
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chiwen"]:nth-of-type(2) {
+  top: 12px;
+  right: 12%;
+}
+
+/* 垂兽按钮 - 垂脊端部 */
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chuishou"]:nth-of-type(3) {
+  top: 35%;
+  left: 6%;
+}
+
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chuishou"]:nth-of-type(4) {
+  top: 35%;
+  right: 6%;
+}
+
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chuishou"]:nth-of-type(5) {
+  top: 62%;
+  left: 14%;
+}
+
+.jishou-ridge-zone .jishou-circle-btn[data-ridge-type="chuishou"]:nth-of-type(6) {
+  top: 62%;
+  right: 14%;
+}
+
+/* ============================================
+   桑基图样式
+   ============================================ */
+.jishou-sankey {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sankey-column {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 4px;
+}
+
+.sankey-column--palace { left: 0; width: 30%; }
+.sankey-column--beast { left: 28%; width: 44%; }
+.sankey-column--meaning { right: 0; width: 26%; }
+
+.sankey-node {
+  position: relative;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: rgba(255, 250, 242, 0.92);
+  border: 1px solid rgba(118, 80, 43, 0.2);
+  box-shadow: 0 4px 14px rgba(82, 58, 32, 0.08);
+  cursor: pointer;
+  transition: transform 0.22s ease,
+              box-shadow 0.22s ease,
+              opacity 0.28s ease,
+              background 0.22s ease;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sankey-node:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 22px rgba(82, 58, 32, 0.14);
+}
+
+.sankey-node.is-highlighted {
+  background: rgba(231, 167, 93, 0.35);
+  border-color: rgba(185, 100, 58, 0.5);
+  box-shadow: 0 6px 18px rgba(173, 100, 56, 0.24);
+}
+
+.sankey-node.is-dimmed {
+  opacity: 0.2;
+  transform: scale(0.94);
+}
+
+.sankey-node__count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #a67048, #8b5a3c);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sankey-link {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(162, 94, 57, 0.35), rgba(162, 94, 57, 0.2));
+  transform-origin: left center;
+  transition: opacity 0.28s ease, background 0.28s ease;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.sankey-link.is-highlighted {
+  background: linear-gradient(90deg, rgba(185, 100, 58, 0.75), rgba(185, 100, 58, 0.45));
+  height: 3px;
+}
+
+.sankey-link.is-dimmed {
+  opacity: 0.06;
+}
+
+/* 悬停提示 */
+.jishou-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 200px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 250, 242, 0.97);
+  border: 1px solid rgba(118, 80, 43, 0.18);
+  box-shadow: 0 12px 32px rgba(82, 58, 32, 0.2);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.jishou-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.jishou-tooltip__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(51, 33, 20, 0.92);
+  margin: 0 0 4px 0;
+}
+
+.jishou-tooltip__desc {
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(82, 58, 32, 0.78);
+  margin: 0;
+}
+
+/* ============================================
+   详情弹窗
+   ============================================ */
+.jishou-detail-panel {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  min-width: 300px;
+  max-width: 420px;
+  padding: 18px 24px;
+  border-radius: 22px;
+  background: rgba(255, 250, 242, 0.97);
+  border: 1px solid rgba(118, 80, 43, 0.18);
+  box-shadow: 0 20px 60px rgba(82, 58, 32, 0.24);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.jishou-detail-panel.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.jishou-detail-panel__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(118, 80, 43, 0.18);
+  background: rgba(255, 250, 242, 0.85);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: rgba(82, 58, 32, 0.68);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.jishou-detail-panel__close:hover {
+  background: rgba(185, 100, 58, 0.18);
+  color: rgba(51, 33, 20, 0.92);
+}
+
+.jishou-detail-panel__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(51, 33, 20, 0.92);
+  margin: 0 0 8px 0;
+}
+
+.jishou-detail-panel__content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(82, 58, 32, 0.82);
+  margin: 0;
+}
+
+/* ============================================
+   响应式适配
+   ============================================ */
+@media (max-width: 1100px) {
+  .jishou-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    gap: 16px;
+    padding: 24px 20px 20px;
+  }
+
+  .jishou-left {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    max-height: 280px;
+  }
+
+  .jishou-ridge-zone {
+    flex: 1;
+    min-height: 120px;
+  }
+
+  .jishou-beasts-zone {
+    flex: 1.2;
+  }
+
+  .jishou-right {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .jishou-title-zone__art {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .jishou-layout {
+    padding: 20px 14px 16px;
+    gap: 12px;
+  }
+
+  .jishou-left {
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .jishou-ridge-zone {
+    min-height: 100px;
+  }
+
+  .jishou-ridge-svg {
+    height: 90px;
+  }
+
+  .jishou-circle-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .jishou-circle-btn__img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .jishou-circle-btn__label {
+    font-size: 8px;
+    bottom: -16px;
+  }
+
+  .jishou-intro-zone {
+    max-height: 140px;
+    padding: 10px 12px;
+  }
+
+  .jishou-intro-zone__content {
+    font-size: 11px;
+  }
+
+  .jishou-detail-panel {
+    min-width: 260px;
+    max-width: calc(100vw - 24px);
+    padding: 14px 18px;
+    bottom: 70px;
+  }
+}

@@ -3,147 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宫阙云览·故宫可视化平台</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>宫</text></svg>">
-  <!-- 新增首页样式（必须在主样式之前加载，以覆盖CSS变量） -->
-  <link rel="stylesheet" href="css/archive/home.css">
-  <link rel="stylesheet" href="css/archive/nav.css">
-  <link rel="stylesheet" href="css/archive/overview.css">
-  <link rel="stylesheet" href="css/archive/info.css">
-  <link rel="stylesheet" href="css/archive/timeline.css">
-  <link rel="stylesheet" href="css/archive/building-detail.css">
-  <!-- 原有样式 -->
-  <link rel="stylesheet" href="css/style.css?v=20260411-jishou-8">
-  <link rel="stylesheet" href="css/assistant-widget.css">
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
-    }
-  }
-  </script>
+  <title>宫阙载史</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/archive/archive.css">
+  <link rel="stylesheet" href="css/archive/jishou.css">
+  <link rel="stylesheet" href="css/archive/xuansi.css">
+  <link rel="stylesheet" href="css/archive/xingzhi.css">
 </head>
 <body>
-  <!-- ===== 首页主容器 ===== -->
-  <div class="home-page" id="home-page">
+  <div class="app-shell" id="app-shell">
+    <header class="site-header" aria-label="项目标题">
+      <p class="site-header__eyebrow">Palace Archive</p>
+      <h1 class="site-header__title">宫阙载史</h1>
+    </header>
 
-    <!-- ========== 左侧导航 ========== -->
-    <nav class="home-nav" id="home-nav">
-      <!-- 宫阙载史 + 宫阙玄思（保留在按钮组内） -->
-      <div class="home-nav__btns">
-        <button class="home-nav__btn active" data-module="archive">
-          <span class="home-nav__btn-zh">宫阙载史</span>
-          <span class="home-nav__btn-en">Palace Archive</span>
-        </button>
-        <button class="home-nav__btn" data-module="thought">
-          <span class="home-nav__btn-zh">宫阙玄思</span>
-          <span class="home-nav__btn-en">Spatial Philosophy</span>
-        </button>
+    <main class="chapter-viewport" id="chapter-viewport" aria-label="章节书卷">
+      <div class="chapter-stage" id="chapter-stage">
+        <section class="chapter chapter--archive is-active" data-chapter-index="0" data-chapter-key="archive" aria-label="第一章 宫阙载史">
+          <div class="archive-layout" id="archive-layout">
+            <aside class="archive-panel archive-panel--timeline" id="archive-timeline-panel">
+              <div class="timeline-column-shell timeline-column-shell--ming">
+                <div class="timeline-column-shell__head">
+                  <span class="timeline-column-shell__marker"></span>
+                  <h2 class="timeline-column-shell__title">明</h2>
+                </div>
+                <div class="timeline-column-shell__body" id="timeline-ming"></div>
+              </div>
+              <div class="timeline-column-shell timeline-column-shell--qing">
+                <div class="timeline-column-shell__head">
+                  <span class="timeline-column-shell__marker"></span>
+                  <h2 class="timeline-column-shell__title">清</h2>
+                </div>
+                <div class="timeline-column-shell__body" id="timeline-qing"></div>
+              </div>
+            </aside>
+
+            <section class="archive-panel archive-panel--stage" id="archive-stage-panel">
+              <div class="archive-stage-shell" id="archive-stage-shell">
+                <div class="archive-overview-panel" id="archive-overview-panel" aria-label="故宫总览图"></div>
+                <div class="archive-video-panel" id="archive-video-panel" aria-live="polite">
+                  <div class="archive-video-frame">
+                    <video id="archive-video" class="archive-video" preload="metadata" playsinline></video>
+                    <div class="archive-video-empty" id="archive-video-empty">当前建筑暂无视频，点击左上角总览图返回。</div>
+                  </div>
+                </div>
+              </div>
+              <div class="archive-player-bar" id="archive-player-bar">
+                <input id="archive-scrubber" class="archive-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="视频时间滑动条">
+                <button id="archive-next-video" class="archive-next-video" type="button" aria-label="切换下一个视频">
+                  <span class="archive-next-video__halo"></span>
+                  <span class="archive-next-video__core"></span>
+                </button>
+                <div class="archive-player-meta" id="archive-player-meta">0 / 0</div>
+              </div>
+            </section>
+
+            <aside class="archive-panel archive-panel--info" id="archive-info-panel">
+              <div class="archive-info" id="archive-info"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="chapter chapter--jishou" data-chapter-index="1" data-chapter-key="jishou" aria-label="第二章 宫阙清赏">
+          <div class="jishou-layout" id="jishou-layout">
+            <!-- 左侧：五脊 + 十小兽 -->
+            <div class="jishou-left">
+              <!-- 五脊区域 -->
+              <div class="jishou-ridge-zone">
+                <h3 class="jishou-ridge-zone__title">五脊六兽</h3>
+              </div>
+
+              <!-- 十小兽区域 -->
+              <div class="jishou-beasts-zone">
+                <h3 class="jishou-beasts-zone__title">十小兽</h3>
+              </div>
+            </div>
+
+            <!-- 右侧：艺术字 + 介绍 + 桑基图 -->
+            <div class="jishou-right">
+              <!-- 艺术字标题 -->
+              <div class="jishou-title-zone">
+                <h2 class="jishou-title-zone__art">脊兽</h2>
+              </div>
+
+              <!-- 介绍文本 -->
+              <div class="jishou-intro-zone">
+                <p class="jishou-intro-zone__subtitle">等级与规制</p>
+                <div class="jishou-intro-zone__content">
+                  <ul>
+                    <li>太和殿独有：10只走兽+骑凤仙人（"一仙十兽"）</li>
+                    <li>天下唯一突破"阳数之极（九）"，象征十全十美、天地圆满（《周易》）</li>
+                    <li>其他建筑：乾清宫9、坤宁宫7、东西六宫5，等级递减</li>
+                  </ul>
+                  <ul>
+                    <li>等级密码：数量=建筑尊卑，10兽=皇权顶峰</li>
+                    <li>风水守护：镇宅、避雷、防火、辟邪（木结构建筑核心诉求）</li>
+                    <li>宇宙隐喻：十兽对应十天干、十方位，皇权统御八方</li>
+                    <li>建筑实用：保护屋脊瓦件、固定檐角、防风防雨</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 桑基图区域 -->
+              <div class="jishou-sankey-zone">
+                <h3 class="jishou-sankey-zone__title">宫殿 · 脊兽 · 意义</h3>
+                <div class="jishou-sankey-container" id="jishou-sankey"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter chapter--xuansi" data-chapter-index="2" data-chapter-key="xuansi" aria-label="第三章 宫阙玄思">
+          <div class="xuansi-layout" id="xuansi-layout">
+            <div class="xuansi-left">
+              <div class="xuansi-video-wrap">
+                <video id="xuansi-video" class="xuansi-video" src="assets/videos/culture/culture.mp4" preload="metadata" playsinline></video>
+                <button class="xuansi-play-btn" type="button" aria-label="播放视频">
+                  <span class="xuansi-play-btn__icon"></span>
+                </button>
+              </div>
+              <div class="xuansi-player-bar">
+                <input class="xuansi-scrubber-input" type="range" min="0" max="1000" value="0" step="1" aria-label="视频进度">
+                <div class="xuansi-scrubber-track">
+                  <div class="xuansi-scrubber-progress"></div>
+                  <button class="xuansi-scrubber-thumb" type="button" aria-label="进度拖动"></button>
+                </div>
+                <div class="xuansi-nodes">
+                  <button class="xuansi-node is-active" type="button" data-node="0">阴阳五行</button>
+                  <button class="xuansi-node" type="button" data-node="1">中轴定序</button>
+                  <button class="xuansi-node" type="button" data-node="2">负山抱水</button>
+                </div>
+              </div>
+            </div>
+            <div class="xuansi-right">
+              <h2 class="xuansi-art-title">宫阙玄思</h2>
+              <div class="xuansi-content-list">
+                <div class="xuansi-content-item is-active" data-index="0">
+                  <h3 class="xuansi-content-item__title">阴阳五行</h3>
+                  <p class="xuansi-content-item__text">内容加载中...</p>
+                </div>
+                <div class="xuansi-content-item" data-index="1">
+                  <h3 class="xuansi-content-item__title">中轴定序</h3>
+                  <p class="xuansi-content-item__text">内容加载中...</p>
+                </div>
+                <div class="xuansi-content-item" data-index="2">
+                  <h3 class="xuansi-content-item__title">负山抱水</h3>
+                  <p class="xuansi-content-item__text">内容加载中...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter chapter--xingzhi" data-chapter-index="3" data-chapter-key="xingzhi" aria-label="第四章 宫阙形制">
+          <div class="xingzhi-layout" id="xingzhi-layout">
+            <div class="xingzhi-left">
+              <div class="xingzhi-video-wrap">
+                <!-- 视频元素由JS动态创建 -->
+              </div>
+              <div class="xingzhi-scrubber">
+                <input class="xingzhi-scrubber-input" type="range" min="0" max="1000" value="0" step="1" aria-label="拆解进度">
+                <div class="xingzhi-scrubber-track">
+                  <div class="xingzhi-scrubber-progress"></div>
+                  <button class="xingzhi-scrubber-thumb" type="button" aria-label="进度拖动"></button>
+                </div>
+                <div class="xingzhi-nodes">
+                  <button class="xingzhi-node is-active" type="button" data-node-id="0">
+                    <span class="xingzhi-node__num">1</span>
+                    <span class="xingzhi-node__label">起始</span>
+                  </button>
+                  <button class="xingzhi-node" type="button" data-node-id="1">
+                    <span class="xingzhi-node__num">2</span>
+                    <span class="xingzhi-node__label">构件</span>
+                  </button>
+                  <button class="xingzhi-node" type="button" data-node-id="2">
+                    <span class="xingzhi-node__num">3</span>
+                    <span class="xingzhi-node__label">组装</span>
+                  </button>
+                  <button class="xingzhi-node" type="button" data-node-id="3">
+                    <span class="xingzhi-node__num">4</span>
+                    <span class="xingzhi-node__label">结构</span>
+                  </button>
+                  <button class="xingzhi-node" type="button" data-node-id="4">
+                    <span class="xingzhi-node__num">5</span>
+                    <span class="xingzhi-node__label">完善</span>
+                  </button>
+                  <button class="xingzhi-node" type="button" data-node-id="5">
+                    <span class="xingzhi-node__num">6</span>
+                    <span class="xingzhi-node__label">完成</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="xingzhi-right">
+              <h2 class="xingzhi-art-title">宫阙形制</h2>
+              <div class="xingzhi-actions">
+                <button class="xingzhi-action-btn" type="button" id="xingzhi-explode-btn">
+                  <span class="xingzhi-action-btn__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  </span>
+                  <span class="xingzhi-action-btn__text">一键拆解</span>
+                </button>
+                <button class="xingzhi-action-btn" type="button" id="xingzhi-workshop-btn">
+                  <span class="xingzhi-action-btn__icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  </span>
+                  <span class="xingzhi-action-btn__text">巧筑工坊</span>
+                </button>
+              </div>
+              <div class="xingzhi-info">
+                <div class="xingzhi-info__label">当前阶段</div>
+                <div class="xingzhi-info__value">角楼 · 起始</div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
+    </main>
 
-      <!-- 宫阙清赏（独立，绝对定位） -->
-      <button class="home-nav__btn" data-module="appreciation">
-        <span class="home-nav__btn-zh">宫阙清赏</span>
-        <span class="home-nav__btn-en">Architectural Appreciation</span>
+    <nav class="chapter-rail" id="chapter-rail" aria-label="章节时间轴">
+      <div class="chapter-rail__line"></div>
+      <button class="chapter-rail__node is-active" type="button" data-target-index="0" aria-label="第一章">
+        <span class="chapter-rail__dot"></span>
+        <span class="chapter-rail__label">第一章</span>
       </button>
-
-      <!-- 宫阙形制（独立，绝对定位） -->
-      <button class="home-nav__btn" data-module="typology">
-        <span class="home-nav__btn-en">Architectural Typology</span>
-        <span class="home-nav__btn-zh">宫阙形制</span>
+      <button class="chapter-rail__node" type="button" data-target-index="1" aria-label="第二章">
+        <span class="chapter-rail__dot"></span>
+        <span class="chapter-rail__label">第二章</span>
       </button>
-
-      <!-- 筑灵助手区域 -->
-      <div class="home-nav__assistant">
-        <button class="home-nav__assistant-btn" id="home-assistant-btn" title="筑灵助手"></button>
-        <button class="home-nav__lang-btn" id="home-lang-btn">简/EN</button>
-      </div>
+      <button class="chapter-rail__node" type="button" data-target-index="2" aria-label="第三章">
+        <span class="chapter-rail__dot"></span>
+        <span class="chapter-rail__label">第三章</span>
+      </button>
+      <button class="chapter-rail__node" type="button" data-target-index="3" aria-label="第四章">
+        <span class="chapter-rail__dot"></span>
+        <span class="chapter-rail__label">第四章</span>
+      </button>
     </nav>
-
-    <!-- ========== 中间区域 ========== -->
-    <section class="home-overview" id="home-overview">
-      <!-- 宫阙载史：overview.svg -->
-      <div class="home-overview__svg-container" id="home-svg-container">
-        <!-- SVG将通过JS动态加载 -->
-      </div>
-      <!-- 其他模块占位（后续搭建） -->
-      <div class="home-overview__placeholder" id="home-overview-placeholder" hidden>
-        <span class="home-overview__placeholder-text">模块内容开发中</span>
-      </div>
-    </section>
-
-    <!-- ========== 右侧信息面板 ========== -->
-    <aside class="home-info" id="home-info">
-      <div class="home-info__title">
-        <h1>故宫</h1>
-        <p class="home-info__subtitle">Forbidden City</p>
-      </div>
-
-      <div class="home-info__stats" id="home-stats"></div>
-
-      <div class="home-info__intro" id="home-intro"></div>
-
-      <div class="home-info__timeline-section" id="home-timeline-section">
-        <h3 class="home-info__timeline-title">明清时间线</h3>
-        <div id="home-timeline"></div>
-      </div>
-    </aside>
-
   </div>
 
-  <!-- ===== 原有的多模块容器（保留用于后续开发） ===== -->
-  <div id="app-shell" class="app-shell" hidden>
-    <!-- 原有模块内容保持不变，后续由用户指导搭建 -->
-  </div>
-
-  <!-- ===== JS 依赖 ===== -->
-  <script src="js/archive/data.js"></script>
-  <script src="js/archive/svgScanner.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-
-  <!-- 筑灵助手 -->
-  <script src="js/assistant/assistant-speech.js"></script>
-  <script src="js/assistant/assistant-api.js"></script>
-  <script src="js/assistant/assistant-widget.js"></script>
-
-  <!-- 首页脚本 -->
-  <script src="js/archive/overview.js"></script>
+  <script src="js/archive/data.js"></script>
   <script src="js/archive/timeline.js"></script>
-  <script src="js/archive/building-detail.js"></script>
-  <script src="js/archive/main.js"></script>
-
-  <!-- 图片灯箱 -->
-  <div id="image-lightbox" class="image-lightbox" hidden role="dialog" aria-modal="true" aria-label="图片放大">
-    <div class="image-lightbox__backdrop" data-lightbox-close></div>
-    <button type="button" class="image-lightbox__close" data-lightbox-close aria-label="关闭">×</button>
-    <img id="lightbox-img" class="image-lightbox__img" alt="">
-  </div>
-
-  <div id="overview-tooltip" class="overview-tooltip" hidden></div>
-
-  <!-- 视频灯箱 -->
-  <div id="video-lightbox" class="image-lightbox video-lightbox" hidden role="dialog" aria-modal="true" aria-label="视频放大">
-    <div class="image-lightbox__backdrop" data-video-lightbox-close></div>
-    <button type="button" class="image-lightbox__close" data-video-lightbox-close aria-label="关闭">×</button>
-    <div class="video-lightbox__panel">
-      <video id="lightbox-video" class="video-lightbox__video" controls playsinline></video>
-      <div id="lightbox-video-path" class="video-lightbox__path"></div>
-    </div>
-  </div>
-
-  <!-- 初始化 -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 初始化全局状态（必须在其他脚本之前）
-      window.state = { lang: 'zh' }
-
-      // 初始化首页
-      if (typeof HomePage !== 'undefined') {
-        window.homePage = new HomePage()
-        window.homePage.init()
-      }
-    })
-  </script>
+  <script src="js/archive/overview.js"></script>
+  <script src="js/archive/player.js"></script>
+  <script src="js/archive/jishouApp.js"></script>
+  <script src="js/archive/archiveApp.js"></script>
+  <script src="js/archive/xuansiApp.js"></script>
+  <script src="js/archive/xingzhiApp.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
